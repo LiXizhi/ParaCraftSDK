@@ -4,5 +4,6 @@
 *.bak
 *.sdf
 *.suo
+*.zip
 */obj/
 redist/

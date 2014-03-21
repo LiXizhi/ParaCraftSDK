@@ -1,0 +1,28 @@
+﻿<!-- "mods/HelloWorldMCML/HelloWorld.html" -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+</head>
+<body>
+<pe:mcml>
+<script refresh="false" type="text/npl" src="HelloWorld.lua"><![CDATA[
+
+    function OnClickOK()
+        local content = Page:GetValue("content") or "";
+        _guihelper.MessageBox("你输入的是:"..content);
+    end
+]]></script>
+<div style="width:300px;height:300px;color:#33ff33" class="mc_border" align="center" valign="center">
+    <div style="margin:10px;">
+        Hello World from HTML page!
+    </div>
+    <div style="margin:10px;">
+        <input type="text" name="content" style="width:200px;height:25px;" />
+        <input type="button" name="ok" value="确定" onclick="OnClickOK"/>
+    </div>
+</div>
+</pe:mcml>
+</body>
+</html>

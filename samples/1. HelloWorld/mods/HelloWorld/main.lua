@@ -11,10 +11,24 @@ Or run application with command line: bootstrapper="mods/HelloWorld/main.lua"
 ------------------------------------------------------------
 ]]
 -- ParaWorld platform includes
-NPL.load("(gl)script/kids/ParaWorldCore.lua"); 
+-- NPL.load("(gl)script/kids/ParaWorldCore.lua"); 
+
+local main_state = nil;
+
+local function InitApp()
+	local _this = ParaUI.CreateUIObject("button", "my_button", "_ct", -50, 0, 100, 50);
+	_this.text = "HelloWorld";
+	_this.background = "";
+	_this:AttachToRoot();
+end
 
 local function activate()
-	echo("hello world\n")
+	if(main_state == nil) then
+		InitApp();
+		main_state = 1;
+	else
+		log("hello world from main loop\n");
+	end
 end
 
 NPL.this(activate);

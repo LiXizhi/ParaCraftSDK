@@ -1,0 +1,11 @@
+---++ 创意空间ParaCraftSDK使用说明
+| Authors | LiXizhi, ... |
+| Date 	  | 2014.3.21 |
+| 最新版  | https://github.com/LiXizhi/ParaCraftSDK | 
+
+---++ 如何运行
+点击start.bat。 
+
+---+++ 背后发生了什么？
+首次运行start.bat会自动安装ParaCraft客户端。但是第二次运行，SDK版本不会自动更新客户端，
+所以如果你希望与最新的官方ParaCraft客户端同步， 请运行upgrade.bat升级客户端。 

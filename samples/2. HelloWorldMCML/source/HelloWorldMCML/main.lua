@@ -6,8 +6,8 @@ Date: 2014/3/21
 Desc: Entry point and game loop
 use the lib:
 ------------------------------------------------------------
-NPL.activate("mods/HelloWorld/main.lua");
-Or run application with command line: bootstrapper="mods/HelloWorld/main.lua"
+NPL.activate("source/HelloWorld/main.lua");
+Or run application with command line: bootstrapper="source/HelloWorld/main.lua"
 ------------------------------------------------------------
 ]]
 -- 加载一些核心类库
@@ -62,7 +62,7 @@ local function InitApp()
 
 	-- 显示一个HTML页面
 	NPL.load("(gl)script/kids/3DMapSystemApp/mcml/PageCtrl.lua");
-	local page = System.mcml.PageCtrl:new({url="mods/HelloWorldMCML/HelloWorld.html"});
+	local page = System.mcml.PageCtrl:new({url="source/HelloWorldMCML/HelloWorld.html"});
 	page:Create("helloworldpage", nil, "_fi", 0, 0, 0, 0)
 end
 

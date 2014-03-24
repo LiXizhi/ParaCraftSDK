@@ -7,5 +7,15 @@
 点击start.bat。 
 
 ---+++ 背后发生了什么？
-首次运行start.bat会自动安装ParaCraft客户端。但是第二次运行，SDK版本不会自动更新客户端，
-所以如果你希望与最新的官方ParaCraft客户端同步， 请运行upgrade.bat升级客户端。 
+首次运行start.bat会自动安装ParaCraft。但是第二次运行，SDK版本不会自动更新，
+所以如果你希望与最新的官方ParaCraft软件同步， 请运行upgrade.bat手工升级。 
+这点非常重要。 
+
+---+++ 目录说明
+./samples 			例子程序和源代码。运行每个子目录中的start.bat
+./redist 			发布与运行环境，模拟用户的安装目录
+./src				引擎部分源代码
+./apps				用户自己开发的应用在这里
+./tutorials			教程应用
+
+上述内容经常会变，请与https://github.com/LiXizhi/ParaCraftSDK 保持同步

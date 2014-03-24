@@ -1,2 +1,2 @@
 @echo off
-start %CD%/redist/ParaCraft.exe
+call "%~dp0redist/ParaCraft.exe"

@@ -1,0 +1,18 @@
+<html>
+<body>
+<pe:mcml>	
+<%
+function OnOpenUrl()
+	ParaGlobal.ShellExecute("open", "http://127.0.0.1:8099/helloworld.lua?name=value", "", "", 1);
+end
+%>
+<div style="width:800px;margin-top:50px;" align="center">
+	<div style="margin:5px;">这里是NPL Server的演示. </div>
+	<div style="margin:5px;" >NPL Server应该是迄今最快的WebServer. 底层是boost.async_io. 支持Linux和Windows。 </div>
+	<div style="margin:5px;">
+		<input type="button" style="font-weight:bold;" value="点击测试:http://127.0.0.1:8099/helloworld.lua?name=value" onclick="OnOpenUrl" />
+	</div>
+</div>
+</pe:mcml>
+</body>
+</html>

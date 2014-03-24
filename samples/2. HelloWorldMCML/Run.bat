@@ -1,2 +1,5 @@
 @echo off
-start ../../redist/ParaEngineClient.exe single="false" mc="true" noupdate="true" dev="%CD%" bootstrapper="mods/HelloWorldMCML/main.lua"
+pushd "%~dp0../../redist/"
+call "log.txt"
+call "ParaEngineClient.exe" bootstrapper="source/HelloWorldMCML/main.lua" single="false" mc="true" noupdate="true" dev="%~dp0" 
+popd

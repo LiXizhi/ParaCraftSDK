@@ -7,3 +7,4 @@
 *.zip
 */obj/
 redist/
+published/

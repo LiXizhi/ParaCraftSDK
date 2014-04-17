@@ -51,6 +51,7 @@ if "%appname%" NEQ "" (
 	echo popd >> %RunFileName%
 ) else (
 	echo call "%%~dp0ParaCraft.exe" >> %RunFileName%
+	echo call "%%~dp0ParaEngineClient.exe" single="false" mc="true" noupdate="true">> %redist_dir%\离线运行.bat
 )
 
 echo 恭喜！生成完毕

@@ -23,3 +23,5 @@ echo popd >> %RunFileName%
 echo ¹§Ï²£¡Éú³ÉÍê±Ï: apps\%appname%
 
 start explorer.exe "%~dp0apps\%appname%"
+
+pause

@@ -7,4 +7,7 @@
 *.zip
 */obj/
 redist/
+src/script
+src/config/Aries/creator/bom
 published/
+src/sync_src.bat

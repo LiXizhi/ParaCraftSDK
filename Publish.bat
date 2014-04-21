@@ -1,3 +1,4 @@
+REM  Publish App in the Redist folder
 echo off
 echo.
 Set pub_dir=%~dp0published\

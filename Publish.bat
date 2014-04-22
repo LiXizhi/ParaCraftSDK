@@ -1,7 +1,9 @@
+REM  Publish App in the Redist folder
 echo off
 echo.
 Set pub_dir=%~dp0published\
 Set redist_dir=%~dp0redist\
+Set bin_dir=%~dp0bin\
 Set start_filename=运行.bat
 Set /p appname=请输入要发布的APP名字（空表示为产品本身）:
 
@@ -56,5 +58,11 @@ if "%appname%" NEQ "" (
 
 echo 恭喜！生成完毕
 echo 请自己将 %redist_dir% 打包并发布. 
-pause
-start explorer.exe "%redist_dir%"
+
+Set /p tmp=是否将redist目录打包为zip文件（确认按Y）
+if '%tmp%'=='Y' (
+	call "%bin_dir%7z.exe" a ParaCraft%appname%%DATE:~0,4%%DATE:~5,2%%DATE:~8,2%.zip %redist_dir%
+) else (
+	pause
+	start explorer.exe "%redist_dir%"
+)

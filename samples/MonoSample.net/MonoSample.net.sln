@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "source", "source", "{C79BF2FA-A724-4C12-B8BD-62E8D1314450}"
+	ProjectSection(SolutionItems) = preProject
+		source\MonoSample.net\main.lua = source\MonoSample.net\main.lua
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleMonoLib", "SampleMonoLib\SampleMonoLib.csproj", "{FAC0676B-84C0-4FA4-8CCF-5F060A4D04DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NPLMonoInterface", "NPLMonoInterface\NPLMonoInterface.csproj", "{A7BFECDA-A248-4577-BB0F-26323FC6DDDE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{105D9812-0A8C-4C75-8DC6-48A40A3E3362}"
+	ProjectSection(SolutionItems) = preProject
+		Run.bat = Run.bat
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FAC0676B-84C0-4FA4-8CCF-5F060A4D04DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAC0676B-84C0-4FA4-8CCF-5F060A4D04DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAC0676B-84C0-4FA4-8CCF-5F060A4D04DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAC0676B-84C0-4FA4-8CCF-5F060A4D04DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7BFECDA-A248-4577-BB0F-26323FC6DDDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7BFECDA-A248-4577-BB0F-26323FC6DDDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7BFECDA-A248-4577-BB0F-26323FC6DDDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7BFECDA-A248-4577-BB0F-26323FC6DDDE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

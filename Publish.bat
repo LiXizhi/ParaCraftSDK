@@ -17,7 +17,8 @@ del database\creator_profile.db
 del database\localserver.*
 del database\userdata.*
 del database\app.*
-
+rd "worlds\DesignHouse\userworlds" /s /q
+rd "worlds\DesignHouse\backups" /s /q
 
 rd "Screen Shots" /s /q
 rd "log" /s /q
@@ -61,7 +62,7 @@ echo 请自己将 %redist_dir% 打包并发布.
 
 Set /p tmp=是否将redist目录打包为zip文件（确认按Y）
 if '%tmp%'=='Y' (
-	call "%bin_dir%7z.exe" a ParaCraft%appname%%DATE:~0,4%%DATE:~5,2%%DATE:~8,2%.zip %redist_dir%
+	call "%bin_dir%7z.exe" a [离线版客户端]ParaCraft%appname%%DATE:~0,4%%DATE:~5,2%%DATE:~8,2%.zip %redist_dir%
 ) else (
 	pause
 	start explorer.exe "%redist_dir%"

@@ -4,10 +4,13 @@
 *.bak
 *.sdf
 *.suo
+*.csproj.user
 *.zip
-*/obj/
+*.dll
+obj/*
 redist/
-src/script
 src/config/Aries/creator/bom
 published/
+ParaCraft/
 src/sync_src.bat
+src/sdkpath.txt

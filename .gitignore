@@ -12,5 +12,6 @@ redist/
 src/config/Aries/creator/bom
 published/
 ParaCraft/
+apps/
 src/sync_src.bat
 src/sdkpath.txt

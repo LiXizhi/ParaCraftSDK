@@ -1,0 +1,3 @@
+[submodule "build/ParacraftBuild"]
+        path = build/ParacraftBuild
+        url = git://github.com/LiXizhi/ParacraftBuild.git

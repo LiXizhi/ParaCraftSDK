@@ -2,6 +2,7 @@ echo off
 
 Set /p appname=ÇëÊäÈëAPPµÄÃû×Ö:
 
+mkdir apps
 mkdir apps\%appname%
 mkdir apps\%appname%\source
 mkdir apps\%appname%\source\%appname%

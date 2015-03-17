@@ -23,9 +23,9 @@ function Sample:init()
 end
 
 function Sample:OnLogin()
-	echo("this call on login!");
+	echo("this is called on login!");
 end
 
 function Sample:OnWorldLoad()
-	echo("this call on world load!");
+	
 end

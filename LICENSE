@@ -1,0 +1,84 @@
+﻿---+ LICENSE for NPL/ParaEngine/Paracraft
+Author: LiXizhi
+Contact: lixizhi@yeah.net
+Version 1.0 Date: 2015.3.19
+
+Below are three license files for NPL, ParaEngine and Paracraft(SDK).
+Our software is not completely open sourced, the reason is that we want to make sure that all toolset and code is modular and functional by the time they are open sourced. We are working hard to make all of them open sourced under GPL license. Commercial license is possible by contacting the author. 
+
+---++ LICENSE for NPL
+Copyright (c) 2004-2015 LiXizhi
+Copyright (c) 2007-2014 ParaEngine Co.
+
+This software is provided 'as-is', without any express or implied
+warranty.  In no event will the authors be held liable for any damages
+arising from the use of this software.
+
+Permission is granted to anyone to use this software for any purpose,
+including commercial applications, and to alter it and redistribute it
+freely, subject to the following restrictions:
+
+1. The origin of this software must not be misrepresented; you must not
+   claim that you wrote the original software. If you use this software
+   in a product, an acknowledgment in the product documentation would be
+   appreciated but is not required.
+2. Altered source versions must be plainly marked as such, and must not be
+   misrepresented as being the original software.
+3. This notice may not be removed or altered from any source distribution.
+
+---+++ LICENSE for NPL(中文摘要)
+详见英文。 要点翻译：
+免费修改，发布，商业化，但要在代码中保留License内容，不可声称原创. 
+
+NPL采用和LGPL兼容的协议：
+	LGPL的全称是 GNU Lesser General Public License，GNU 较宽松公共许可证，也是由协议是由自由软体基金会发布的许可证，是一个主要为类库使用设计的开源协议，和GPL要求任何使用/修改/衍生之GPL类库的的软件必须采用GPL协议不同。LGPL允许商业软件通过类库引用(link)方式使用LGPL类库而不需要开源商业软件的代码。这使得采用LGPL协议的开源代码可以被商业软件作为类库引用并发布和销售。
+
+---++ LICENSE for ParaEngine
+Copyright (c) 2004-2015 LiXizhi
+Copyright (c) 2007-2014 ParaEngine Co.
+Copyright (c) 2014-2015 Tatfook Co.
+ParaEngine is copyrighted of above parties. 
+Contact: lixizhi@yeah.net
+
+You may use, distribute and copy the ParaEngine tool and source code under the terms of GNU General Public License, which is shown here:
+http://www.gnu.org/copyleft/gpl.html
+
+If you do not want to disclose your source code as dictated in above GPL license, then the following terms must be met:
+1. The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. 
+2. If the released software contains graphical user interface, a text or image logo of (Powered by ParaEngine) is required to show in a user visible place during software startup. The notice can only be removed if any of the above copyrighted parties agrees. 
+
+---+++ LICENSE for ParaEngine(中文摘要)
+详见英文。 要点翻译：
+软件需遵守GPL协议， 否则需要满足下面条件：
+1 免费修改，发布，商业化，但要在最终发布的产品中保留用户可查看到的License内容.
+2 如果发布的软件含用户界面， 需要在软件启动过程中展示Powered by ParaEngine的文字或图形。
+上述展示只有在原作者书面同意的前期下才能移除。
+
+ParaEngine采用GPL协议，但在满足特殊条件下，也允许使用者不开源：
+GPL全称是The GNU General Public License，是目前大多数的GNU程序和超过半数的自由软件使用的许可协议。GPL的出发点是代码的开源/免费使用和引用/修改/衍生代码的开源/免费使用，但不允许修改后和衍生的代码做为闭源的商业软件发布和销售。
+
+---++ LICENSE for ParaCraft and ParaCraftSDK
+Copyright (c) 2004-2015 LiXizhi
+Copyright (c) 2007-2014 ParaEngine Co.
+Copyright (c) 2014-2015 Tatfook Co.
+ParaEngine is copyrighted of above parties. 
+Contact: lixizhi@yeah.net
+
+You may use, distribute and copy the Paracraft(SDK) and source code under the terms of GNU General Public License, which is shown here:
+http://www.gnu.org/copyleft/gpl.html
+
+If you do not want to disclose your source code as dictated in above GPL license, then the following terms must be met:
+1. The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. 
+2. If the released software contains graphical user interface, a text or image logo of (Powered by ParaEngine) is required to show in a user visible place during software startup. The notice can only be removed if any of the above copyrighted parties agrees via contract. 
+3. Works(worlds or video streams) created by end users via paracraft or any of its modified versions should recommend the user to show the Paracraft logo, unless no logos from the publisher is enfored or recommended to show in the user's work.
+4. Commercial use of any derived work should pay 5% of total revenue only if its revenue exceed 10000 USD or equivalent amount in other currency, unless any of the above copyrighted parties agrees via contract.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+---+++ LICENSE for ParaCraft and ParaCraftSDK (中文摘要)
+详见英文。 要点翻译：
+软件需遵守GPL协议， 否则需要满足下面条件：
+1 在最终发布的产品中保留用户可查看到的License内容.
+2 如果发布的软件含用户界面， 需要在软件启动过程中展示Made with Paracraft的文字或图形。上述展示只有在原作者书面同意的前期下才能移除。
+3.使用Paracraft或Paracraft的修改版创作出的用户作品（包括视频和世界文件）需要建议用户展示Paracraft的Logo,除非软件本身并没有强制或建议用户展示任何Logo或者原作者书面允许不展示。
+4.如果将Paracraft或Paracraft的修改版进行商业化，收入超过1万美金或等值货币价值的收入，需支付5%的总收入给原作者，除非原作者书面允许不用支付。 

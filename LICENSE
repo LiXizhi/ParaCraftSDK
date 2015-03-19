@@ -6,6 +6,12 @@ Version 1.0 Date: 2015.3.19
 Below are three license files for NPL, ParaEngine and Paracraft(SDK).
 Our software is not completely open sourced, the reason is that we want to make sure that all toolset and code is modular and functional by the time they are open sourced. We are working hard to make all of them open sourced under GPL license. Commercial license is possible by contacting the author. 
 
+---++ Logics Behind
+We have chosen GPL as the base license for all ParaEngine related software. NPL is special and is LGPL based. Our mission is to make the software modular and functional and fully open sourced. Our best wish is that more and more developers can use our software and NPL without worries, and more and more people and companies are willing to contribute to its code base. 
+
+Paracraft and ParaEngine should become a high quality framework of many free and open sourced tools and algorithms. I believe that license like unreal and unity is wrong. The 5% of total venue from developers should not be our primary income, but rather a way to prevent bad competitions with our own software. The content of Paracraft is our primary future income. This is why the use of ParaEngine is free even for commercial use, while paracraft SDK charges you 5% of total venue if used commercially.
+
+
 ---++ LICENSE for NPL
 Copyright (c) 2004-2015 LiXizhi
 Copyright (c) 2007-2014 ParaEngine Co.
@@ -52,7 +58,7 @@ If you do not want to disclose your source code as dictated in above GPL license
 软件需遵守GPL协议， 否则需要满足下面条件：
 1 免费修改，发布，商业化，但要在最终发布的产品中保留用户可查看到的License内容.
 2 如果发布的软件含用户界面， 需要在软件启动过程中展示Powered by ParaEngine的文字或图形。
-上述展示只有在原作者书面同意的前期下才能移除。
+上述展示只有在原作者书面同意的前题下才能移除。
 
 ParaEngine采用GPL协议，但在满足特殊条件下，也允许使用者不开源：
 GPL全称是The GNU General Public License，是目前大多数的GNU程序和超过半数的自由软件使用的许可协议。GPL的出发点是代码的开源/免费使用和引用/修改/衍生代码的开源/免费使用，但不允许修改后和衍生的代码做为闭源的商业软件发布和销售。

@@ -76,8 +76,8 @@ http://www.gnu.org/copyleft/gpl.html
 If you do not want to disclose your source code as dictated in above GPL license, then the following terms must be met:
 1. The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. 
 2. If the released software contains graphical user interface, a text or image logo of (Powered by ParaEngine) is required to show in a user visible place during software startup. The notice can only be removed if any of the above copyrighted parties agrees via contract. 
-3. Works(worlds or video streams) created by end users via paracraft or any of its modified versions should recommend the user to show the Paracraft logo, unless no logos from the publisher is enfored or recommended to show in the user's work.
-4. Commercial use of any derived work should pay 5% of total revenue only if its revenue exceed 10000 USD or equivalent amount in other currency, unless any of the above copyrighted parties agrees via contract.
+3. If any logo appears in user generated works(worlds or video streams) made with modifed version of Paracraft, the Paracraft Logo should be shown as well.
+4. Commercial use of paracraft or its modified versions should pay 5% of total revenue only if its revenue exceed 10000 USD or equivalent amount in other currency. Contact the author for additional permission to remove 5% of total revenue requirement.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
@@ -86,5 +86,5 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 软件需遵守GPL协议， 否则需要满足下面条件：
 1 在最终发布的产品中保留用户可查看到的License内容.
 2 如果发布的软件含用户界面， 需要在软件启动过程中展示Made with Paracraft的文字或图形。上述展示只有在原作者书面同意的前期下才能移除。
-3.使用Paracraft或Paracraft的修改版创作出的用户作品（包括视频和世界文件）需要建议用户展示Paracraft的Logo,除非软件本身并没有强制或建议用户展示任何Logo或者原作者书面允许不展示。
-4.如果将Paracraft或Paracraft的修改版进行商业化，收入超过1万美金或等值货币价值的收入，需支付5%的总收入给原作者，除非原作者书面允许不用支付。 
+3.如果使用Paracraft或Paracraft的修改版创作出的用户作品（包括视频和世界文件）含有任何品牌Logo, 则Paracraft的logo也必须展示。
+4.如果将Paracraft或Paracraft的修改版进行商业化，收入超过1万美金或等值货币价值的收入，需支付5%的总收入给原作者。可联系作者获得移除本条款的权限和方法。 

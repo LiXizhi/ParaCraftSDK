@@ -1,0 +1,1512 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|Win32">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|Win32">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGUID>{D79995C8-B3AB-462E-A0BA-0617848FFDAE}</ProjectGUID>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>Win32</Platform>
+    <ProjectName>ParacraftSrc</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule D:/lxzsrc/ParaCraftSDKGit/src/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
+"D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\bin\cmake.exe" -H. -B. --check-stamp-file D:\lxzsrc\ParaCraftSDKGit\src\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:/lxzsrc/ParaCraftSDKGit/src/CMakeLists.txt;D:\lxzsrc\ParaCraftSDKGit\src\CMakeLists.txt;D:\lxzsrc\ParaCraftSDKGit\src\CMakeFiles\2.8.12.2\CMakeSystem.cmake;D:\lxzsrc\ParaCraftSDKGit\src\CMakeFiles\2.8.12.2\CMakeCCompiler.cmake;D:\lxzsrc\ParaCraftSDKGit\src\CMakeFiles\2.8.12.2\CMakeCXXCompiler.cmake;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\CMakeSystemSpecificInformation.cmake;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\CMakeGenericSystem.cmake;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\Platform\Windows.cmake;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\Platform\WindowsPaths.cmake;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\CMakeCInformation.cmake;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\Platform\Windows-MSVC-C.cmake;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\Platform\Windows-MSVC.cmake;D:\lxzsrc\ParaCraftSDKGit\src\CMakeFiles\2.8.12.2\CMakeRCCompiler.cmake;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\CMakeRCInformation.cmake;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\CMakeCXXInformation.cmake;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\Platform\Windows-MSVC-CXX.cmake;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\Platform\Windows-MSVC.cmake;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake;D:\lxzsrc\ParaCraftSDKGit\src\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:\lxzsrc\ParaCraftSDKGit\src\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Custom Rule D:/lxzsrc/ParaCraftSDKGit/src/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
+"D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\bin\cmake.exe" -H. -B. --check-stamp-file D:\lxzsrc\ParaCraftSDKGit\src\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:/lxzsrc/ParaCraftSDKGit/src/CMakeLists.txt;D:\lxzsrc\ParaCraftSDKGit\src\CMakeLists.txt;D:\lxzsrc\ParaCraftSDKGit\src\CMakeFiles\2.8.12.2\CMakeSystem.cmake;D:\lxzsrc\ParaCraftSDKGit\src\CMakeFiles\2.8.12.2\CMakeCCompiler.cmake;D:\lxzsrc\ParaCraftSDKGit\src\CMakeFiles\2.8.12.2\CMakeCXXCompiler.cmake;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\CMakeSystemSpecificInformation.cmake;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\CMakeGenericSystem.cmake;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\Platform\Windows.cmake;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\Platform\WindowsPaths.cmake;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\CMakeCInformation.cmake;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\Platform\Windows-MSVC-C.cmake;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\Platform\Windows-MSVC.cmake;D:\lxzsrc\ParaCraftSDKGit\src\CMakeFiles\2.8.12.2\CMakeRCCompiler.cmake;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\CMakeRCInformation.cmake;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\CMakeCXXInformation.cmake;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\Platform\Windows-MSVC-CXX.cmake;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\Platform\Windows-MSVC.cmake;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake;D:\lxzsrc\ParaCraftSDKGit\src\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:\lxzsrc\ParaCraftSDKGit\src\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Building Custom Rule D:/lxzsrc/ParaCraftSDKGit/src/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">setlocal
+"D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\bin\cmake.exe" -H. -B. --check-stamp-file D:\lxzsrc\ParaCraftSDKGit\src\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">D:/lxzsrc/ParaCraftSDKGit/src/CMakeLists.txt;D:\lxzsrc\ParaCraftSDKGit\src\CMakeLists.txt;D:\lxzsrc\ParaCraftSDKGit\src\CMakeFiles\2.8.12.2\CMakeSystem.cmake;D:\lxzsrc\ParaCraftSDKGit\src\CMakeFiles\2.8.12.2\CMakeCCompiler.cmake;D:\lxzsrc\ParaCraftSDKGit\src\CMakeFiles\2.8.12.2\CMakeCXXCompiler.cmake;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\CMakeSystemSpecificInformation.cmake;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\CMakeGenericSystem.cmake;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\Platform\Windows.cmake;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\Platform\WindowsPaths.cmake;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\CMakeCInformation.cmake;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\Platform\Windows-MSVC-C.cmake;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\Platform\Windows-MSVC.cmake;D:\lxzsrc\ParaCraftSDKGit\src\CMakeFiles\2.8.12.2\CMakeRCCompiler.cmake;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\CMakeRCInformation.cmake;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\CMakeCXXInformation.cmake;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\Platform\Windows-MSVC-CXX.cmake;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\Platform\Windows-MSVC.cmake;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake;D:\lxzsrc\ParaCraftSDKGit\src\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">D:\lxzsrc\ParaCraftSDKGit\src\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Building Custom Rule D:/lxzsrc/ParaCraftSDKGit/src/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">setlocal
+"D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\bin\cmake.exe" -H. -B. --check-stamp-file D:\lxzsrc\ParaCraftSDKGit\src\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">D:/lxzsrc/ParaCraftSDKGit/src/CMakeLists.txt;D:\lxzsrc\ParaCraftSDKGit\src\CMakeLists.txt;D:\lxzsrc\ParaCraftSDKGit\src\CMakeFiles\2.8.12.2\CMakeSystem.cmake;D:\lxzsrc\ParaCraftSDKGit\src\CMakeFiles\2.8.12.2\CMakeCCompiler.cmake;D:\lxzsrc\ParaCraftSDKGit\src\CMakeFiles\2.8.12.2\CMakeCXXCompiler.cmake;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\CMakeSystemSpecificInformation.cmake;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\CMakeGenericSystem.cmake;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\Platform\Windows.cmake;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\Platform\WindowsPaths.cmake;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\CMakeCInformation.cmake;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\Platform\Windows-MSVC-C.cmake;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\Platform\Windows-MSVC.cmake;D:\lxzsrc\ParaCraftSDKGit\src\CMakeFiles\2.8.12.2\CMakeRCCompiler.cmake;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\CMakeRCInformation.cmake;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\CMakeCXXInformation.cmake;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\Platform\Windows-MSVC-CXX.cmake;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\Platform\Windows-MSVC.cmake;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake;D:\lxzsrc\ParaCraftSDKGit\src\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">D:\lxzsrc\ParaCraftSDKGit\src\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="CMakeFiles\c3810b85a046a5ea0ba942e2a07e7490\ParacraftSrc.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">sync Paracraft source ...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
+call sync_src.bat
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:/lxzsrc/ParaCraftSDKGit/src/CMakeFiles/c3810b85a046a5ea0ba942e2a07e7490/ParacraftSrc.rule;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:\lxzsrc\ParaCraftSDKGit\src\CMakeFiles\ParacraftSrc</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">sync Paracraft source ...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
+call sync_src.bat
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:/lxzsrc/ParaCraftSDKGit/src/CMakeFiles/c3810b85a046a5ea0ba942e2a07e7490/ParacraftSrc.rule;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:\lxzsrc\ParaCraftSDKGit\src\CMakeFiles\ParacraftSrc</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">sync Paracraft source ...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">setlocal
+call sync_src.bat
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">D:/lxzsrc/ParaCraftSDKGit/src/CMakeFiles/c3810b85a046a5ea0ba942e2a07e7490/ParacraftSrc.rule;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">D:\lxzsrc\ParaCraftSDKGit\src\CMakeFiles\ParacraftSrc</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">sync Paracraft source ...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">setlocal
+call sync_src.bat
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">D:/lxzsrc/ParaCraftSDKGit/src/CMakeFiles/c3810b85a046a5ea0ba942e2a07e7490/ParacraftSrc.rule;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">D:\lxzsrc\ParaCraftSDKGit\src\CMakeFiles\ParacraftSrc</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CMakeFiles\ParacraftSrc" />
+    <None Include="script\apps\Aries\Creator\Game\API\ExpTable.lua" />
+    <None Include="script\apps\Aries\Creator\Game\API\FileDownloader.lua" />
+    <None Include="script\apps\Aries\Creator\Game\API\StatBase.lua" />
+    <None Include="script\apps\Aries\Creator\Game\API\StatList.lua" />
+    <None Include="script\apps\Aries\Creator\Game\API\UserProfile.lua" />
+    <None Include="script\apps\Aries\Creator\Game\API\UserStat.lua" />
+    <None Include="script\apps\Aries\Creator\Game\APISandbox\CreatorAPISandbox.lua" />
+    <None Include="script\apps\Aries\Creator\Game\APISandbox\TextToMCML.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\BlockMinimap.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\BlockTemplatePage.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\BuilderDock.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\BuilderFramePage.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\ChatSystem\ChatEdit.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\ChatSystem\ChatWindow.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\ChatSystem\CommandHelpPage.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\CreatorDesktop.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\CreatorMachine.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\DecoBuilder.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\DesktopMenu.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\DesktopMenuPage.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\EditorModeSwitchPage.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\EnvFramePage.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\EscFramePage.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\GameDock.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\GoalTracker.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\InfoWindow.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\InventoryPage.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\MainMenuPage.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\MyselfPlayerArea.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\NatureBuilder.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\PlayerModeBuilder.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\QuickSelectBar.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\SaveWorldPage.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\ServerPage.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\ShareWorldPage.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\SkinPage.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\SpecialBlockBuilder.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\StaticBlockBuilder.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\SystemMenuPage.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\SystemSettingsPage.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\TaskBuilder.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\TextureModPage.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\WorldFramePage.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\WorldUploadPage.lua" />
+    <None Include="script\apps\Aries\Creator\Game\blocks\block.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockBlockUpdateDetector.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockButton.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockCarpet.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockChest.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockCollisionSensor.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockCommandBlock.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockDynamic.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockEntityBase.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockFence.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockGrass.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockImage.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockItemFrame.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockLever.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockLiquidFlow.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockLiquidStill.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockMusicBox.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockNote.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockPiston.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockPistonExtension.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockPistonMoving.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockPlant.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockPowered.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockPressurePlate.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockRailBase.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockRailDetector.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockRailPowered.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockRedstoneConductor.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockRedstoneLight.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockRedstoneLogic.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockRedstoneRepeater.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockRedstoneTorch.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockRedstoneWire.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockSapling.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockSign.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockSlab.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockSponge.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockStair.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockTeleportStone.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockTNT.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockTrapDoor.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\blocks\block_types.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\blocks\TextureAtlas.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\blocks\TextureAtlasRectPacker.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\block_engine.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Commands\CmdParser.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandActivate.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandActor.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandAudio.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandBlocks.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandBlockTransform.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandBlockType.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandCamera.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandCCS.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandConvert.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandCreate.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandDropFile.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandDump.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandEffect.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandEntity.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandGlobals.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandInstall.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandItem.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandManager.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandMenu.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandMovie.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandNetwork.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandOpen.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandPlayer.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandProgram.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandPublishSourceScript.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandRecord.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandRules.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandSelect.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandSet.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandShell.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandShow.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandSky.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandSystem.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandTeleport.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandTemplate.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandTexture.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandTime.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandWorlds.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Common\AnimTable.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Common\AttributeModel.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Common\CharGeosets.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Common\ChunkLocation.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Common\DataWatcher.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Common\DataWatcherObject.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Common\Direction.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Common\FastRandom.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Common\Files.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Common\MultiAnimBlock.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Common\Noises.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Common\Ticks.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Common\TimeSeries.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Common\TouchButton.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Common\TouchGesturePinch.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Common\TouchSession.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Common\Translation.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Common\TranslationGettext.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Common\UniversalCoords.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Common\Variables.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Common\Viewport.lua" />
+    <None Include="script\apps\Aries\Creator\Game\DefaultTheme.mc.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Entity\BlockContainer.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Entity\BlockInEntityHand.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Entity\DataContainer.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Entity\Entity.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Entity\Entity.EditModel.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityBlockBase.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityBlockDynamic.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityBlockPiece.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityCamera.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityChest.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityCmdTextureReplacer.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityCollectable.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityCollisionSensor.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityCommandBlock.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityDesktop.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityHomePoint.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityImage.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityItem.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityItemFrame.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityManager.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityMob.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityMovable.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityMovieClip.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityMusicBox.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityNote.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityNPC.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityPlayer.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityPlayerCCS.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityPlayerGSL.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityPlayerMP.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityPlayerMPClient.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityPlayerMPOther.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityPool.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityRailcar.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityRainEffect.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntitySign.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntitySnowEffect.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityWeatherEffect.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Entity\PlayerAssetFile.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Entity\PlayerCapabilities.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Entity\PlayerHeadController.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Entity\PlayerSkins.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Entity\RegionContainer.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Entity\TimedEvent.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\GameDesktop.lua" />
+    <None Include="script\apps\Aries\Creator\Game\GameEventHandler.lua" />
+    <None Include="script\apps\Aries\Creator\Game\GameRules\GameMode.lua" />
+    <None Include="script\apps\Aries\Creator\Game\GameRules\GameRules.lua" />
+    <None Include="script\apps\Aries\Creator\Game\GameRules\PredefinedRules\preset_rule_mystery_gamemode.lua" />
+    <None Include="script\apps\Aries\Creator\Game\GameRules\RuleBase.lua" />
+    <None Include="script\apps\Aries\Creator\Game\GameRules\RuleBlock.lua" />
+    <None Include="script\apps\Aries\Creator\Game\GameRules\RuleGlobal.lua" />
+    <None Include="script\apps\Aries\Creator\Game\GameRules\RulePlayer.lua" />
+    <None Include="script\apps\Aries\Creator\Game\game_logic.lua" />
+    <None Include="script\apps\Aries\Creator\Game\game_options.lua" />
+    <None Include="script\apps\Aries\Creator\Game\GUI\BaseSelector.lua" />
+    <None Include="script\apps\Aries\Creator\Game\GUI\ChestPage.lua" />
+    <None Include="script\apps\Aries\Creator\Game\GUI\CompoundBoxPage.lua" />
+    <None Include="script\apps\Aries\Creator\Game\GUI\EditBookPage.lua" />
+    <None Include="script\apps\Aries\Creator\Game\GUI\EditCodePage.lua" />
+    <None Include="script\apps\Aries\Creator\Game\GUI\EditCommandPage.lua" />
+    <None Include="script\apps\Aries\Creator\Game\GUI\EditEntityPage.lua" />
+    <None Include="script\apps\Aries\Creator\Game\GUI\EditItemPage.lua" />
+    <None Include="script\apps\Aries\Creator\Game\GUI\EnterTextDialog.lua" />
+    <None Include="script\apps\Aries\Creator\Game\GUI\FunnelPage.lua" />
+    <None Include="script\apps\Aries\Creator\Game\GUI\GUIChat.lua" />
+    <None Include="script\apps\Aries\Creator\Game\GUI\MirrorWnd.lua" />
+    <None Include="script\apps\Aries\Creator\Game\GUI\MobPropertyPage.lua" />
+    <None Include="script\apps\Aries\Creator\Game\GUI\ModelViewerPage.lua" />
+    <None Include="script\apps\Aries\Creator\Game\GUI\MoreTextDialog.lua" />
+    <None Include="script\apps\Aries\Creator\Game\GUI\NPCDialogPage.lua" />
+    <None Include="script\apps\Aries\Creator\Game\GUI\ObjectSelectPage.lua" />
+    <None Include="script\apps\Aries\Creator\Game\GUI\ScreenRectSelector.lua" />
+    <None Include="script\apps\Aries\Creator\Game\GUI\SmelterPage.lua" />
+    <None Include="script\apps\Aries\Creator\Game\GUI\TeleportListPage.lua" />
+    <None Include="script\apps\Aries\Creator\Game\GUI\ThrowBoxPage.lua" />
+    <None Include="script\apps\Aries\Creator\Game\GUI\TouchController.lua" />
+    <None Include="script\apps\Aries\Creator\Game\GUI\Transform3DController.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Items\ContainerView.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Items\InventoryBase.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Items\InventoryPlayer.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Items\Item.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Items\ItemBlockTemplate.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Items\ItemBook.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Items\ItemClient.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Items\ItemCmdUrl.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Items\ItemCode.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Items\ItemCollectable.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Items\ItemCommandLine.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Items\ItemDialog.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Items\ItemDoor.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Items\ItemImage.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Items\ItemMob.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Items\ItemMovieClip.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Items\ItemNPC.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Items\ItemRailcar.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Items\ItemRule.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Items\ItemServer.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Items\ItemSlab.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Items\ItemSlot.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Items\ItemSnipper.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Items\ItemStack.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Items\ItemTimeSeries.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Items\ItemTimeSeriesCamera.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Items\ItemTimeSeriesCommands.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Items\ItemTimeSeriesNPC.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Items\ItemTool.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Login\CreateNewAvatar.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Login\CreateNewWorld.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Login\InternetLoadWorld.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Login\LocalLoadWorld.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Login\MainLogin.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Login\RemoteServerList.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Login\RemoteUrl.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Login\RemoteWorld.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Login\SelectModulePage.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Login\SwfLoadingBar.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Login\UserLoginProcess.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Login\UserLoginProcessHelper.lua" />
+    <None Include="script\apps\Aries\Creator\Game\main.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Materials\block_material.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Materials\LocalTextures.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Materials\MaterialLiquid.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Materials\MaterialLogic.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Materials\MaterialPortal.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Materials\MaterialTransparent.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Materials\TexturePackage.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Materials\TexturePackageList.lua" />
+    <None Include="script\apps\Aries\Creator\Game\mcml\pe_checkbox_button.lua" />
+    <None Include="script\apps\Aries\Creator\Game\mcml\pe_mc_block.lua" />
+    <None Include="script\apps\Aries\Creator\Game\mcml\pe_mc_entity_canvas.lua" />
+    <None Include="script\apps\Aries\Creator\Game\mcml\pe_mc_mcml.lua" />
+    <None Include="script\apps\Aries\Creator\Game\mcml\pe_mc_player.lua" />
+    <None Include="script\apps\Aries\Creator\Game\mcml\pe_mc_slot.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Mod\ModBase.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Movie\Actor.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Movie\ActorBlock.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Movie\ActorBlocks.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Movie\ActorCamera.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Movie\ActorCommands.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Movie\ActorGUIText.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Movie\ActorMovieSequence.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Movie\ActorMusic.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Movie\ActorNPC.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Movie\EditMovieTextPage.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Movie\KeyFrameCtrl.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Movie\KeyFramePopupMenu.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Movie\MotionPose.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Movie\MotionPoseEditor.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Movie\MovieClip.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Movie\MovieClipController.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Movie\MovieClipTimeLine.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Movie\MovieManager.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Movie\MovieUISound.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Movie\PlayModeController.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Movie\VideoRecorder.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Movie\VideoRecorderSettings.class.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\ChatMessage.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\ChunkObserver.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\ChunkObserverClient.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\Config\AuthUserList.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\Config\BanList.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\Config\PasswordList.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\Config\ServerConfig.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\ConnectionBase.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\Connections.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\ConnectionTCP.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\EntityTracker.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\EntityTrackerEntry.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\NetClientHandler.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\NetHandler.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\NetLoginHandler.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\NetServerHandler.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\NetworkMain.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\Packet.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketAnimation.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketAttachEntity.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketAuthUser.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketBlockChange.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketBlockDestroy.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketBlockMultiChange.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketBlockPieces.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketChat.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketClickBlock.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketClickEntity.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketClientCommand.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketCustomPayload.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketDestroyEntity.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketEntityAction.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketEntityEffect.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketEntityHeadRotation.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketEntityMetadata.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketEntityMobSpawn.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketEntityPlayerSpawn.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketEntityTeleport.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketEntityVelocity.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketKickDisconnect.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketLevelSound.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketLogin.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketLoginClient.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketMapChunk.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketMapChunkData.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketMapChunks.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketMove.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketPing.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketPlayerInfo.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketPlayerInventory.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketPlayerLook.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketPlayerLookMove.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketPlayerPosition.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketRelEntity.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketRelEntityLook.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketRelEntityMove.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketRelEntityMoveLook.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketSleep.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketSpawnPosition.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketUpdateAttributes.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketUpdateEntitySign.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketUpdateTime.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\Packet_Types.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\PlayerManager.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\PlayerManagerClient.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\ServerListener.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\ServerManager.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\ServerManagerDedicated.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\WorldClient.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Network\WorldServer.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Neuron\Cell\CellBlock.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Neuron\Cell\CellBlock_Terrain.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Neuron\Cell\CellBlock_Tree.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Neuron\CreateNewNeuronScriptFile.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Neuron\EditNeuronBlockPage.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Neuron\Mod\MovieText.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Neuron\NeuronAPISandbox.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Neuron\NeuronBlock.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Neuron\NeuronManager.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Neuron\NeuronSimulator.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Neuron\Templates\example.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Neuron\Templates\example_blocks.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Neuron\Templates\example_empty.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Neuron\Templates\example_movie.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Physics\DamageSource.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Physics\DamageSourceEntity.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Physics\DynamicObject.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Physics\PhysicsWorld.lua" />
+    <None Include="script\apps\Aries\Creator\Game\PlayerController.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Shaders\ColorEffect.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Shaders\FancyPostProcessing.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Shaders\GreyBlurEffect.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Shaders\GreyEffect.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Sound\BackgroundMusic.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Sound\BlockSound.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Sound\SoundManager.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Sound\StepSounds.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Tasks\BlockFileMonitorTask.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Tasks\BlockTemplateTask.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Tasks\BuildMinimapTask.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Tasks\BuildQuestProvider.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Tasks\BuildQuestTask.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Tasks\CloneBlocksTask.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Tasks\ConvertImageToBlocksTask.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Tasks\CreateBlockTask.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Tasks\CreateModelTask.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Tasks\CreateSimpleShapeTask.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Tasks\CreateTerrainHoleTask.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Tasks\DestroyBlockTask.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Tasks\DestroyNearbyBlocksTask.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Tasks\ExtrudeBlocksTask.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Tasks\FillLineTask.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Tasks\FollowBlocksTask.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Tasks\GenerateModelTask.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Tasks\HelpPage.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Tasks\MCImporterTask.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Tasks\MirrorBlocksTask.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Tasks\MovieTask.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Tasks\MovieTimeSeriesEditingTask.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Tasks\OffsetWorldTask.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Tasks\ReplaceBlockTask.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Tasks\SelectBlocksTask.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Tasks\SelectCharacterTask.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Tasks\SelectModelTask.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Tasks\SelectOPCTask.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Tasks\TaskManager.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Tasks\TeleportPlayerTask.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Tasks\TerrainFilterTask.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Tasks\TransformBlocksTask.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Tasks\TransformWnd.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Tasks\UndoManager.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Tasks\WaterFloodTask.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Test\GameTestPage.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Test\test_blockworld.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Test\test_block_engine.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Tools\Action.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Tools\ActionGroup.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Tools\test\test_ToolBase.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Tools\ToolBar.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Tools\ToolBase.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Tools\ToolBase_p.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Tools\ToolManager.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Tools\ToolTouchBase.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Tools\ToolTouchDefaultMode.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Tools\ToolTouchErase.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Tools\ToolTouchPen.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Tools\ToolTouchPick.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Tools\ToolTouchSelect.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Tools\TouchSelection.lua" />
+    <None Include="script\apps\Aries\Creator\Game\Tools\TouchSelectionBar.lua" />
+    <None Include="script\apps\Aries\Creator\Game\World\BlockBase.lua" />
+    <None Include="script\apps\Aries\Creator\Game\World\CameraController.lua" />
+    <None Include="script\apps\Aries\Creator\Game\World\Chunk.lua" />
+    <None Include="script\apps\Aries\Creator\Game\World\ChunkCpp.lua" />
+    <None Include="script\apps\Aries\Creator\Game\World\ChunkProvider.lua" />
+    <None Include="script\apps\Aries\Creator\Game\World\ChunkProviderClient.lua" />
+    <None Include="script\apps\Aries\Creator\Game\World\ChunkProviderServer.lua" />
+    <None Include="script\apps\Aries\Creator\Game\World\ChunkSet.lua" />
+    <None Include="script\apps\Aries\Creator\Game\World\CustomChunkGenerator.lua" />
+    <None Include="script\apps\Aries\Creator\Game\World\SavePlayerHandler.lua" />
+    <None Include="script\apps\Aries\Creator\Game\World\SaveWorldHandler.lua" />
+    <None Include="script\apps\Aries\Creator\Game\World\SaveWorldHandlerMP.lua" />
+    <None Include="script\apps\Aries\Creator\Game\World\Section.lua" />
+    <None Include="script\apps\Aries\Creator\Game\World\StereoVisionController.lua" />
+    <None Include="script\apps\Aries\Creator\Game\World\test\test_world.lua" />
+    <None Include="script\apps\Aries\Creator\Game\World\TickEntry.lua" />
+    <None Include="script\apps\Aries\Creator\Game\World\World.lua" />
+    <None Include="script\apps\Aries\Creator\Game\World\WorldBlockAccess.lua" />
+    <None Include="script\apps\Aries\Creator\Game\World\WorldFileProvider.lua" />
+    <None Include="script\apps\Aries\Creator\Game\World\WorldInfo.lua" />
+    <None Include="script\apps\Aries\Creator\Game\World\WorldRevision.lua" />
+    <None Include="script\apps\Aries\Creator\Game\World\WorldSim.lua" />
+    <None Include="script\apps\Aries\Creator\Game\World\WorldTracker.lua" />
+    <None Include="script\apps\Aries\Creator\Game\World\WorldTrackerClient.lua" />
+    <None Include="script\apps\Aries\Creator\Game\World\WorldTrackerServer.lua" />
+    <None Include="script\apps\Taurus\app_main.lua" />
+    <None Include="script\apps\Taurus\CodeExample\HelloWindow.lua" />
+    <None Include="script\apps\Taurus\CodeExample\HelloXml.lua" />
+    <None Include="script\apps\Taurus\DataAPI\model_import.lua" />
+    <None Include="script\apps\Taurus\DataAPI\rna_access.lua" />
+    <None Include="script\apps\Taurus\DefaultTheme.lua" />
+    <None Include="script\apps\Taurus\Desktop\Dock.lua" />
+    <None Include="script\apps\Taurus\Desktop\DockPage.lua" />
+    <None Include="script\apps\Taurus\Desktop\InternalThrowBallPage.lua" />
+    <None Include="script\apps\Taurus\Desktop\MiniMap.lua" />
+    <None Include="script\apps\Taurus\Desktop\TaurusDesktop.lua" />
+    <None Include="script\apps\Taurus\Editors\Object\object_add.lua" />
+    <None Include="script\apps\Taurus\Editors\Object\object_edit.lua" />
+    <None Include="script\apps\Taurus\Editors\Object\object_ops.lua" />
+    <None Include="script\apps\Taurus\Editors\Object\object_select.lua" />
+    <None Include="script\apps\Taurus\Editors\Object\object_transform.lua" />
+    <None Include="script\apps\Taurus\Editors\Screen\area.lua" />
+    <None Include="script\apps\Taurus\Editors\Screen\screen_ops.lua" />
+    <None Include="script\apps\Taurus\Editors\Space_api\spacetypes.lua" />
+    <None Include="script\apps\Taurus\Editors\Space_view3d\space_view3d.lua" />
+    <None Include="script\apps\Taurus\Editors\Space_view3d\view3d_edit.lua" />
+    <None Include="script\apps\Taurus\Editors\Space_view3d\view3d_ops.lua" />
+    <None Include="script\apps\Taurus\Editors\Space_view3d\view3d_select.lua" />
+    <None Include="script\apps\Taurus\Editors\Util\undo.lua" />
+    <None Include="script\apps\Taurus\main_loop.lua" />
+    <None Include="script\apps\Taurus\Tools\Graphics\ImageAnimExporter.lua" />
+    <None Include="script\apps\Taurus\WindowManager\creator.lua" />
+    <None Include="script\apps\Taurus\WindowManager\wm.lua" />
+    <None Include="script\apps\Taurus\WindowManager\wm_context.lua" />
+    <None Include="script\apps\Taurus\WindowManager\wm_event_system.lua" />
+    <None Include="script\apps\Taurus\WindowManager\wm_files.lua" />
+    <None Include="script\apps\Taurus\WindowManager\wm_global.lua" />
+    <None Include="script\apps\Taurus\WindowManager\wm_keymap.lua" />
+    <None Include="script\apps\Taurus\WindowManager\wm_loader_readfile.lua" />
+    <None Include="script\apps\Taurus\WindowManager\wm_loader_writefile.lua" />
+    <None Include="script\apps\Taurus\WindowManager\wm_main.lua" />
+    <None Include="script\apps\Taurus\WindowManager\wm_operators.lua" />
+    <None Include="script\apps\Taurus\WindowManager\wm_window.lua" />
+    <None Include="script\ide\action_table.class.lua" />
+    <None Include="script\ide\AI.class.lua" />
+    <None Include="script\ide\Animation\AnimationUsingKeyFrames.class.lua" />
+    <None Include="script\ide\Animation\CurtainLib.class.lua" />
+    <None Include="script\ide\Animation\DoubleAnimationUsingKeyFrames.class.lua" />
+    <None Include="script\ide\Animation\KeyFrame.class.lua" />
+    <None Include="script\ide\Animation\KeySpline.class.lua" />
+    <None Include="script\ide\Animation\Motion\AnimationEditor\AnimationEditor.class.lua" />
+    <None Include="script\ide\Animation\Motion\Animator.class.lua" />
+    <None Include="script\ide\Animation\Motion\KeyFrames\AnimationUsingKeyFrames.class.lua" />
+    <None Include="script\ide\Animation\Motion\KeyFrames\DoubleAnimationUsingKeyFrames.class.lua" />
+    <None Include="script\ide\Animation\Motion\KeyFrames\KeyFrame.class.lua" />
+    <None Include="script\ide\Animation\Motion\KeyFrames\KeySpline.class.lua" />
+    <None Include="script\ide\Animation\Motion\KeyFrames\ObjectAnimationUsingKeyFrames.class.lua" />
+    <None Include="script\ide\Animation\Motion\KeyFrames\Point3DAnimationUsingKeyFrames.class.lua" />
+    <None Include="script\ide\Animation\Motion\KeyFrames\Point3DAnimationUsingPath.class.lua" />
+    <None Include="script\ide\Animation\Motion\KeyFrames\Reverse.class.lua" />
+    <None Include="script\ide\Animation\Motion\KeyFrames\StringAnimationUsingKeyFrames.class.lua" />
+    <None Include="script\ide\Animation\Motion\KeyFrames\TargetAnimationUsingKeyFrames.class.lua" />
+    <None Include="script\ide\Animation\Motion\KeyFrames\TimeSpan.class.lua" />
+    <None Include="script\ide\Animation\Motion\LayerManager.class.lua" />
+    <None Include="script\ide\Animation\Motion\McPlayer.class.lua" />
+    <None Include="script\ide\Animation\Motion\MovieClip.class.lua" />
+    <None Include="script\ide\Animation\Motion\MovieClipBase.class.lua" />
+    <None Include="script\ide\Animation\Motion\MovieClipHelper.class.lua" />
+    <None Include="script\ide\Animation\Motion\PreLoader.class.lua" />
+    <None Include="script\ide\Animation\Motion\Target\ActorTarget.class.lua" />
+    <None Include="script\ide\Animation\Motion\Target\BaseTarget.class.lua" />
+    <None Include="script\ide\Animation\Motion\Target\BuildingTarget.class.lua" />
+    <None Include="script\ide\Animation\Motion\Target\CameraTarget.class.lua" />
+    <None Include="script\ide\Animation\Motion\Target\CaptionTarget.class.lua" />
+    <None Include="script\ide\Animation\Motion\Target\ControlTarget.class.lua" />
+    <None Include="script\ide\Animation\Motion\Target\EffectTarget.class.lua" />
+    <None Include="script\ide\Animation\Motion\Target\LandTarget.class.lua" />
+    <None Include="script\ide\Animation\Motion\Target\OceanTarget.class.lua" />
+    <None Include="script\ide\Animation\Motion\Target\PlantTarget.class.lua" />
+    <None Include="script\ide\Animation\Motion\Target\SkyTarget.class.lua" />
+    <None Include="script\ide\Animation\Motion\Target\SoundTarget.class.lua" />
+    <None Include="script\ide\Animation\Motion\Target\Sprite3DTarget.class.lua" />
+    <None Include="script\ide\Animation\Motion\Target\TargetResourceManager.class.lua" />
+    <None Include="script\ide\Animation\Motion\test\animation_editor_test_page.class.lua" />
+    <None Include="script\ide\Animation\Motion\test\animator_test.class.lua" />
+    <None Include="script\ide\Animation\ObjectAnimationUsingKeyFrames.class.lua" />
+    <None Include="script\ide\Animation\Point3DAnimationUsingKeyFrames.class.lua" />
+    <None Include="script\ide\Animation\Point3DAnimationUsingPath.class.lua" />
+    <None Include="script\ide\Animation\PreLoader.class.lua" />
+    <None Include="script\ide\Animation\Reverse.class.lua" />
+    <None Include="script\ide\Animation\Storyboard.class.lua" />
+    <None Include="script\ide\Animation\StoryBoardPlayer.class.lua" />
+    <None Include="script\ide\Animation\StoryboardRecorder.class.lua" />
+    <None Include="script\ide\Animation\StringAnimationUsingKeyFrames.class.lua" />
+    <None Include="script\ide\Animation\test\storyboardPlayer_test.class.lua" />
+    <None Include="script\ide\Animation\test\StoryboardRecorder_test.class.lua" />
+    <None Include="script\ide\Animation\TimeSpan.class.lua" />
+    <None Include="script\ide\app_ipc.class.lua" />
+    <None Include="script\ide\AssetPreloader.class.lua" />
+    <None Include="script\ide\AudioEngine\AriesSoundEffect.class.lua" />
+    <None Include="script\ide\AudioEngine\AudioEngine.class.lua" />
+    <None Include="script\ide\AudioEngine\AudioSource.class.lua" />
+    <None Include="script\ide\AudioEngine\SoundEmitter.class.lua" />
+    <None Include="script\ide\AudioEngine\SoundInfoProvider.class.lua" />
+    <None Include="script\ide\AudioEngine\SoundManager.class.lua" />
+    <None Include="script\ide\AudioEngine\SoundTest.class.lua" />
+    <None Include="script\ide\AudioEngine\TestAudioEngine.class.lua" />
+    <None Include="script\ide\AutoCompleteBox.class.lua" />
+    <None Include="script\ide\AutoCompleteList.class.lua" />
+    <None Include="script\ide\AutoHide.class.lua" />
+    <None Include="script\ide\ButtonStyles.class.lua" />
+    <None Include="script\ide\Canvas3D.class.lua" />
+    <None Include="script\ide\Canvas3DUI.class.lua" />
+    <None Include="script\ide\CanvasCamConfig.class.lua" />
+    <None Include="script\ide\chat_display.class.lua" />
+    <None Include="script\ide\CheckBox.class.lua" />
+    <None Include="script\ide\Codec\ChineseSimpleToTrad.class.lua" />
+    <None Include="script\ide\Codec\TableCodec.class.lua" />
+    <None Include="script\ide\coloreditor_control.class.lua" />
+    <None Include="script\ide\colorpicker.class.lua" />
+    <None Include="script\ide\commonfunctions.class.lua" />
+    <None Include="script\ide\commonlib.class.lua" />
+    <None Include="script\ide\common_control.class.lua" />
+    <None Include="script\ide\common_validators.class.lua" />
+    <None Include="script\ide\config\NPLStateConfig.class.lua" />
+    <None Include="script\ide\ContextMenu.class.lua" />
+    <None Include="script\ide\ContextMenu2.class.lua" />
+    <None Include="script\ide\DataBinding.class.lua" />
+    <None Include="script\ide\DateTime.class.lua" />
+    <None Include="script\ide\debug.class.lua" />
+    <None Include="script\ide\Debugger\ConsoleDebugger.class.lua" />
+    <None Include="script\ide\Debugger\IOConsole.class.lua" />
+    <None Include="script\ide\Debugger\IPCDebugger.class.lua" />
+    <None Include="script\ide\Debugger\MCMLConsole.class.lua" />
+    <None Include="script\ide\Debugger\NPLCompiler.class.lua" />
+    <None Include="script\ide\Debugger\NPLProfiler.class.lua" />
+    <None Include="script\ide\Director\CardMovieHelper.class.lua" />
+    <None Include="script\ide\Director\DirectorToolPage.class.lua" />
+    <None Include="script\ide\Director\Movie.class.lua" />
+    <None Include="script\ide\Director\MovieClip.class.lua" />
+    <None Include="script\ide\Director\MovieRender_Arena.class.lua" />
+    <None Include="script\ide\Director\MovieRender_Audio.class.lua" />
+    <None Include="script\ide\Director\MovieRender_Camera.class.lua" />
+    <None Include="script\ide\Director\MovieRender_Image.class.lua" />
+    <None Include="script\ide\Director\MovieRender_Mcml.class.lua" />
+    <None Include="script\ide\Director\MovieRender_Model.class.lua" />
+    <None Include="script\ide\Director\MovieRender_Script.class.lua" />
+    <None Include="script\ide\Director\MovieRender_Spell.class.lua" />
+    <None Include="script\ide\Director\MovieRender_SpellCamera.class.lua" />
+    <None Include="script\ide\Director\MovieRender_Text.class.lua" />
+    <None Include="script\ide\Director\SpellCameraHelper.class.lua" />
+    <None Include="script\ide\Display\Containers\MiniScene.class.lua" />
+    <None Include="script\ide\Display\Containers\MovieMiniScene.class.lua" />
+    <None Include="script\ide\Display\Containers\Scene.class.lua" />
+    <None Include="script\ide\Display\Containers\Sprite3D.class.lua" />
+    <None Include="script\ide\Display\DisplayObject.class.lua" />
+    <None Include="script\ide\Display\DisplayObjectContainer.class.lua" />
+    <None Include="script\ide\Display\EventDispatcher.class.lua" />
+    <None Include="script\ide\Display\InteractiveObject.class.lua" />
+    <None Include="script\ide\Display\Object.class.lua" />
+    <None Include="script\ide\Display\Objects\Actor3D.class.lua" />
+    <None Include="script\ide\Display\Objects\Building3D.class.lua" />
+    <None Include="script\ide\Display\Objects\Flower.class.lua" />
+    <None Include="script\ide\Display\Objects\Pet.class.lua" />
+    <None Include="script\ide\Display\Objects\PetE.class.lua" />
+    <None Include="script\ide\Display\Objects\PlantE.class.lua" />
+    <None Include="script\ide\Display\Objects\RoomEntry.class.lua" />
+    <None Include="script\ide\Display\Test\Sprite3D_Test.class.lua" />
+    <None Include="script\ide\Display\Util\ObjectsCreator.class.lua" />
+    <None Include="script\ide\Display\Util\ObjectsMcmlParser.class.lua" />
+    <None Include="script\ide\Display2D\Bitmap2D.class.lua" />
+    <None Include="script\ide\Display2D\Button2D.class.lua" />
+    <None Include="script\ide\Display2D\DisplayObject2D.class.lua" />
+    <None Include="script\ide\Display2D\Rectangle2D.class.lua" />
+    <None Include="script\ide\Display2D\Scene2DManager.class.lua" />
+    <None Include="script\ide\Display2D\Sprite2D.class.lua" />
+    <None Include="script\ide\Display2D\test\test_viewport2d.class.lua" />
+    <None Include="script\ide\Display2D\TextField2D.class.lua" />
+    <None Include="script\ide\Display2D\texture_grid.class.lua" />
+    <None Include="script\ide\Display2D\viewport2d.class.lua" />
+    <None Include="script\ide\Display3D\AvatarQueue.class.lua" />
+    <None Include="script\ide\Display3D\AvatarQueue_Test.class.lua" />
+    <None Include="script\ide\Display3D\Example\SceneCanvasExample.class.lua" />
+    <None Include="script\ide\Display3D\Example\SceneNodeProcessorExample.class.lua" />
+    <None Include="script\ide\Display3D\HomeLandCommonNode.class.lua" />
+    <None Include="script\ide\Display3D\HouseNode.class.lua" />
+    <None Include="script\ide\Display3D\SceneCanvas.class.lua" />
+    <None Include="script\ide\Display3D\SceneManager.class.lua" />
+    <None Include="script\ide\Display3D\SceneNode.class.lua" />
+    <None Include="script\ide\Display3D\SceneNodeHeadonSpeech.class.lua" />
+    <None Include="script\ide\Display3D\SceneNodeProcessor.class.lua" />
+    <None Include="script\ide\Display3D\SeedGridNode.class.lua" />
+    <None Include="script\ide\Dock.class.lua" />
+    <None Include="script\ide\Document\CSVDocReader.class.lua" />
+    <None Include="script\ide\Document\ExcelDocReader.class.lua" />
+    <None Include="script\ide\Document\LocalSingleDocument.class.lua" />
+    <None Include="script\ide\Document\LocalSingleDocumentFrame.class.lua" />
+    <None Include="script\ide\Document\RemoteSingleDocument.class.lua" />
+    <None Include="script\ide\DoubleView.class.lua" />
+    <None Include="script\ide\dropdownlistbox.class.lua" />
+    <None Include="script\ide\dropdownlistbox_control.class.lua" />
+    <None Include="script\ide\Effect\FilmScratchProcessor.class.lua" />
+    <None Include="script\ide\Effect\frozenEffect.class.lua" />
+    <None Include="script\ide\Effect\motionBlurProcessor.class.lua" />
+    <None Include="script\ide\Effect\stoneEffect.class.lua" />
+    <None Include="script\ide\Effect\test.class.lua" />
+    <None Include="script\ide\Effect\transparentEffect.class.lua" />
+    <None Include="script\ide\Encoding.class.lua" />
+    <None Include="script\ide\EventDispatcher.class.lua" />
+    <None Include="script\ide\event_mapping.class.lua" />
+    <None Include="script\ide\ExternalInterface.class.lua" />
+    <None Include="script\ide\FileDialog.class.lua" />
+    <None Include="script\ide\FileExplorerCtrl.class.lua" />
+    <None Include="script\ide\FileLoader.class.lua" />
+    <None Include="script\ide\Files.class.lua" />
+    <None Include="script\ide\fileselector_control.class.lua" />
+    <None Include="script\ide\FileSystemWatcher.class.lua" />
+    <None Include="script\ide\FileViewCtrl.class.lua" />
+    <None Include="script\ide\FlashExternalInterface.class.lua" />
+    <None Include="script\ide\FlashPlayerControl.class.lua" />
+    <None Include="script\ide\FlashPlayerWindow.class.lua" />
+    <None Include="script\ide\Graph.class.lua" />
+    <None Include="script\ide\GraphHelp.class.lua" />
+    <None Include="script\ide\GridView.class.lua" />
+    <None Include="script\ide\GridView3D.class.lua" />
+    <None Include="script\ide\GUIEngine\test\test_touch_api.class.lua" />
+    <None Include="script\ide\GUIEngine\TouchEvent.class.lua" />
+    <None Include="script\ide\GUIEngine\TouchManager.class.lua" />
+    <None Include="script\ide\gui_helper.class.lua" />
+    <None Include="script\ide\GUI_inspector_simple.class.lua" />
+    <None Include="script\ide\headon_speech.class.lua" />
+    <None Include="script\ide\HTMLRenderer.class.lua" />
+    <None Include="script\ide\IDE.class.lua" />
+    <None Include="script\ide\integereditor_control.class.lua" />
+    <None Include="script\ide\IPC.class.lua" />
+    <None Include="script\ide\IPCBinding\BindableObject.class.lua" />
+    <None Include="script\ide\IPCBinding\coxpcall.class.lua" />
+    <None Include="script\ide\IPCBinding\EntityBase.class.lua" />
+    <None Include="script\ide\IPCBinding\EntityDesign.class.lua" />
+    <None Include="script\ide\IPCBinding\EntityHelper.class.lua" />
+    <None Include="script\ide\IPCBinding\EntityHelperCircleEditor.class.lua" />
+    <None Include="script\ide\IPCBinding\EntityHelperEditorBase.class.lua" />
+    <None Include="script\ide\IPCBinding\EntityHelperFacingEditor.class.lua" />
+    <None Include="script\ide\IPCBinding\EntityHelperPointEditor.class.lua" />
+    <None Include="script\ide\IPCBinding\EntityHelperSerializer.class.lua" />
+    <None Include="script\ide\IPCBinding\EntityTemplate.class.lua" />
+    <None Include="script\ide\IPCBinding\EntityView.class.lua" />
+    <None Include="script\ide\IPCBinding\Framework.class.lua" />
+    <None Include="script\ide\IPCBinding\InstanceView.class.lua" />
+    <None Include="script\ide\IPCBinding\IPCBinding.class.lua" />
+    <None Include="script\ide\IPCBinding\IPCBindingContext.class.lua" />
+    <None Include="script\ide\IPCBinding\IPCClassBuilder.class.lua" />
+    <None Include="script\ide\IPCBinding\Test\TestBindableObject.class.lua" />
+    <None Include="script\ide\IPCBinding\Test\TestFramework.class.lua" />
+    <None Include="script\ide\itemlist_control.class.lua" />
+    <None Include="script\ide\Json.class.lua" />
+    <None Include="script\ide\KeyboardShortcut\KeyboardShortcut.class.lua" />
+    <None Include="script\ide\KeyLineBox.class.lua" />
+    <None Include="script\ide\LibStub.class.lua" />
+    <None Include="script\ide\LoaderUI.class.lua" />
+    <None Include="script\ide\loadworld.class.lua" />
+    <None Include="script\ide\Locale.class.lua" />
+    <None Include="script\ide\locals.class.lua" />
+    <None Include="script\ide\log.class.lua" />
+    <None Include="script\ide\LuaXML.class.lua" />
+    <None Include="script\ide\MainMenu.class.lua" />
+    <None Include="script\ide\math\AABBPool.class.lua" />
+    <None Include="script\ide\math\bit.class.lua" />
+    <None Include="script\ide\math\complex.class.lua" />
+    <None Include="script\ide\math\find_bit_limits.class.lua" />
+    <None Include="script\ide\math\fit.class.lua" />
+    <None Include="script\ide\math\math3d.class.lua" />
+    <None Include="script\ide\math\matrix.class.lua" />
+    <None Include="script\ide\math\MD5.class.lua" />
+    <None Include="script\ide\math\ShapeAABB.class.lua" />
+    <None Include="script\ide\math\StringUtil.class.lua" />
+    <None Include="script\ide\math\TEA.class.lua" />
+    <None Include="script\ide\math\test\test_bit.class.lua" />
+    <None Include="script\ide\math\test\test_complex.class.lua" />
+    <None Include="script\ide\math\test\test_fit.class.lua" />
+    <None Include="script\ide\math\test\test_matrix.class.lua" />
+    <None Include="script\ide\math\test\test_MD5.class.lua" />
+    <None Include="script\ide\math\test\test_TEA.class.lua" />
+    <None Include="script\ide\math\vector.class.lua" />
+    <None Include="script\ide\math\VectorPool.class.lua" />
+    <None Include="script\ide\mathlib.class.lua" />
+    <None Include="script\ide\MessageBox.class.lua" />
+    <None Include="script\ide\MiniKeyboard.class.lua" />
+    <None Include="script\ide\MinisceneManager.class.lua" />
+    <None Include="script\ide\modifiers\CharacterSentientField.class.lua" />
+    <None Include="script\ide\modifiers\DummyNPCEmpty.class.lua" />
+    <None Include="script\ide\modifiers\DummyNPCLineWalker.class.lua" />
+    <None Include="script\ide\modifiers\GreatView.class.lua" />
+    <None Include="script\ide\modifiers\sampleModifier.class.lua" />
+    <None Include="script\ide\modifierui_control.class.lua" />
+    <None Include="script\ide\modifier_control.class.lua" />
+    <None Include="script\ide\modifier_items.class.lua" />
+    <None Include="script\ide\Motion\AEManager.class.lua" />
+    <None Include="script\ide\Motion\AnimativeMenu\AnimativeMenu.class.lua" />
+    <None Include="script\ide\Motion\AnimativeMenu\TipAEMenu.class.lua" />
+    <None Include="script\ide\Motion\AnimativeMenu\TipMenu.class.lua" />
+    <None Include="script\ide\Motion\Animator.class.lua" />
+    <None Include="script\ide\Motion\AnimatorEngine.class.lua" />
+    <None Include="script\ide\Motion\AnimatorManager.class.lua" />
+    <None Include="script\ide\Motion\AnimatorPlayer.class.lua" />
+    <None Include="script\ide\Motion\BezierEase.class.lua" />
+    <None Include="script\ide\Motion\BezierSegment.class.lua" />
+    <None Include="script\ide\Motion\Color.class.lua" />
+    <None Include="script\ide\Motion\ColorTransform.class.lua" />
+    <None Include="script\ide\Motion\CustomEase.class.lua" />
+    <None Include="script\ide\Motion\DisplayObject.class.lua" />
+    <None Include="script\ide\Motion\ITween.class.lua" />
+    <None Include="script\ide\Motion\Keyframe.class.lua" />
+    <None Include="script\ide\Motion\LayerManager.class.lua" />
+    <None Include="script\ide\Motion\Motion.class.lua" />
+    <None Include="script\ide\Motion\Point.class.lua" />
+    <None Include="script\ide\Motion\RotateDirection.class.lua" />
+    <None Include="script\ide\Motion\SimpleEase.class.lua" />
+    <None Include="script\ide\Motion\Source.class.lua" />
+    <None Include="script\ide\Motion\test\animativeMenu_test.class.lua" />
+    <None Include="script\ide\Motion\test\autotips_test.class.lua" />
+    <None Include="script\ide\Motion\test\motion_test.class.lua" />
+    <None Include="script\ide\Motion\test\motion_test_2.class.lua" />
+    <None Include="script\ide\Motion\test\motion_test_xaml.class.lua" />
+    <None Include="script\ide\Motion\Tweenables.class.lua" />
+    <None Include="script\ide\MotionEx\CameraMotions\CameraMotionPage.class.lua" />
+    <None Include="script\ide\MotionEx\MotionFactory.class.lua" />
+    <None Include="script\ide\MotionEx\MotionLine.class.lua" />
+    <None Include="script\ide\MotionEx\MotionLineBase.class.lua" />
+    <None Include="script\ide\MotionEx\MotionPlayer.class.lua" />
+    <None Include="script\ide\MotionEx\MotionRender.class.lua" />
+    <None Include="script\ide\MotionEx\MotionRender_Arena.class.lua" />
+    <None Include="script\ide\MotionEx\MotionRender_Audio.class.lua" />
+    <None Include="script\ide\MotionEx\MotionRender_Camera.class.lua" />
+    <None Include="script\ide\MotionEx\MotionRender_Image.class.lua" />
+    <None Include="script\ide\MotionEx\MotionRender_Mcml.class.lua" />
+    <None Include="script\ide\MotionEx\MotionRender_Model.class.lua" />
+    <None Include="script\ide\MotionEx\MotionRender_Script.class.lua" />
+    <None Include="script\ide\MotionEx\MotionRender_Spell.class.lua" />
+    <None Include="script\ide\MotionEx\MotionRender_SpellCastViewer.class.lua" />
+    <None Include="script\ide\MotionEx\MotionRender_Text.class.lua" />
+    <None Include="script\ide\MotionEx\MotionTypes.class.lua" />
+    <None Include="script\ide\MotionEx\MotionXmlToTable.class.lua" />
+    <None Include="script\ide\MotionEx\MovieController.class.lua" />
+    <None Include="script\ide\MotionEx\StaticMoviePreloaderPage.class.lua" />
+    <None Include="script\ide\MotionEx\Test\TestMotionPlayer.class.lua" />
+    <None Include="script\ide\MotionView.class.lua" />
+    <None Include="script\ide\MultiLineEditbox.class.lua" />
+    <None Include="script\ide\MultiLineEditbox_old.class.lua" />
+    <None Include="script\ide\mysql\mysql.class.lua" />
+    <None Include="script\ide\mysql\sqlite3.class.lua" />
+    <None Include="script\ide\mysql\test\test_mysql.class.lua" />
+    <None Include="script\ide\mysql\test\test_sqlite3.class.lua" />
+    <None Include="script\ide\Network\StreamRateController.class.lua" />
+    <None Include="script\ide\NPLDocGen.class.lua" />
+    <None Include="script\ide\NPLExtension.class.lua" />
+    <None Include="script\ide\NPLFlashTest\CallbackTest.class.lua" />
+    <None Include="script\ide\NPLFlashTest\FlashDataTransitionTestPage.class.lua" />
+    <None Include="script\ide\NPLFlashTest\FlashGameTest.class.lua" />
+    <None Include="script\ide\NPLStatesMonitor.class.lua" />
+    <None Include="script\ide\NumericUpDown.class.lua" />
+    <None Include="script\ide\ObjectOriented\base.class.lua" />
+    <None Include="script\ide\ObjectOriented\cached.class.lua" />
+    <None Include="script\ide\ObjectOriented\class.class.lua" />
+    <None Include="script\ide\ObjectOriented\collection\MapWithArrayOfKeys.class.lua" />
+    <None Include="script\ide\ObjectOriented\collection\ObjectCache.class.lua" />
+    <None Include="script\ide\ObjectOriented\collection\OrderedSet.class.lua" />
+    <None Include="script\ide\ObjectOriented\collection\PriorityQueue.class.lua" />
+    <None Include="script\ide\ObjectOriented\collection\UnorderedArray.class.lua" />
+    <None Include="script\ide\ObjectOriented\collection\UnorderedArraySet.class.lua" />
+    <None Include="script\ide\ObjectOriented\compiler\Arguments.class.lua" />
+    <None Include="script\ide\ObjectOriented\compiler\Conditional.class.lua" />
+    <None Include="script\ide\ObjectOriented\compiler\Expression.class.lua" />
+    <None Include="script\ide\ObjectOriented\component\base.class.lua" />
+    <None Include="script\ide\ObjectOriented\component\contained.class.lua" />
+    <None Include="script\ide\ObjectOriented\component\dynamic.class.lua" />
+    <None Include="script\ide\ObjectOriented\component\intercepted.class.lua" />
+    <None Include="script\ide\ObjectOriented\component\wrapped.class.lua" />
+    <None Include="script\ide\ObjectOriented\debug\Inspector.class.lua" />
+    <None Include="script\ide\ObjectOriented\debug\Matcher.class.lua" />
+    <None Include="script\ide\ObjectOriented\debug\Verbose.class.lua" />
+    <None Include="script\ide\ObjectOriented\debug\Viewer.class.lua" />
+    <None Include="script\ide\ObjectOriented\multiple.class.lua" />
+    <None Include="script\ide\ObjectOriented\object\Exception.class.lua" />
+    <None Include="script\ide\ObjectOriented\object\Publisher.class.lua" />
+    <None Include="script\ide\ObjectOriented\object\Wrapper.class.lua" />
+    <None Include="script\ide\ObjectOriented\scoped.class.lua" />
+    <None Include="script\ide\ObjectOriented\serial\FileStream.class.lua" />
+    <None Include="script\ide\ObjectOriented\serial\Serializer.class.lua" />
+    <None Include="script\ide\ObjectOriented\serial\SocketStream.class.lua" />
+    <None Include="script\ide\ObjectOriented\serial\StringStream.class.lua" />
+    <None Include="script\ide\ObjectOriented\simple.class.lua" />
+    <None Include="script\ide\ObjectOriented\table.class.lua" />
+    <None Include="script\ide\ObjectOriented\thread\CoSocket.class.lua" />
+    <None Include="script\ide\ObjectOriented\thread\IOScheduler.class.lua" />
+    <None Include="script\ide\ObjectOriented\thread\Scheduler.class.lua" />
+    <None Include="script\ide\ObjectOriented\thread\SocketScheduler.class.lua" />
+    <None Include="script\ide\ObjectOriented\thread\Timer.class.lua" />
+    <None Include="script\ide\object_editor.class.lua" />
+    <None Include="script\ide\object_editor_v1.class.lua" />
+    <None Include="script\ide\OneTimeAsset.class.lua" />
+    <None Include="script\ide\oo.class.lua" />
+    <None Include="script\ide\OpenFileDialog.class.lua" />
+    <None Include="script\ide\OpenFolderDialog.class.lua" />
+    <None Include="script\ide\os.class.lua" />
+    <None Include="script\ide\package\moduleEmu.class.lua" />
+    <None Include="script\ide\package\package.class.lua" />
+    <None Include="script\ide\ParaEngineExtension.class.lua" />
+    <None Include="script\ide\ParaEngineLuaJitFFI.class.lua" />
+    <None Include="script\ide\ParaEngineSettings.class.lua" />
+    <None Include="script\ide\popupmenu_control.class.lua" />
+    <None Include="script\ide\PostProcessor.class.lua" />
+    <None Include="script\ide\profiler.class.lua" />
+    <None Include="script\ide\progressbar.class.lua" />
+    <None Include="script\ide\ProjectTemplates\TemplateProcessor.class.lua" />
+    <None Include="script\ide\ProjectTemplates\Templates\InstallApps\Startup.class.lua" />
+    <None Include="script\ide\property_control.class.lua" />
+    <None Include="script\ide\RadioBox.class.lua" />
+    <None Include="script\ide\RibbonControl.class.lua" />
+    <None Include="script\ide\rulemapping.class.lua" />
+    <None Include="script\ide\sandbox.class.lua" />
+    <None Include="script\ide\SaveFileDialog.class.lua" />
+    <None Include="script\ide\scripttextbox_control.class.lua" />
+    <None Include="script\ide\ScrollView.class.lua" />
+    <None Include="script\ide\serialization.class.lua" />
+    <None Include="script\ide\SliderBar.class.lua" />
+    <None Include="script\ide\socket\ltn12.class.lua" />
+    <None Include="script\ide\socket\socket.class.lua" />
+    <None Include="script\ide\socket\url.class.lua" />
+    <None Include="script\ide\SpriteAnimation_control.class.lua" />
+    <None Include="script\ide\StateMachine.class.lua" />
+    <None Include="script\ide\STL\Array.class.lua" />
+    <None Include="script\ide\STL\LinkedList.class.lua" />
+    <None Include="script\ide\STL\List.class.lua" />
+    <None Include="script\ide\STL\OrderedArraySet.class.lua" />
+    <None Include="script\ide\STL\Queue.class.lua" />
+    <None Include="script\ide\STL\Stack.class.lua" />
+    <None Include="script\ide\STL\UnorderedArray.class.lua" />
+    <None Include="script\ide\STL\UnorderedArraySet.class.lua" />
+    <None Include="script\ide\STL.class.lua" />
+    <None Include="script\ide\Storyboard\KeyFrame.class.lua" />
+    <None Include="script\ide\Storyboard\KeyFrames.class.lua" />
+    <None Include="script\ide\Storyboard\LayerManager.class.lua" />
+    <None Include="script\ide\Storyboard\Storyboard.class.lua" />
+    <None Include="script\ide\Storyboard\StoryboardParser.class.lua" />
+    <None Include="script\ide\Storyboard\Target.class.lua" />
+    <None Include="script\ide\Storyboard\Test\Test.class.lua" />
+    <None Include="script\ide\Storyboard\TimeSpan.class.lua" />
+    <None Include="script\ide\stringmap.class.lua" />
+    <None Include="script\ide\TabControl.class.lua" />
+    <None Include="script\ide\terrain_editor.class.lua" />
+    <None Include="script\ide\test\test_commonlib.class.lua" />
+    <None Include="script\ide\test\test_FileExplorerCtrl.class.lua" />
+    <None Include="script\ide\test\test_LibStub.class.lua" />
+    <None Include="script\ide\test\test_multiline_editbox.class.lua" />
+    <None Include="script\ide\test\test_ParaEngineExtension.class.lua" />
+    <None Include="script\ide\test\test_rulemapping.class.lua" />
+    <None Include="script\ide\test\test_timer.class.lua" />
+    <None Include="script\ide\test\test_TreeView.class.lua" />
+    <None Include="script\ide\test\test_WindowFrame.class.lua" />
+    <None Include="script\ide\textdialog.class.lua" />
+    <None Include="script\ide\TextSprite.class.lua" />
+    <None Include="script\ide\ThrowBall.class.lua" />
+    <None Include="script\ide\timer.class.lua" />
+    <None Include="script\ide\TimeSeries\AnimBlock.class.lua" />
+    <None Include="script\ide\TimeSeries\TimeSeries.class.lua" />
+    <None Include="script\ide\TipsStack.class.lua" />
+    <None Include="script\ide\TooltipHelper.class.lua" />
+    <None Include="script\ide\Transitions\Tween.class.lua" />
+    <None Include="script\ide\Transitions\TweenEquations.class.lua" />
+    <None Include="script\ide\Transitions\TweenLite.class.lua" />
+    <None Include="script\ide\Transitions\TweenUtil.class.lua" />
+    <None Include="script\ide\Transitions\Tween_test.class.lua" />
+    <None Include="script\ide\TreeNode.class.lua" />
+    <None Include="script\ide\TreeView.class.lua" />
+    <None Include="script\ide\UIAnim\UIAnimation.class.lua" />
+    <None Include="script\ide\UIAnim\UIAnimBlock.class.lua" />
+    <None Include="script\ide\UIAnim\UIAnimFile.class.lua" />
+    <None Include="script\ide\UIAnim\UIAnimIndex.class.lua" />
+    <None Include="script\ide\UIAnim\UIAnimInstance.class.lua" />
+    <None Include="script\ide\UIAnim\UIAnimManager.class.lua" />
+    <None Include="script\ide\UIAnim\UIAnimSeq.class.lua" />
+    <None Include="script\ide\UnitTest\luaunit.class.lua" />
+    <None Include="script\ide\UnitTest\sample_test_file.class.lua" />
+    <None Include="script\ide\UnitTest\sample_test_file1.class.lua" />
+    <None Include="script\ide\UnitTest\unit_test.class.lua" />
+    <None Include="script\ide\UnitTest\unit_test_case.class.lua" />
+    <None Include="script\ide\UnitTest\unit_test_dlg.class.lua" />
+    <None Include="script\ide\user_action.class.lua" />
+    <None Include="script\ide\vectoreditor_control.class.lua" />
+    <None Include="script\ide\VideoRecorder.class.lua" />
+    <None Include="script\ide\visibilityGroup.class.lua" />
+    <None Include="script\ide\WindowFrame.class.lua" />
+    <None Include="script\ide\XPath.class.lua" />
+    <None Include="script\kids\3DMapSystemApp\mcml\aries_camera.class.lua" />
+    <None Include="script\kids\3DMapSystemApp\mcml\aries_camera_2.class.lua" />
+    <None Include="script\kids\3DMapSystemApp\mcml\BrowserWnd.class.lua" />
+    <None Include="script\kids\3DMapSystemApp\mcml\default_css.class.lua" />
+    <None Include="script\kids\3DMapSystemApp\mcml\DOM.class.lua" />
+    <None Include="script\kids\3DMapSystemApp\mcml\mcml.class.lua" />
+    <None Include="script\kids\3DMapSystemApp\mcml\mcml_base.class.lua" />
+    <None Include="script\kids\3DMapSystemApp\mcml\mcml_controls.class.lua" />
+    <None Include="script\kids\3DMapSystemApp\mcml\mcml_controls_layout.class.lua" />
+    <None Include="script\kids\3DMapSystemApp\mcml\mcml_controls_layout_lite.class.lua" />
+    <None Include="script\kids\3DMapSystemApp\mcml\mcml_samples.class.lua" />
+    <None Include="script\kids\3DMapSystemApp\mcml\PageCtrl.class.lua" />
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_asset.class.lua" />
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_avatar.class.lua" />
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_bag.class.lua" />
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_component.class.lua" />
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_datasource.class.lua" />
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_design.class.lua" />
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_dialog.class.lua" />
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_downlistbutton.class.lua" />
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_editor.class.lua" />
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_fileloader.class.lua" />
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_flash.class.lua" />
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_gridview.class.lua" />
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_hotkey.class.lua" />
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_html.class.lua" />
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_html_input.class.lua" />
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_item.class.lua" />
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_land.class.lua" />
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_map.class.lua" />
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_minikeyboard.class.lua" />
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_motion.class.lua" />
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_movie.class.lua" />
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_powerpoint.class.lua" />
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_profile.class.lua" />
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_ribbon.class.lua" />
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_script.class.lua" />
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_social.class.lua" />
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_stackview.class.lua" />
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_storyboard.class.lua" />
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_template.class.lua" />
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_textsprite.class.lua" />
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_togglebuttons.class.lua" />
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_treeview.class.lua" />
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_user.class.lua" />
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_viewport.class.lua" />
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_worldmap.class.lua" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_aries_camera.class.lua" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_mcmlBrowser.class.lua" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_MyPageCtrl.class.lua" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_avatar.class.lua" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_design.class.lua" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_map.class.lua" />
+    <None Include="script\mobile\API\LocalBridgePBAPI.lua" />
+    <None Include="script\mobile\API\local_service_constants.lua" />
+    <None Include="script\mobile\API\local_service_wrapper.lua" />
+    <None Include="script\mobile\NetWork\LocalBridgePB_pb.lua" />
+    <None Include="script\mobile\paracraft\Area\QuickSelectBar.lua" />
+    <None Include="script\mobile\paracraft\Area\SystemMenuPage.lua" />
+    <None Include="script\mobile\paracraft\Areas\SettingPage.lua" />
+    <None Include="script\mobile\paracraft\Areas\SystemMenuPage.lua" />
+    <None Include="script\mobile\paracraft\Areas\TexturePage.lua" />
+    <None Include="script\mobile\paracraft\DefaultTheme.mobile.lua" />
+    <None Include="script\mobile\paracraft\GameDesktop.lua" />
+    <None Include="script\mobile\paracraft\GUI\HelpPage.lua" />
+    <None Include="script\mobile\paracraft\Login\AutoUpdatePage.lua" />
+    <None Include="script\mobile\paracraft\Login\BaiduTestPage.lua" />
+    <None Include="script\mobile\paracraft\Login\CreateNewWorld.lua" />
+    <None Include="script\mobile\paracraft\Login\InternetLoadWorld.lua" />
+    <None Include="script\mobile\paracraft\Login\LocalLoadWorld.lua" />
+    <None Include="script\mobile\paracraft\Login\MainLogin.lua" />
+    <None Include="script\mobile\paracraft\Login\VersionUpdate.lua" />
+    <None Include="script\mobile\paracraft\main.lua" />
+    <None Include="script\mobile\protobuf\containers.lua" />
+    <None Include="script\mobile\protobuf\decoder.lua" />
+    <None Include="script\mobile\protobuf\descriptor.lua" />
+    <None Include="script\mobile\protobuf\encoder.lua" />
+    <None Include="script\mobile\protobuf\listener.lua" />
+    <None Include="script\mobile\protobuf\protobuf.lua" />
+    <None Include="script\mobile\protobuf\text_format.lua" />
+    <None Include="script\mobile\protobuf\type_checkers.lua" />
+    <None Include="script\mobile\protobuf\wire_format.lua" />
+    <None Include="config\Aries\creator\block_list.xml" />
+    <None Include="config\Aries\creator\block_types.xml" />
+    <None Include="config\Aries\creator\block_types_template.xml" />
+    <None Include="config\Aries\creator\BuildingTasks.xml" />
+    <None Include="script\apps\Taurus\bootstrapper.xml" />
+    <None Include="script\apps\Taurus\CodeExample\TestData.xml" />
+    <None Include="script\apps\Taurus\IP.xml" />
+    <None Include="script\apps\Taurus\WindowManager\default.petools.xml" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\AddServerNewUser.html" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\BlockMinimap.html" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\BlockTemplatePage.html" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\BuilderDock.html" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\BuilderFramePage.html" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\BuilderFramePage.mobile.html" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\ChangeTexturePage.html" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\ChatSystem\ChatEdit.html" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\ChatSystem\ChatWindow.html" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\ChatSystem\CommandHelpPage.html" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\CreatorDesktop.html" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\CreatorMachine.html" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\DecoBuilder.html" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\DesktopMenuPage.html" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\EditorModeSwitchPage.html" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\EnvFramePage.html" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\EscFramePage.html" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\GameDock.html" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\GoalTracker.html" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\InfoWindow.html" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\InventoryPage.html" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\InventoryPage.mobile.html" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\MainMenuPage.html" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\MyselfPlayerArea.html" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\NatureBuilder.html" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\NewDesktopPage.html" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\PlayerModeBuilder.html" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\QuickSelectBar.html" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\QuickSelectBar.mobile.html" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\SaveWorldPage.html" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\ServerLogin.html" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\ServerPage.html" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\ShareWorldPage.html" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\SkinPage.html" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\SpecialBlockBuilder.html" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\StaticBlockBuilder.html" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\SystemMenuPage.html" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\SystemSettingsPage.html" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\TaskBuilder.html" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\TemplateOfStructure.html" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\TextureModPage.html" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\WorldFramePage.html" />
+    <None Include="script\apps\Aries\Creator\Game\Areas\WorldUploadPage.html" />
+    <None Include="script\apps\Aries\Creator\Game\GUI\ChestPage.html" />
+    <None Include="script\apps\Aries\Creator\Game\GUI\ChestPage.mobile.html" />
+    <None Include="script\apps\Aries\Creator\Game\GUI\CompoundBoxPage.html" />
+    <None Include="script\apps\Aries\Creator\Game\GUI\DefaultMessageBox.html" />
+    <None Include="script\apps\Aries\Creator\Game\GUI\EditBookPage.html" />
+    <None Include="script\apps\Aries\Creator\Game\GUI\EditBookPage.mobile.html" />
+    <None Include="script\apps\Aries\Creator\Game\GUI\EditCodePage.html" />
+    <None Include="script\apps\Aries\Creator\Game\GUI\EditCommandPage.html" />
+    <None Include="script\apps\Aries\Creator\Game\GUI\EditEntityPage.html" />
+    <None Include="script\apps\Aries\Creator\Game\GUI\EditEntityPage.mobile.html" />
+    <None Include="script\apps\Aries\Creator\Game\GUI\EditItemPage.html" />
+    <None Include="script\apps\Aries\Creator\Game\GUI\EditItemRulePage.html" />
+    <None Include="script\apps\Aries\Creator\Game\GUI\EnterTextDialog.html" />
+    <None Include="script\apps\Aries\Creator\Game\GUI\FunnelPage.html" />
+    <None Include="script\apps\Aries\Creator\Game\GUI\MirrorWnd.html" />
+    <None Include="script\apps\Aries\Creator\Game\GUI\MobPropertyPage.html" />
+    <None Include="script\apps\Aries\Creator\Game\GUI\ModelViewerPage.html" />
+    <None Include="script\apps\Aries\Creator\Game\GUI\MoreTextDialog.html" />
+    <None Include="script\apps\Aries\Creator\Game\GUI\NPCDialogPage.html" />
+    <None Include="script\apps\Aries\Creator\Game\GUI\ObjectSelectPage.html" />
+    <None Include="script\apps\Aries\Creator\Game\GUI\SmelterPage.html" />
+    <None Include="script\apps\Aries\Creator\Game\GUI\TeleportListPage.html" />
+    <None Include="script\apps\Aries\Creator\Game\GUI\ThrowBoxPage.html" />
+    <None Include="script\apps\Aries\Creator\Game\GUI\TouchController.html" />
+    <None Include="script\apps\Aries\Creator\Game\Login\CreateNewAvatar.html" />
+    <None Include="script\apps\Aries\Creator\Game\Login\CreateNewWorld.html" />
+    <None Include="script\apps\Aries\Creator\Game\Login\InternetLoadWorld.html" />
+    <None Include="script\apps\Aries\Creator\Game\Login\LocalLoadWorld.html" />
+    <None Include="script\apps\Aries\Creator\Game\Login\LoginBackgroundPage.html" />
+    <None Include="script\apps\Aries\Creator\Game\Login\LoginPage.html" />
+    <None Include="script\apps\Aries\Creator\Game\Login\SelectLoginModePage.html" />
+    <None Include="script\apps\Aries\Creator\Game\Login\SelectModulePage.html" />
+    <None Include="script\apps\Aries\Creator\Game\Login\SelectModulePage.mobile.html" />
+    <None Include="script\apps\Aries\Creator\Game\Login\SwfLoadingBarPage.mc.html" />
+    <None Include="script\apps\Aries\Creator\Game\mcml\test\test_pe_mcml_mobile.html" />
+    <None Include="script\apps\Aries\Creator\Game\Movie\EditMovieTextPage.class.html" />
+    <None Include="script\apps\Aries\Creator\Game\Movie\MotionPoseEditor.class.html" />
+    <None Include="script\apps\Aries\Creator\Game\Movie\MovieClipController.class.html" />
+    <None Include="script\apps\Aries\Creator\Game\Movie\MovieClipTimeLine.class.html" />
+    <None Include="script\apps\Aries\Creator\Game\Movie\PlayModeController.class.html" />
+    <None Include="script\apps\Aries\Creator\Game\Movie\VideoRecorderSettings.class.html" />
+    <None Include="script\apps\Aries\Creator\Game\Neuron\CreateNewNeuronScriptFile.html" />
+    <None Include="script\apps\Aries\Creator\Game\Neuron\EditNeuronBlockPage.html" />
+    <None Include="script\apps\Aries\Creator\Game\Neuron\Mod\MovieText.html" />
+    <None Include="script\apps\Aries\Creator\Game\Neuron\Mod\MovieText.mobile.html" />
+    <None Include="script\apps\Aries\Creator\Game\Tasks\BlockFileMonitorTask.html" />
+    <None Include="script\apps\Aries\Creator\Game\Tasks\BuildMinimapTask.html" />
+    <None Include="script\apps\Aries\Creator\Game\Tasks\BuildQuestTask.html" />
+    <None Include="script\apps\Aries\Creator\Game\Tasks\BuildQuestTask.mobile.html" />
+    <None Include="script\apps\Aries\Creator\Game\Tasks\BuildQuestTaskNewTheme.html" />
+    <None Include="script\apps\Aries\Creator\Game\Tasks\CreateTerrainHoleTask.html" />
+    <None Include="script\apps\Aries\Creator\Game\Tasks\HelpPage.html" />
+    <None Include="script\apps\Aries\Creator\Game\Tasks\MovieTask.html" />
+    <None Include="script\apps\Aries\Creator\Game\Tasks\SelectBlocksEditor.mobile.html" />
+    <None Include="script\apps\Aries\Creator\Game\Tasks\SelectBlocksTask.html" />
+    <None Include="script\apps\Aries\Creator\Game\Tasks\SelectCharacterTask.html" />
+    <None Include="script\apps\Aries\Creator\Game\Tasks\SelectModelTask.html" />
+    <None Include="script\apps\Aries\Creator\Game\Tasks\SelectOPCTask.html" />
+    <None Include="script\apps\Aries\Creator\Game\Tasks\TransformWnd.html" />
+    <None Include="script\apps\Aries\Creator\Game\Test\GameTestPage.html" />
+    <None Include="script\apps\Aries\Creator\Game\Test\TestMcSlot.html" />
+    <None Include="script\apps\Aries\Creator\Game\Tools\TouchSelectionBar.html" />
+    <None Include="script\apps\Taurus\CodeExample\HelloWindow.html" />
+    <None Include="script\apps\Taurus\CodeExample\HelloXml.html" />
+    <None Include="script\apps\Taurus\Desktop\DockPage.html" />
+    <None Include="script\apps\Taurus\Desktop\DockPage.iCad.html" />
+    <None Include="script\apps\Taurus\Desktop\InternalThrowBallPage.html" />
+    <None Include="script\apps\Taurus\Desktop\MinimapPage.html" />
+    <None Include="script\apps\Taurus\Desktop\SettingsPage.html" />
+    <None Include="script\apps\Taurus\Desktop\WorldPage.html" />
+    <None Include="script\apps\Taurus\Tools\Graphics\ImageAnimExporter.html" />
+    <None Include="script\ide\Animation\Motion\test\animation_editor_test_page.class.html" />
+    <None Include="script\ide\Director\CardMovieTest.class.html" />
+    <None Include="script\ide\Director\DirectorToolPage.class.html" />
+    <None Include="script\ide\Display3D\Example\SceneCanvasExample.class.html" />
+    <None Include="script\ide\IPCBinding\EntitySamplePlaceableTemplate.newinstance.class.html" />
+    <None Include="script\ide\IPCBinding\IPCClassBuilderPage.class.html" />
+    <None Include="script\ide\KeyboardShortcut\KeyboardShortcut_page.class.html" />
+    <None Include="script\ide\MotionEx\CameraMotions\CameraMotionPage.class.html" />
+    <None Include="script\ide\MotionEx\StaticMoviePreloaderPage.class.html" />
+    <None Include="script\ide\MotionEx\Test\Test_MotionXmlToTable_Page.class.html" />
+    <None Include="script\ide\NPLFlashTest\FlashDataTransitionTestPage.class.html" />
+    <None Include="script\ide\ProjectTemplates\Templates\InstallApps\Startup.class.html" />
+    <None Include="script\ide\ProjectTemplates\Templates\MCMLPage\Startup.class.html" />
+    <None Include="script\ide\ProjectTemplates\Templates\NPL_File\Startup.class.html" />
+    <None Include="script\ide\ProjectTemplates\Templates\ProjectTemplate\Startup.class.html" />
+    <None Include="script\ide\styles\DefaultMessageBox.class.html" />
+    <None Include="script\ide\styles\ThinFrameMessageBox.class.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\mcml_sample_lab.class.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\mcml_sample_lab.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\MotionTest.class.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\MotionTest.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\MyPageControl_UI.class.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\MyPageControl_UI.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\RegistrationPage.class.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\RegistrationPage.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\SocialTagsTest.class.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\SocialTagsTest.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\StoryboardTest.class.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\StoryboardTest.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\StoryboardTest_3D.class.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\StoryboardTest_3D.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_Eval.class.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_Eval.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_iframe.class.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_iframe.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_iframe_sub.class.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_iframe_sub.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_layout_lite.class.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_layout_lite.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_localization.class.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_localization.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_mcml_jquery.class.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_mcml_jquery.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_components.class.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_components.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_design.class.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_design.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_downlistbutton.class.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_downlistbutton.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_fileloader.class.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_fileloader.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_gridview.class.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_gridview.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_html.class.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_html.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_item.class.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_item.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_land.class.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_land.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_minikeyboard.class.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_minikeyboard.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_movie.class.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_movie.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_multiradio.class.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_multiradio.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_profile.class.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_profile.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_stackview.class.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_stackview.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_temp.class.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_temp.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_template.class.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_template.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_template_templ.class.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_template_templ.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_togglebuttons.class.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_togglebuttons.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_treeview.class.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_treeview.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_user.class.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_user.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_viewport.class.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_viewport.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_worldmap.class.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_worldmap.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_powerpoint.class.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_powerpoint.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_tooltip_helper.class.html" />
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_tooltip_helper.html" />
+    <None Include="script\mobile\paracraft\Area\QuickSelectBar.html" />
+    <None Include="script\mobile\paracraft\Area\SystemMenuPage.html" />
+    <None Include="script\mobile\paracraft\Areas\GameSettingPage.html" />
+    <None Include="script\mobile\paracraft\Areas\SettingPage.html" />
+    <None Include="script\mobile\paracraft\Areas\SystemMenuPage.html" />
+    <None Include="script\mobile\paracraft\Areas\TexturePage.html" />
+    <None Include="script\mobile\paracraft\GUI\DefaultMessageBox.html" />
+    <None Include="script\mobile\paracraft\GUI\HelpPage.html" />
+    <None Include="script\mobile\paracraft\Login\AutoUpdatePage.html" />
+    <None Include="script\mobile\paracraft\Login\BaiduTestPage.html" />
+    <None Include="script\mobile\paracraft\Login\CreateNewWorld.html" />
+    <None Include="script\mobile\paracraft\Login\InternetLoadWorld.html" />
+    <None Include="script\mobile\paracraft\Login\LocalLoadWorld.html" />
+    <None Include="script\mobile\paracraft\Login\LoginBackgroundPage.html" />
+    <None Include="script\mobile\paracraft\Login\SelectLoginModePage.html" />
+    <None Include="script\mobile\paracraft\Login\SwfLoadingBarPage.mobile.html" />
+    <None Include="script\mobile\paracraft\Login\VersionUpdate.html" />
+    <None Include="sync_src.bat" />
+    <None Include="readme.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="D:/lxzsrc/ParaCraftSDKGit/src/ZERO_CHECK.vcxproj">
+      <Project>6AE8989E-4F06-4069-83FE-7C57C15B3598</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

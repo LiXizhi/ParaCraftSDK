@@ -1,0 +1,3871 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="CMakeLists.txt" />
+    <CustomBuild Include="CMakeFiles\c3810b85a046a5ea0ba942e2a07e7490\ParacraftSrc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CMakeFiles\ParacraftSrc" />
+    <None Include="script\apps\Aries\Creator\Game\API\ExpTable.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\API\FileDownloader.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\API\StatBase.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\API\StatList.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\API\UserProfile.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\API\UserStat.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\APISandbox\CreatorAPISandbox.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\APISandbox\TextToMCML.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\BlockMinimap.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\BlockTemplatePage.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\BuilderDock.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\BuilderFramePage.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\ChatSystem\ChatEdit.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\ChatSystem\ChatWindow.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\ChatSystem\CommandHelpPage.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\CreatorDesktop.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\CreatorMachine.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\DecoBuilder.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\DesktopMenu.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\DesktopMenuPage.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\EditorModeSwitchPage.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\EnvFramePage.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\EscFramePage.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\GameDock.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\GoalTracker.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\InfoWindow.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\InventoryPage.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\MainMenuPage.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\MyselfPlayerArea.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\NatureBuilder.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\PlayerModeBuilder.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\QuickSelectBar.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\SaveWorldPage.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\ServerPage.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\ShareWorldPage.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\SkinPage.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\SpecialBlockBuilder.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\StaticBlockBuilder.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\SystemMenuPage.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\SystemSettingsPage.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\TaskBuilder.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\TextureModPage.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\WorldFramePage.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\WorldUploadPage.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\blocks\block.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockBlockUpdateDetector.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockButton.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockCarpet.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockChest.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockCollisionSensor.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockCommandBlock.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockDynamic.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockEntityBase.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockFence.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockGrass.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockImage.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockItemFrame.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockLever.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockLiquidFlow.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockLiquidStill.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockMusicBox.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockNote.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockPiston.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockPistonExtension.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockPistonMoving.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockPlant.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockPowered.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockPressurePlate.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockRailBase.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockRailDetector.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockRailPowered.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockRedstoneConductor.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockRedstoneLight.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockRedstoneLogic.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockRedstoneRepeater.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockRedstoneTorch.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockRedstoneWire.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockSapling.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockSign.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockSlab.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockSponge.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockStair.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockTeleportStone.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockTNT.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\blocks\BlockTrapDoor.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\blocks\block_types.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\blocks\TextureAtlas.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\blocks\TextureAtlasRectPacker.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\block_engine.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Commands\CmdParser.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandActivate.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandActor.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandAudio.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandBlocks.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandBlockTransform.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandBlockType.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandCamera.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandCCS.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandConvert.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandCreate.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandDropFile.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandDump.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandEffect.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandEntity.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandGlobals.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandInstall.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandItem.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandManager.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandMenu.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandMovie.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandNetwork.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandOpen.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandPlayer.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandProgram.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandPublishSourceScript.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandRecord.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandRules.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandSelect.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandSet.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandShell.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandShow.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandSky.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandSystem.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandTeleport.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandTemplate.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandTexture.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandTime.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Commands\CommandWorlds.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Common\AnimTable.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Common\AttributeModel.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Common\CharGeosets.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Common\ChunkLocation.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Common\DataWatcher.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Common\DataWatcherObject.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Common\Direction.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Common\FastRandom.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Common\Files.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Common\MultiAnimBlock.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Common\Noises.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Common\Ticks.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Common\TimeSeries.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Common\TouchButton.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Common\TouchGesturePinch.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Common\TouchSession.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Common\Translation.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Common\TranslationGettext.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Common\UniversalCoords.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Common\Variables.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Common\Viewport.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\DefaultTheme.mc.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Entity\BlockContainer.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Entity\BlockInEntityHand.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Entity\DataContainer.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Entity\Entity.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Entity\Entity.EditModel.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityBlockBase.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityBlockDynamic.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityBlockPiece.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityCamera.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityChest.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityCmdTextureReplacer.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityCollectable.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityCollisionSensor.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityCommandBlock.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityDesktop.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityHomePoint.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityImage.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityItem.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityItemFrame.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityManager.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityMob.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityMovable.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityMovieClip.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityMusicBox.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityNote.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityNPC.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityPlayer.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityPlayerCCS.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityPlayerGSL.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityPlayerMP.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityPlayerMPClient.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityPlayerMPOther.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityPool.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityRailcar.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityRainEffect.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntitySign.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntitySnowEffect.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Entity\EntityWeatherEffect.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Entity\PlayerAssetFile.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Entity\PlayerCapabilities.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Entity\PlayerHeadController.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Entity\PlayerSkins.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Entity\RegionContainer.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Entity\TimedEvent.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GameDesktop.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GameEventHandler.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GameRules\GameMode.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GameRules\GameRules.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GameRules\PredefinedRules\preset_rule_mystery_gamemode.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GameRules\RuleBase.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GameRules\RuleBlock.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GameRules\RuleGlobal.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GameRules\RulePlayer.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\game_logic.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\game_options.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GUI\BaseSelector.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GUI\ChestPage.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GUI\CompoundBoxPage.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GUI\EditBookPage.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GUI\EditCodePage.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GUI\EditCommandPage.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GUI\EditEntityPage.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GUI\EditItemPage.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GUI\EnterTextDialog.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GUI\FunnelPage.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GUI\GUIChat.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GUI\MirrorWnd.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GUI\MobPropertyPage.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GUI\ModelViewerPage.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GUI\MoreTextDialog.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GUI\NPCDialogPage.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GUI\ObjectSelectPage.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GUI\ScreenRectSelector.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GUI\SmelterPage.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GUI\TeleportListPage.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GUI\ThrowBoxPage.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GUI\TouchController.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GUI\Transform3DController.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Items\ContainerView.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Items\InventoryBase.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Items\InventoryPlayer.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Items\Item.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Items\ItemBlockTemplate.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Items\ItemBook.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Items\ItemClient.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Items\ItemCmdUrl.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Items\ItemCode.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Items\ItemCollectable.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Items\ItemCommandLine.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Items\ItemDialog.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Items\ItemDoor.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Items\ItemImage.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Items\ItemMob.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Items\ItemMovieClip.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Items\ItemNPC.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Items\ItemRailcar.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Items\ItemRule.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Items\ItemServer.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Items\ItemSlab.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Items\ItemSlot.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Items\ItemSnipper.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Items\ItemStack.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Items\ItemTimeSeries.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Items\ItemTimeSeriesCamera.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Items\ItemTimeSeriesCommands.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Items\ItemTimeSeriesNPC.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Items\ItemTool.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Login\CreateNewAvatar.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Login\CreateNewWorld.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Login\InternetLoadWorld.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Login\LocalLoadWorld.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Login\MainLogin.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Login\RemoteServerList.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Login\RemoteUrl.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Login\RemoteWorld.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Login\SelectModulePage.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Login\SwfLoadingBar.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Login\UserLoginProcess.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Login\UserLoginProcessHelper.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\main.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Materials\block_material.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Materials\LocalTextures.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Materials\MaterialLiquid.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Materials\MaterialLogic.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Materials\MaterialPortal.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Materials\MaterialTransparent.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Materials\TexturePackage.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Materials\TexturePackageList.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\mcml\pe_checkbox_button.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\mcml\pe_mc_block.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\mcml\pe_mc_entity_canvas.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\mcml\pe_mc_mcml.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\mcml\pe_mc_player.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\mcml\pe_mc_slot.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Mod\ModBase.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Movie\Actor.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Movie\ActorBlock.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Movie\ActorBlocks.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Movie\ActorCamera.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Movie\ActorCommands.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Movie\ActorGUIText.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Movie\ActorMovieSequence.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Movie\ActorMusic.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Movie\ActorNPC.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Movie\EditMovieTextPage.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Movie\KeyFrameCtrl.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Movie\KeyFramePopupMenu.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Movie\MotionPose.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Movie\MotionPoseEditor.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Movie\MovieClip.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Movie\MovieClipController.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Movie\MovieClipTimeLine.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Movie\MovieManager.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Movie\MovieUISound.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Movie\PlayModeController.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Movie\VideoRecorder.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Movie\VideoRecorderSettings.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\ChatMessage.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\ChunkObserver.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\ChunkObserverClient.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\Config\AuthUserList.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\Config\BanList.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\Config\PasswordList.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\Config\ServerConfig.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\ConnectionBase.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\Connections.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\ConnectionTCP.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\EntityTracker.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\EntityTrackerEntry.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\NetClientHandler.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\NetHandler.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\NetLoginHandler.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\NetServerHandler.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\NetworkMain.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\Packet.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketAnimation.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketAttachEntity.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketAuthUser.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketBlockChange.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketBlockDestroy.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketBlockMultiChange.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketBlockPieces.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketChat.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketClickBlock.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketClickEntity.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketClientCommand.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketCustomPayload.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketDestroyEntity.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketEntityAction.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketEntityEffect.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketEntityHeadRotation.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketEntityMetadata.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketEntityMobSpawn.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketEntityPlayerSpawn.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketEntityTeleport.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketEntityVelocity.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketKickDisconnect.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketLevelSound.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketLogin.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketLoginClient.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketMapChunk.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketMapChunkData.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketMapChunks.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketMove.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketPing.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketPlayerInfo.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketPlayerInventory.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketPlayerLook.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketPlayerLookMove.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketPlayerPosition.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketRelEntity.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketRelEntityLook.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketRelEntityMove.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketRelEntityMoveLook.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketSleep.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketSpawnPosition.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketUpdateAttributes.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketUpdateEntitySign.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\PacketUpdateTime.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\Packets\Packet_Types.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\PlayerManager.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\PlayerManagerClient.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\ServerListener.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\ServerManager.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\ServerManagerDedicated.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\WorldClient.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Network\WorldServer.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Neuron\Cell\CellBlock.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Neuron\Cell\CellBlock_Terrain.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Neuron\Cell\CellBlock_Tree.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Neuron\CreateNewNeuronScriptFile.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Neuron\EditNeuronBlockPage.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Neuron\Mod\MovieText.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Neuron\NeuronAPISandbox.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Neuron\NeuronBlock.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Neuron\NeuronManager.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Neuron\NeuronSimulator.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Neuron\Templates\example.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Neuron\Templates\example_blocks.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Neuron\Templates\example_empty.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Neuron\Templates\example_movie.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Physics\DamageSource.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Physics\DamageSourceEntity.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Physics\DynamicObject.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Physics\PhysicsWorld.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\PlayerController.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Shaders\ColorEffect.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Shaders\FancyPostProcessing.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Shaders\GreyBlurEffect.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Shaders\GreyEffect.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Sound\BackgroundMusic.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Sound\BlockSound.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Sound\SoundManager.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Sound\StepSounds.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tasks\BlockFileMonitorTask.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tasks\BlockTemplateTask.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tasks\BuildMinimapTask.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tasks\BuildQuestProvider.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tasks\BuildQuestTask.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tasks\CloneBlocksTask.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tasks\ConvertImageToBlocksTask.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tasks\CreateBlockTask.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tasks\CreateModelTask.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tasks\CreateSimpleShapeTask.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tasks\CreateTerrainHoleTask.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tasks\DestroyBlockTask.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tasks\DestroyNearbyBlocksTask.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tasks\ExtrudeBlocksTask.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tasks\FillLineTask.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tasks\FollowBlocksTask.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tasks\GenerateModelTask.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tasks\HelpPage.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tasks\MCImporterTask.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tasks\MirrorBlocksTask.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tasks\MovieTask.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tasks\MovieTimeSeriesEditingTask.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tasks\OffsetWorldTask.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tasks\ReplaceBlockTask.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tasks\SelectBlocksTask.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tasks\SelectCharacterTask.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tasks\SelectModelTask.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tasks\SelectOPCTask.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tasks\TaskManager.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tasks\TeleportPlayerTask.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tasks\TerrainFilterTask.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tasks\TransformBlocksTask.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tasks\TransformWnd.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tasks\UndoManager.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tasks\WaterFloodTask.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Test\GameTestPage.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Test\test_blockworld.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Test\test_block_engine.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tools\Action.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tools\ActionGroup.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tools\test\test_ToolBase.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tools\ToolBar.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tools\ToolBase.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tools\ToolBase_p.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tools\ToolManager.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tools\ToolTouchBase.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tools\ToolTouchDefaultMode.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tools\ToolTouchErase.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tools\ToolTouchPen.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tools\ToolTouchPick.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tools\ToolTouchSelect.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tools\TouchSelection.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tools\TouchSelectionBar.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\World\BlockBase.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\World\CameraController.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\World\Chunk.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\World\ChunkCpp.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\World\ChunkProvider.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\World\ChunkProviderClient.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\World\ChunkProviderServer.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\World\ChunkSet.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\World\CustomChunkGenerator.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\World\SavePlayerHandler.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\World\SaveWorldHandler.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\World\SaveWorldHandlerMP.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\World\Section.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\World\StereoVisionController.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\World\test\test_world.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\World\TickEntry.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\World\World.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\World\WorldBlockAccess.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\World\WorldFileProvider.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\World\WorldInfo.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\World\WorldRevision.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\World\WorldSim.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\World\WorldTracker.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\World\WorldTrackerClient.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\World\WorldTrackerServer.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Taurus\app_main.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Taurus\CodeExample\HelloWindow.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Taurus\CodeExample\HelloXml.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Taurus\DataAPI\model_import.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Taurus\DataAPI\rna_access.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Taurus\DefaultTheme.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Taurus\Desktop\Dock.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Taurus\Desktop\DockPage.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Taurus\Desktop\InternalThrowBallPage.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Taurus\Desktop\MiniMap.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Taurus\Desktop\TaurusDesktop.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Taurus\Editors\Object\object_add.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Taurus\Editors\Object\object_edit.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Taurus\Editors\Object\object_ops.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Taurus\Editors\Object\object_select.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Taurus\Editors\Object\object_transform.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Taurus\Editors\Screen\area.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Taurus\Editors\Screen\screen_ops.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Taurus\Editors\Space_api\spacetypes.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Taurus\Editors\Space_view3d\space_view3d.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Taurus\Editors\Space_view3d\view3d_edit.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Taurus\Editors\Space_view3d\view3d_ops.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Taurus\Editors\Space_view3d\view3d_select.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Taurus\Editors\Util\undo.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Taurus\main_loop.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Taurus\Tools\Graphics\ImageAnimExporter.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Taurus\WindowManager\creator.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Taurus\WindowManager\wm.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Taurus\WindowManager\wm_context.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Taurus\WindowManager\wm_event_system.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Taurus\WindowManager\wm_files.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Taurus\WindowManager\wm_global.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Taurus\WindowManager\wm_keymap.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Taurus\WindowManager\wm_loader_readfile.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Taurus\WindowManager\wm_loader_writefile.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Taurus\WindowManager\wm_main.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Taurus\WindowManager\wm_operators.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\apps\Taurus\WindowManager\wm_window.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\action_table.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\AI.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Animation\AnimationUsingKeyFrames.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Animation\CurtainLib.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Animation\DoubleAnimationUsingKeyFrames.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Animation\KeyFrame.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Animation\KeySpline.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Animation\Motion\AnimationEditor\AnimationEditor.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Animation\Motion\Animator.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Animation\Motion\KeyFrames\AnimationUsingKeyFrames.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Animation\Motion\KeyFrames\DoubleAnimationUsingKeyFrames.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Animation\Motion\KeyFrames\KeyFrame.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Animation\Motion\KeyFrames\KeySpline.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Animation\Motion\KeyFrames\ObjectAnimationUsingKeyFrames.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Animation\Motion\KeyFrames\Point3DAnimationUsingKeyFrames.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Animation\Motion\KeyFrames\Point3DAnimationUsingPath.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Animation\Motion\KeyFrames\Reverse.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Animation\Motion\KeyFrames\StringAnimationUsingKeyFrames.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Animation\Motion\KeyFrames\TargetAnimationUsingKeyFrames.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Animation\Motion\KeyFrames\TimeSpan.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Animation\Motion\LayerManager.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Animation\Motion\McPlayer.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Animation\Motion\MovieClip.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Animation\Motion\MovieClipBase.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Animation\Motion\MovieClipHelper.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Animation\Motion\PreLoader.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Animation\Motion\Target\ActorTarget.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Animation\Motion\Target\BaseTarget.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Animation\Motion\Target\BuildingTarget.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Animation\Motion\Target\CameraTarget.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Animation\Motion\Target\CaptionTarget.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Animation\Motion\Target\ControlTarget.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Animation\Motion\Target\EffectTarget.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Animation\Motion\Target\LandTarget.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Animation\Motion\Target\OceanTarget.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Animation\Motion\Target\PlantTarget.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Animation\Motion\Target\SkyTarget.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Animation\Motion\Target\SoundTarget.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Animation\Motion\Target\Sprite3DTarget.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Animation\Motion\Target\TargetResourceManager.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Animation\Motion\test\animation_editor_test_page.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Animation\Motion\test\animator_test.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Animation\ObjectAnimationUsingKeyFrames.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Animation\Point3DAnimationUsingKeyFrames.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Animation\Point3DAnimationUsingPath.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Animation\PreLoader.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Animation\Reverse.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Animation\Storyboard.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Animation\StoryBoardPlayer.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Animation\StoryboardRecorder.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Animation\StringAnimationUsingKeyFrames.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Animation\test\storyboardPlayer_test.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Animation\test\StoryboardRecorder_test.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Animation\TimeSpan.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\app_ipc.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\AssetPreloader.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\AudioEngine\AriesSoundEffect.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\AudioEngine\AudioEngine.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\AudioEngine\AudioSource.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\AudioEngine\SoundEmitter.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\AudioEngine\SoundInfoProvider.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\AudioEngine\SoundManager.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\AudioEngine\SoundTest.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\AudioEngine\TestAudioEngine.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\AutoCompleteBox.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\AutoCompleteList.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\AutoHide.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\ButtonStyles.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Canvas3D.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Canvas3DUI.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\CanvasCamConfig.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\chat_display.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\CheckBox.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Codec\ChineseSimpleToTrad.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Codec\TableCodec.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\coloreditor_control.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\colorpicker.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\commonfunctions.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\commonlib.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\common_control.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\common_validators.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\config\NPLStateConfig.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\ContextMenu.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\ContextMenu2.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\DataBinding.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\DateTime.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\debug.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Debugger\ConsoleDebugger.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Debugger\IOConsole.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Debugger\IPCDebugger.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Debugger\MCMLConsole.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Debugger\NPLCompiler.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Debugger\NPLProfiler.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Director\CardMovieHelper.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Director\DirectorToolPage.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Director\Movie.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Director\MovieClip.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Director\MovieRender_Arena.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Director\MovieRender_Audio.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Director\MovieRender_Camera.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Director\MovieRender_Image.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Director\MovieRender_Mcml.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Director\MovieRender_Model.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Director\MovieRender_Script.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Director\MovieRender_Spell.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Director\MovieRender_SpellCamera.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Director\MovieRender_Text.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Director\SpellCameraHelper.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Display\Containers\MiniScene.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Display\Containers\MovieMiniScene.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Display\Containers\Scene.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Display\Containers\Sprite3D.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Display\DisplayObject.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Display\DisplayObjectContainer.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Display\EventDispatcher.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Display\InteractiveObject.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Display\Object.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Display\Objects\Actor3D.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Display\Objects\Building3D.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Display\Objects\Flower.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Display\Objects\Pet.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Display\Objects\PetE.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Display\Objects\PlantE.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Display\Objects\RoomEntry.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Display\Test\Sprite3D_Test.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Display\Util\ObjectsCreator.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Display\Util\ObjectsMcmlParser.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Display2D\Bitmap2D.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Display2D\Button2D.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Display2D\DisplayObject2D.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Display2D\Rectangle2D.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Display2D\Scene2DManager.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Display2D\Sprite2D.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Display2D\test\test_viewport2d.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Display2D\TextField2D.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Display2D\texture_grid.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Display2D\viewport2d.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Display3D\AvatarQueue.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Display3D\AvatarQueue_Test.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Display3D\Example\SceneCanvasExample.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Display3D\Example\SceneNodeProcessorExample.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Display3D\HomeLandCommonNode.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Display3D\HouseNode.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Display3D\SceneCanvas.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Display3D\SceneManager.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Display3D\SceneNode.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Display3D\SceneNodeHeadonSpeech.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Display3D\SceneNodeProcessor.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Display3D\SeedGridNode.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Dock.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Document\CSVDocReader.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Document\ExcelDocReader.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Document\LocalSingleDocument.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Document\LocalSingleDocumentFrame.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Document\RemoteSingleDocument.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\DoubleView.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\dropdownlistbox.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\dropdownlistbox_control.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Effect\FilmScratchProcessor.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Effect\frozenEffect.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Effect\motionBlurProcessor.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Effect\stoneEffect.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Effect\test.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Effect\transparentEffect.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Encoding.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\EventDispatcher.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\event_mapping.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\ExternalInterface.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\FileDialog.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\FileExplorerCtrl.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\FileLoader.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Files.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\fileselector_control.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\FileSystemWatcher.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\FileViewCtrl.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\FlashExternalInterface.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\FlashPlayerControl.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\FlashPlayerWindow.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Graph.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\GraphHelp.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\GridView.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\GridView3D.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\GUIEngine\test\test_touch_api.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\GUIEngine\TouchEvent.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\GUIEngine\TouchManager.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\gui_helper.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\GUI_inspector_simple.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\headon_speech.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\HTMLRenderer.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\IDE.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\integereditor_control.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\IPC.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\IPCBinding\BindableObject.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\IPCBinding\coxpcall.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\IPCBinding\EntityBase.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\IPCBinding\EntityDesign.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\IPCBinding\EntityHelper.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\IPCBinding\EntityHelperCircleEditor.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\IPCBinding\EntityHelperEditorBase.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\IPCBinding\EntityHelperFacingEditor.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\IPCBinding\EntityHelperPointEditor.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\IPCBinding\EntityHelperSerializer.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\IPCBinding\EntityTemplate.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\IPCBinding\EntityView.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\IPCBinding\Framework.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\IPCBinding\InstanceView.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\IPCBinding\IPCBinding.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\IPCBinding\IPCBindingContext.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\IPCBinding\IPCClassBuilder.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\IPCBinding\Test\TestBindableObject.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\IPCBinding\Test\TestFramework.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\itemlist_control.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Json.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\KeyboardShortcut\KeyboardShortcut.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\KeyLineBox.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\LibStub.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\LoaderUI.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\loadworld.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Locale.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\locals.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\log.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\LuaXML.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\MainMenu.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\math\AABBPool.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\math\bit.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\math\complex.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\math\find_bit_limits.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\math\fit.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\math\math3d.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\math\matrix.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\math\MD5.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\math\ShapeAABB.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\math\StringUtil.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\math\TEA.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\math\test\test_bit.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\math\test\test_complex.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\math\test\test_fit.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\math\test\test_matrix.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\math\test\test_MD5.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\math\test\test_TEA.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\math\vector.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\math\VectorPool.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\mathlib.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\MessageBox.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\MiniKeyboard.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\MinisceneManager.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\modifiers\CharacterSentientField.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\modifiers\DummyNPCEmpty.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\modifiers\DummyNPCLineWalker.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\modifiers\GreatView.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\modifiers\sampleModifier.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\modifierui_control.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\modifier_control.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\modifier_items.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Motion\AEManager.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Motion\AnimativeMenu\AnimativeMenu.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Motion\AnimativeMenu\TipAEMenu.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Motion\AnimativeMenu\TipMenu.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Motion\Animator.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Motion\AnimatorEngine.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Motion\AnimatorManager.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Motion\AnimatorPlayer.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Motion\BezierEase.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Motion\BezierSegment.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Motion\Color.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Motion\ColorTransform.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Motion\CustomEase.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Motion\DisplayObject.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Motion\ITween.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Motion\Keyframe.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Motion\LayerManager.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Motion\Motion.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Motion\Point.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Motion\RotateDirection.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Motion\SimpleEase.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Motion\Source.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Motion\test\animativeMenu_test.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Motion\test\autotips_test.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Motion\test\motion_test.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Motion\test\motion_test_2.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Motion\test\motion_test_xaml.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Motion\Tweenables.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\MotionEx\CameraMotions\CameraMotionPage.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\MotionEx\MotionFactory.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\MotionEx\MotionLine.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\MotionEx\MotionLineBase.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\MotionEx\MotionPlayer.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\MotionEx\MotionRender.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\MotionEx\MotionRender_Arena.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\MotionEx\MotionRender_Audio.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\MotionEx\MotionRender_Camera.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\MotionEx\MotionRender_Image.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\MotionEx\MotionRender_Mcml.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\MotionEx\MotionRender_Model.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\MotionEx\MotionRender_Script.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\MotionEx\MotionRender_Spell.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\MotionEx\MotionRender_SpellCastViewer.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\MotionEx\MotionRender_Text.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\MotionEx\MotionTypes.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\MotionEx\MotionXmlToTable.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\MotionEx\MovieController.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\MotionEx\StaticMoviePreloaderPage.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\MotionEx\Test\TestMotionPlayer.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\MotionView.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\MultiLineEditbox.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\MultiLineEditbox_old.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\mysql\mysql.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\mysql\sqlite3.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\mysql\test\test_mysql.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\mysql\test\test_sqlite3.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Network\StreamRateController.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\NPLDocGen.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\NPLExtension.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\NPLFlashTest\CallbackTest.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\NPLFlashTest\FlashDataTransitionTestPage.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\NPLFlashTest\FlashGameTest.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\NPLStatesMonitor.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\NumericUpDown.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\ObjectOriented\base.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\ObjectOriented\cached.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\ObjectOriented\class.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\ObjectOriented\collection\MapWithArrayOfKeys.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\ObjectOriented\collection\ObjectCache.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\ObjectOriented\collection\OrderedSet.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\ObjectOriented\collection\PriorityQueue.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\ObjectOriented\collection\UnorderedArray.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\ObjectOriented\collection\UnorderedArraySet.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\ObjectOriented\compiler\Arguments.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\ObjectOriented\compiler\Conditional.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\ObjectOriented\compiler\Expression.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\ObjectOriented\component\base.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\ObjectOriented\component\contained.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\ObjectOriented\component\dynamic.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\ObjectOriented\component\intercepted.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\ObjectOriented\component\wrapped.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\ObjectOriented\debug\Inspector.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\ObjectOriented\debug\Matcher.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\ObjectOriented\debug\Verbose.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\ObjectOriented\debug\Viewer.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\ObjectOriented\multiple.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\ObjectOriented\object\Exception.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\ObjectOriented\object\Publisher.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\ObjectOriented\object\Wrapper.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\ObjectOriented\scoped.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\ObjectOriented\serial\FileStream.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\ObjectOriented\serial\Serializer.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\ObjectOriented\serial\SocketStream.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\ObjectOriented\serial\StringStream.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\ObjectOriented\simple.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\ObjectOriented\table.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\ObjectOriented\thread\CoSocket.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\ObjectOriented\thread\IOScheduler.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\ObjectOriented\thread\Scheduler.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\ObjectOriented\thread\SocketScheduler.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\ObjectOriented\thread\Timer.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\object_editor.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\object_editor_v1.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\OneTimeAsset.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\oo.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\OpenFileDialog.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\OpenFolderDialog.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\os.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\package\moduleEmu.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\package\package.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\ParaEngineExtension.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\ParaEngineLuaJitFFI.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\ParaEngineSettings.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\popupmenu_control.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\PostProcessor.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\profiler.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\progressbar.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\ProjectTemplates\TemplateProcessor.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\ProjectTemplates\Templates\InstallApps\Startup.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\property_control.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\RadioBox.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\RibbonControl.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\rulemapping.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\sandbox.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\SaveFileDialog.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\scripttextbox_control.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\ScrollView.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\serialization.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\SliderBar.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\socket\ltn12.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\socket\socket.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\socket\url.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\SpriteAnimation_control.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\StateMachine.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\STL\Array.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\STL\LinkedList.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\STL\List.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\STL\OrderedArraySet.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\STL\Queue.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\STL\Stack.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\STL\UnorderedArray.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\STL\UnorderedArraySet.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\STL.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Storyboard\KeyFrame.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Storyboard\KeyFrames.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Storyboard\LayerManager.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Storyboard\Storyboard.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Storyboard\StoryboardParser.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Storyboard\Target.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Storyboard\Test\Test.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Storyboard\TimeSpan.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\stringmap.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\TabControl.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\terrain_editor.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\test\test_commonlib.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\test\test_FileExplorerCtrl.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\test\test_LibStub.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\test\test_multiline_editbox.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\test\test_ParaEngineExtension.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\test\test_rulemapping.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\test\test_timer.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\test\test_TreeView.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\test\test_WindowFrame.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\textdialog.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\TextSprite.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\ThrowBall.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\timer.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\TimeSeries\AnimBlock.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\TimeSeries\TimeSeries.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\TipsStack.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\TooltipHelper.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Transitions\Tween.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Transitions\TweenEquations.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Transitions\TweenLite.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Transitions\TweenUtil.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\Transitions\Tween_test.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\TreeNode.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\TreeView.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\UIAnim\UIAnimation.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\UIAnim\UIAnimBlock.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\UIAnim\UIAnimFile.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\UIAnim\UIAnimIndex.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\UIAnim\UIAnimInstance.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\UIAnim\UIAnimManager.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\UIAnim\UIAnimSeq.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\UnitTest\luaunit.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\UnitTest\sample_test_file.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\UnitTest\sample_test_file1.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\UnitTest\unit_test.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\UnitTest\unit_test_case.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\UnitTest\unit_test_dlg.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\user_action.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\vectoreditor_control.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\VideoRecorder.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\visibilityGroup.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\WindowFrame.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\ide\XPath.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\aries_camera.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\aries_camera_2.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\BrowserWnd.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\default_css.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\DOM.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\mcml.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\mcml_base.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\mcml_controls.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\mcml_controls_layout.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\mcml_controls_layout_lite.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\mcml_samples.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\PageCtrl.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_asset.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_avatar.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_bag.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_component.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_datasource.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_design.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_dialog.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_downlistbutton.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_editor.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_fileloader.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_flash.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_gridview.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_hotkey.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_html.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_html_input.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_item.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_land.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_map.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_minikeyboard.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_motion.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_movie.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_powerpoint.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_profile.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_ribbon.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_script.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_social.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_stackview.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_storyboard.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_template.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_textsprite.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_togglebuttons.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_treeview.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_user.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_viewport.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\pe_worldmap.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_aries_camera.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_mcmlBrowser.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_MyPageCtrl.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_avatar.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_design.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_map.class.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\mobile\API\LocalBridgePBAPI.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\mobile\API\local_service_constants.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\mobile\API\local_service_wrapper.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\mobile\NetWork\LocalBridgePB_pb.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\mobile\paracraft\Area\QuickSelectBar.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\mobile\paracraft\Area\SystemMenuPage.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\mobile\paracraft\Areas\SettingPage.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\mobile\paracraft\Areas\SystemMenuPage.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\mobile\paracraft\Areas\TexturePage.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\mobile\paracraft\DefaultTheme.mobile.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\mobile\paracraft\GameDesktop.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\mobile\paracraft\GUI\HelpPage.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\mobile\paracraft\Login\AutoUpdatePage.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\mobile\paracraft\Login\BaiduTestPage.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\mobile\paracraft\Login\CreateNewWorld.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\mobile\paracraft\Login\InternetLoadWorld.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\mobile\paracraft\Login\LocalLoadWorld.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\mobile\paracraft\Login\MainLogin.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\mobile\paracraft\Login\VersionUpdate.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\mobile\paracraft\main.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\mobile\protobuf\containers.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\mobile\protobuf\decoder.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\mobile\protobuf\descriptor.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\mobile\protobuf\encoder.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\mobile\protobuf\listener.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\mobile\protobuf\protobuf.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\mobile\protobuf\text_format.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\mobile\protobuf\type_checkers.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="script\mobile\protobuf\wire_format.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="config\Aries\creator\block_list.xml">
+      <Filter>config</Filter>
+    </None>
+    <None Include="config\Aries\creator\block_types.xml">
+      <Filter>config</Filter>
+    </None>
+    <None Include="config\Aries\creator\block_types_template.xml">
+      <Filter>config</Filter>
+    </None>
+    <None Include="config\Aries\creator\BuildingTasks.xml">
+      <Filter>config</Filter>
+    </None>
+    <None Include="script\apps\Taurus\bootstrapper.xml">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Taurus\CodeExample\TestData.xml">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Taurus\IP.xml">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Taurus\WindowManager\default.petools.xml">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\AddServerNewUser.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\BlockMinimap.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\BlockTemplatePage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\BuilderDock.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\BuilderFramePage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\BuilderFramePage.mobile.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\ChangeTexturePage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\ChatSystem\ChatEdit.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\ChatSystem\ChatWindow.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\ChatSystem\CommandHelpPage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\CreatorDesktop.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\CreatorMachine.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\DecoBuilder.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\DesktopMenuPage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\EditorModeSwitchPage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\EnvFramePage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\EscFramePage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\GameDock.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\GoalTracker.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\InfoWindow.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\InventoryPage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\InventoryPage.mobile.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\MainMenuPage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\MyselfPlayerArea.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\NatureBuilder.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\NewDesktopPage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\PlayerModeBuilder.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\QuickSelectBar.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\QuickSelectBar.mobile.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\SaveWorldPage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\ServerLogin.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\ServerPage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\ShareWorldPage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\SkinPage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\SpecialBlockBuilder.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\StaticBlockBuilder.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\SystemMenuPage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\SystemSettingsPage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\TaskBuilder.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\TemplateOfStructure.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\TextureModPage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\WorldFramePage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Areas\WorldUploadPage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GUI\ChestPage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GUI\ChestPage.mobile.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GUI\CompoundBoxPage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GUI\DefaultMessageBox.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GUI\EditBookPage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GUI\EditBookPage.mobile.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GUI\EditCodePage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GUI\EditCommandPage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GUI\EditEntityPage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GUI\EditEntityPage.mobile.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GUI\EditItemPage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GUI\EditItemRulePage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GUI\EnterTextDialog.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GUI\FunnelPage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GUI\MirrorWnd.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GUI\MobPropertyPage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GUI\ModelViewerPage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GUI\MoreTextDialog.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GUI\NPCDialogPage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GUI\ObjectSelectPage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GUI\SmelterPage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GUI\TeleportListPage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GUI\ThrowBoxPage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\GUI\TouchController.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Login\CreateNewAvatar.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Login\CreateNewWorld.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Login\InternetLoadWorld.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Login\LocalLoadWorld.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Login\LoginBackgroundPage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Login\LoginPage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Login\SelectLoginModePage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Login\SelectModulePage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Login\SelectModulePage.mobile.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Login\SwfLoadingBarPage.mc.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\mcml\test\test_pe_mcml_mobile.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Movie\EditMovieTextPage.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Movie\MotionPoseEditor.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Movie\MovieClipController.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Movie\MovieClipTimeLine.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Movie\PlayModeController.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Movie\VideoRecorderSettings.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Neuron\CreateNewNeuronScriptFile.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Neuron\EditNeuronBlockPage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Neuron\Mod\MovieText.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Neuron\Mod\MovieText.mobile.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tasks\BlockFileMonitorTask.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tasks\BuildMinimapTask.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tasks\BuildQuestTask.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tasks\BuildQuestTask.mobile.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tasks\BuildQuestTaskNewTheme.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tasks\CreateTerrainHoleTask.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tasks\HelpPage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tasks\MovieTask.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tasks\SelectBlocksEditor.mobile.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tasks\SelectBlocksTask.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tasks\SelectCharacterTask.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tasks\SelectModelTask.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tasks\SelectOPCTask.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tasks\TransformWnd.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Test\GameTestPage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Test\TestMcSlot.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Aries\Creator\Game\Tools\TouchSelectionBar.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Taurus\CodeExample\HelloWindow.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Taurus\CodeExample\HelloXml.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Taurus\Desktop\DockPage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Taurus\Desktop\DockPage.iCad.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Taurus\Desktop\InternalThrowBallPage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Taurus\Desktop\MinimapPage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Taurus\Desktop\SettingsPage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Taurus\Desktop\WorldPage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\apps\Taurus\Tools\Graphics\ImageAnimExporter.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\ide\Animation\Motion\test\animation_editor_test_page.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\ide\Director\CardMovieTest.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\ide\Director\DirectorToolPage.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\ide\Display3D\Example\SceneCanvasExample.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\ide\IPCBinding\EntitySamplePlaceableTemplate.newinstance.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\ide\IPCBinding\IPCClassBuilderPage.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\ide\KeyboardShortcut\KeyboardShortcut_page.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\ide\MotionEx\CameraMotions\CameraMotionPage.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\ide\MotionEx\StaticMoviePreloaderPage.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\ide\MotionEx\Test\Test_MotionXmlToTable_Page.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\ide\NPLFlashTest\FlashDataTransitionTestPage.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\ide\ProjectTemplates\Templates\InstallApps\Startup.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\ide\ProjectTemplates\Templates\MCMLPage\Startup.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\ide\ProjectTemplates\Templates\NPL_File\Startup.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\ide\ProjectTemplates\Templates\ProjectTemplate\Startup.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\ide\styles\DefaultMessageBox.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\ide\styles\ThinFrameMessageBox.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\mcml_sample_lab.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\mcml_sample_lab.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\MotionTest.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\MotionTest.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\MyPageControl_UI.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\MyPageControl_UI.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\RegistrationPage.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\RegistrationPage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\SocialTagsTest.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\SocialTagsTest.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\StoryboardTest.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\StoryboardTest.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\StoryboardTest_3D.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\StoryboardTest_3D.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_Eval.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_Eval.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_iframe.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_iframe.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_iframe_sub.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_iframe_sub.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_layout_lite.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_layout_lite.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_localization.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_localization.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_mcml_jquery.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_mcml_jquery.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_components.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_components.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_design.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_design.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_downlistbutton.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_downlistbutton.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_fileloader.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_fileloader.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_gridview.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_gridview.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_html.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_html.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_item.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_item.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_land.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_land.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_minikeyboard.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_minikeyboard.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_movie.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_movie.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_multiradio.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_multiradio.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_profile.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_profile.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_stackview.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_stackview.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_temp.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_temp.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_template.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_template.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_template_templ.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_template_templ.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_togglebuttons.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_togglebuttons.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_treeview.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_treeview.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_user.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_user.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_viewport.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_viewport.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_worldmap.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_pe_worldmap.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_powerpoint.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_powerpoint.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_tooltip_helper.class.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\kids\3DMapSystemApp\mcml\test\test_tooltip_helper.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\mobile\paracraft\Area\QuickSelectBar.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\mobile\paracraft\Area\SystemMenuPage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\mobile\paracraft\Areas\GameSettingPage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\mobile\paracraft\Areas\SettingPage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\mobile\paracraft\Areas\SystemMenuPage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\mobile\paracraft\Areas\TexturePage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\mobile\paracraft\GUI\DefaultMessageBox.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\mobile\paracraft\GUI\HelpPage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\mobile\paracraft\Login\AutoUpdatePage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\mobile\paracraft\Login\BaiduTestPage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\mobile\paracraft\Login\CreateNewWorld.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\mobile\paracraft\Login\InternetLoadWorld.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\mobile\paracraft\Login\LocalLoadWorld.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\mobile\paracraft\Login\LoginBackgroundPage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\mobile\paracraft\Login\SelectLoginModePage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\mobile\paracraft\Login\SwfLoadingBarPage.mobile.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="script\mobile\paracraft\Login\VersionUpdate.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="sync_src.bat" />
+    <None Include="readme.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{D5A5DA16-8046-4DDE-A63A-0ABD15E3B89D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="npl">
+      <UniqueIdentifier>{DA1DD2AB-0221-46A7-8BC9-E9B4A7F97831}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="config">
+      <UniqueIdentifier>{337501A4-0733-4ED7-9F19-419968DB3CB9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mcml">
+      <UniqueIdentifier>{D5F38080-181A-496F-BF27-C10585DBA206}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,30 @@
+﻿---+ Install ParacraftSDK
+| Author: LiXizhi			   |
+| Contact: lixizhi@yeah.net	   |
+| Version 1.0  Date: 2015.4.8  |
+
+---++ Install Guide
+   * Open ParacraftSDK.sln with visual studio 2013 or above. 
+
+It is recommended to stay up to date with our current source respositories (SourceTree recommended for git):
+   * https://github.com/LiXizhi/ParaCraftSDK is the root repository, however it is not complete. 
+You need to copy additional files from other repository for any missing files, in order to set up a complete development environment for Paracraft. 
+
+---++ Recommended Tools
+Visual studio plugins:
+   * NPL Language Service for visual studio: https://visualstudiogallery.msdn.microsoft.com/7782dc20-924a-4726-8656-d876cdbb3417
+   * NPL Debugger for visual studio: https://visualstudiogallery.msdn.microsoft.com/7ebe665c-4f1d-41fd-91e1-52176cf2d9db
+   * ParaEngine tools for visual studio: https://visualstudiogallery.msdn.microsoft.com/accd022b-ec37-4614-8c08-30e291d28bd5
+   * Visual Assist: useful for locating script files.
+   * SourceTree (Git client): http://www.sourcetreeapp.com/ 
+
+---++ Third party Tools
+If you need to build for android:
+   * install NDK and androidSDK: http://developer.android.com/tools/sdk/ndk/index.html
+   * Install Python 2.7:  https://www.python.org/downloads/
+
+Setup environment variables:
+   * android sdk($ANDROID_SDK_ROOT):		http://developer.android.com/sdk/index.html
+   * android ndk($NDK_ROOT):			http://developer.android.com/tools/sdk/ndk/index.html
+   * ant($ANT_ROOT):				http://ant.apache.org/bindownload.cgi
+   * java($JAVA_HOME)

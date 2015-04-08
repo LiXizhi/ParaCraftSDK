@@ -19,7 +19,7 @@ ParaCraftSDK是ParaEngine和NPL语言的一个面向学生用户的开发环境。 目的是让感兴趣的
 最新版下载地址 [[https://github.com/LiXizhi/ParaCraftSDK/archive/master.zip]]
 
 ---+++ 背后发生了什么？
-首次运行start.bat会自动安装ParaCraft。但是第二次运行，SDK版本不会自动更新，
+首次运行bin/start.bat会自动安装ParaCraft。但是第二次运行，SDK版本不会自动更新，
 所以如果你希望与最新的官方ParaCraft软件同步， 请运行upgrade.bat手工升级。 
 这点非常重要。 
 
@@ -27,14 +27,14 @@ ParaCraftSDK是ParaEngine和NPL语言的一个面向学生用户的开发环境。 目的是让感兴趣的
 ./samples 			例子程序和源代码。运行每个子目录中的start.bat
 ./redist 			发布与运行环境，模拟用户的安装目录
 ./src				引擎部分源代码
-./apps				用户自己开发的应用在这里
-./tutorials			教程应用
+./_apps				用户自己开发的应用在这里
+./_mod				用户自己开发的plugin在这里
 
 ---++ 文件说明
-./Start.bat		启动创意空间（但不更新）
-./Upgrade.bat	更新Redist下的创意空间
-./CreateApp.bat	创建你自己的应用
-./Publish.bat   发布你的应用
+./bin/Start.bat		启动创意空间（但不更新）
+./bin/Upgrade.bat	更新Redist下的创意空间
+./bin/CreateApp.bat	创建你自己的应用
+./bin/Publish.bat   发布你的应用
 ./samples/[foldername]/Run.bat     运行各种演示程序
 ./samples/[foldername]/Source      程序的原代码
 

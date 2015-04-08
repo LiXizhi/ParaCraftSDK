@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="..\..\..\samples\2. HelloWorldMCML\CMakeLists.txt" />
+    <CustomBuild Include="..\..\CMakeFiles\f89d8d853f1bbf2a4333e1201ca8154b\HelloWorldMCML.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CMakeFiles\HelloWorldMCML" />
+    <None Include="..\..\..\samples\2. HelloWorldMCML\source\HelloWorldMCML\HelloWorld.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\samples\2. HelloWorldMCML\source\HelloWorldMCML\main.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\samples\2. HelloWorldMCML\source\HelloWorldMCML\HelloWorld.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\samples\2. HelloWorldMCML\Run.bat" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{0AF854A3-CAC9-4156-BD93-00AE82B7F64C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="npl">
+      <UniqueIdentifier>{8F74C4CD-B864-4944-A84B-761F5812CF55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mcml">
+      <UniqueIdentifier>{BF33D6FD-57A3-482D-A20A-660FDC7E9329}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

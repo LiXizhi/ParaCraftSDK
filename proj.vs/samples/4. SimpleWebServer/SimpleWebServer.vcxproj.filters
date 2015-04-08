@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="..\..\..\samples\4. SimpleWebServer\CMakeLists.txt" />
+    <CustomBuild Include="..\..\CMakeFiles\8e3316ea147570ec99913cc67c058310\SimpleWebServer.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CMakeFiles\SimpleWebServer" />
+    <None Include="..\..\..\samples\4. SimpleWebServer\script\apps\Taurus\DefaultTheme.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\samples\4. SimpleWebServer\source\SimpleWebServer\http_server.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\samples\4. SimpleWebServer\source\SimpleWebServer\main.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\samples\4. SimpleWebServer\source\SimpleWebServer\server_console.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\samples\4. SimpleWebServer\Run.bat" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{0AF854A3-CAC9-4156-BD93-00AE82B7F64C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="npl">
+      <UniqueIdentifier>{8F74C4CD-B864-4944-A84B-761F5812CF55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mcml">
+      <UniqueIdentifier>{BF33D6FD-57A3-482D-A20A-660FDC7E9329}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

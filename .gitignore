@@ -17,3 +17,14 @@ _*/
 modDev/
 src/sync_src.bat
 src/sdkpath.txt
+src/script/
+Debug/
+Release/
+*.opensdf
+*.user
+CMakeFiles/
+ZERO_CHECK.*
+ALL_BUILD.*
+cmake_install.cmake
+Win32/
+CMakeCache.txt

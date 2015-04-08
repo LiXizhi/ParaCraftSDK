@@ -1,4 +1,4 @@
-echo off
+rem echo off
 setlocal enabledelayedexpansion
 if exist %~dp0sdkpath.txt (
 	set /p default_sdk_path=<%~dp0sdkpath.txt
@@ -14,8 +14,9 @@ if "%SDK_PATH%" == "" (
 	echo %SDK_PATH% >> %~dp0sdkpath.txt
 )
 
-xcopy "%SDK_PATH%\src\*.*"  "%~dp0" /e /d /y /c
+xcopy "%SDK_PATH%\src"  "%~dp0" /e /d /y /c
 xcopy "%SDK_PATH%\config\Aries\creator\bom\*.xml"  "%~dp0config\Aries\creator\bom\" /e /d /y /c
 xcopy "%SDK_PATH%\config\Aries\creator\block_types.xml"  "%~dp0config\Aries\creator\" /e /d /y /c
 xcopy "%SDK_PATH%\config\Aries\creator\BuildingTasks.xml"  "%~dp0config\Aries\creator\" /e /d /y /c
-pause
+
+exit 0

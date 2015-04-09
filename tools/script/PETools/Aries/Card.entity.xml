@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--script/PETools/Aries/Card.entity.xml-->
+<pe:mcml>
+  <script type="text/npl" src="">
+  </script>
+  <pe:entity_template name="Card" namespace="PETools.EntityTemplates.Aries" display_name="Card"
+             worldfilter="" singleton="false"
+             classfile="script/ide/IPCBinding/EntityBase.lua"
+             classname="PETools.EntityTemplates.Aries.Card"
+             baseclass="IPCBinding.EntityBase"
+             codefile="config/Aries/Cards/[name].xml"
+             codefile_xpath ="/card"
+             serializer="IPCBinding.EntityHelperSerializer"
+             new_instance_form="Card.newinstance.html"
+             func_create="create_new_instance"
+             func_createfrom=""
+             func_remove=""
+             func_delete=""
+             func_save=""
+             func_select=""
+             func_deselect=""
+             >
+    <functions>
+      <function name="create_new_instance">
+        <![CDATA[
+        return function(template, params, callback)
+          local entity_class = template.class;
+          if (entity_class) then
+            local instance = entity_class:new();
+            instance.uid = ParaGlobal.GenerateUniqueID();
+            instance.name = params.name or "AreaAttack_Level1_Wood";
+            instance.spell_effect = "config/Aries/Spells/TestSpell_Lightning.xml";
+            instance.battle_comment = "config/Aries/Spells/TestSpell_Lightning.xml";
+            
+            instance.basics_type = "AreaAttack";
+            instance.pipcost = 1;
+            instance.accuracy = 100;
+            instance.spell_school = "wood";
+            
+            instance.damage_min = 60;
+            instance.damage_max = 80;
+            instance.damage_school = "wood";
+            commonlib.log("new entity instance created: uid %s", instance.uid);
+            if(callback) then
+              callback(instance);
+            end
+          end
+        end
+        ]]>
+      </function>
+    </functions>
+    <!-- this is only used for description purposes, real properties are extracted from classfile -->
+    <properties>
+      <!-- we can specify an editor style to use for displaying and modifying the property. 
+      the most commonly used style is editor and editor-center. where editor can be point/circle. and the editor-center can be a vector3 property name on the instance. 
+      -->
+      <property name="name" type="string" desc="magic card name"
+                category="display"
+                xpath="key[@name]"
+                />
+      <property name="spell_effect" type="string" desc="art spell effect file"
+                category="display"
+                xpath="spell_effect[@file]"
+                />
+      <property name="battle_comment" type="string" desc="battle comment file"
+                category="display"
+                xpath="battle_comment[@file]"
+                />
+      <!-- basics parameters-->
+      <property name="basics_type" type="string" desc="AreaAttack"
+                category="basics"
+                xpath="basics[@type]"
+                />
+      <property name="pipcost" type="number" desc="pips count in order to cast this spell"
+                category="basics"
+                xpath="basics[@pipcost]"
+                />
+      <property name="accuracy" type="number" desc="percentage value in range [0-100]"
+                category="basics"
+                xpath="basics[@accuracy]"
+                />
+      <property name="spell_school" type="string" desc="one of five elemental spell school"
+                category="basics"
+                xpath="basics[@spell_school]"
+                />
+      <!-- basics parameters-->
+      <property name="damage_min" type="number" desc="minimum damage count"
+                category="params"
+                xpath="params[@damage_min]"
+                />
+      <property name="damage_max" type="number" desc="maximum damage count"
+                category="params"
+                xpath="params[@damage_max]"
+                />
+      <property name="damage_school" type="string" desc="one of five elemental spell school"
+                category="params"
+                xpath="params[@damage_school]"
+                />
+    </properties>
+  </pe:entity_template>
+</pe:mcml>

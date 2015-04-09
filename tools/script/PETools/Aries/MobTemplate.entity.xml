@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--script/PETools/Aries/MobTemplate.entity.xml-->
+<pe:mcml>
+  <script type="text/npl" src="">
+  </script>
+  <pe:entity_template name="MobTemplate" namespace="PETools.EntityTemplates.Aries" display_name="MobTemplate"
+             worldfilter="" singleton="false"
+             classfile="script/ide/IPCBinding/EntityBase.lua"
+             classname="PETools.EntityTemplates.Aries.MobTemplate"
+             baseclass="IPCBinding.EntityBase"
+             codefile="config/Aries/Mob/MobTemplate_[name].xml"
+             codefile_xpath ="/mobtemplate/mob"
+             serializer="IPCBinding.EntityHelperSerializer"
+             new_instance_form="MobTemplate.newinstance.html"
+             func_create="create_new_instance"
+             func_createfrom=""
+             func_remove=""
+             func_delete=""
+             func_save=""
+             func_select=""
+             func_deselect=""
+             >
+    <functions>
+      <function name="create_new_instance">
+        <![CDATA[
+        return function(template, params, callback)
+          local entity_class = template.class;
+          if (entity_class) then
+            local instance = entity_class:new();
+            instance.uid = ParaGlobal.GenerateUniqueID();
+            instance.name = params.name or "BlazeHairMonster";
+            instance.displayname = instance.name;
+            instance.level = 1;
+            instance.hp = 300;
+            
+            instance.phase="fire"
+            instance.scale=1
+            instance.asset="character/v5/10mobs/HaqiTown/BlazeHairMonster/BlazeHairMonster.x"
+            instance.guarding_range=20
+            instance.guard_distance=10
+            instance.random_walk_range=5
+       
+            instance.experience_pts=5
+            instance.power_pip_percent=15
+            instance.accuracy_penalty_percent=10
+            instance.available_cards="(22181,10)(22186,10)(22189,20)"
+            instance.ai_module=""
+       
+            instance.accuracy_storm_percent=2
+            instance.accuracy_life_percent=2
+            instance.accuracy_ice_percent=2
+            instance.accuracy_fire_percent=2
+            instance.accuracy_death_percent=2 
+            instance.damage_storm=30 
+            instance.damage_life=30 
+            instance.damage_ice=30
+            instance.damage_fire=30
+            instance.damage_death=30
+            instance.damage_storm_percent=2
+            instance.damage_life_percent=2
+            instance.damage_ice_percent=2
+            instance.damage_fire_percent=2
+            instance.damage_death_percent=2
+            instance.resist_storm=30
+            instance.resist_life=30
+            instance.resist_ice=30
+            instance.resist_fire=30
+            instance.resist_death=30
+            instance.resist_storm_percent=2
+            instance.resist_life_percent=2
+            instance.resist_ice_percent=2
+            instance.resist_fire_percent=2
+            instance.resist_death_percent=2
+       
+            commonlib.log("new entity instance created: uid %s", instance.uid);
+            if(callback) then
+              callback(instance);
+            end
+          end
+        end
+        ]]>
+      </function>
+    </functions>
+    <!-- this is only used for description purposes, real properties are extracted from classfile -->
+    <properties>
+      <!-- we can specify an editor style to use for displaying and modifying the property. 
+      the most commonly used style is editor and editor-center. where editor can be point/circle. and the editor-center can be a vector3 property name on the instance. 
+      -->
+      <property name="name" type="string" desc="mob's English name"
+                category="1display"
+                xpath="[@name]"
+                />
+      <property name="displayname" type="string" desc="Mob's headon display name"
+                category="1display"
+                xpath="[@displayname]"
+                />
+      <property name="scale" type="number" desc="Mob's scale value. default to 1.0"
+                category="1display"
+                xpath="[@scale]"
+                />
+      <property name="asset" type="string" desc="Mob's character asset file path"
+              editor_attribute='[FileSelector(InitialDirectory="character/v5/10mobs/HaqiTown/",Filter="ParaXFile(*.x)|*.x|All files (*.*)|*.*",UseQuickSearchDialog=false)]'
+              editor ="PETools.World.Controls.FileSelectorUIEditor"
+              category="1display"
+              style="editor:point;container-name:preview;editor-model-headontext:[displayname];editor-model-mesh:[asset];editor-model-facing:0;editor-model-scaling:[scale]"
+              xpath="[@asset]"
+        />
+        <!-- basics parameters-->
+      <property name="level" type="number" desc="Mob's level value"
+                category="0basics"
+                xpath="[@level]"
+                />
+      <property name="hp" type="number" desc="Mob's health point value"
+                category="0basics"
+                xpath="[@hp]"
+                />
+      <property name="phase" type="string" desc="Mob's phase one of the five element values"
+                category="0basics"
+                xpath="[@phase]"
+                editor_attribute='[StringList("fire,ice,death,storm,life", AllowCustomEdit=false)]'
+                converter ="PETools.World.TypeConverter.StringListConverter"
+                />
+      <property name="experience_pts" type="number" desc="experience to gain the user when this mob is killed"
+                category="0basics"
+                xpath="[@experience_pts]"
+                />
+      <property name="joybean_count" type="number" desc="奇豆掉落"
+                category="0basics"
+                xpath="[@joybean_count]"
+                />
+      <!-- accuracy parameters-->
+      <property name="accuracy_storm_percent" type="number" desc=""
+                category="accuracy"
+                xpath="[@accuracy_storm_percent]"
+                />
+      <property name="accuracy_life_percent" type="number" desc=""
+                category="accuracy"
+                xpath="[@accuracy_life_percent]"
+                />
+      <property name="accuracy_ice_percent" type="number" desc=""
+                category="accuracy"
+                xpath="[@accuracy_ice_percent]"
+                />
+      <property name="accuracy_fire_percent" type="number" desc=""
+                category="accuracy"
+                xpath="[@accuracy_fire_percent]"
+                />
+      <property name="accuracy_death_percent" type="number" desc=""
+                category="accuracy"
+                xpath="[@accuracy_death_percent]"
+                />
+      <!--other basics-->
+      <property name="guarding_range" type="number" desc="guarding range in meters"
+                category="basics"
+                xpath="[@guarding_range]"
+                />
+      <property name="guard_distance" type="number" desc="guarding distance in meters"
+                category="basics"
+                xpath="[@guard_distance]"
+                />
+      <property name="random_walk_range" type="number" desc="radius of random walk range in meters"
+                category="basics"
+                xpath="[@random_walk_range]"
+                />
+      <property name="power_pip_percent" type="number" desc=""
+                category="basics"
+                xpath="[@power_pip_percent]"
+                />
+      <property name="accuracy_penalty_percent" type="number" desc=""
+                category="basics"
+                xpath="[@accuracy_penalty_percent]"
+                />
+      <property name="available_cards" type="string" desc="card gsids owned by the mob, such as (22181,10)(22186,10)(22189,20)"
+                category="basics"
+                xpath="[@available_cards]"
+                />
+      <property name="ai_module" type="string" desc=""
+                category="basics"
+                xpath="[@ai_module]"
+                />
+      <!-- resist parameters-->
+      <property name="resist_storm" type="number" desc=""
+                category="resist"
+                xpath="[@resist_storm]"
+                />
+      <property name="resist_life" type="number" desc=""
+                category="resist"
+                xpath="[@resist_life]"
+                />
+      <property name="resist_ice" type="number" desc=""
+                category="resist"
+                xpath="[@resist_ice]"
+                />
+      <property name="resist_fire" type="number" desc=""
+                category="resist"
+                xpath="[@resist_fire]"
+                />
+      <property name="resist_death" type="number" desc=""
+                category="resist"
+                xpath="[@resist_death]"
+                />
+      <property name="resist_storm_percent" type="number" desc=""
+                category="resist_percent"
+                xpath="[@resist_storm_percent]"
+                />
+      <property name="resist_life_percent" type="number" desc=""
+                category="resist_percent"
+                xpath="[@resist_life_percent]"
+                />
+      <property name="resist_ice_percent" type="number" desc=""
+                category="resist_percent"
+                xpath="[@resist_ice_percent]"
+                />
+      <property name="resist_fire_percent" type="number" desc=""
+                category="resist_percent"
+                xpath="[@resist_fire_percent]"
+                />
+      <property name="resist_death_percent" type="number" desc=""
+                category="resist_percent"
+                xpath="[@resist_death_percent]"
+                />
+
+      <!-- damage parameters-->
+      <property name="damage_storm" type="number" desc=""
+                category="damage"
+                xpath="[@damage_storm]"
+                />
+      <property name="damage_life" type="number" desc=""
+                category="damage"
+                xpath="[@damage_life]"
+                />
+      <property name="damage_ice" type="number" desc=""
+                category="damage"
+                xpath="[@damage_ice]"
+                />
+      <property name="damage_fire" type="number" desc=""
+                category="damage"
+                xpath="[@damage_fire]"
+                />
+      <property name="damage_death" type="number" desc=""
+                category="damage"
+                xpath="[@damage_death]"
+                />
+      <property name="damage_storm_percent" type="number" desc=""
+                category="damage_percent"
+                xpath="[@damage_storm_percent]"
+                />
+      <property name="damage_life_percent" type="number" desc=""
+                category="damage_percent"
+                xpath="[@damage_life_percent]"
+                />
+      <property name="damage_ice_percent" type="number" desc=""
+                category="damage_percent"
+                xpath="[@damage_ice_percent]"
+                />
+      <property name="damage_fire_percent" type="number" desc=""
+                category="damage_percent"
+                xpath="[@damage_fire_percent]"
+                />
+      <property name="damage_death_percent" type="number" desc=""
+                category="damage_percent"
+                xpath="[@damage_death_percent]"
+                />
+    </properties>
+  </pe:entity_template>
+</pe:mcml>

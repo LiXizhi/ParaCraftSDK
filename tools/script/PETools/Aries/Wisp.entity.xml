@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--script/PETools/Aries/Wisp.entity.xml-->
+<pe:mcml>
+  <script type="text/npl" src="">
+  </script>
+  <pe:entity_template name="Wisp" namespace="PETools.EntityTemplates.Aries" display_name="Wisp"
+             worldfilter="" singleton="false"
+             classfile="script/ide/IPCBinding/EntityBase.lua"
+             classname="PETools.EntityTemplates.Aries.Wisp"
+             baseclass="IPCBinding.EntityBase"
+             codefile="config/Aries/Wisp/Wisp_Plaza.xml"
+             codefile_xpath ="/wisps/wisp"
+             serializer="IPCBinding.EntityHelperSerializer"
+             editor_attribute='[NPLCommand("goto", func_name="goto")]'
+             new_instance_form="Wisp.newinstance.html"
+             always_delete_content="true"
+             func_create="create_new_instance"
+             func_createfrom=""
+             func_remove=""
+             func_delete=""
+             func_save=""
+             func_select=""
+             func_deselect=""
+             >
+    <functions>
+      <function name="create_new_instance">
+        <![CDATA[
+        return function(template, params, callback)
+          local entity_class = template.class;
+          if (entity_class) then
+            local instance = entity_class:new();
+            instance.name = params.name or "wisp1";
+            local x,y,z = ParaScene.GetPlayer():GetPosition();
+            y = y + 1.2;
+            instance.position = {x, y, z};
+            
+            if(callback) then
+              callback(instance);
+            end
+          end
+        end
+        ]]>
+      </function>
+      <function name="goto">
+        <![CDATA[
+        return function(instance)
+          if (instance) then
+            local pos = instance.position;
+            ParaScene.GetPlayer():SetPosition(pos[1], pos[2], pos[3]);
+          end
+        end
+        ]]>
+      </function>
+    </functions>
+    <!-- this is only used for description purposes, real properties are extracted from classfile -->
+    <properties>
+      <!-- we can specify an editor style to use for displaying and modifying the property. 
+      the most commonly used style is editor and editor-center. where editor can be point/circle. and the editor-center can be a vector3 property name on the instance. 
+      -->
+      <property name="name" type="string" desc="wisp name"
+                category="display"
+                xpath="key[@name]"
+                />
+      <property name="position" type="table" desc="Position of the Wisp"
+                category="display"
+                converter ="PETools.World.TypeConverter.NumberArrayListConverter"
+                value_serializer = "array"
+                xpath="[@position]"
+                style="editor:point;editor-model-center:[position];editor-model-headontext:[name];editor-model-mesh:character/v5/09effect/Wisp/Wisp.x;"
+                />
+    </properties>
+  </pe:entity_template>
+</pe:mcml>

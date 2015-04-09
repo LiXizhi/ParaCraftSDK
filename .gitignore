@@ -12,7 +12,8 @@ redist/
 src/config/Aries/creator/bom
 published/
 ParaCraft/
-apps/
+apps/*
+!apps/Paracraft/
 _*/
 modDev/
 src/sync_src.bat

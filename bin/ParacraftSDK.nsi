@@ -3,7 +3,7 @@
 # Date: 2015.4.8
 
 ;------------------------------------------------------------------------
-; ParacraftSDK is the internal codename of the Online Kids Theme Community
+; ParacraftSDK 
 ;------------------------------------------------------------------------
 SetCompressor /SOLID lzma
 ; SetOverwrite 	on|off|try|ifnewer
@@ -336,6 +336,9 @@ section
 	SetOutPath "$INSTDIR\doc"
 	File /r ..\doc\*.*
 	
+	SetOutPath "$INSTDIR\tools"
+	File /r ..\tools\*.*
+
 	SetOutPath "$INSTDIR\_apps\SeerCraft"
 	File /r /x CMakeFiles /x *.opensdf /x *.sdf /x *.suo /x *.user /x Win32 /x *.apk ..\_apps\SeerCraft\*.*
 	
@@ -368,14 +371,14 @@ section
 	#-----------------------------
 	# programe file shortcut
 	SetOutPath "$INSTDIR"
-	CreateShortCut "$SMPROGRAMS\$StartMenuFolder\$MainShortcutName.lnk" "$ShortCutLinkPath" "" "$INSTDIR\icon.ico"
+	CreateShortCut "$SMPROGRAMS\$StartMenuFolder\$MainShortcutName.lnk" "$ShortCutLinkPath" ""
 		
 	# uninstaller shortcut
 	CreateShortCut "$SMPROGRAMS\$StartMenuFolder\$(StringUnInstallWeb).lnk" "$INSTDIR\uninstaller.exe"
 
 	#Create desktop icon.
 	SetOutPath "$INSTDIR"
-	CreateShortCut "$DESKTOP\$MainShortcutName.lnk" "$ShortCutLinkPath" "" "$INSTDIR\icon.ico"
+	CreateShortCut "$DESKTOP\$MainShortcutName.lnk" "$ShortCutLinkPath" ""
 	StrCpy $ShortCutName "$DESKTOP\$MainShortcutName.lnk"
 			
 	!insertmacro MUI_STARTMENU_WRITE_END

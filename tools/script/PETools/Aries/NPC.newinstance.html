@@ -1,0 +1,22 @@
+<!-- script/PETools/Aries/NPC.newinstance.html -->
+<!-- one needs to save the initial instance params table(can be nil) to Page._result when page is closed 
+The instance creation function will use it to create new instance. If nil, creation will be canceled. 
+-->
+<pe:mcml>
+<script type="text/npl" src="">
+Page._result = nil;
+function OnSubmit(name, params)
+    Page._result = params;
+    commonlib.echo(params);
+    Page:CloseWindow();
+end
+</script>
+<div style="width:400px;margin:5px">
+    <form name="NewInstanceForm">
+    请不要自己建立新的NPC，找开发人员添加，或手工添加到XML中.
+    <div>NPC id: <input name="npc_id" value="30500"/></div>
+    <hr />
+    <input type="submit" name="OK" value="Create" onclick="OnSubmit" />
+    </form>
+</div>
+</pe:mcml>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--script/PETools/Aries/FootStepsScene.entity.xml-->
+<pe:mcml>
+  <script type="text/npl" src="">
+  </script>
+  <pe:entity_template name="FootStepsScene" namespace="PETools.EntityTemplates.Aries" display_name="FootStepsScene"
+             worldfilter="" singleton="false"
+             classfile="script/ide/IPCBinding/EntityBase.lua"
+             classname="PETools.EntityTemplates.Aries.FootStepsScene"
+             baseclass="IPCBinding.EntityBase"
+             codefile="config/Aries/FootSteps/[worldname].FootSteps_Scene.xml"
+             codefile_xpath ="/FootSteps_scenes/FootSteps_scene"
+             serializer="IPCBinding.EntityHelperSerializer"
+             editor_attribute='[NPLCommand("goto", func_name="goto")]'
+             new_instance_form="FootStepsScene.newinstance.html"
+             always_delete_content="true"
+             func_create="create_new_instance"
+             func_createfrom=""
+             func_remove=""
+             func_delete=""
+             func_save=""
+             func_select=""
+             func_deselect=""
+             >
+    <functions>
+      <function name="create_new_instance">
+        <![CDATA[
+        return function(template, params, callback)
+          local entity_class = template.class;
+          if (entity_class) then
+            local instance = entity_class:new();
+            instance.name = params.name or "FootSteps_scene_plaza";
+            local player = ParaScene.GetPlayer();
+            local x,y,z = player:GetPosition();
+            instance.position = {x, y, z};
+            instance.FootSteps_begin = 1;
+            instance.FootSteps_end = 10;
+            instance.update_count = 5;
+            instance.update_interval = 180000;
+            instance.clear_afterupdate = 150000;
+            
+            if(callback) then
+              callback(instance);
+            end
+          end
+        end
+        ]]>
+      </function>
+      <function name="goto">
+        <![CDATA[
+        return function(instance)
+          if (instance) then
+            local pos = instance.position;
+            if(pos and pos[1]) then
+              ParaScene.GetPlayer():SetPosition(pos[1], pos[2], pos[3]);
+            end
+            if(instance.copies and instance.copies > 0) then
+              NPL.load("(gl)script/PETools/Aries/ObjectInstancesEditor.lua");
+              MyCompany.PETools.Editors.ObjectInstancesEditor.ShowForEditorInstance(instance);
+            end
+          end
+        end
+        ]]>
+      </function>
+    </functions>
+    <!-- this is only used for description purposes, real properties are extracted from classfile -->
+    <properties>
+      <!-- we can specify an editor style to use for displaying and modifying the property. 
+      the most commonly used style is editor and editor-center. where editor can be point/circle. and the editor-center can be a vector3 property name on the instance. 
+      -->
+      <property name="name" type="string" desc="FootSteps scene name"
+          category="display"
+          xpath="key[@name]"
+                />
+      <property name="position" type="table" desc="a dummy position only for editing"
+                category="display"
+                converter ="PETools.World.TypeConverter.NumberArrayListConverter"
+                value_serializer = "array"
+                xpath="[@position]"
+                style="editor:point;editor-model-center:[position];editor-model-headontext:[name];editor-model-mesh:character/v5/09effect/FootSteps/FootSteps.x;"
+                />
+      <property name="FootSteps_begin" type="number" desc="FootSteps id from"
+                category="display"
+                xpath="[@FootSteps_begin]"
+                />
+      <property name="FootSteps_end" type="number" desc="FootSteps id end"
+          category="display"
+          xpath="[@FootSteps_end]"
+                />
+      <property name="update_count" type="number" desc="FootSteps id end"
+          category="display"
+          xpath="[@update_count]"
+                />
+      <property name="update_interval" type="number" desc="FootSteps id end"
+          category="display"
+          xpath="[@update_interval]"
+                />
+      <property name="clear_afterupdate" type="number" desc="FootSteps id end"
+          category="display"
+          xpath="[@clear_afterupdate]"
+                />
+      <!--instances-->
+      <property name="copies" type="number" desc="number of instance copies"
+                category="instances" skip_value="0"
+                xpath="instances[@copies]"
+                />
+      <property name="positions" type="table" desc="instance positions, such as {{0,1,2},{0,1,2},}"
+                category="instances" skip_value="{}"
+                xpath="instances[@positions]"
+                />
+      <property name="facings" type="table" desc="facings of instances"
+                category="instances" skip_value="{}"
+                xpath="instances[@facings]"
+                />
+    </properties>
+  </pe:entity_template>
+</pe:mcml>

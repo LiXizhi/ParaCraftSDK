@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<folders>
+  <!-- Supported entity properties:
+  targetfolder is the default folder to add instance to if provided. 
+  display_property is the property name on the entity instance to be used for displaying in the instance view.
+  -->
+  <folder name="Singleton templates">
+    <entity type="CameraTemplate" tooltip="Global Camera" src="script/PETools/Buildin/Camera.entity.xml" targetfolder="global"/>
+    <entity type="GlobalSettingsTemplate" src="script/PETools/Buildin/GlobalSettings.entity.xml" targetfolder="global"/>
+    <entity type="OceanTemplate" src="script/PETools/Buildin/Ocean.entity.xml" targetfolder="Environment"/>
+    <entity type="SceneTemplate" src="script/PETools/Buildin/Scene.entity.xml" targetfolder="Environment"/>
+    <entity type="SkyTemplate" src="script/PETools/Buildin/Sky.entity.xml" targetfolder="Environment"/>
+    <entity type="TerrainTemplate" src="script/PETools/Buildin/Terrain.entity.xml" targetfolder="Environment"/>
+    <entity type="EntitySampleTemplate" src="script/ide/IPCBinding/EntitySampleTemplate.entity.xml" targetfolder="global"/>
+  </folder>
+  <folder name="Aries" IsExpanded="true">
+    <entity type="NPC" tooltip="NPC characters" targetfolder="NPCs" display_property="name" src="script/PETools/Aries/NPC.entity.xml"/>
+    <entity type="GameObject" tooltip="Game Object" targetfolder="GameObjects" display_property="name" src="script/PETools/Aries/GameObject.entity.xml"/>
+    <entity type="Arena" targetfolder="Arenas" display_property="id" src="script/PETools/Aries/Arena.entity.xml"/>
+    <entity type="WispScene" tooltip="Wisp Scene" targetfolder="WispScene" display_property="name" src="script/PETools/Aries/WispScene.entity.xml"/>
+    <entity type="MobTemplate" targetfolder="MobTemplates" display_property="displayname" src="script/PETools/Aries/MobTemplate.entity.xml"/>
+    <entity type="Card" tooltip="Magics card" targetfolder="Cards" display_property="name" src="script/PETools/Aries/Card.entity.xml"/>
+    <entity type="Spell" targetfolder="Spells" display_property="name" src=""/>
+    <entity type="Sound" tooltip="Sound" targetfolder="Sound" display_property="name" src="script/PETools/Aries/Sound.entity.xml"/>
+    <entity type="AudioSource" tooltip="AudioSource" targetfolder="AudioSource" display_property="name" src="script/PETools/Aries/AudioSource.entity.xml"/>
+    <entity type="FootStepsScene" tooltip="FootSteps Scene" targetfolder="FootStepsScene" display_property="name" src="script/PETools/Aries/FootStepsScene.entity.xml"/>
+  </folder>
+  <folder name="Taurus" IsExpanded="true">
+    <entity type="EnvironmentPresets" tooltip="Environment Presets" targetfolder="EnvironmentPresets" display_property="name" src="script/PETools/Taurus/EnvironmentPresets.entity.xml"/>
+  </folder>
+  <folder name="Placeable templates">
+    <entity type="SamplePlaceable" src="script/ide/IPCBinding/EntitySamplePlaceableTemplate.entity.xml" display_property="mesh_name"/>
+  </folder>
+  <folder name="Animated">
+    <entity type="MiniGame" src=""/>
+    <entity type="RegionSound" src=""/>
+    <entity type="PickableObject" src=""/>
+  </folder>
+  <folder name="worlds">
+    <entity type="HomeWorld" src=""/>
+    <entity type="PublicWorld" src=""/>
+  </folder>
+  <folder name="Models">
+    <folder name="Plants">
+      <entity type="StaticMesh" src=""/>
+    </folder>
+  </folder>
+</folders>

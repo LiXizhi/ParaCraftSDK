@@ -1,0 +1,21 @@
+<!-- script/PETools/Aries/Sound.newinstance.html -->
+<!-- one needs to save the initial instance params table(can be nil) to Page._result when page is closed 
+The instance creation function will use it to create new instance. If nil, creation will be canceled. 
+-->
+<pe:mcml>
+<script type="text/npl" src="">
+Page._result = nil;
+function OnSubmit(name, params)
+    Page._result = params;
+    commonlib.echo(params);
+    Page:CloseWindow();
+end
+</script>
+<div style="width:400px;margin:5px">
+    <form name="NewInstanceForm">
+    <div>Sound name: <input name="name" value="SoundBank"/></div>
+    <hr />
+    <input type="submit" name="OK" value="Create" onclick="OnSubmit" >
+    </form>
+</div>
+</pe:mcml>

@@ -1,0 +1,9 @@
+{
+commonlib0={"log","applog","echo"}
+XPath0={"selectNodes","eachNode"}
+
+Variables={
+{name="commonlib0",url={"script/ide/log.lua","script/ide/serialization.lua"}},
+{name="XPath0",url="script/ide/XPath.lua",ns="commonlib.XPath"}
+}
+}

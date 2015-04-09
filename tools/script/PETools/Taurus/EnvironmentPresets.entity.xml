@@ -1,0 +1,190 @@
+<!-- script/PETools/Taurus/EnvironmentPresets.entity.xml -->
+<!-- For quickly apply a group of environment settings to the current scene. -->
+<pe:mcml>
+  <script type="text/npl" src="">
+  </script>
+<pe:entity_template name="EnvPresets" namespace="PETools.EntityTemplates.Taurus" display_name="EnvironmentPresets"
+             worldfilter="" singleton="false"
+             classfile="script/ide/IPCBinding/EntityBase.lua"
+             classname="PETools.EntityTemplates.Taurus.EnvPresets"
+             baseclass="IPCBinding.EntityBase"
+             codefile="config/Aries/WorldData/[worldname].EnvPresets.xml"
+             codefile_xpath ="/EnvPresets/EnvPreset"
+             serializer="IPCBinding.EntityHelperSerializer"
+             editor_attribute='[NPLCommand("goto", func_name="goto")]'
+             func_create=""
+             func_createfrom=""
+             func_remove=""
+             func_delete=""
+             func_save=""
+             func_select="goto"
+             func_deselect=""
+             >
+  <functions>
+    <function name="goto">
+      <![CDATA[
+        return function(instance)
+          if (instance) then
+            -- very tricky code. 
+            local _, prop;
+	          for _, prop in ipairs(instance.props) do
+		          local value = instance:GetValue(prop.label);
+              -- commonlib.echo(prop.label)
+              instance:SetValue(prop.label, value, true);
+	          end
+          end
+        end
+        ]]>
+    </function>
+  </functions>
+	<properties>
+    <!--properties from Ocean.entity.xml-->
+		<property name="DrawOcean" type="boolean" desc=""  
+					get_func='return function(self, value) if(value~=nil) then return value else return IPCBinding.EntityHelper.GetField("Ocean.DrawOcean") end end' 
+					set_func='return function(self, value) return IPCBinding.EntityHelper.SetField("Ocean.DrawOcean", value) end' />
+		<property name="WaterLevel" type="number" desc=""  
+					get_func='return function(self, value) if(value~=nil) then return value else return IPCBinding.EntityHelper.GetField("Ocean.WaterLevel") end end'  
+					set_func='return function(self, value) return IPCBinding.EntityHelper.SetField("Ocean.WaterLevel", value) end' />
+		<property name="OceanColor" type="table" desc="" converter="PETools.World.TypeConverter.NumberArrayListConverter" 
+					get_func='return function(self, value) if(value~=nil) then return value else return IPCBinding.EntityHelper.GetField("Ocean.OceanColor", {}) end end'  
+					set_func='return function(self, value) return IPCBinding.EntityHelper.SetField("Ocean.OceanColor", value) end' />
+		<property name="WindSpeed" type="number" desc=""  
+					get_func='return function(self, value) if(value~=nil) then return value else return IPCBinding.EntityHelper.GetField("Ocean.WindSpeed") end end'  
+					set_func='return function(self, value) return IPCBinding.EntityHelper.SetField("Ocean.WindSpeed", value) end' />
+		<property name="WindDirection" type="number" desc=""  
+					get_func='return function(self, value) if(value~=nil) then return value else return IPCBinding.EntityHelper.GetField("Ocean.WindDirection") end end'  
+					set_func='return function(self, value) return IPCBinding.EntityHelper.SetField("Ocean.WindDirection", value) end' />
+		<property name="RenderTechnique" type="number" desc=""  
+					get_func='return function(self, value) if(value~=nil) then return value else return IPCBinding.EntityHelper.GetField("Ocean.RenderTechnique") end end'  
+					set_func='return function(self, value) return IPCBinding.EntityHelper.SetField("Ocean.RenderTechnique", value) end' />
+		<property name="EnableTerrainReflection" type="boolean" desc=""  
+					get_func='return function(self, value) if(value~=nil) then return value else return IPCBinding.EntityHelper.GetField("Ocean.EnableTerrainReflection") end end'  
+					set_func='return function(self, value) return IPCBinding.EntityHelper.SetField("Ocean.EnableTerrainReflection", value) end' />
+		<property name="EnableMeshReflection" type="boolean" desc=""  
+					get_func='return function(self, value) if(value~=nil) then return value else return IPCBinding.EntityHelper.GetField("Ocean.EnableMeshReflection") end end'  
+					set_func='return function(self, value) return IPCBinding.EntityHelper.SetField("Ocean.EnableMeshReflection", value) end' />
+		<property name="EnablePlayerReflection" type="boolean" desc=""  
+					get_func='return function(self, value) if(value~=nil) then return value else return IPCBinding.EntityHelper.GetField("Ocean.EnablePlayerReflection") end end'  
+					set_func='return function(self, value) return IPCBinding.EntityHelper.SetField("Ocean.EnablePlayerReflection", value) end' />
+		<property name="EnableCharacterReflection" type="boolean" desc=""  
+					get_func='return function(self, value) if(value~=nil) then return value else return IPCBinding.EntityHelper.GetField("Ocean.EnableCharacterReflection") end end'  
+					set_func='return function(self, value) return IPCBinding.EntityHelper.SetField("Ocean.EnableCharacterReflection", value) end' />
+    <!--properties from Sky.entity.xml-->
+    <property name="SkyColor" type="table" desc="" converter="PETools.World.TypeConverter.NumberArrayListConverter"
+					get_func='return function(self, value) if(value~=nil) then return value else return IPCBinding.EntityHelper.GetField("Sky.SkyColor", {}) end end'
+					set_func='return function(self, value) return IPCBinding.EntityHelper.SetField("Sky.SkyColor", value) end' />
+    <property name="SkyFogAngleFrom" type="number" desc=""
+					get_func='return function(self, value) if(value~=nil) then return value else return IPCBinding.EntityHelper.GetField("Sky.SkyFogAngleFrom") end end'
+					set_func='return function(self, value) return IPCBinding.EntityHelper.SetField("Sky.SkyFogAngleFrom", value) end' />
+    <property name="SkyFogAngleTo" type="number" desc=""
+					get_func='return function(self, value) if(value~=nil) then return value else return IPCBinding.EntityHelper.GetField("Sky.SkyFogAngleTo") end end'
+					set_func='return function(self, value) return IPCBinding.EntityHelper.SetField("Sky.SkyFogAngleTo", value) end' />
+    <property name="SimulatedSky" type="boolean" desc=""
+					get_func='return function(self, value) if(value~=nil) then return value else return IPCBinding.EntityHelper.GetField("Sky.SimulatedSky") end end'
+					set_func='return function(self, value) return IPCBinding.EntityHelper.SetField("Sky.SimulatedSky", value) end' />
+    <property name="IsAutoDayTime" type="boolean" desc=""
+					get_func='return function(self, value) if(value~=nil) then return value else return IPCBinding.EntityHelper.GetField("Sky.IsAutoDayTime") end end'
+					set_func='return function(self, value) return IPCBinding.EntityHelper.SetField("Sky.IsAutoDayTime", value) end' />
+
+    <!--properties from Camera.entity.xml-->
+    <property name="NearPlane" type="number" desc=""
+					get_func='return function(self, value) if(value~=nil) then return value else return IPCBinding.EntityHelper.GetField("Camera.NearPlane") end end'
+					set_func='return function(self, value) return IPCBinding.EntityHelper.SetField("Camera.NearPlane", value) end' />
+    <property name="FarPlane" type="number" desc=""
+					get_func='return function(self, value) if(value~=nil) then return value else return IPCBinding.EntityHelper.GetField("Camera.FarPlane") end end'
+					set_func='return function(self, value) return IPCBinding.EntityHelper.SetField("Camera.FarPlane", value) end' />
+    <property name="FieldOfView" type="number" desc=""
+					get_func='return function(self, value) if(value~=nil) then return value else return IPCBinding.EntityHelper.GetField("Camera.FieldOfView") end end'
+					set_func='return function(self, value) return IPCBinding.EntityHelper.SetField("Camera.FieldOfView", value) end' />
+    <property name="AspectRatio" type="number" desc=""
+					get_func='return function(self, value) if(value~=nil) then return value else return IPCBinding.EntityHelper.GetField("Camera.AspectRatio") end end'
+					set_func='return function(self, value) return IPCBinding.EntityHelper.SetField("Camera.AspectRatio", value) end' />
+
+    <!--properties from Scene.entity.xml-->
+    <property name="FullScreenGlow" type="boolean" desc=""
+					get_func='return function(self, value) if(value~=nil) then return value else return IPCBinding.EntityHelper.GetField("Scene.FullScreenGlow") end end'
+					set_func='return function(self, value) return IPCBinding.EntityHelper.SetField("Scene.FullScreenGlow", value) end' />
+    <property name="GlowIntensity" type="number" desc=""
+					get_func='return function(self, value) if(value~=nil) then return value else return IPCBinding.EntityHelper.GetField("Scene.GlowIntensity") end end'
+					set_func='return function(self, value) return IPCBinding.EntityHelper.SetField("Scene.GlowIntensity", value) end' />
+    <property name="GlowFactor" type="number" desc=""
+					get_func='return function(self, value) if(value~=nil) then return value else return IPCBinding.EntityHelper.GetField("Scene.GlowFactor") end end'
+					set_func='return function(self, value) return IPCBinding.EntityHelper.SetField("Scene.GlowFactor", value) end' />
+    <property name="Glowness" type="table" desc="" converter="PETools.World.TypeConverter.NumberArrayListConverter"
+					get_func='return function(self, value) if(value~=nil) then return value else return IPCBinding.EntityHelper.GetField("Scene.Glowness", {}) end end'
+					set_func='return function(self, value) return IPCBinding.EntityHelper.SetField("Scene.Glowness", value) end' />
+    <property name="EnableSunLight" type="boolean" desc=""
+					get_func='return function(self, value) if(value~=nil) then return value else return IPCBinding.EntityHelper.GetField("Scene.EnableSunLight") end end'
+					set_func='return function(self, value) return IPCBinding.EntityHelper.SetField("Scene.EnableSunLight", value) end' />
+    <property name="EnableLight" type="boolean" desc=""
+					get_func='return function(self, value) if(value~=nil) then return value else return IPCBinding.EntityHelper.GetField("Scene.EnableLight") end end'
+					set_func='return function(self, value) return IPCBinding.EntityHelper.SetField("Scene.EnableLight", value) end' />
+    <property name="ShowLights" type="boolean" desc=""
+					get_func='return function(self, value) if(value~=nil) then return value else return IPCBinding.EntityHelper.GetField("Scene.ShowLights") end end'
+					set_func='return function(self, value) return IPCBinding.EntityHelper.SetField("Scene.ShowLights", value) end' />
+    <property name="MaxLightsNum" type="number" desc=""
+					get_func='return function(self, value) if(value~=nil) then return value else return IPCBinding.EntityHelper.GetField("Scene.MaxLightsNum") end end'
+					set_func='return function(self, value) return IPCBinding.EntityHelper.SetField("Scene.MaxLightsNum", value) end' />
+    <property name="SetShadow" type="boolean" desc=""
+					get_func='return function(self, value) if(value~=nil) then return value else return IPCBinding.EntityHelper.GetField("Scene.SetShadow") end end'
+					set_func='return function(self, value) return IPCBinding.EntityHelper.SetField("Scene.SetShadow", value) end' />
+    <property name="MaxNumShadowCaster" type="number" desc=""
+					get_func='return function(self, value) if(value~=nil) then return value else return IPCBinding.EntityHelper.GetField("Scene.MaxNumShadowCaster") end end'
+					set_func='return function(self, value) return IPCBinding.EntityHelper.SetField("Scene.MaxNumShadowCaster", value) end' />
+    <property name="MaxNumShadowReceiver" type="number" desc=""
+					get_func='return function(self, value) if(value~=nil) then return value else return IPCBinding.EntityHelper.GetField("Scene.MaxNumShadowReceiver") end end'
+					set_func='return function(self, value) return IPCBinding.EntityHelper.SetField("Scene.MaxNumShadowReceiver", value) end' />
+    <property name="MaxCharTriangles" type="number" desc=""
+					get_func='return function(self, value) if(value~=nil) then return value else return IPCBinding.EntityHelper.GetField("Scene.MaxCharTriangles") end end'
+					set_func='return function(self, value) return IPCBinding.EntityHelper.SetField("Scene.MaxCharTriangles", value) end' />
+    <property name="BackgroundColor" type="table" desc="" converter="PETools.World.TypeConverter.NumberArrayListConverter"
+					get_func='return function(self, value) if(value~=nil) then return value else return IPCBinding.EntityHelper.GetField("Scene.BackgroundColor", {}) end end'
+					set_func='return function(self, value) return IPCBinding.EntityHelper.SetField("Scene.BackgroundColor", value) end' />
+    <property name="EnableFog" type="boolean" desc=""
+					get_func='return function(self, value) if(value~=nil) then return value else return IPCBinding.EntityHelper.GetField("Scene.EnableFog") end end'
+					set_func='return function(self, value) return IPCBinding.EntityHelper.SetField("Scene.EnableFog", value) end' />
+    <property name="FogColor" type="table" desc="" converter="PETools.World.TypeConverter.NumberArrayListConverter"
+					get_func='return function(self, value) if(value~=nil) then return value else return IPCBinding.EntityHelper.GetField("Scene.FogColor", {}) end end'
+					set_func='return function(self, value) return IPCBinding.EntityHelper.SetField("Scene.FogColor", value) end' />
+    <property name="FogStart" type="number" desc=""
+					get_func='return function(self, value) if(value~=nil) then return value else return IPCBinding.EntityHelper.GetField("Scene.FogStart") end end'
+					set_func='return function(self, value) return IPCBinding.EntityHelper.SetField("Scene.FogStart", value) end' />
+    <property name="FogEnd" type="number" desc=""
+					get_func='return function(self, value) if(value~=nil) then return value else return IPCBinding.EntityHelper.GetField("Scene.FogEnd") end end'
+					set_func='return function(self, value) return IPCBinding.EntityHelper.SetField("Scene.FogEnd", value) end' />
+    <property name="FogDensity" type="number" desc=""
+					get_func='return function(self, value) if(value~=nil) then return value else return IPCBinding.EntityHelper.GetField("Scene.FogDensity") end end'
+					set_func='return function(self, value) return IPCBinding.EntityHelper.SetField("Scene.FogDensity", value) end' />
+    <property name="MinPopUpDistance" type="number" desc=""
+					get_func='return function(self, value) if(value~=nil) then return value else return IPCBinding.EntityHelper.GetField("Scene.MinPopUpDistance") end end'
+					set_func='return function(self, value) return IPCBinding.EntityHelper.SetField("Scene.MinPopUpDistance", value) end' />
+    <property name="ShowSky" type="boolean" desc=""
+					get_func='return function(self, value) if(value~=nil) then return value else return IPCBinding.EntityHelper.GetField("Scene.ShowSky") end end'
+					set_func='return function(self, value) return IPCBinding.EntityHelper.SetField("Scene.ShowSky", value) end' />
+    <property name="ShowBoundingBox" type="boolean" desc=""
+					get_func='return function(self, value) if(value~=nil) then return value else return IPCBinding.EntityHelper.GetField("Scene.ShowBoundingBox") end end'
+					set_func='return function(self, value) return IPCBinding.EntityHelper.SetField("Scene.ShowBoundingBox", value) end' />
+    <property name="ShowPortalSystem" type="boolean" desc=""
+					get_func='return function(self, value) if(value~=nil) then return value else return IPCBinding.EntityHelper.GetField("Scene.ShowPortalSystem") end end'
+					set_func='return function(self, value) return IPCBinding.EntityHelper.SetField("Scene.ShowPortalSystem", value) end' />
+    <property name="EnablePortalZone" type="boolean" desc=""
+					get_func='return function(self, value) if(value~=nil) then return value else return IPCBinding.EntityHelper.GetField("Scene.EnablePortalZone") end end'
+					set_func='return function(self, value) return IPCBinding.EntityHelper.SetField("Scene.EnablePortalZone", value) end' />
+    <property name="GenerateReport" type="boolean" desc=""
+					get_func='return function(self, value) if(value~=nil) then return value else return IPCBinding.EntityHelper.GetField("Scene.GenerateReport") end end'
+					set_func='return function(self, value) return IPCBinding.EntityHelper.SetField("Scene.GenerateReport", value) end' />
+    <property name="AutoPlayerRipple" type="boolean" desc=""
+					get_func='return function(self, value) if(value~=nil) then return value else return IPCBinding.EntityHelper.GetField("Scene.AutoPlayerRipple") end end'
+					set_func='return function(self, value) return IPCBinding.EntityHelper.SetField("Scene.AutoPlayerRipple", value) end' />
+    <property name="ShowHeadOnDisplay" type="boolean" desc=""
+					get_func='return function(self, value) if(value~=nil) then return value else return IPCBinding.EntityHelper.GetField("Scene.ShowHeadOnDisplay") end end'
+					set_func='return function(self, value) return IPCBinding.EntityHelper.SetField("Scene.ShowHeadOnDisplay", value) end' />
+    <property name="UseWireFrame" type="boolean" desc=""
+					get_func='return function(self, value) if(value~=nil) then return value else return IPCBinding.EntityHelper.GetField("Scene.UseWireFrame") end end'
+					set_func='return function(self, value) return IPCBinding.EntityHelper.SetField("Scene.UseWireFrame", value) end' />
+    <property name="PhysicsDebugDrawMode" type="number" desc=""
+					get_func='return function(self, value) if(value~=nil) then return value else return IPCBinding.EntityHelper.GetField("Scene.PhysicsDebugDrawMode") end end'
+					set_func='return function(self, value) return IPCBinding.EntityHelper.SetField("Scene.PhysicsDebugDrawMode", value) end' />
+	</properties>
+	</pe:entity_template>
+</pe:mcml>

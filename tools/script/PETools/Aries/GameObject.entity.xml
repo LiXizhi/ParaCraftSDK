@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--script/PETools/Aries/GameObject.entity.xml-->
+<pe:mcml>
+  <script type="text/npl" src="">
+  </script>
+  <pe:entity_template name="GameObject" namespace="PETools.EntityTemplates.Aries" display_name="GameObject"
+             worldfilter="" singleton="false"
+             classfile="script/ide/IPCBinding/EntityBase.lua"
+             classname="PETools.EntityTemplates.Aries.GameObject"
+             baseclass="IPCBinding.EntityBase"
+             codefile="config/Aries/WorldData/[worldname].GameObject.xml"
+             codefile_xpath ="/GameObjectList/GameObject"
+             serializer="IPCBinding.EntityHelperSerializer"
+             editor_attribute='[NPLCommand("goto", func_name="goto")]'
+             new_instance_form="GameObject.newinstance.html"
+             always_delete_content="true"
+             func_create="create_new_instance"
+             func_createfrom=""
+             func_remove=""
+             func_delete=""
+             func_save=""
+             func_select=""
+             func_deselect=""
+             >
+    <functions>
+      <function name="create_new_instance">
+        <![CDATA[
+        return function(template, params, callback)
+          local entity_class = template.class;
+          if (entity_class) then
+            local instance = entity_class:new();
+            instance.uid = ParaGlobal.GenerateUniqueID();
+            instance.obj_id = params.obj_id or "40200";
+            instance.name = "新创建的GameObject";
+            local player = ParaScene.GetPlayer();
+            
+            local x,y,z = player:GetPosition();
+            instance.position = {x, y, z};
+            instance.facing = player:GetFacing();
+            
+            instance.assetfile_char = "character/v5/06quest/DisorderRobot/DisorderRobot.x";
+            instance.assetfile_model = "model/common/aries_npc_boundingvolumn/aries_npc_boundingvolumn.x";
+            instance.skiprender_mesh = true;
+            
+            if(callback) then
+              callback(instance);
+            end
+          end
+        end
+        ]]>
+      </function>
+      <function name="goto">
+        <![CDATA[
+        return function(instance)
+          if (instance) then
+            local pos = instance.position;
+            if(pos and pos[1]) then
+              ParaScene.GetPlayer():SetPosition(pos[1], pos[2], pos[3]);
+            end
+            if(instance.copies and instance.copies > 0) then
+              NPL.load("(gl)script/PETools/Aries/ObjectInstancesEditor.lua");
+              MyCompany.PETools.Editors.ObjectInstancesEditor.ShowForEditorInstance(instance);
+            else
+              NPL.load("(gl)script/PETools/Aries/ObjectTransformEditor.lua");
+              MyCompany.PETools.Editors.ObjectTransformEditor.ShowForEditorInstance(instance)
+            end
+          end
+        end
+        ]]>
+      </function>
+    </functions>
+    <!-- this is only used for description purposes, real properties are extracted from classfile -->
+    <properties>
+      <!-- we can specify an editor style to use for displaying and modifying the property. 
+      the most commonly used style is editor and editor-center. where editor can be point/circle. and the editor-center can be a vector3 property name on the instance. 
+      -->
+      <property name="name" type="string" desc="display name of GameObject"
+                category="display"
+                xpath="[@name]"
+                />
+      <property name="obj_id" type="string" desc="GameObject id in the game"
+                category="display"
+                xpath="[@obj_id]"
+                />
+      <property name="position" type="table" desc="position of the GameObject"
+                category="display"
+                converter ="PETools.World.TypeConverter.NumberArrayListConverter"
+                value_serializer = "array"
+                xpath="[@position]"
+                style="editor:point;editor-model-center:[position];editor-model-headontext:[name];editor-model-mesh:[assetfile_char];editor-model-facing:[facing];editor-model-scaling:[scaling];editor-model-scale:[scaling_char];"
+                />
+      <property name="facing" type="number" desc="GameObject facing around the y axis"
+                category="display" default_value="0" skip_value="0"
+                xpath="[@facing]"
+                />
+      <property name="scaling" type="number" desc="scaling of GameObject"
+          category="display" default_value="1" skip_value="1"
+          xpath="[@scaling]"
+                />
+
+      <property name="gsid" type="number" desc="global store id"
+          category="display" default_value="0" skip_value="0"
+          xpath="[@gsid]"
+                />
+      
+      <!--display extended-->
+      <property name="rotation" type="table" desc="3d rotation(rarely used)"
+                category="display_extended" default_value="{x=0,y=0,z=0,w=0}" skip_value="{x=0,y=0,z=0,w=0}"
+                xpath="display_ex[@rotation]"
+                />
+      <property name="isalwaysshowheadontext" type="boolean" desc=""
+                category="display_extended" default_value="false"
+                xpath="display_ex[@isalwaysshowheadontext]"
+                />
+      <property name="replaceabletextures_model" type="table" desc=""
+                category="display_extended" skip_value="{}"
+                xpath="display_ex[@replaceabletextures_model]"
+                />
+      <property name="isshownifown" type="boolean" desc=""
+                category="display_extended" default_value="false" skip_value="false"
+                xpath="display_ex[@isshownifown]"
+                />
+      <property name="physics_group" type="number" desc="0 no camera collision; 1 camera has collision; 2 camera has collision but character does not"
+                 category="display_extended" default_value="0" skip_value="0"
+                 xpath="display_ex[@physics_group]"
+                />
+      <property name="renderdistance" type="number" desc="how far to render this entity"
+                category="display_extended" skip_value="0"
+                xpath="display_ex[@renderdistance]"
+                />
+      
+      <!--instances-->
+      <property name="copies" type="number" desc="number of instance copies"
+                category="instances" skip_value="0"
+                xpath="instances[@copies]"
+                />
+      <property name="positions" type="table" desc="instance positions, such as {{0,1,2},{0,1,2},}"
+                category="instances" skip_value="{}"
+                xpath="instances[@positions]"
+                />
+      <property name="facings" type="table" desc="facings of instances"
+                category="instances" skip_value="{}"
+                xpath="instances[@facings]"
+                />
+      <property name="scalings" type="table" desc="scalings of instances"
+                category="instances" skip_value="{}"
+                xpath="instances[@scalings]"
+                />
+      <!--display_ex-->
+      <property name="assetfile_char" type="string" desc="character asset"
+                category="display_ex" skip_value=""
+                editor_attribute='[FileSelector(InitialDirectory="character/",UseQuickSearchDialog=false)]'
+                editor ="PETools.World.Controls.FileSelectorUIEditor"
+                xpath="assetfile_char[@filename]"
+                />
+      <property name="assetfile_model" type="string" desc="model asset"
+                category="display_ex" skip_value=""
+                editor_attribute='[FileSelector(InitialDirectory="model/",UseQuickSearchDialog=false)]'
+                editor ="PETools.World.Controls.FileSelectorUIEditor"
+                xpath="assetfile_model[@filename]"
+                style="editor:point;editor-physicsgroup:1;editor-model-center:[position];editor-model-headontext:[name];editor-model-mesh:[assetfile_model];editor-model-facing:[facing];editor-model-scaling:[scaling];editor-model-scale:[scale_model];editor-model-rotation:[rotation];"
+                />
+      <property name="skiprender_char" type="boolean" desc="whether to skip character rendering"
+                category="display_ex" skip_value="false"
+                xpath="assetfile_char[@skiprender_char]"
+                />
+      <property name="skiprender_mesh" type="boolean" desc="whether to skip model rendering"
+                category="display_ex" skip_value="false"
+                xpath="assetfile_model[@skiprender_mesh]"
+                />
+      <property name="scaling_char" type="number" desc=""
+                category="display_ex" default_value="1" skip_value="1"
+                xpath="assetfile_char[@scaling_char]"
+                />
+      <property name="scale_model" type="number" desc=""
+                category="display_ex" default_value="1" skip_value="1"
+                xpath="assetfile_model[@scale_model]"
+                />
+      
+      <!--interact-->
+      <property name="page_url" type="string" desc=""
+                category="interact" skip_value=""
+                xpath="interact[@page_url]"
+                />
+      <property name="gameobj_type" type="string" desc=""
+                category="interact" default_value="MCMLPage" skip_value=""
+                xpath="interact[@gameobj_type]"
+                />
+      <property name="pick_count" type="number" desc=""
+                category="interact" default_value="1" skip_value="1"
+                xpath="interact[@pick_count]"
+                />
+      <property name="onpick_msg" type="string" desc=""
+                category="interact" skip_value=""
+                xpath="interact[@onpick_msg]"
+                />
+      <property name="isdeleteafterpick" type="boolean" desc=""
+                category="interact" skip_value="false"
+                xpath="interact[@isdeleteafterpick]"
+                />
+      <property name="PickDist" type="number" desc=""
+                category="interact" default_value="4" skip_value="4"
+                xpath="interact[@PickDist]"
+                />
+      <property name="respawn_interval" type="number" desc="milliseconds interval to respawn. 0 to disable respawning"
+                category="interact" default_value="0" skip_value="0"
+                xpath="interact[@respawn_interval]"
+                />
+
+    </properties>
+  </pe:entity_template>
+</pe:mcml>

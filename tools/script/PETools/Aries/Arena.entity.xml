@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--script/PETools/Aries/Arena.entity.xml-->
+<pe:mcml>
+  <script type="text/npl" src="">
+  </script>
+  <pe:entity_template name="Arena" namespace="PETools.EntityTemplates.Aries" display_name="Arena"
+             worldfilter="" singleton="false"
+             classfile="script/ide/IPCBinding/EntityBase.lua"
+             classname="PETools.EntityTemplates.Aries.Arena"
+             baseclass="IPCBinding.EntityBase"
+             codefile="config/Aries/WorldData/[worldname].Arenas_Mobs.xml"
+             codefile_xpath ="/arenas/arena"
+             serializer="IPCBinding.EntityHelperSerializer"
+             editor_attribute='[NPLCommand("goto", func_name="goto")]'
+             new_instance_form="Arena.newinstance.html"
+             func_create="create_new_instance"
+             func_createfrom=""
+             func_remove=""
+             func_delete=""
+             func_save=""
+             func_select=""
+             func_deselect=""
+             >
+    <functions>
+      <function name="create_new_instance">
+        <![CDATA[
+        return function(template, params, callback)
+          local entity_class = template.class;
+          if (entity_class) then
+            local instance = entity_class:new();
+            instance.uid = ParaGlobal.GenerateUniqueID();
+            instance.id = params.id or "10000";
+            local x,y,z = ParaScene.GetPlayer():GetPosition();
+            instance.position = {x, y, z};
+            instance.respawn_interval = 30000;
+            instance.facing = 0;
+            instance.ai_module = "";
+            instance.mob1 = "config/Aries/Mob/MobTemplate_SkeletonNinja.xml";
+            instance.mob2 = "";
+            instance.mob3 = "";
+            instance.mob4 = "";
+            
+            if(callback) then
+              callback(instance);
+            end
+          end
+        end
+        ]]>
+      </function>
+      <function name="goto">
+        <![CDATA[
+        return function(instance)
+          if (instance) then
+            local pos = instance.position;
+            ParaScene.GetPlayer():SetPosition(pos[1], pos[2], pos[3]);
+          end
+        end
+        ]]>
+      </function>
+    </functions>
+    <!-- this is only used for description purposes, real properties are extracted from classfile -->
+    <properties>
+      <!-- we can specify an editor style to use for displaying and modifying the property. 
+      the most commonly used style is editor and editor-center. where editor can be point/circle. and the editor-center can be a vector3 property name on the instance. 
+      -->
+      <property name="id" type="string" desc="arena id, must be a unique string, usually it is number string."
+                category="display"
+                xpath="[@id]"
+                />
+      <property name="position" type="table" desc="Center of the Arena"
+                category="display"
+                converter ="PETools.World.TypeConverter.NumberArrayListConverter"
+                value_serializer = "array"
+                xpath="[@position]"
+                style="editor:point;editor-model-center:[position];editor-model-headontext:[id];editor-model-mesh:model/06props/v5/06combat/Common/Arena/HaqiTown_Basic.x;editor-model-facing:[facing];"
+                />
+      <property name="respawn_interval" type="number" desc="mob appear interval"
+          category="display"
+          xpath="[@respawn_interval]"
+                />
+      <property name="facing" type="number" desc="arena facing around the y axis"
+                category="display"
+                xpath="[@facing]"
+                />
+      <property name="ai_module" type="string" desc="AI module file path"
+                category="display"
+                editor ="PETools.World.Controls.FileSelectorUIEditor"
+                xpath="[@ai_module]"
+                />
+      <!-- mobs -->
+      <property name="mob1" type="string" desc="mob_template file path used at pos 1. "
+                category="mob"
+                editor_attribute='[FileSelector(InitialDirectory="config/Aries/Mob/",UseQuickSearchDialog=false)]'
+                editor ="PETools.World.Controls.FileSelectorUIEditor" 
+                xpath="mob[@mob_template]" xpath_index="1"
+                />
+      <property name="mob2" type="string" desc="mob_template file path used at pos 2. If empty, no mob is at this location"
+                category="mob"
+                editor_attribute='[FileSelector(InitialDirectory="config/Aries/Mob/",UseQuickSearchDialog=false)]'
+                editor ="PETools.World.Controls.FileSelectorUIEditor" 
+                xpath="mob[@mob_template]" xpath_index="2"
+                />
+      <property name="mob3" type="string" desc="mob_template file path used at pos 3. If empty, no mob is at this location"
+                category="mob"
+                editor_attribute='[FileSelector(InitialDirectory="config/Aries/Mob/",UseQuickSearchDialog=false)]'
+                editor ="PETools.World.Controls.FileSelectorUIEditor" 
+                xpath="mob[@mob_template]" xpath_index="3"
+                />
+      <property name="mob4" type="string" desc="mob_template file path used at pos 4. If empty, no mob is at this location"
+                category="mob"
+                editor_attribute='[FileSelector(InitialDirectory="config/Aries/Mob/",UseQuickSearchDialog=false)]'
+                editor ="PETools.World.Controls.FileSelectorUIEditor" 
+                xpath="mob[@mob_template]" xpath_index="4"
+                />
+    </properties>
+  </pe:entity_template>
+</pe:mcml>

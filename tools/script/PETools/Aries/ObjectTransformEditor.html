@@ -1,0 +1,51 @@
+<!-- script/PETools/Aries/ObjectTransformEditor.html -->
+<!-- Author: LiXizhi 
+Date:2010.9.18
+-->
+<pe:mcml>
+<script type="text/npl" src="ObjectTransformEditor.lua">
+ObjectTransformEditor = commonlib.gettable("MyCompany.PETools.Editors.ObjectTransformEditor");
+ObjectTransformEditor.Init()
+</script>
+<div style="margin:5px;">
+<form name="PEToolsObjTransformEditorForm">
+    <div>名字: <%=format("%s", (ObjectTransformEditor.name or ""))%></div>
+    <Resource style="display:none" name="SampleDataSource">
+        <position x="0" y="0" z="0">
+        </position>
+        <rotation x="0" y="0" z="0" w="1">
+        </rotation>
+    </Resource>
+    <pe:treeview style="background:" ShowIcon="false" name="tvwObjInstances" DataSource='<%=ObjectTransformEditor.GetDataSource()%>' DefaultNodeHeight = "26" >
+        <NodeTemplates>
+		    <NodeTemplate DataType="position">
+                <div style="font-weight:bold">
+                    <input type="checkbox" style="margin-right:5px" name="use_pos" checked='<%=XPath("this|is_enabled")%>' onclick="MyCompany.PETools.Editors.ObjectTransformEditor.OnClickUsePosition"/>Position:
+                </div>
+                <div style="margin:3px;margin-left:15px;">
+                    x: <input type="text" value='<%=XPath("this|x")%>'/><br />
+                    y: <input type="text" value='<%=XPath("this|y")%>'/><br />
+                    z: <input type="text" value='<%=XPath("this|z")%>'/><br />
+                    <input type="button" name="use_current_pos" value="使用当前人物位置" onclick="MyCompany.PETools.Editors.ObjectTransformEditor.UseCurrentPosition"/>
+                </div>
+            </NodeTemplate>
+            <NodeTemplate DataType="rotation">
+                <div style="font-weight:bold">
+                    <input type="checkbox" style="margin-right:5px" name="use_rot" checked='<%=XPath("this|is_enabled")%>' onclick="MyCompany.PETools.Editors.ObjectTransformEditor.OnClickUseRotation"/>Rotation:
+                </div>
+                <div style="margin:3px;margin-left:15px;">
+                    X: <div style="float:left"><pe:sliderbar name="rot_x" value='<%=XPath("this|rot_x")%>' min="-3.1415926" max="3.1415926" onchange = "MyCompany.PETools.Editors.ObjectTransformEditor.OnChangeRotX"/></div><br />
+                    Y: <div style="float:left"><pe:sliderbar name="rot_y" value='<%=XPath("this|rot_y")%>' min="-3.1415926" max="3.1415926" onchange = "MyCompany.PETools.Editors.ObjectTransformEditor.OnChangeRotY"/></div><br />
+                    Z: <div style="float:left"><pe:sliderbar name="rot_z" value='<%=XPath("this|rot_z")%>' min="-3.1415926" max="3.1415926" onchange = "MyCompany.PETools.Editors.ObjectTransformEditor.OnChangeRotZ"/></div><br />
+                    quat: <input type="text" value='<%=format("x=%s,y=%s,z=%s,w=%s", XPath("this|x"),XPath("this|y"),XPath("this|z"),XPath("this|w"))%>' /><br />
+                    <input type="button" name="reset_rotation" value="重置" onclick="MyCompany.PETools.Editors.ObjectTransformEditor.ResetRotation"/>
+                </div>
+            </NodeTemplate>
+            <NodeTemplate DataType="view">
+            </NodeTemplate>
+        </NodeTemplates>
+	    <DataNodePlaceholder xpath="*"/>
+    </pe:treeview>
+</form>
+</div>
+</pe:mcml>

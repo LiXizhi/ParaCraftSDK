@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--script/PETools/Aries/AudioSource.entity.xml-->
+<pe:mcml>
+  <script type="text/npl" src="">
+  </script>
+  <pe:entity_template name="AudioSource" namespace="PETools.EntityTemplates.Aries" display_name="AudioSource"
+             worldfilter="" singleton="false"
+             classfile="script/ide/IPCBinding/EntityBase.lua"
+             classname="PETools.EntityTemplates.Aries.AudioSource"
+             baseclass="IPCBinding.EntityBase"
+             codefile="config/Aries/Sound/MyUISoundBank.xml"
+             codefile_xpath ="/SoundBank/AudioSource"
+             serializer="IPCBinding.EntityHelperSerializer"
+             editor_attribute='[NPLCommand("goto", func_name="goto")]'
+             new_instance_form="AudioSource.newinstance.html"
+             func_create="create_new_instance"
+             func_createfrom=""
+             func_remove=""
+             func_delete=""
+             func_save=""
+             func_select=""
+             func_deselect=""
+             >
+    <functions>
+      <function name="create_new_instance">
+        <![CDATA[
+        return function(template, params, callback)
+          local entity_class = template.class;
+          if (entity_class) then
+            local instance = entity_class:new();
+            instance.name = params.name or "btn1";
+            instance.stream = "false";
+            instance.loop = "false";
+            instance.inmemory = "false";
+            instance.delayload = "true";
+            instance.file = "Audio/Kids/";
+            
+            if(callback) then
+              callback(instance);
+            end
+          end
+        end
+        ]]>
+      </function>
+    </functions>
+    <!-- this is only used for description purposes, real properties are extracted from classfile -->
+    <properties>
+      <!-- we can specify an editor style to use for displaying and modifying the property. 
+      the most commonly used style is editor and editor-center. where editor can be point/circle. and the editor-center can be a vector3 property name on the instance. 
+      -->
+      <property name="name" type="string" desc="AudioSource name"
+                category="display"
+                xpath="[@name]"
+                />
+
+      <property name="file" type="string" desc="AudioSource file. "
+          editor_attribute='[FileSelector(InitialDirectory="Audio/Kids/",UseQuickSearchDialog=false)]'
+          editor ="PETools.World.Controls.FileSelectorUIEditor"
+          category="display"
+          xpath="[@file]"
+                />
+      
+      <property name="stream" type="string" desc="true to stream content from file, false to load to memory at one time."
+                category="display"
+                xpath="[@stream]"
+                editor_attribute='[StringList("true,false", AllowCustomEdit=false)]'
+                converter ="PETools.World.TypeConverter.StringListConverter"
+                />
+
+      <property name="loop" type="string" desc="true to loop play by default."
+                category="display"
+                xpath="[@loop]"
+                editor_attribute='[StringList("true,false", AllowCustomEdit=false)]'
+                converter ="PETools.World.TypeConverter.StringListConverter"
+                />
+
+      <property name="inmemory" type="string" desc="if true, the audio will still be in memory after stopped or out of range. So the next time, it can be played fast."
+                category="display"
+                xpath="[@inmemory]"
+                editor_attribute='[StringList("true,false", AllowCustomEdit=false)]'
+                converter ="PETools.World.TypeConverter.StringListConverter"
+                />
+
+      <property name="delayload" type="string" desc="if true, we will not preload to memory for non-streaming sound. instead, we will load on first use. "
+                category="display"
+                xpath="[@delayload]"
+                editor_attribute='[StringList("true,false", AllowCustomEdit=false)]'
+                converter ="PETools.World.TypeConverter.StringListConverter"
+                />
+    </properties>
+  </pe:entity_template>
+</pe:mcml>

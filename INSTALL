@@ -20,8 +20,9 @@ Visual studio plugins:
 
 ---++ Third party Tools
 If you need to build for android:
-   * install NDK and androidSDK: http://developer.android.com/tools/sdk/ndk/index.html
+   * Install NDK and androidSDK: http://developer.android.com/tools/sdk/ndk/index.html
    * Install Python 2.7:  https://www.python.org/downloads/
+   * building for iOS is supported on MAC, but not possible for windows at the moment. Please wait for next release of visual studio. 
 
 Setup environment variables:
    * android sdk($ANDROID_SDK_ROOT):		http://developer.android.com/sdk/index.html

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WorldDescriptor>
+  <SDKPath>$(SolutionDir)redist/</SDKPath>
+  <WorldPath>worldpath</WorldPath>
+  <CmdLine>"$(SolutionDir)redist/ParaEngineClient.exe" debug="main" bootstrapper="script/mobile/paracraft/main.lua" mc="true" noupdate="true" dev="$(SolutionDir)/_apps/Paracraft"</CmdLine>
+  <!--实体模板,默认是在插件安装路径下面Config/EntityTemplate.xml-->
+  <!--可以自定义一个绝对路径的文件-->
+  <!--可以为空，如果为空则自动生成一个与*.peworld同名的xml文件：*.peworld.filter.xml-->
+  <EntityTemplate>$(SolutionDir)tools/script/PETools/EntityTemplate.xml</EntityTemplate>
+  <EntityInstanceFolder></EntityInstanceFolder>
+</WorldDescriptor>

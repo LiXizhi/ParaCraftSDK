@@ -12,9 +12,10 @@ redist/
 src/config/Aries/creator/bom
 published/
 ParaCraft/
-apps/*
-!apps/Paracraft/
-_*/
+_*
+!_apps/
+_apps/*
+!_apps/Paracraft/
 modDev/
 src/sync_src.bat
 src/sdkpath.txt

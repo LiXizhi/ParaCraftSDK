@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="..\..\..\_apps\Haqi\CMakeLists.txt" />
+    <CustomBuild Include="..\..\CMakeFiles\89f2db401dbe17f129230109f3c09822\Haqi.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CMakeFiles\Haqi" />
+    <None Include="..\..\..\_apps\Haqi\proj.android\AndroidManifest.xml">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Haqi\proj.android\assets\res\config\GameClient.config.xml">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Haqi\proj.android\res\values\strings.xml">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Haqi\proj.android\assets\res\worlds\Templates\Empty\flatsandland\WorldInfo.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Haqi\proj.android\CreateMyReleaseKey.bat">
+      <Filter>proj.android</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Haqi\proj.android\MakeAndroidAPK.bat">
+      <Filter>proj.android</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Haqi\proj.android\SyncFiles.bat">
+      <Filter>proj.android</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Haqi\Run.bat">
+      <Filter>proj.android</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{0AF854A3-CAC9-4156-BD93-00AE82B7F64C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mcml">
+      <UniqueIdentifier>{BF33D6FD-57A3-482D-A20A-660FDC7E9329}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="proj.android">
+      <UniqueIdentifier>{4C18CB6C-EEE2-4886-A053-89238F63BF4C}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

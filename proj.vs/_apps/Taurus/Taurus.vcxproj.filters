@@ -1,0 +1,287 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="..\..\..\_apps\Taurus\CMakeLists.txt" />
+    <CustomBuild Include="..\..\CMakeFiles\cc40afe02235a9023550d9918f140566\Taurus.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CMakeFiles\Taurus" />
+    <None Include="..\..\..\_apps\Taurus\proj.android\assets\res\worlds\MyWorlds\flatgrassland\script\flatgrassland_0_0.onload.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\proj.android\assets\res\worlds\MyWorlds\flatgrassland\script\flatgrassland_0_1.onload.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\proj.android\assets\res\worlds\MyWorlds\flatgrassland\script\flatgrassland_1_0.onload.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\proj.android\assets\res\worlds\MyWorlds\flatgrassland\script\flatgrassland_1_1.onload.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\proj.android\assets\res\worlds\MyWorlds\flatgrassland\script\flatgrassland_1_2.onload.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\app_main.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\CodeExample\HelloWindow.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\CodeExample\HelloXml.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\DataAPI\model_import.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\DataAPI\rna_access.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\DefaultTheme.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\Desktop\Dock.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\Desktop\DockPage.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\Desktop\InternalThrowBallPage.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\Desktop\MiniMap.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\Desktop\TaurusDesktop.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\Editors\Object\object_add.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\Editors\Object\object_edit.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\Editors\Object\object_ops.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\Editors\Object\object_select.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\Editors\Object\object_transform.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\Editors\Screen\area.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\Editors\Screen\screen_ops.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\Editors\Space_api\spacetypes.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\Editors\Space_view3d\space_view3d.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\Editors\Space_view3d\view3d_edit.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\Editors\Space_view3d\view3d_ops.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\Editors\Space_view3d\view3d_select.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\Editors\Util\undo.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\main_loop.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\Tools\Graphics\ImageAnimExporter.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\WindowManager\creator.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\WindowManager\wm.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\WindowManager\wm_context.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\WindowManager\wm_event_system.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\WindowManager\wm_files.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\WindowManager\wm_global.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\WindowManager\wm_keymap.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\WindowManager\wm_loader_readfile.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\WindowManager\wm_loader_writefile.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\WindowManager\wm_main.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\WindowManager\wm_operators.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\WindowManager\wm_window.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\worlds\MyWorlds\flatgrassland\script\flatgrassland_0_0.onload.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\worlds\MyWorlds\flatgrassland\script\flatgrassland_0_1.onload.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\worlds\MyWorlds\flatgrassland\script\flatgrassland_1_0.onload.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\worlds\MyWorlds\flatgrassland\script\flatgrassland_1_1.onload.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\worlds\MyWorlds\flatgrassland\script\flatgrassland_1_2.onload.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\proj.android\AndroidManifest.xml">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\proj.android\assets\res\config\GameClient.config.xml">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\proj.android\assets\res\worlds\MyWorlds\flatgrassland\blocktemplates\test1.blocks.xml">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\proj.android\assets\res\worlds\MyWorlds\flatgrassland\blockWorld\blockTemplate.xml">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\proj.android\assets\res\worlds\MyWorlds\flatgrassland\blockWorld.lastsave\blockTemplate.xml">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\proj.android\assets\res\worlds\MyWorlds\flatgrassland\LocalNPC.xml">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\proj.android\assets\res\worlds\MyWorlds\flatgrassland\QuickSelectBar.xml">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\proj.android\assets\res\worlds\MyWorlds\flatgrassland\tag.xml">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\proj.android\assets\res\worlds\MyWorlds\flatgrassland\test.blocks.xml">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\proj.android\assets\res\worlds\MyWorlds\flatgrassland\testlocal.blocks.xml">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\proj.android\res\values\strings.xml">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\bootstrapper.xml">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\CodeExample\TestData.xml">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\IP.xml">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\WindowManager\default.petools.xml">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\worlds\MyWorlds\flatgrassland\blocktemplates\test1.blocks.xml">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\worlds\MyWorlds\flatgrassland\blockWorld\blockTemplate.xml">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\worlds\MyWorlds\flatgrassland\blockWorld.lastsave\blockTemplate.xml">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\worlds\MyWorlds\flatgrassland\LocalNPC.xml">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\worlds\MyWorlds\flatgrassland\QuickSelectBar.xml">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\worlds\MyWorlds\flatgrassland\tag.xml">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\worlds\MyWorlds\flatgrassland\test.blocks.xml">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\worlds\MyWorlds\flatgrassland\testlocal.blocks.xml">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\proj.android\assets\res\worlds\MyWorlds\flatgrassland\WorldInfo.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\proj.android\assets\res\worlds\Templates\Empty\flatsandland\WorldInfo.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\CodeExample\HelloWindow.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\CodeExample\HelloXml.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\Desktop\DockPage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\Desktop\DockPage.iCad.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\Desktop\InternalThrowBallPage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\Desktop\MinimapPage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\Desktop\SettingsPage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\Desktop\WorldPage.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\Tools\Graphics\ImageAnimExporter.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\worlds\MyWorlds\flatgrassland\WorldInfo.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\proj.android\CreateMyReleaseKey.bat">
+      <Filter>proj.android</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\proj.android\MakeAndroidAPK.bat">
+      <Filter>proj.android</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\proj.android\SyncFiles.bat">
+      <Filter>proj.android</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\Run.bat">
+      <Filter>proj.android</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{0AF854A3-CAC9-4156-BD93-00AE82B7F64C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="npl">
+      <UniqueIdentifier>{8F74C4CD-B864-4944-A84B-761F5812CF55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mcml">
+      <UniqueIdentifier>{BF33D6FD-57A3-482D-A20A-660FDC7E9329}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="proj.android">
+      <UniqueIdentifier>{4C18CB6C-EEE2-4886-A053-89238F63BF4C}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,254 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|Win32">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|Win32">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGUID>{1FFFD236-892E-4226-9285-3DA3FF874066}</ProjectGUID>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>Win32</Platform>
+    <ProjectName>SeerCraft</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+    <PropertyGroup>
+      <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\..\_apps\SeerCraft\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule D:/lxzsrc/ParaCraftSDKGit/_apps/SeerCraft/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
+"D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\bin\cmake.exe" -H../../.. -B../.. --check-stamp-file D:\lxzsrc\ParaCraftSDKGit\proj.vs\_apps\SeerCraft\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:/lxzsrc/ParaCraftSDKGit/_apps/SeerCraft/CMakeLists.txt;D:\lxzsrc\ParaCraftSDKGit\_apps\SeerCraft\CMakeLists.txt;D:\lxzsrc\ParaCraftSDKGit\_apps\SeerCraft\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:\lxzsrc\ParaCraftSDKGit\proj.vs\_apps\SeerCraft\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Custom Rule D:/lxzsrc/ParaCraftSDKGit/_apps/SeerCraft/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
+"D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\bin\cmake.exe" -H../../.. -B../.. --check-stamp-file D:\lxzsrc\ParaCraftSDKGit\proj.vs\_apps\SeerCraft\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:/lxzsrc/ParaCraftSDKGit/_apps/SeerCraft/CMakeLists.txt;D:\lxzsrc\ParaCraftSDKGit\_apps\SeerCraft\CMakeLists.txt;D:\lxzsrc\ParaCraftSDKGit\_apps\SeerCraft\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:\lxzsrc\ParaCraftSDKGit\proj.vs\_apps\SeerCraft\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Building Custom Rule D:/lxzsrc/ParaCraftSDKGit/_apps/SeerCraft/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">setlocal
+"D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\bin\cmake.exe" -H../../.. -B../.. --check-stamp-file D:\lxzsrc\ParaCraftSDKGit\proj.vs\_apps\SeerCraft\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">D:/lxzsrc/ParaCraftSDKGit/_apps/SeerCraft/CMakeLists.txt;D:\lxzsrc\ParaCraftSDKGit\_apps\SeerCraft\CMakeLists.txt;D:\lxzsrc\ParaCraftSDKGit\_apps\SeerCraft\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">D:\lxzsrc\ParaCraftSDKGit\proj.vs\_apps\SeerCraft\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Building Custom Rule D:/lxzsrc/ParaCraftSDKGit/_apps/SeerCraft/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">setlocal
+"D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\bin\cmake.exe" -H../../.. -B../.. --check-stamp-file D:\lxzsrc\ParaCraftSDKGit\proj.vs\_apps\SeerCraft\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">D:/lxzsrc/ParaCraftSDKGit/_apps/SeerCraft/CMakeLists.txt;D:\lxzsrc\ParaCraftSDKGit\_apps\SeerCraft\CMakeLists.txt;D:\lxzsrc\ParaCraftSDKGit\_apps\SeerCraft\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">D:\lxzsrc\ParaCraftSDKGit\proj.vs\_apps\SeerCraft\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\CMakeFiles\0c3cbc8d693976d9f483d94f8c5eb333\SeerCraft.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">skipping seercraft...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
+echo "seercraft ..."
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:/lxzsrc/ParaCraftSDKGit/proj.vs/CMakeFiles/0c3cbc8d693976d9f483d94f8c5eb333/SeerCraft.rule;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:\lxzsrc\ParaCraftSDKGit\proj.vs\_apps\SeerCraft\CMakeFiles\SeerCraft</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">skipping seercraft...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
+echo "seercraft ..."
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:/lxzsrc/ParaCraftSDKGit/proj.vs/CMakeFiles/0c3cbc8d693976d9f483d94f8c5eb333/SeerCraft.rule;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:\lxzsrc\ParaCraftSDKGit\proj.vs\_apps\SeerCraft\CMakeFiles\SeerCraft</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">skipping seercraft...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">setlocal
+echo "seercraft ..."
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">D:/lxzsrc/ParaCraftSDKGit/proj.vs/CMakeFiles/0c3cbc8d693976d9f483d94f8c5eb333/SeerCraft.rule;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">D:\lxzsrc\ParaCraftSDKGit\proj.vs\_apps\SeerCraft\CMakeFiles\SeerCraft</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">skipping seercraft...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">setlocal
+echo "seercraft ..."
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">D:/lxzsrc/ParaCraftSDKGit/proj.vs/CMakeFiles/0c3cbc8d693976d9f483d94f8c5eb333/SeerCraft.rule;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">D:\lxzsrc\ParaCraftSDKGit\proj.vs\_apps\SeerCraft\CMakeFiles\SeerCraft</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CMakeFiles\SeerCraft" />
+    <None Include="..\..\..\_apps\SeerCraft\source\SeerCraft\DefaultTheme.seercraft.lua" />
+    <None Include="..\..\..\_apps\SeerCraft\source\SeerCraft\main.lua" />
+    <None Include="..\..\..\_apps\SeerCraft\proj.android\AndroidManifest.xml" />
+    <None Include="..\..\..\_apps\SeerCraft\proj.android\assets\res\config\Aries\Audio\CreatorSound.bank.xml" />
+    <None Include="..\..\..\_apps\SeerCraft\proj.android\assets\res\config\Aries\creator\block_list.xml" />
+    <None Include="..\..\..\_apps\SeerCraft\proj.android\assets\res\config\Aries\creator\block_types.xml" />
+    <None Include="..\..\..\_apps\SeerCraft\proj.android\assets\res\config\Aries\creator\block_types_template.xml" />
+    <None Include="..\..\..\_apps\SeerCraft\proj.android\assets\res\config\Aries\creator\Commands.xml" />
+    <None Include="..\..\..\_apps\SeerCraft\proj.android\assets\res\config\Aries\creator\local_texture_replace.xml" />
+    <None Include="..\..\..\_apps\SeerCraft\proj.android\assets\res\config\Aries\creator\LoopWords.mobile.xml" />
+    <None Include="..\..\..\_apps\SeerCraft\proj.android\assets\res\config\Aries\creator\modelAnim.xml" />
+    <None Include="..\..\..\_apps\SeerCraft\proj.android\assets\res\config\Aries\creator\PlayerAssetFile.xml" />
+    <None Include="..\..\..\_apps\SeerCraft\proj.android\assets\res\config\Aries\creator\PlayerSkins.xml" />
+    <None Include="..\..\..\_apps\SeerCraft\proj.android\assets\res\config\Aries\creator\shortcutkey.xml" />
+    <None Include="..\..\..\_apps\SeerCraft\proj.android\assets\res\config\Aries\Others\ExternalUserModule.mc.xml" />
+    <None Include="..\..\..\_apps\SeerCraft\proj.android\assets\res\config\BadWords.Paracraft.xml" />
+    <None Include="..\..\..\_apps\SeerCraft\proj.android\assets\res\config\GameClient.config.xml" />
+    <None Include="..\..\..\_apps\SeerCraft\proj.android\assets\res\worlds\BlockTextures\PackagesInfo.xml" />
+    <None Include="..\..\..\_apps\SeerCraft\proj.android\res\values\strings.xml" />
+    <None Include="..\..\..\_apps\SeerCraft\proj.android\assets\res\worlds\Templates\Empty\flatsandland\WorldInfo.html" />
+    <None Include="..\..\..\_apps\SeerCraft\proj.android\CreateMyReleaseKey.bat" />
+    <None Include="..\..\..\_apps\SeerCraft\proj.android\MakeAndroidAPK.bat" />
+    <None Include="..\..\..\_apps\SeerCraft\proj.android\SyncFiles.bat" />
+    <None Include="..\..\..\_apps\SeerCraft\Run.bat" />
+    <None Include="..\..\..\_apps\SeerCraft\Run.peworld" />
+    <None Include="..\..\..\_apps\SeerCraft\proj.android\assets\res\config.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="D:/lxzsrc/ParaCraftSDKGit/proj.vs/ZERO_CHECK.vcxproj">
+      <Project>81BD27DF-CB19-4F53-AC8F-D74C88E5036E</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

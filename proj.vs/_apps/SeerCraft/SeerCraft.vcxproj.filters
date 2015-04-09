@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="..\..\..\_apps\SeerCraft\CMakeLists.txt" />
+    <CustomBuild Include="..\..\CMakeFiles\0c3cbc8d693976d9f483d94f8c5eb333\SeerCraft.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CMakeFiles\SeerCraft" />
+    <None Include="..\..\..\_apps\SeerCraft\source\SeerCraft\DefaultTheme.seercraft.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\_apps\SeerCraft\source\SeerCraft\main.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\_apps\SeerCraft\proj.android\AndroidManifest.xml">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\SeerCraft\proj.android\assets\res\config\Aries\Audio\CreatorSound.bank.xml">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\SeerCraft\proj.android\assets\res\config\Aries\creator\block_list.xml">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\SeerCraft\proj.android\assets\res\config\Aries\creator\block_types.xml">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\SeerCraft\proj.android\assets\res\config\Aries\creator\block_types_template.xml">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\SeerCraft\proj.android\assets\res\config\Aries\creator\Commands.xml">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\SeerCraft\proj.android\assets\res\config\Aries\creator\local_texture_replace.xml">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\SeerCraft\proj.android\assets\res\config\Aries\creator\LoopWords.mobile.xml">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\SeerCraft\proj.android\assets\res\config\Aries\creator\modelAnim.xml">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\SeerCraft\proj.android\assets\res\config\Aries\creator\PlayerAssetFile.xml">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\SeerCraft\proj.android\assets\res\config\Aries\creator\PlayerSkins.xml">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\SeerCraft\proj.android\assets\res\config\Aries\creator\shortcutkey.xml">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\SeerCraft\proj.android\assets\res\config\Aries\Others\ExternalUserModule.mc.xml">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\SeerCraft\proj.android\assets\res\config\BadWords.Paracraft.xml">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\SeerCraft\proj.android\assets\res\config\GameClient.config.xml">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\SeerCraft\proj.android\assets\res\worlds\BlockTextures\PackagesInfo.xml">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\SeerCraft\proj.android\res\values\strings.xml">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\SeerCraft\proj.android\assets\res\worlds\Templates\Empty\flatsandland\WorldInfo.html">
+      <Filter>mcml</Filter>
+    </None>
+    <None Include="..\..\..\_apps\SeerCraft\proj.android\CreateMyReleaseKey.bat">
+      <Filter>proj.android</Filter>
+    </None>
+    <None Include="..\..\..\_apps\SeerCraft\proj.android\MakeAndroidAPK.bat">
+      <Filter>proj.android</Filter>
+    </None>
+    <None Include="..\..\..\_apps\SeerCraft\proj.android\SyncFiles.bat">
+      <Filter>proj.android</Filter>
+    </None>
+    <None Include="..\..\..\_apps\SeerCraft\Run.bat">
+      <Filter>proj.android</Filter>
+    </None>
+    <None Include="..\..\..\_apps\SeerCraft\Run.peworld" />
+    <None Include="..\..\..\_apps\SeerCraft\proj.android\assets\res\config.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{0AF854A3-CAC9-4156-BD93-00AE82B7F64C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="npl">
+      <UniqueIdentifier>{8F74C4CD-B864-4944-A84B-761F5812CF55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mcml">
+      <UniqueIdentifier>{BF33D6FD-57A3-482D-A20A-660FDC7E9329}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="proj.android">
+      <UniqueIdentifier>{4C18CB6C-EEE2-4886-A053-89238F63BF4C}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

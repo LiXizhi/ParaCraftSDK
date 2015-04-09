@@ -344,6 +344,9 @@ section
 	
 	SetOutPath "$INSTDIR\_apps\Haqi"
 	File /r /x CMakeFiles /x *.opensdf /x *.sdf /x *.suo /x *.user /x Win32 /x *.apk ..\_apps\Haqi\*.*
+
+	SetOutPath "$INSTDIR\_mod\Test"
+	File /r /x CMakeFiles /x *.opensdf /x *.sdf /x *.suo /x *.user /x Win32 /x *.apk ..\_mod\Test\*.*
 	
 	# define uninstaller name
 	writeUninstaller "$INSTDIR\uninstaller.exe"

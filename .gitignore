@@ -16,7 +16,9 @@ _*
 !_apps/
 _apps/*
 !_apps/Paracraft/
-modDev/
+!_mod/
+_mod/*
+!_mod/Test/
 src/sync_src.bat
 src/sdkpath.txt
 src/script/

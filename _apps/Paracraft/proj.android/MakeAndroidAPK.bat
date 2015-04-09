@@ -10,14 +10,14 @@ Set android_buildtool_dir=%android_sdk_dir%\build-tools\android-4.4.2\
 
 @call SyncFiles.bat
 
-rm %apk_file_name%
-rm %apk_final_filename%
+del %apk_file_name%
+del %apk_final_filename%
 call %android_buildtool_dir%aapt package -S res -A assets -M AndroidManifest.xml  -I %android_sdk_dir%\platforms\android-19\android.jar -F %apk_file_name%
 call %android_buildtool_dir%aapt add %apk_file_name% classes.dex
 call %android_buildtool_dir%aapt add %apk_file_name% lib/armeabi/libparaenginemobile.so
 @rem call %android_buildtool_dir%aapt add %apk_file_name% lib/armeabi/gdbserver
 
-REM Sign your app with your private key using jarsigner:
+@rem sign your app with your private key. IMPORTANT ! replace the password with the one you used when you create the keystore file
 jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.keystore -storepass paracraft %apk_file_name% paracraft
 
 REM Verify that your APK is signed. For example:

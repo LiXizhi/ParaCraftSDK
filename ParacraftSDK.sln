@@ -8,6 +8,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "bin", "bin", "{073B88A5-68C
 		bin\CreateParacraftApp.bat = bin\CreateParacraftApp.bat
 		bin\CreateParacraftMod.bat = bin\CreateParacraftMod.bat
 		bin\ParacraftSDK.nsi = bin\ParacraftSDK.nsi
+		bin\ParacraftSDK.public.nsi = bin\ParacraftSDK.public.nsi
 		bin\PublishParacraftApp.bat = bin\PublishParacraftApp.bat
 		bin\Start.bat = bin\Start.bat
 		bin\Upgrade.bat = bin\Upgrade.bat

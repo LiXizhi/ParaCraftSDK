@@ -339,12 +339,26 @@ section
 	SetOutPath "$INSTDIR\database"
 	File "${redist_folder}\database\characters.db"
 	File "${redist_folder}\database\*.mem"
+	File /r "database\*.*"
 
 	SetOutPath "$INSTDIR\config"
 	File "${redist_folder}\config\gameclient.config.xml"
 	File "${redist_folder}\config\config.txt"
 	File "${redist_folder}\config\commands.xml"
 	File "${redist_folder}\config\bootstrapper.xml"
+
+	# texture pack
+	SetOutPath "$INSTDIR\worlds\BlockTextures"
+	File /r "${redist_folder}\..\build\ParacraftBuild\res\worlds\BlockTextures\*.*"
+
+	# pre-installed worlds for demo
+	SetOutPath "$INSTDIR\worlds\DesignHouse"
+	File /r "worlds\DesignHouse\*.*"
+
+	# to prepare asset cache, run following command from paracraft
+	# /rsync -asset D:\lxzsrc\ParaCraftSDKGit\build\ParacraftBuild\res
+	SetOutPath "$INSTDIR\temp\cache"
+	File /r "${redist_folder}\temp\cache\*.*"
 
 	# define uninstaller name
 	writeUninstaller "$INSTDIR\uninstaller.exe"

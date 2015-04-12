@@ -15,7 +15,7 @@ REM  create the Run.bat file
 Set RunFileName="%appfolder%\Run.bat"
 del %RunFileName%
 echo @echo off >> %RunFileName%
-echo pushd "%PC_SDK_ROOT%redist\" >> %RunFileName%
+echo pushd "%%~dp0..\..\redist\" >> %RunFileName%
 echo call "log.txt" >> %RunFileName%
 echo call "ParaEngineClient.exe" bootstrapper="source/%appname%/main.lua" single="false" mc="true" noupdate="true" dev="%%~dp0"  >> %RunFileName%
 echo popd >> %RunFileName%

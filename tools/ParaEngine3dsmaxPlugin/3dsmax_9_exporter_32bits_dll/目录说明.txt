@@ -1,0 +1,2 @@
+dxcc.dll放MAX根目录
+ParaXExporterMax9_32bits.gup放MAXMAX的plugins目录

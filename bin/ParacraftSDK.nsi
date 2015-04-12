@@ -140,10 +140,12 @@ LangString FolderNoPermission ${LANG_SIMPCHINESE} "您选择的目录没有写�
 
 
 Caption $(Caption) 
-!ifndef OutputFileName
-	!define OutputFileName  "..\__backups\ParacraftSDK${REDIST_VERSION}.exe"
+!ifdef ParacraftSDK_public
+	OutFile "..\__backups\ParacraftSDK.public.${REDIST_VERSION}.exe"
+!else
+	OutFile "..\__backups\ParacraftSDK${REDIST_VERSION}.exe"
 !endif
-OutFile "${OutputFileName}"
+
 
 BrandingText "http://www.paracraft.cn"
 #!define ProgramIcon "Texture\ParacraftSDK\brand\installer.ico"
@@ -339,11 +341,14 @@ section
 	SetOutPath "$INSTDIR\tools"
 	File /r ..\tools\*.*
 
+!ifndef ParacraftSDK_public
 	SetOutPath "$INSTDIR\_apps\SeerCraft"
 	File /r /x CMakeFiles /x *.opensdf /x *.sdf /x *.suo /x *.user /x Win32 /x *.apk ..\_apps\SeerCraft\*.*
-	
+
 	SetOutPath "$INSTDIR\_apps\Haqi"
 	File /r /x CMakeFiles /x *.opensdf /x *.sdf /x *.suo /x *.user /x Win32 /x *.apk ..\_apps\Haqi\*.*
+!endif
+	
 
 	SetOutPath "$INSTDIR\_mod\Test"
 	File /r /x CMakeFiles /x *.opensdf /x *.sdf /x *.suo /x *.user /x Win32 /x *.apk ..\_mod\Test\*.*

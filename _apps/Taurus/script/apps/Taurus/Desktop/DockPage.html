@@ -1,0 +1,65 @@
+﻿<!-- "script/apps/Taurus/Desktop/DockPage.html" -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Dock Page, by WangTian, 2009/4/29</title>
+</head>
+<body>
+<pe:mcml>
+<script type="text/npl" src="DockPage.lua">
+    MyCompany.Taurus.Desktop.TaurusDockPage.Init();
+</script>
+<div style="position:relative;margin-top:16px;width:808px;height:64px;background:url(Texture/Taurus/Dock/LeopardDockBG.png#0 0 808 64)" align="center"/>
+<pe:container style="margin-left:16px;margin-top:8px;background:;">
+    <input type="button" class="taskbarbutton" style="background:Texture/Taurus/Dock/ShowPerfTrue.png;" tooltip="美术工具"
+            onclick="MyCompany.Taurus.Desktop.TaurusDockPage.OnClickArtToolPage"/>
+    <input type="button" class="taskbarbutton" style="background:Texture/Taurus/Dock/SpellCastPlayer.png;" tooltip="Spell技能特效编辑器"
+            onclick="MyCompany.Taurus.Desktop.TaurusDockPage.OnClickSpellCastPlayer"/>
+    <input type="button" class="taskbarbutton" style="background:Texture/Taurus/Dock/UseWireFrameTrue.png;" tooltip="生成小地图"
+            onclick="MyCompany.Taurus.Desktop.TaurusDockPage.OnClickGenMinimap"/>
+    <input type="button" class="taskbarbutton" style="background:Texture/Taurus/Dock/AssetViewer.png;" tooltip="3D模型和人物浏览器"
+            onclick="MyCompany.Taurus.Desktop.TaurusDockPage.OnClickOpenAsset"/>
+    <input type="button" class="taskbarbutton" style="background:Texture/Taurus/Dock/CommonAnimPlayer.png;" tooltip="人物通用动作播放器"
+            onclick="MyCompany.Taurus.Desktop.TaurusDockPage.OnClickAnimationPage"/>
+    <input type="button" class="taskbarbutton" style="background:Texture/Taurus/Dock/CCSEditor.png;" tooltip="CCS人物装备编辑器"
+            onclick="MyCompany.Taurus.Desktop.TaurusDockPage.OnClickCCSItemEditor"/>
+    <input type="button" class="taskbarbutton" style="background:Texture/Taurus/Dock/ShowOBBFalse.png;" tooltip="青年版人物装备编辑器"
+            onclick="MyCompany.Taurus.Desktop.TaurusDockPage.OnClickCCSItemEditorTeen"/>
+    <input type="button" class="taskbarbutton" style="background:Texture/Taurus/Dock/Ocean.png;" tooltip="天空/海洋编辑器"
+            onclick="MyCompany.Taurus.Desktop.TaurusDockPage.OnClickEnvPage"/>
+    <input type="button" class="taskbarbutton" style="background:Texture/Taurus/Dock/Minimap.png;" tooltip="保存世界"
+            onclick="MyCompany.Taurus.Desktop.TaurusDockPage.OnClickWorldPage"/>
+    <input type="button" class="taskbarbutton" style="background:Texture/Taurus/Dock/Terrain.png;" tooltip="地形编辑器"
+            onclick="MyCompany.Taurus.Desktop.TaurusDockPage.OnClickTerrainEditor"/>
+    <input type="button" class="taskbarbutton" style="background:Texture/Taurus/Dock/AdvModelViewer.png;" tooltip="高级物品编辑器"
+            onclick="MyCompany.Taurus.Desktop.TaurusDockPage.OnClickObjectEditor"/>
+    <input type="button" class="taskbarbutton" style="background:Texture/Taurus/Dock/Setting.png;" tooltip="设置"
+            onclick="MyCompany.Taurus.Desktop.TaurusDockPage.OnClickSetting"/>
+
+    <!-- unused ones
+    <input type="button" class="taskbarbutton" style="background:Texture/Taurus/Dock/ShowOBBFalse.png;" tooltip="瞬移"
+            onclick="MyCompany.Taurus.Desktop.TaurusDockPage.OnClickTeleport"/>
+    <input type="checkbox" class="taskbarbutton" checked="false" name="showReport" tooltip="显示引擎统计数据: 如FPS, 镜头中多边形数目等(快捷键F4)"
+            CheckedBG="Texture/Taurus/Dock/ShowPerfTrue.png" 
+            UncheckedBG="Texture/Taurus/Dock/ShowPerfFalse.png" 
+            onclick="MyCompany.Taurus.Desktop.TaurusDockPage.OnClickArtToolPage"/>
+    <input type="checkbox" checked="false" name="showOBB" style="margin:8px;width:48px;height:48px" tooltip="是否显示模型包围盒"
+            CheckedBG="Texture/Taurus/Dock/ShowOBBTrue.png" 
+            UncheckedBG="Texture/Taurus/Dock/ShowOBBFalse.png"
+            onclick="MyCompany.Taurus.Desktop.TaurusDockPage.OnClickShowOBB"/>
+    
+    <input type="button" class="taskbarbutton" style="background:Texture/Taurus/Dock/Portal.png;" tooltip="Portal内景场景编辑器"
+            onclick="MyCompany.Taurus.Desktop.TaurusDockPage.OnClickPortalEditor"/>
+    
+    <input type="checkbox" checked="false" name="showWireFrame" style="margin:8px;width:48px;height:48px" tooltip="是否用网格显示所有模型"
+            CheckedBG="Texture/Taurus/Dock/UseWireFrameTrue.png" 
+            UncheckedBG="Texture/Taurus/Dock/UseWireFrameFalse.png"
+            onclick="MyCompany.Taurus.Desktop.TaurusDockPage.OnClickShowWireFrame"/>
+    <input type="button" class="taskbarbutton" style="background:Texture/Taurus/Dock/AssetPackage.png;" tooltip="BCS 和 创作资源包制作和管理工具"
+            onclick="MyCompany.Taurus.Desktop.TaurusDockPage.OnClickCreatorAssets"/>
+    -->
+</pe:container>
+</pe:mcml> 
+</body>
+</html>

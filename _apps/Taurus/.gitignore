@@ -1,0 +1,10 @@
+*.apk
+*.pkg
+*.db
+*.so
+*.mem
+proj.android/
+*.keystore
+
+
+

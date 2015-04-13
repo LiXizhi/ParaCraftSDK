@@ -1,0 +1,47 @@
+<!-- "script/apps/Taurus/CodeExample/HelloWindow.html" -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+<pe:mcml>
+<script type="text/npl" refresh="true">
+<![CDATA[
+NPL.load("(gl)script/apps/Taurus/HelloWindow.lua");
+local HelloWindow = commonlib.gettable("MyCompany.Taurus.CodeExample.HelloWindow");
+HelloWindow.OnInit();
+local pageCtrl = document:GetPageCtrl();
+function ClosePage()
+    pageCtrl:CloseWindow();
+end
+function DoClick(index)
+    HelloWindow.DoClick(index)
+end
+function DS_Func_Items(index)
+    return HelloWindow.DS_Func_Items(index);
+end
+]]></script>
+<div style="width:760px;height:470px;background:url(Texture/Aries/Common/ThemeKid/pannel_bg2_32bits.png:10 10 10 10)">
+    <input type="button" onclick="ClosePage" value="" style="margin-left:725px;margin-top:5px;width:27px;height:27px;background:url(Texture/Aries/Common/ThemeKid/close_btn_32bits.png#0 0 27 27)"/>
+    <div>
+    <pe:gridview name="item_list_view" DataSource="<%=DS_Func_Items%>"  AllowPaging="true" pagesize="8" ItemsPerLine="2" >
+		<Columns>
+		    <div style="margin-left:2px;margin-top:2px;width:50px;height:50px;background:url(Texture/Aries/Common/ThemeKid/item_bg2_32bits.png: 10 10 10 10)">
+                <%=Eval("label") %>
+                <!--<input type="button" onclick="DoClick" name='<%=Eval("index") %>' value='<%=Eval("label") %>' style="width:80px;height:25px;"/>-->
+            </div>
+		</Columns>
+		<EmptyDataTemplate>
+			<b>空</b>
+		</EmptyDataTemplate>
+		<FetchingDataTemplate>
+			<b>请稍等 ... </b>
+		</FetchingDataTemplate>
+	</pe:gridview>
+    </div>
+</div>   
+</pe:mcml>
+</body>
+</html>
+

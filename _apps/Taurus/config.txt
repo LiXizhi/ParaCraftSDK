@@ -1,0 +1,3 @@
+-- this file is only used for mobile plaform where command line is not possible
+-- change the commandline to match your application boot file. 
+cmdline=bootstrapper="script/apps/Taurus/bootstrapper.xml" mc="true"

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- "script/apps/Taurus/WindowManager/default.petools.xml" 
+Author: LiXizhi
+Date: 2010/10/25
+Desc: default petools data page
+-->
+<ParaEngineEditorFileData fileversion="1">
+  <Header winpos="0" fileflags="" displaymode=""></Header>
+  <DataBlocks>
+    <DataBlock name="wm">
+      <windows>
+        <window winid="1" screenname="default" posx="0" posy="0" sizex="1" sizey="1" windowstate="borderless"></window>
+      </windows>
+    </DataBlock>
+    <DataBlock name="screen" left="0" top="0" right="1024" bottom="768">
+    </DataBlock>
+    <DataBlock name="scene">
+    </DataBlock>
+    <DataBlock name="object">
+    </DataBlock>
+    <DataBlock name="camera">
+    </DataBlock>
+    <DataBlock name="world">
+    </DataBlock>
+  </DataBlocks>
+</ParaEngineEditorFileData>

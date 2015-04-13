@@ -1,0 +1,35 @@
+﻿<!-- "script/apps/Aquarius/Desktop/SettingsPage.html" -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>settings page</title>
+</head>
+<body>
+<pe:mcml style="max-width:600px;max-height:450px">
+<script type="text/npl">
+function System.OldSettings()
+    NPL.activate("(gl)script/demo/setting/t7_setting.lua");
+end
+</script>
+<div style="float:left;width:120px;">
+<pe:treeview name="categories" style="background:;">
+    <pe:treenode text="常用设置" expanded="true">
+        <a tooltip="查看常用设置" href="script/kids/3DMapSystemUI/Settings/CommonSettingPage.html" target="contentframe">图形设置</a>
+    </pe:treenode>
+    <pe:treenode text="安全设置" expanded="true">
+        <a tooltip="查看隐私设置" href="script/apps/Aquarius/Profile/privacy.html" target="contentframe">隐私设置</a>
+    </pe:treenode>
+    <pe:treenode text="其他设置" expanded="true">
+        <a tooltip="点击查看" href="script/kids/3DMapSystemApp/Login/setting.html" target="contentframe">登录设置</a>
+        <a tooltip="点击查看" href="script/kids/3DMapSystemUI/Env/SettingsPage.html" target="contentframe">3D环境渲染</a>
+        <a tooltip="旧版设置" onclick="System.OldSettings">旧版设置</a>
+    </pe:treenode>
+</pe:treeview>
+</div>
+<div style="float:left;margin-left:3px;margin:2px"  width="100%"> 
+    <iframe name="contentframe" src="script/kids/3DMapSystemUI/Settings/CommonSettingPage.html"/>
+</div>
+</pe:mcml>
+</body>
+</html>
+

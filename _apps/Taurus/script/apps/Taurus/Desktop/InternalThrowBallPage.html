@@ -1,0 +1,25 @@
+﻿<!-- "script/apps/Taurus/Desktop/InternalThrowBallPage.html" -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+</head>
+<body>
+<pe:mcml>
+<script type="text/npl" src="InternalThrowBallPage.lua"><![CDATA[
+MyCompany.Taurus.Desktop.InternalThrowBallPage.page = document:GetPageCtrl();
+MyCompany.Taurus.Desktop.InternalThrowBallPage.Init()
+]]></script>
+<div>
+投掷模型：<input type="text" name="throwModel" />
+投掷动作：<input type="text" name="throwAnim" />
+击中效果：<input type="text" name="hitModel" />
+爆炸持续时间：<input type="text" name="effect_time" value="00:00:01" />
+飞行时间：<input type="text" name="fly_time" value="00:00:01" />
+<input type="button" value="测试" onclick="MyCompany.Taurus.Desktop.InternalThrowBallPage.OnClick()" />
+</div>
+
+</pe:mcml> 
+</body>
+</html>

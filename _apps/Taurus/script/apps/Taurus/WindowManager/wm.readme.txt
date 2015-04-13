@@ -1,0 +1,5 @@
+﻿--+++ window manager for PETools
+| author | LiXizhi | 
+| date | 2010.10.25 | 
+
+The global entry file is creator.lua. 

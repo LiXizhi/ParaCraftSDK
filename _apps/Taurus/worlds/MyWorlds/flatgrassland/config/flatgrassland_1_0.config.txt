@@ -1,0 +1,13 @@
+-- auto gen by ParaEngine
+OnLoadFile = %WORLD%/script/flatgrassland_1_0.onload.lua
+Heightmapfile = %WORLD%/elev/flatgrassland_1_0.raw
+MainTextureFile = Texture/tileset/generic/MainTexture.dds
+CommonTextureFile = Texture/tileset/generic/default.dds
+Size = 533.333313
+ElevScale = 1.0
+Swapvertical = 1
+HighResRadius = 30
+DetailThreshold = 50.000000
+MaxBlockSize = 16
+DetailTextureMatrixSize = 64
+NumOfDetailTextures = 1

@@ -16,6 +16,7 @@ _*
 !_apps/
 _apps/*
 !_apps/Paracraft/
+!_apps/Taurus/
 !_mod/
 _mod/*
 !_mod/Test/

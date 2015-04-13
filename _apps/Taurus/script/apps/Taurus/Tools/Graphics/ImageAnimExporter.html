@@ -1,0 +1,173 @@
+﻿<!-- script/apps/Taurus/Tools/Graphics/ImageAnimExporter.html -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Animation exporter, by LiXizhi, 2011/2/7</title>
+</head>
+<body>
+<pe:mcml>
+<script type="text/npl" src="ImageAnimExporter.lua"><![CDATA[
+local page = document:GetPageCtrl();
+local ImageAnimExporter = MyCompany.Taurus.Tools.graphics.ImageAnimExporter;
+ImageAnimExporter.Init();
+
+function OnBookMark()
+    ImageAnimExporter.OnClickRefreshPreview_Internal(nil, true);
+end
+
+function OnTogglePause()
+    PauseScene();
+end
+function PauseScene(bPause)
+    if(bPause == nil) then
+        if(ImageAnimExporter.IsScenePaused == true) then
+            ImageAnimExporter.IsScenePaused = false;
+	    else
+            ImageAnimExporter.IsScenePaused = true;
+	    end
+    else
+        ImageAnimExporter.IsScenePaused = bPause;
+    end
+    if(ImageAnimExporter.IsScenePaused) then
+        page:SetValue("paused_label", "已经暂停")
+    else
+        page:SetValue("paused_label", "")
+    end
+    local canvasCtl = page:FindControl("modelCanvas");
+	if(canvasCtl) then
+		canvasCtl:EnableActiveRendering(not ImageAnimExporter.IsScenePaused);
+    end
+end
+PauseScene(false);
+
+function OnStepForward()
+    PauseScene(true);
+    local canvasCtl = page:FindControl("modelCanvas");
+	if(canvasCtl) then
+		canvasCtl:Draw(ImageAnimExporter.step_interval or 0.033);
+    end
+end
+
+-- clear all particles to emulate the first frame
+function RespawnParticles()
+    PauseScene(true);
+    local canvasCtl = page:FindControl("modelCanvas");
+	if(canvasCtl) then
+		local i
+        for i=1,1000 do
+            canvasCtl:Draw(100);
+        end
+        canvasCtl:Draw(0.001);
+    end
+end
+
+function OnStop()
+    local canvasCtl = page:FindControl("modelCanvas");
+	if(canvasCtl) then
+		canvasCtl:ShowModel();
+    end
+end
+
+function OnViewFileFolder()
+    local absPath = string.gsub(ParaIO.GetCurDirectory(0)..ParaIO.GetParentDirectoryFromPath(ImageAnimExporter.cur_filename or "",0), "/", "\\");
+	if(absPath~=nil) then
+        ParaGlobal.ShellExecute("open", "explorer.exe", absPath, "", 1); 
+	end	
+end
+
+function OnExportOneFrame()
+    local filename = page:GetUIValue("export_filename");
+    local resolution = tonumber(page:GetUIValue("export_resolution"));
+    if(filename and resolution) then
+        local seq_number = tonumber(filename:match("([1-9][0-9]*)%."));
+        if(seq_number) then
+            local relative_path = ParaIO.GetParentDirectoryFromPath(ImageAnimExporter.cur_filename or "",0)..filename;
+            ImageAnimExporter.SaveCurrentFrameToFile(relative_path, resolution);
+            page:SetUIValue("ExportImgViewer", relative_path:gsub("\\","/"));
+            OnStepForward();
+            seq_number = seq_number + 1;
+            local number_part = filename:match("([0-9]+)%.");
+            local seq_number_str = tostring(seq_number);
+            if(number_part and seq_number_str) then
+                seq_number_str = string.rep("0", #number_part-#seq_number_str)..seq_number_str;
+                filename = filename:gsub("([0-9]+)%.", seq_number_str..".") 
+                page:SetUIValue("export_filename", filename);
+            end
+        end
+    end
+end
+function OnFPSChanged(name, value)
+    value = tonumber(value);
+    if(value and value > 1) then
+        ImageAnimExporter.step_interval = 1/value or ImageAnimExporter.step_interval;
+    end
+end
+]]></script>
+<div>
+<div style="float:left;width:230px;margin:5px;">
+    <pe:filebrowser name="FileBrowser" filter="*.x;*.xml" rootfolder="" onclick="MyCompany.Taurus.Tools.graphics.ImageAnimExporter.OnSelectFile()" ondoubleclick="MyCompany.Taurus.Tools.graphics.ImageAnimExporter.OnDoubleClickFile()" />
+</div>
+<div style="float:left;margin:5px;">
+    <div><font style="color:#808080;">提示: 请从左侧选择模型文件, 或者直接在下面文本框中输入.</font></div>
+    当前文件: <select name="filepath" style="width:230px;" onselect="MyCompany.Taurus.Tools.graphics.ImageAnimExporter.OnClickRefreshPreview"><option value="" selected="true">无</option></select>
+    <input style="margin-left:5px;margin-top:0px;" type="button" name="RefreshPreview" value="预览" onclick="MyCompany.Taurus.Tools.graphics.ImageAnimExporter.OnClickRefreshPreview()"/>
+    <input style="margin-left:5px;margin-top:0px;" type="button" name="BookMark" value="标记" tooltip="记录这个模型，下次可以直接从下拉列表框中取得" onclick="OnBookMark()"/>
+    <br/>
+    <div><font style="font-weight:bold">3D 预览:</font><font style="color:#808080;">用鼠标左键与中键拖拽可以改变视角</font></div>
+    <div style="float:left;background:url(Texture/whitedot.png);background-color:#000000">
+        <pe:canvas3d name="modelCanvas" RenderTargetSize="512" minZoomDist="0.1" maxZoomDist="200" style="width:256px;height:256px;background-color:#00000000"></pe:canvas3d>
+        <div style="position:relative;margin-top:-25px">
+            <pe:label style="height:22px;width:150px;color:#00ff00" name="paused_label"/>
+        </div>
+    </div>
+    <div style="float:left;margin-left:5px;">
+        <div style="padding:1px;background:url(Texture/Aries/Creator/border_bg_32bits.png:2 2 2 2)">
+            <img name="ThumbnailImg" style="width:64px;height:64px;"/>
+        </div>
+        <input style="margin-right:10px" type="button" name="TakeSnapShot" tooltip="生成缩略图" value="快照" onclick="MyCompany.Taurus.Tools.graphics.ImageAnimExporter.OnClickTakeSnapShot()"/>
+    </div>
+    <div style="float:left;margin-left:5px;">
+        <img name="ExportImgViewer" style="width:64px;height:64px;"/>
+    </div>
+    <hr />
+    <input style="margin-right:10px" type="button" name="Pause" value="暂停/播放" onclick="OnTogglePause()"/>
+    <div style="float:left;margin-top:2px;">
+        帧率:
+        <select name="export_fps" onselect="OnFPSChanged">
+            <option value="30" selected="true">30FPS</option>
+            <option value="20">20FPS</option>
+            <option value="15">15FPS</option>
+            <option value="10">10FPS</option>
+            <option value="5">5FPS</option>
+        </select>
+    </div>
+    <input style="margin-right:5px" type="button" name="Step" value="下一帧" onclick="OnStepForward()"/>
+    <input style="margin-right:5px" type="button" name="First" class="defaultbutton" value="重放" tooltip="让粒子全部消失,并暂停播放"  onclick="RespawnParticles()"/>
+    <input style="margin-right:5px" type="button" name="First" value="结束" tooltip="模型马上消失,粒子逐渐消失" onclick="OnStop()"/>
+    <hr />
+    <div>
+        导出当前帧到:
+        <select name="export_filename">
+            <option value="00001.tga" selected="true">00001.tga</option>
+            <option value="temp_a001.png">temp_a001.png</option>
+            <option value="temp_a001.dds">temp_a001.dds</option>
+        </select>
+        <select name="export_resolution">
+            <option value="512" selected="true">512*512</option>
+            <option value="256">256*256</option>
+            <option value="128">128*128</option>
+            <option value="64">64*64</option>
+            <option value="32">32*32</option>
+        </select>
+        <br />
+        <input style="margin-right:5px;" class="defaultbutton" type="button" tooltip="导出当前帧到文件, 并显示下一帧" name="ExportOneFrame" value="导出一帧" onclick="OnExportOneFrame()"/>
+        <input style="margin-right:5px;" type="button" name="ViewFolder" tooltip="查看文件所在目录" value="查看" onclick="OnViewFileFolder()"/>
+    </div>
+    
+    <br />
+</div>
+</div>
+</pe:mcml> 
+</body>
+</html>

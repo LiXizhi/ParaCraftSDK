@@ -279,14 +279,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\CodeExample\TestData.xml" />
     <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\IP.xml" />
     <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\WindowManager\default.petools.xml" />
-    <None Include="..\..\..\_apps\Taurus\worlds\MyWorlds\flatgrassland\blocktemplates\test1.blocks.xml" />
-    <None Include="..\..\..\_apps\Taurus\worlds\MyWorlds\flatgrassland\blockWorld\blockTemplate.xml" />
-    <None Include="..\..\..\_apps\Taurus\worlds\MyWorlds\flatgrassland\blockWorld.lastsave\blockTemplate.xml" />
-    <None Include="..\..\..\_apps\Taurus\worlds\MyWorlds\flatgrassland\LocalNPC.xml" />
-    <None Include="..\..\..\_apps\Taurus\worlds\MyWorlds\flatgrassland\QuickSelectBar.xml" />
     <None Include="..\..\..\_apps\Taurus\worlds\MyWorlds\flatgrassland\tag.xml" />
-    <None Include="..\..\..\_apps\Taurus\worlds\MyWorlds\flatgrassland\test.blocks.xml" />
-    <None Include="..\..\..\_apps\Taurus\worlds\MyWorlds\flatgrassland\testlocal.blocks.xml" />
     <None Include="..\..\..\_apps\Taurus\proj.android\assets\res\worlds\MyWorlds\flatgrassland\WorldInfo.html" />
     <None Include="..\..\..\_apps\Taurus\proj.android\assets\res\worlds\Templates\Empty\flatsandland\WorldInfo.html" />
     <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\CodeExample\HelloWindow.html" />
@@ -303,6 +296,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <None Include="..\..\..\_apps\Taurus\proj.android\MakeAndroidAPK.bat" />
     <None Include="..\..\..\_apps\Taurus\proj.android\SyncFiles.bat" />
     <None Include="..\..\..\_apps\Taurus\Run.bat" />
+    <None Include="..\..\..\_apps\Taurus\SyncScript.bat" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="D:/lxzsrc/ParaCraftSDKGit/proj.vs/ZERO_CHECK.vcxproj">

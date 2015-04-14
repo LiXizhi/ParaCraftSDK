@@ -197,28 +197,7 @@
     <None Include="..\..\..\_apps\Taurus\script\apps\Taurus\WindowManager\default.petools.xml">
       <Filter>mcml</Filter>
     </None>
-    <None Include="..\..\..\_apps\Taurus\worlds\MyWorlds\flatgrassland\blocktemplates\test1.blocks.xml">
-      <Filter>mcml</Filter>
-    </None>
-    <None Include="..\..\..\_apps\Taurus\worlds\MyWorlds\flatgrassland\blockWorld\blockTemplate.xml">
-      <Filter>mcml</Filter>
-    </None>
-    <None Include="..\..\..\_apps\Taurus\worlds\MyWorlds\flatgrassland\blockWorld.lastsave\blockTemplate.xml">
-      <Filter>mcml</Filter>
-    </None>
-    <None Include="..\..\..\_apps\Taurus\worlds\MyWorlds\flatgrassland\LocalNPC.xml">
-      <Filter>mcml</Filter>
-    </None>
-    <None Include="..\..\..\_apps\Taurus\worlds\MyWorlds\flatgrassland\QuickSelectBar.xml">
-      <Filter>mcml</Filter>
-    </None>
     <None Include="..\..\..\_apps\Taurus\worlds\MyWorlds\flatgrassland\tag.xml">
-      <Filter>mcml</Filter>
-    </None>
-    <None Include="..\..\..\_apps\Taurus\worlds\MyWorlds\flatgrassland\test.blocks.xml">
-      <Filter>mcml</Filter>
-    </None>
-    <None Include="..\..\..\_apps\Taurus\worlds\MyWorlds\flatgrassland\testlocal.blocks.xml">
       <Filter>mcml</Filter>
     </None>
     <None Include="..\..\..\_apps\Taurus\proj.android\assets\res\worlds\MyWorlds\flatgrassland\WorldInfo.html">
@@ -267,6 +246,9 @@
       <Filter>proj.android</Filter>
     </None>
     <None Include="..\..\..\_apps\Taurus\Run.bat">
+      <Filter>proj.android</Filter>
+    </None>
+    <None Include="..\..\..\_apps\Taurus\SyncScript.bat">
       <Filter>proj.android</Filter>
     </None>
   </ItemGroup>

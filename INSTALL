@@ -4,12 +4,16 @@
 | Version 1.0  Date: 2015.4.8  |
 
 ---++ Install Guide
+Download and run ParacraftSDK.*.exe from http://pan.baidu.com/share/home?uk=4265314402
    * Open ParacraftSDK.sln with visual studio 2013 or above. 
 
 It is recommended to stay up to date with our current source respositories (SourceTree recommended for git):
    * https://github.com/LiXizhi/ParaCraftSDK is the root repository, however it is not complete. 
 You need to copy additional files from other repository for any missing files, in order to set up a complete development environment for Paracraft. 
 
+---++ User Guide
+   * http://www.paraengine.com/twiki/bin/view/Main/ParacraftSDK 
+  
 ---++ Recommended Tools
 Visual studio plugins:
    * NPL Language Service for visual studio: https://visualstudiogallery.msdn.microsoft.com/7782dc20-924a-4726-8656-d876cdbb3417

@@ -25,7 +25,7 @@ SOURCE_GROUP("mcml\\" FILES ${ParacraftSrc_HTML_FILES})
 list(APPEND ParacraftSrc_SRCS ${ParacraftSrc_HTML_FILES})
 
 ##############################
-file (GLOB_RECURSE ParacraftSrc_Android_FILES ${PROJECT_SOURCE_DIR}/*.bat)
+file (GLOB_RECURSE ParacraftSrc_Android_FILES ${PROJECT_SOURCE_DIR}/proj.android/*.bat)
 SOURCE_GROUP("proj.android\\" FILES ${ParacraftSrc_Android_FILES})
 list(APPEND ParacraftSrc_SRCS ${ParacraftSrc_Android_FILES})
 

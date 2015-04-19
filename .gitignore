@@ -33,3 +33,4 @@ ALL_BUILD.*
 cmake_install.cmake
 Win32/
 CMakeCache.txt
+tools/ThirdParty/TemplateCreator/

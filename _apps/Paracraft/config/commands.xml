@@ -1,0 +1,91 @@
+<Items>
+  <Item commandname="File.MCMLBrowser" key="Ctrl+F3" params='{url="", name="MyBrowser", title="My browser", width=1000, height=700, DisplayNavBar = true, DestroyOnClose=nil}'/>
+  <Item commandname="Help.Debug" key="F12" params=''/>
+  <Item commandname="Help.TestConsole" key="Ctrl+F6" params=''/>
+  <Item commandname="Help.TogglePerf" key="Ctrl+F2" params=''/>
+  <Item commandname="Help.ToggleNPLPerf" key="Ctrl+F7" params=''/>
+  <Item commandname="Help.ToggleCodePerf" key="Ctrl+Alt+r" params=''/>
+  <Item commandname="Help.ToggleMiniSceneStats" key="Ctrl+Alt+m" params=''/>
+  <Item commandname="Help.ToggleWireFrame" key="F4" params=''/>
+  <Item commandname="Help.ToggleReportAndBoundingBox" key="Ctrl+F4" params=''/>
+  <Item commandname="Help.TogglePhysicsDebugDraw" key="Shift+F4" params=''/>
+  <Item commandname="Help.EditKeyboardShortCut" key="Ctrl+Alt+F12" params=''/>
+  <Item commandname="Help.InspectGUIAtCursor" key="F3" params=''/>
+  <Item commandname="Help.ToggleGUI" key="F8" params=''/>
+  <Item commandname="Help.DumpClientNetMsg" key="Ctrl+F8" params=''/>
+  <Item commandname="Creation.ModifyByPickObj" key="Ctrl+g" params=''/>
+  
+  <Item commandname="File.QuickSaveWorld" key="Ctrl+s" params=''/>
+  <Item commandname="Scene.Pasue" key="Alt+p" params=''/>
+  <Item commandname="Scene.FocusNextPlayer" key="Ctrl+0" params=''/>
+  <Item commandname="Scene.ToggleCamera" key="Ctrl+Alt+c" params=''/>
+  <Item commandname="Camera.LookAtShiftY_up" key="Ctrl+SUBTRACT" params=''/>
+  <Item commandname="Camera.LookAtShiftY_down" key="Ctrl+ADD" params=''/>
+  <Item commandname="player.togglerun" key="Alt+r" params=''/>
+  <Item commandname="player.togglefly" key="f" params=''/>
+	<Item commandname="ScreenShot.HideAllUI" key="Ctrl+F12" params=''/>
+	<!-- map -->
+	<Item commandname="Profile.Aries.LocalMap" key="m" params=''/>
+	<!-- card -->
+  <Item commandname="Profile.Aries.SpecialAreaShow" key="c" params='{id=2}'/>
+  <!-- bag -->
+  <Item commandname="Profile.Aries.SpecialAreaShow" key="b" params='{id=3}'/>
+  <!-- quest log -->
+  <Item commandname="Profile.Aries.ShowQuestList" key="l" params=''/>
+  <!-- combat pet-->
+  <Item commandname="Profile.Aries.ShowCombatPetPage" key="p" params=''/>
+  <!-- magic star-->
+  <Item commandname="Profile.Aries.ShowMagicStarPage" key="v" params=''/>
+  <!-- family-->
+  <Item commandname="Profile.Aries.MyFamilyWnd" key="j" params=''/>  
+  <Item commandname="MiniGames.Throw_ShuiQiu" key="1" params=''/>
+  <Item commandname="MiniGames.Throw_GuoDong" key="2" params=''/>
+  <Item commandname="MiniGames.Throw_BianPao" key="3" params=''/>
+  <Item commandname="MiniGames.Throw_SnowBall" key="4" params=''/>
+   <Item commandname="MiniGames.Throw_CandyBall" key="5" params=''/>
+
+ <Item commandname="Profile.HomeLand.DoFacing_Left" key="LBRACKET" params=''/>
+  <Item commandname="Profile.HomeLand.DoFacing_Right" key="RBRACKET" params=''/>
+  <Item commandname="Profile.HomeLand.DoZoomIn" key="EQUALS" params=''/>
+  <Item commandname="Profile.HomeLand.DoZoomOut" key="MINUS" params=''/>
+
+   <Item commandname="MiniGames.Get_AvatarPos" key="Ctrl+P" params=''/>
+    <Item commandname="MiniGames.Get_AvatarPos2" key="Ctrl+b" params=''/>
+  <Item commandname="MiniGames.Get_CameraPos" key="Ctrl+M" params=''/>
+  <Item commandname="MiniGames.Get_AvatarCameraPos" key="Ctrl+Alt+b" params=''/>
+  
+  <!-- CYF 2010年11月17日 -->
+  <Item commandname="Help.APITest" key="Ctrl+Shift+F6" params=''/>
+  <!--获取人物焦点-->
+   <Item commandname="CameraControl.DoFindAvatar" key="Ctrl+9" params=''/>
+  <!--预览摄影机动画-->
+   <Item commandname="CameraControl.ShowPage" key="Ctrl+0" params=''/>
+   <!--开始-->
+   <Item commandname="CameraControl.DoPlay" key="Ctrl+1" params=''/>
+      <!--暂停-->
+   <Item commandname="CameraControl.DoPause" key="Ctrl+2" params=''/>
+      <!--停止到最前-->
+   <Item commandname="CameraControl.DoStop" key="Ctrl+3" params=''/>
+      <!--停止到最后-->
+   <Item commandname="CameraControl.DoEnd" key="Ctrl+4" params=''/>
+      <!--快退-->
+   <Item commandname="CameraControl.DoPre" key="Ctrl+5" params='{t = -50}'/>
+      <!--快进-->
+   <Item commandname="CameraControl.DoNext" key="Ctrl+6" params='{t = 50}'/>
+
+
+  <!--MobCCSAsset and deck-->
+  <Item commandname="Help.GetMyCCSInfo" key="Ctrl+Alt+i" params=''/>
+  <Item commandname="Help.GetMyDeckInfo" key="Ctrl+Alt+d" params=''/>
+
+    <!--数字键-->
+  <!--<Item commandname="Profile.Aries.FireKey" key="1" params="{key = 1}"/>
+  <Item commandname="Profile.Aries.FireKey" key="2" params="{key = 2}"/>
+  <Item commandname="Profile.Aries.FireKey" key="3" params="{key = 3}"/>
+  <Item commandname="Profile.Aries.FireKey" key="4" params="{key = 4}"/>
+  <Item commandname="Profile.Aries.FireKey" key="5" params="{key = 5}"/>
+  <Item commandname="Profile.Aries.FireKey" key="6" params="{key = 6}"/>
+  <Item commandname="Profile.Aries.FireKey" key="7" params="{key = 7}"/>
+  <Item commandname="Profile.Aries.FireKey" key="8" params="{key = 8}"/>
+  <Item commandname="Profile.Aries.FireKey" key="9" params="{key = 9}"/>-->
+</Items>

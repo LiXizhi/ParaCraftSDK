@@ -216,7 +216,12 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemGroup>
   <ItemGroup>
     <None Include="CMakeFiles\ModTest" />
+    <None Include="..\..\..\_mod\Test\Mod\Test\DemoCommand.lua" />
+    <None Include="..\..\..\_mod\Test\Mod\Test\DemoEntity.lua" />
+    <None Include="..\..\..\_mod\Test\Mod\Test\DemoGUI.lua" />
+    <None Include="..\..\..\_mod\Test\Mod\Test\DemoItem.lua" />
     <None Include="..\..\..\_mod\Test\Mod\Test\main.lua" />
+    <None Include="..\..\..\_mod\Test\Mod\Test\DemoGUI.html" />
     <None Include="..\..\..\_mod\Test\Run.bat" />
   </ItemGroup>
   <ItemGroup>

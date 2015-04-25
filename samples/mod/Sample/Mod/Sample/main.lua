@@ -21,7 +21,7 @@ end
 
 -- virtual function get mod description 
 function Sample:GetDesc()
-	return "Sample is a special kind of plugin in paracraft"
+	return "Sample is a plugin in paracraft"
 end
 
 function Sample:init()

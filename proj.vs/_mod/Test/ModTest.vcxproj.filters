@@ -8,8 +8,23 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="CMakeFiles\ModTest" />
+    <None Include="..\..\..\_mod\Test\Mod\Test\DemoCommand.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\_mod\Test\Mod\Test\DemoEntity.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\_mod\Test\Mod\Test\DemoGUI.lua">
+      <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\_mod\Test\Mod\Test\DemoItem.lua">
+      <Filter>npl</Filter>
+    </None>
     <None Include="..\..\..\_mod\Test\Mod\Test\main.lua">
       <Filter>npl</Filter>
+    </None>
+    <None Include="..\..\..\_mod\Test\Mod\Test\DemoGUI.html">
+      <Filter>mcml</Filter>
     </None>
     <None Include="..\..\..\_mod\Test\Run.bat" />
   </ItemGroup>
@@ -19,6 +34,9 @@
     </Filter>
     <Filter Include="npl">
       <UniqueIdentifier>{8F74C4CD-B864-4944-A84B-761F5812CF55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mcml">
+      <UniqueIdentifier>{BF33D6FD-57A3-482D-A20A-660FDC7E9329}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

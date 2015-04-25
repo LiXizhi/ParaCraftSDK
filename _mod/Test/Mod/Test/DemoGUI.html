@@ -1,0 +1,27 @@
+<!-- "Mod/Test/DemoGUI.html" -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+</head>
+<body>
+<pe:mcml>
+<script refresh="false" type="text/npl" src="DemoGUI.lua"><![CDATA[
+DemoGUI = commonlib.gettable("Mod.Test.DemoGUI");
+function OnClickOK()
+    _guihelper.MessageBox("hello world!");
+end
+]]></script>
+<div style="width:200px;height:64px;color:#33ff33;background-color:#ff6a00" >
+    <div style="margin:2px;margin-left:10px;">
+        this is demo GUI
+    </div>
+    <div style="margin:5px;">
+        <input type="text" name="content" style="width:100px;height:25px;" />
+        <input type="button" name="ok" value="确定" class="button" onclick="OnClickOK"/>
+    </div>
+</div>
+</pe:mcml>
+</body>
+</html>

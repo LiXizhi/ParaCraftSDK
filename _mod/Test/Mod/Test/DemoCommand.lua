@@ -31,4 +31,12 @@ function DemoCommand:InstallCommand()
 			_guihelper.MessageBox("this is from demo command");
 		end,
 	};
+	Commands["demo2"] = {
+		name="demo2", 
+		quick_ref="/demo2", 
+		desc="show a demo", 
+		handler = function(cmd_name, cmd_text, cmd_params, fromEntity)
+			
+		end,
+	};
 end

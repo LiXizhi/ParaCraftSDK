@@ -9,7 +9,7 @@ Our software is not completely open sourced, the reason is that we want to make 
 ---++ Logics Behind
 We have chosen GPL as the base license for all ParaEngine related software. NPL is special and is LGPL based. Our mission is to make the software modular and functional and fully open sourced. Our best wish is that more and more developers can use our software and NPL without worries, and more and more people and companies are willing to contribute to its code base. 
 
-Paracraft and ParaEngine should become a high quality framework of many free and open sourced tools and algorithms. I believe that license like unreal and unity is wrong. The 5% of total venue from developers should not be our primary income, but rather a way to prevent bad competitions with our own software. The content of Paracraft is our primary future income. This is why the use of ParaEngine is free even for commercial use, while paracraft SDK charges you 5% of total venue if used commercially.
+Paracraft and ParaEngine should become a high quality framework of many free and open sourced tools and algorithms. I believe that license like unreal and unity is wrong. The 5% of total revenue from developers should not be our primary income, but rather a way to prevent bad competitions with our own software. The content of Paracraft is our primary future income. This is why the use of ParaEngine is free even for commercial use, while paracraft SDK charges you 5% of total revenue if used commercially.
 
 
 ---++ LICENSE for NPL

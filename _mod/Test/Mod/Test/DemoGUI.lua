@@ -33,3 +33,10 @@ end
 
 function DemoGUI:OnLeaveWorld()
 end
+
+function DemoGUI:handleKeyEvent(dik_key)
+	if(dik_key == "DIK_E") then
+		_guihelper.MessageBox(dik_key);
+		return true;
+	end
+end

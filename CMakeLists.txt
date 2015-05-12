@@ -10,6 +10,8 @@ set(CMAKE_USE_RELATIVE_PATHS ON CACHE INTERNAL "" FORCE)
 
 project (ParacraftRoot)
 
+SET(ParaEngineClient_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src/include/ParaEngine)
+
 MACRO(SUBDIRLIST result curdir)
   FILE(GLOB children RELATIVE ${curdir} ${curdir}/*)
   SET(dirlist "")

@@ -12,6 +12,15 @@ project (ParacraftRoot)
 
 SET(ParaEngineClient_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src/include/ParaEngine)
 
+SET( Boost_DETAILED_FAILURE_MSG ON )
+
+FIND_PACKAGE( Boost )
+IF ( NOT Boost_FOUND )
+	MESSAGE( FATAL_ERROR
+		"Boost libraries (http://www.boost.org/) not found. "
+	)
+ENDIF ( NOT Boost_FOUND )
+
 MACRO(SUBDIRLIST result curdir)
   FILE(GLOB children RELATIVE ${curdir} ${curdir}/*)
   SET(dirlist "")

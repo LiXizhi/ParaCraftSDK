@@ -4,13 +4,20 @@
 // Authors:	LiXizhi
 // Emails:	LiXizhi@yeah.net
 // Company: ParaEngine Co.
-// Date:	2010.2.234
+// Date:	2010.2.23
 // Desc: This file can be used by a ParaEngine plugin to parse NPL messages without the need to link with the ParaEngine library. 
 //-----------------------------------------------------------------------------
+/** if this is defined outside this file, we will never use any static variables that contains destructor in this class. 
+* this is usually required by C++/CLI project, where no static variable can be used. 
+*/
+// #define DISABLE_STATIC_VARIABLE
+
 #include <boost/intrusive_ptr.hpp>
-#include "PETypes.h"
+#include "PEtypes.h"
 #include "NPLTypes.h"
+#include "INPL.h"
 #include <vector>
+#include <map>
 
 #pragma region CommonHeaders
 #ifndef MAX_TABLE_STRING_LENGTH
@@ -71,10 +78,9 @@ namespace NPLInterface
 		intrusive_ptr_single_thread_base() : m_ref_count(0){};
 		virtual ~intrusive_ptr_single_thread_base(){};
 	};
-
-	template void boost::intrusive_ptr_add_ref(intrusive_ptr_single_thread_base*);
-	template void boost::intrusive_ptr_release(intrusive_ptr_single_thread_base*);
 }
+template void boost::intrusive_ptr_add_ref(NPLInterface::intrusive_ptr_single_thread_base*);
+template void boost::intrusive_ptr_release(NPLInterface::intrusive_ptr_single_thread_base*);
 
 #pragma endregion CommonHeaders
 
@@ -93,283 +99,6 @@ namespace NPLInterface
 	typedef boost::intrusive_ptr<NPLNumberObject> NPLNumberObject_ptr;
 	typedef boost::intrusive_ptr<NPLBoolObject> NPLBoolObject_ptr;
 	typedef boost::intrusive_ptr<NPLStringObject> NPLStringObject_ptr;
-
-#pragma region NPLWriter
-	template <typename StringBufferType = std::string>
-	class CNPLWriterT;
-	
-	/** using std::string for buffering */
-	typedef CNPLWriterT< std::string >  CNPLWriter; 
-
-	/** a simple class for creating NPL script code, especially data table code. 
-	this class is reentrant (thread-safe). Please note that this class does not ensure that the code is a pure table.
-	See Example:
-	// to generate the string : msg={name=1,2,{"3"="4",},};
-	CNPLWriter writer; // if you can estimate the buffer size, use CNPLWriter writer(nReservedSize)
-	writer.WriteName("msg");
-	writer.BeginTable();
-	writer.WriteName("name");
-	writer.WriteValue(1);
-	writer.WriteValue(2);
-	writer.BeginTable();
-	writer.WriteName("3", true);
-	writer.WriteValue("4");
-	writer.EndTable();
-	writer.EndTable();
-	writer.WriteParamDelimiter();
-	log(writer.ToString().c_str());
-
-	One can also provide their own string buffer to write to, like below.
-	std::string buff;
-	buff.reserve(100);
-	CNPLWriter writer(buff);
-	*/
-	template <typename StringBufferType>
-	class CNPLWriterT
-	{
-	public:
-		typedef StringBufferType  Buffer_Type;
-
-		/** the internal buffer reserved size. */
-		CNPLWriterT(int nReservedSize = -1);
-		/** into which buff_ to write the */
-		CNPLWriterT(Buffer_Type& buff_, int nReservedSize = -1);
-		~CNPLWriterT();
-
-		/** reset the writer */
-		void Reset(int nReservedSize = -1);
-
-		/** write begin table "{" */
-		void BeginTable();
-		/** write a parameter name
-		@param bUseBrackets: if false, one has to make sure that the name is a valid NPL name string, without special characters. */
-		void WriteName(const char* name, bool bUseBrackets = false);
-
-		/** if bInQuotation is true, it writes a parameter text value. Otherwise it will just append the value without encoding it with quatation marks. */
-		void WriteValue(const char* value, bool bInQuotation=true);
-		/** if bInQuotation is true, it writes a parameter text value. Otherwise it will just append the value without encoding it with quatation marks. */
-		void WriteValue(const char* buffer, int nSize, bool bInQuotation=true);
-		void WriteValue(const string& sStr, bool bInQuotation=true);
-		/** write a parameter value */
-		void WriteValue(double value);
-		/** write a parameter nil*/
-		void WriteNil();
-
-		/** write end table "}" */
-		void EndTable();
-
-		/** append any text */
-		void Append(const char* text);
-		void Append(const char* pData, int nSize);
-		void Append(const string& sText);
-		/** add a mem block of size nSize and return the address of the block. 
-		* we may fill the block at a latter time. 
-		* @param nSize: size in bytes. 
-		*/
-		char* AddMemBlock(int nSize);
-
-		/** write ";" */
-		void WriteParamDelimiter(){ Append(";"); };
-
-		/** get the current NPL code. */
-		const Buffer_Type& ToString() {return m_sCode;};
-	public:
-		// static strings. 
-
-		/** return "msg=nil;"*/
-		static const Buffer_Type& GetNilMessage();
-
-		/** return "msg={};"*/
-		static const Buffer_Type& GetEmptyMessage();
-	private:
-		Buffer_Type& m_sCode;
-		Buffer_Type m_buf;
-		bool m_bBeginAssignment;
-		int m_nTableLevel;
-	};
-
-	template <typename StringBufferType>
-	CNPLWriterT<StringBufferType>::CNPLWriterT(int nReservedSize) 
-		: m_sCode(m_buf), m_bBeginAssignment(false),m_nTableLevel(0)
-	{
-		if(nReservedSize>0)
-			m_sCode.reserve(nReservedSize);
-	}
-
-	template <typename StringBufferType>
-	CNPLWriterT<StringBufferType>::CNPLWriterT( StringBufferType& buff_ , int nReservedSize )
-		: m_sCode(buff_), m_bBeginAssignment(false),m_nTableLevel(0)
-	{
-		if(nReservedSize>0)
-			m_sCode.reserve(nReservedSize);
-	}
-
-	template <typename StringBufferType>
-	CNPLWriterT<StringBufferType>::~CNPLWriterT()
-	{
-	}
-
-
-	template <typename StringBufferType>
-	void CNPLWriterT<StringBufferType>::Reset( int nReservedSize /*= -1*/ )
-	{
-		m_sCode.clear();
-		if(nReservedSize>0)
-			m_sCode.reserve(nReservedSize);
-	}
-
-	template <typename StringBufferType>
-	void CNPLWriterT<StringBufferType>::WriteName( const char* name, bool bUseBrackets /*= false*/ )
-	{
-		if(name)
-		{
-			m_bBeginAssignment = true;
-			if(!bUseBrackets)
-			{
-				m_sCode += name;
-			}
-			else
-			{
-				m_sCode += "[\"";
-				m_sCode += name;
-				m_sCode += "\"]";
-			}
-		}
-	}
-
-	template <typename StringBufferType>
-	void CNPLWriterT<StringBufferType>::WriteValue( const char* value, bool bInQuotation/*=true*/ )
-	{
-		if(value == NULL)
-		{
-			return WriteNil();
-		}
-		if(m_bBeginAssignment)
-		{
-			m_sCode += "=";
-		}
-		if(bInQuotation)
-		{
-			NPLHelper::EncodeStringInQuotation(m_sCode, (int)m_sCode.size(), value);
-		}
-		else
-		{
-			m_sCode += value;
-		}
-		if(m_nTableLevel>0)
-			m_sCode += ",";
-		m_bBeginAssignment = false;
-	}
-
-	template <typename StringBufferType>
-	void CNPLWriterT<StringBufferType>::WriteValue( const char* buffer, int nSize, bool bInQuotation/*=true*/ )
-	{
-		if(buffer == NULL)
-		{
-			return WriteNil();
-		}
-		if(m_bBeginAssignment)
-		{
-			m_sCode += "=";
-		}
-		if(bInQuotation)
-		{
-			NPLHelper::EncodeStringInQuotation(m_sCode, (int)m_sCode.size(), buffer, nSize);
-		}
-		else
-		{
-			size_t nOldSize = m_sCode.size();
-			m_sCode.resize(nOldSize+nSize);
-			memcpy((void*)(m_sCode.c_str()+nOldSize), buffer, nSize);
-		}
-		if(m_nTableLevel>0)
-			m_sCode += ",";
-		m_bBeginAssignment = false;
-	}
-
-	template <typename StringBufferType>
-	void CNPLWriterT<StringBufferType>::WriteValue( double value )
-	{
-		char buff[40];
-		snprintf(buff, 40, LUA_NUMBER_FMT, value);
-		WriteValue(buff, false);
-	}
-
-	template <typename StringBufferType>
-	void CNPLWriterT<StringBufferType>::WriteValue( const string& sStr, bool bInQuotation/*=true*/ )
-	{
-		WriteValue(sStr.c_str(), (int)sStr.size(), bInQuotation);
-	}
-	template <typename StringBufferType>
-	void CNPLWriterT<StringBufferType>::WriteNil()
-	{
-		WriteValue("nil", false);
-	}
-
-	template <typename StringBufferType>
-	void CNPLWriterT<StringBufferType>::BeginTable()
-	{
-		m_sCode += m_bBeginAssignment ? "={" : "{";
-		m_nTableLevel++;
-		m_bBeginAssignment = false;
-	}
-
-	template <typename StringBufferType>
-	void CNPLWriterT<StringBufferType>::EndTable()
-	{
-		m_sCode += "}";
-		if((--m_nTableLevel)>0)
-			m_sCode += ",";
-	}
-
-	template <typename StringBufferType>
-	void CNPLWriterT<StringBufferType>::Append( const char* text )
-	{
-		if(text)
-			m_sCode += text;
-	}
-
-	template <typename StringBufferType>
-	void CNPLWriterT<StringBufferType>::Append(const char* pData, int nSize)
-	{
-		m_sCode.append(pData, nSize);
-	}
-
-	template <typename StringBufferType>
-	void CNPLWriterT<StringBufferType>::Append( const string& text )
-	{
-		m_sCode += text;
-	}
-
-	template <typename StringBufferType>
-	char* CNPLWriterT<StringBufferType>::AddMemBlock( int nSize )
-	{
-		if(nSize>0)
-		{
-			m_sCode.resize(m_sCode.size() + nSize);
-			return &(m_sCode[m_sCode.size() - nSize]);
-		}
-		else
-			return NULL;
-	}
-
-	template <typename StringBufferType>
-	const StringBufferType& CNPLWriterT<StringBufferType>::GetNilMessage()
-	{
-		static const StringBufferType g_str = "msg=nil;";
-		return g_str;
-	}
-
-	template <typename StringBufferType>
-	const StringBufferType& CNPLWriterT<StringBufferType>::GetEmptyMessage()
-	{
-		static const StringBufferType g_str = "msg={};";
-		return g_str;
-	}
-
-	// instantiate class so that no link errors when separating template implementation to hpp file. 
-	template class CNPLWriterT< std::string >; 
-#pragma endregion NPLWriter
 
 #pragma region NPLParser
 	/* semantics information */
@@ -1200,9 +929,9 @@ namespace NPLInterface
 			((ls)->nestlevel--);
 		}
 
-		
+
 	};
-	
+
 
 
 #pragma endregion NPLParser
@@ -1409,7 +1138,7 @@ namespace NPLInterface
 			}
 			else
 			{
-				return ((NPLTable*)get())->GetField(sName);
+				return ((T*)get())->GetField(sName);
 			}
 		}
 
@@ -1490,7 +1219,7 @@ namespace NPLInterface
 		}
 
 	public:
-		
+
 		void ToString(std::string& str)
 		{
 		}
@@ -1580,7 +1309,7 @@ namespace NPLInterface
 		TableIntFieldMap_Type m_index_fields;
 	};
 
-	
+
 #pragma endregion NPLObjectProxy
 
 #pragma region NPLHelper
@@ -2013,4 +1742,285 @@ namespace NPLInterface
 
 #pragma endregion NPLHelper
 
+#pragma region NPLWriter
+	template <typename StringBufferType = std::string>
+	class CNPLWriterT;
+
+	/** using std::string for buffering */
+	typedef CNPLWriterT< std::string >  CNPLWriter; 
+
+	/** a simple class for creating NPL script code, especially data table code. 
+	this class is reentrant (thread-safe). Please note that this class does not ensure that the code is a pure table.
+	See Example:
+	// to generate the string : msg={name=1,2,{"3"="4",},};
+	CNPLWriter writer; // if you can estimate the buffer size, use CNPLWriter writer(nReservedSize)
+	writer.WriteName("msg");
+	writer.BeginTable();
+	writer.WriteName("name");
+	writer.WriteValue(1);
+	writer.WriteValue(2);
+	writer.BeginTable();
+	writer.WriteName("3", true);
+	writer.WriteValue("4");
+	writer.EndTable();
+	writer.EndTable();
+	writer.WriteParamDelimiter();
+	log(writer.ToString().c_str());
+
+	One can also provide their own string buffer to write to, like below.
+	std::string buff;
+	buff.reserve(100);
+	CNPLWriter writer(buff);
+	*/
+	template <typename StringBufferType>
+	class CNPLWriterT
+	{
+	public:
+		typedef StringBufferType  Buffer_Type;
+
+		/** the internal buffer reserved size. */
+		CNPLWriterT(int nReservedSize = -1);
+		/** into which buff_ to write the */
+		CNPLWriterT(Buffer_Type& buff_, int nReservedSize = -1);
+		~CNPLWriterT();
+
+		/** reset the writer */
+		void Reset(int nReservedSize = -1);
+
+		/** write begin table "{" */
+		void BeginTable();
+		/** write a parameter name
+		@param bUseBrackets: if false, one has to make sure that the name is a valid NPL name string, without special characters. */
+		void WriteName(const char* name, bool bUseBrackets = false);
+
+		/** if bInQuotation is true, it writes a parameter text value. Otherwise it will just append the value without encoding it with quatation marks. */
+		void WriteValue(const char* value, bool bInQuotation=true);
+		/** if bInQuotation is true, it writes a parameter text value. Otherwise it will just append the value without encoding it with quatation marks. */
+		void WriteValue(const char* buffer, int nSize, bool bInQuotation=true);
+		void WriteValue(const string& sStr, bool bInQuotation=true);
+		/** write a parameter value */
+		void WriteValue(double value);
+		/** write a parameter nil*/
+		void WriteNil();
+
+		/** write end table "}" */
+		void EndTable();
+
+		/** append any text */
+		void Append(const char* text);
+		void Append(const char* pData, int nSize);
+		void Append(const string& sText);
+		/** add a mem block of size nSize and return the address of the block. 
+		* we may fill the block at a latter time. 
+		* @param nSize: size in bytes. 
+		*/
+		char* AddMemBlock(int nSize);
+
+		/** write ";" */
+		void WriteParamDelimiter(){ Append(";"); };
+
+		/** get the current NPL code. */
+		const Buffer_Type& ToString() {return m_sCode;};
+	public:
+		// static strings. 
+
+#ifndef DISABLE_STATIC_VARIABLE
+		/** return "msg=nil;"*/
+		static const Buffer_Type& GetNilMessage();
+
+		/** return "msg={};"*/
+		static const Buffer_Type& GetEmptyMessage();
+#endif
+
+	private:
+		Buffer_Type& m_sCode;
+		Buffer_Type m_buf;
+		bool m_bBeginAssignment;
+		int m_nTableLevel;
+	};
+
+	template <typename StringBufferType>
+	CNPLWriterT<StringBufferType>::CNPLWriterT(int nReservedSize) 
+		: m_sCode(m_buf), m_bBeginAssignment(false),m_nTableLevel(0)
+	{
+		if(nReservedSize>0)
+			m_sCode.reserve(nReservedSize);
+	}
+
+	template <typename StringBufferType>
+	CNPLWriterT<StringBufferType>::CNPLWriterT( StringBufferType& buff_ , int nReservedSize )
+		: m_sCode(buff_), m_bBeginAssignment(false),m_nTableLevel(0)
+	{
+		if(nReservedSize>0)
+			m_sCode.reserve(nReservedSize);
+	}
+
+	template <typename StringBufferType>
+	CNPLWriterT<StringBufferType>::~CNPLWriterT()
+	{
+	}
+
+
+	template <typename StringBufferType>
+	void CNPLWriterT<StringBufferType>::Reset( int nReservedSize /*= -1*/ )
+	{
+		m_sCode.clear();
+		if(nReservedSize>0)
+			m_sCode.reserve(nReservedSize);
+	}
+
+	template <typename StringBufferType>
+	void CNPLWriterT<StringBufferType>::WriteName( const char* name, bool bUseBrackets /*= false*/ )
+	{
+		if(name)
+		{
+			m_bBeginAssignment = true;
+			if(!bUseBrackets)
+			{
+				m_sCode += name;
+			}
+			else
+			{
+				m_sCode += "[\"";
+				m_sCode += name;
+				m_sCode += "\"]";
+			}
+		}
+	}
+
+	template <typename StringBufferType>
+	void CNPLWriterT<StringBufferType>::WriteValue( const char* value, bool bInQuotation/*=true*/ )
+	{
+		if(value == NULL)
+		{
+			return WriteNil();
+		}
+		if(m_bBeginAssignment)
+		{
+			m_sCode += "=";
+		}
+		if(bInQuotation)
+		{
+			NPLHelper::EncodeStringInQuotation(m_sCode, (int)m_sCode.size(), value);
+		}
+		else
+		{
+			m_sCode += value;
+		}
+		if(m_nTableLevel>0)
+			m_sCode += ",";
+		m_bBeginAssignment = false;
+	}
+
+	template <typename StringBufferType>
+	void CNPLWriterT<StringBufferType>::WriteValue( const char* buffer, int nSize, bool bInQuotation/*=true*/ )
+	{
+		if(buffer == NULL)
+		{
+			return WriteNil();
+		}
+		if(m_bBeginAssignment)
+		{
+			m_sCode += "=";
+		}
+		if(bInQuotation)
+		{
+			NPLHelper::EncodeStringInQuotation(m_sCode, (int)m_sCode.size(), buffer, nSize);
+		}
+		else
+		{
+			size_t nOldSize = m_sCode.size();
+			m_sCode.resize(nOldSize+nSize);
+			memcpy((void*)(m_sCode.c_str()+nOldSize), buffer, nSize);
+		}
+		if(m_nTableLevel>0)
+			m_sCode += ",";
+		m_bBeginAssignment = false;
+	}
+
+	template <typename StringBufferType>
+	void CNPLWriterT<StringBufferType>::WriteValue( double value )
+	{
+		char buff[40];
+		snprintf(buff, 40, LUA_NUMBER_FMT, value);
+		WriteValue(buff, false);
+	}
+
+	template <typename StringBufferType>
+	void CNPLWriterT<StringBufferType>::WriteValue( const string& sStr, bool bInQuotation/*=true*/ )
+	{
+		WriteValue(sStr.c_str(), (int)sStr.size(), bInQuotation);
+	}
+	template <typename StringBufferType>
+	void CNPLWriterT<StringBufferType>::WriteNil()
+	{
+		WriteValue("nil", false);
+	}
+
+	template <typename StringBufferType>
+	void CNPLWriterT<StringBufferType>::BeginTable()
+	{
+		m_sCode += m_bBeginAssignment ? "={" : "{";
+		m_nTableLevel++;
+		m_bBeginAssignment = false;
+	}
+
+	template <typename StringBufferType>
+	void CNPLWriterT<StringBufferType>::EndTable()
+	{
+		m_sCode += "}";
+		if((--m_nTableLevel)>0)
+			m_sCode += ",";
+	}
+
+	template <typename StringBufferType>
+	void CNPLWriterT<StringBufferType>::Append( const char* text )
+	{
+		if(text)
+			m_sCode += text;
+	}
+
+	template <typename StringBufferType>
+	void CNPLWriterT<StringBufferType>::Append(const char* pData, int nSize)
+	{
+		m_sCode.append(pData, nSize);
+	}
+
+	template <typename StringBufferType>
+	void CNPLWriterT<StringBufferType>::Append( const string& text )
+	{
+		m_sCode += text;
+	}
+
+	template <typename StringBufferType>
+	char* CNPLWriterT<StringBufferType>::AddMemBlock( int nSize )
+	{
+		if(nSize>0)
+		{
+			m_sCode.resize(m_sCode.size() + nSize);
+			return &(m_sCode[m_sCode.size() - nSize]);
+		}
+		else
+			return NULL;
+	}
+
+#ifndef DISABLE_STATIC_VARIABLE
+	template <typename StringBufferType>
+	const StringBufferType& CNPLWriterT<StringBufferType>::GetNilMessage()
+	{
+		static const StringBufferType g_str = "msg=nil;";
+		return g_str;
+	}
+
+	template <typename StringBufferType>
+	const StringBufferType& CNPLWriterT<StringBufferType>::GetEmptyMessage()
+	{
+		static const StringBufferType g_str = "msg={};";
+		return g_str;
+	}
+#endif
+
+	// instantiate class so that no link errors when separating template implementation to hpp file. 
+	template class CNPLWriterT< std::string >; 
+#pragma endregion NPLWriter
 }

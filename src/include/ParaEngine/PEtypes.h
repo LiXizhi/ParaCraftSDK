@@ -22,7 +22,11 @@
 #include <string.h>
 #include <wchar.h>
 #include <stdarg.h>
+#if (defined PARA_TARGET_PLATFORM) && (PARA_TARGET_PLATFORM == PARA_PLATFORM_IOS || PARA_TARGET_PLATFORM == PARA_PLATFORM_MAC )
+#include <malloc/malloc.h>
+#else
 #include <malloc.h>
+#endif
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdint.h>
@@ -44,6 +48,12 @@ typedef unsigned char byte;
 #ifndef STDCALL 
 #define STDCALL __stdcall
 #endif 
+
+#ifdef PARAENGINE_MOBILE
+#ifndef SUCCEEDED
+#define SUCCEEDED(hr)  ((HRESULT)(hr) >= 0)
+#endif
+#endif
 
 #else // For LINUX
 typedef int8_t int8;
@@ -70,6 +80,7 @@ typedef uint32_t DWORD;
 typedef DWORD *LPDWORD;
 typedef const void * LPCVOID;
 typedef char CHAR;
+typedef char TCHAR;
 typedef wchar_t WCHAR;
 typedef uint16_t WORD;
 typedef float               FLOAT;
@@ -80,6 +91,30 @@ typedef unsigned int        UINT;
 typedef int32_t LONG;
 typedef uint32_t ULONG;
 typedef int32_t HRESULT;
+
+#ifndef LRESULT
+#define LRESULT     int32
+#endif
+#ifndef WPARAM
+#define WPARAM     uint32
+#endif
+#ifndef LPARAM
+#define LPARAM     uint32
+#endif
+#ifndef CONST
+#define CONST const
+#endif
+typedef WCHAR *LPWSTR;
+typedef TCHAR *LPTSTR;
+typedef const WCHAR *LPCWSTR;
+typedef const TCHAR *LPCTSTR;
+typedef const CHAR *LPCSTR;
+
+typedef struct tagPOINT
+{
+	LONG  x;
+	LONG  y;
+} POINT;
 
 typedef struct tagRECT
 {
@@ -154,6 +189,8 @@ namespace ParaEngine
 		EVENT_MOUSE_UP,
 		EVENT_KEY_UP,
 		EVENT_MOUSE_WHEEL,
+		EVENT_TOUCH,
+		EVENT_ACCELEROMETER,
 		EVENT_LAST
 	};
 	/** bit fields */
@@ -169,6 +206,8 @@ namespace ParaEngine
 		EH_MOUSE_UP = 0x1<<7,
 		EH_KEY_UP = 0x1<<8,
 		EH_MOUSE_WHEEL = 0x1<<9,
+		EH_TOUCH = 0x1 << 10,
+		EH_ACCELEROMETER = 0x1 << 11,
 		EH_ALL = 0xffff,
 	};
 
@@ -265,6 +304,9 @@ namespace ParaEngine
 		float x;
 		float y;
 		float z;
+		float w;
+		PARAVECTOR4(float x_, float y_, float z_, float w_) :x(x_), y(y_), z(z_), w(w_){}
+		PARAVECTOR4(){};
 	};
 
 	struct PARAMATRIX {
@@ -303,4 +345,193 @@ namespace ParaEngine
 		float b;
 		float a;
 	};
+
+	
+#if defined(WIN32) && defined(PARAENGINE_CLIENT)
+	typedef D3DXMATRIX   DeviceMatrix;
+	typedef D3DXMATRIX*   DeviceMatrix_ptr;
+	typedef D3DXVECTOR2*  DeviceVector2_ptr;
+	typedef D3DXVECTOR3*  DeviceVector3_ptr;
+	typedef D3DXVECTOR4*  DeviceVector4_ptr;
+	typedef D3DXVECTOR2  DeviceVector2;
+	typedef D3DXVECTOR3  DeviceVector3;
+	typedef D3DXVECTOR4  DeviceVector4;
+#else
+	typedef PARAMATRIX  DeviceMatrix;
+	typedef PARAMATRIX*  DeviceMatrix_ptr;
+	typedef PARAVECTOR2*  DeviceVector2_ptr;
+	typedef PARAVECTOR3*  DeviceVector3_ptr;
+	typedef PARAVECTOR4*  DeviceVector4_ptr;
+	typedef PARAVECTOR2  DeviceVector2;
+	typedef PARAVECTOR3  DeviceVector3;
+	typedef PARAVECTOR4  DeviceVector4;
+#endif
+
+	enum EnumForceInit
+	{
+		ForceInit,
+		ForceInitToZero
+	};
+	enum EnumNoInit { NoInit };
 }
+
+// forward declare in rough alphabetic order
+namespace ParaEngine
+{
+	struct ActiveBiped;
+	class Angle;
+	class AxisAlignedBox;
+	struct AssetEntity;
+	class CAIBase;
+	class CAISimulator;
+	class CAnimInstanceBase;
+	class CAttributeField;
+	class CAttributeClass;
+	class CAttributesManager;
+	class CAudioEngine;
+	class CAutoCamera;
+	class CBaseCamera;
+	class CBaseObject;
+	class CBipedStateManager;
+	class CDataProviderManager;
+	class CEventsCenter;
+	class CEventBinding;
+	class CFileManager;
+	class CFrameRateController;
+	class CGUIBase;
+	class CGUIResource;
+	class CGUIRoot;
+	class CGUIEvent;
+	struct CharModelInstance;
+	struct CharacterPose;
+	class CLightManager;
+	class CMeshObject;
+	class CMoviePlatform;
+	class CMiniSceneGraph;
+	class CManagedLoader;
+	class CMissileObject;
+	class CMirrorSurface;
+	struct CNpcDbItem;
+	class CSceneObject;
+	class CSelectionManager;
+	class COceanManager;
+	class CParaFile;
+	class CParameterBlock;
+	class CParaWorldAsset;
+	class CParaXAnimInstance;
+	class CPhysicsWorld;
+	class CPluginManager;
+	class CPortalNode;
+	class CReport;
+	class CRpgCharacter;
+	class CShapeAABB;
+	class CShapeSphere;
+	class CShapeOBB;
+	class CSunLight;
+	class CSkyMesh;
+	class CTerrainTile;
+	class CWorldInfo;
+	class CZipWriter;
+	class CZoneNode;
+	struct DatabaseEntity;
+	class Degree;
+	class DirectXEngine;
+	class TransformStack;
+	class EffectManager;
+	struct GUILAYER;
+	struct CGUIPosition;
+	struct GUIFontElement;
+	struct GUITextureElement;
+	class IAttributeFields;
+	class IEnvironmentSim;
+	class IGameObject;
+	struct MeshEntity;
+	class Math;
+	class Matrix3;
+	class Matrix4;
+	struct MultiAnimationEntity;
+	struct MDXEntity;
+	class ParaEngineSettings;
+	class Plane;
+	class PlaneBoundedVolume;
+	class Quaternion;
+	class Radian;
+	class Ray;
+	struct SceneState;
+	class ShadowVolume;
+	class Sphere;
+	struct TextureEntity;
+	struct ParaXEntity;
+	class Vector2;
+	class Vector3;
+	class Vector4;
+	class XRefObject;
+	class CViewportManager;
+}
+
+namespace ParaTerrain{
+	class CGlobalTerrain;
+}
+
+namespace NPL
+{
+	struct NPLAddress;
+	class CNPLConnection;
+	class CNPLConnectionManager;
+	class CNPLDispatcher;
+	struct NPLFileName;
+	class CNPLNetServer;
+	struct NPLMessage;
+	class CNPLMessageQueue;
+	struct NPLMsgHeader;
+	struct NPLMsgIn;
+	class NPLMsgIn_parser;
+	class NPLMsgOut;
+	class CNPLRuntime;
+	struct NPLRuntimeAddress;
+	class CNPLRuntimeState;
+	class CNPLScriptingState;
+	class NPLServerInfo;
+	class INPLStimulationPipe;
+
+	struct NPLTimer;
+}
+
+namespace ParaInfoCenter{
+	class CICConfigManager;
+}
+
+namespace luabind
+{
+	namespace adl{
+		class object;
+	}
+	using adl::object;
+}
+
+namespace ParaScripting
+{
+	class ParaObject;
+	class ParaAssetObject;
+}
+struct lua_State;
+class TiXmlNode;
+namespace luabind
+{
+	namespace adl{
+		class object;
+	}
+	using adl::object;
+}
+
+#include <string>
+#include <vector>
+#include <list>
+#include <stdio.h>
+#include <stdarg.h> 
+#include <algorithm> 
+#include <math.h>
+#include <limits>
+#include <stack>
+#include <iostream>
+using namespace std;

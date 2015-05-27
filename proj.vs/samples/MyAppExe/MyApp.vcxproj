@@ -84,7 +84,7 @@
     </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>D:\lxzsrc\ParaCraftSDKGit\src\include\ParaEngine;D:\lxzsrc\ParaCraftSDKGit\src\include\ParaEngine\Core;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\lxzsrc\ParaCraftSDKGit\src\include\ParaEngine;D:\lxzsrc\ParaCraftSDKGit\src\include\ParaEngine\Core;D:\lxzsrc\ParaEngine\Server\trunk\boost_1_55_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>Debug/</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <CompileAs>CompileAsCpp</CompileAs>
@@ -101,10 +101,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\lxzsrc\ParaCraftSDKGit\src\include\ParaEngine;D:\lxzsrc\ParaCraftSDKGit\src\include\ParaEngine\Core;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\lxzsrc\ParaCraftSDKGit\src\include\ParaEngine;D:\lxzsrc\ParaCraftSDKGit\src\include\ParaEngine\Core;D:\lxzsrc\ParaEngine\Server\trunk\boost_1_55_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>D:\lxzsrc\ParaCraftSDKGit\src\include\ParaEngine;D:\lxzsrc\ParaCraftSDKGit\src\include\ParaEngine\Core;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\lxzsrc\ParaCraftSDKGit\src\include\ParaEngine;D:\lxzsrc\ParaCraftSDKGit\src\include\ParaEngine\Core;D:\lxzsrc\ParaEngine\Server\trunk\boost_1_55_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -127,7 +127,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>D:\lxzsrc\ParaCraftSDKGit\src\include\ParaEngine;D:\lxzsrc\ParaCraftSDKGit\src\include\ParaEngine\Core;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\lxzsrc\ParaCraftSDKGit\src\include\ParaEngine;D:\lxzsrc\ParaCraftSDKGit\src\include\ParaEngine\Core;D:\lxzsrc\ParaEngine\Server\trunk\boost_1_55_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>Release/</AssemblerListingLocation>
       <CompileAs>CompileAsCpp</CompileAs>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -143,10 +143,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\lxzsrc\ParaCraftSDKGit\src\include\ParaEngine;D:\lxzsrc\ParaCraftSDKGit\src\include\ParaEngine\Core;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\lxzsrc\ParaCraftSDKGit\src\include\ParaEngine;D:\lxzsrc\ParaCraftSDKGit\src\include\ParaEngine\Core;D:\lxzsrc\ParaEngine\Server\trunk\boost_1_55_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>D:\lxzsrc\ParaCraftSDKGit\src\include\ParaEngine;D:\lxzsrc\ParaCraftSDKGit\src\include\ParaEngine\Core;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\lxzsrc\ParaCraftSDKGit\src\include\ParaEngine;D:\lxzsrc\ParaCraftSDKGit\src\include\ParaEngine\Core;D:\lxzsrc\ParaEngine\Server\trunk\boost_1_55_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -170,7 +170,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>D:\lxzsrc\ParaCraftSDKGit\src\include\ParaEngine;D:\lxzsrc\ParaCraftSDKGit\src\include\ParaEngine\Core;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\lxzsrc\ParaCraftSDKGit\src\include\ParaEngine;D:\lxzsrc\ParaCraftSDKGit\src\include\ParaEngine\Core;D:\lxzsrc\ParaEngine\Server\trunk\boost_1_55_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>MinSizeRel/</AssemblerListingLocation>
       <CompileAs>CompileAsCpp</CompileAs>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -186,10 +186,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"MinSizeRel\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\lxzsrc\ParaCraftSDKGit\src\include\ParaEngine;D:\lxzsrc\ParaCraftSDKGit\src\include\ParaEngine\Core;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\lxzsrc\ParaCraftSDKGit\src\include\ParaEngine;D:\lxzsrc\ParaCraftSDKGit\src\include\ParaEngine\Core;D:\lxzsrc\ParaEngine\Server\trunk\boost_1_55_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>D:\lxzsrc\ParaCraftSDKGit\src\include\ParaEngine;D:\lxzsrc\ParaCraftSDKGit\src\include\ParaEngine\Core;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\lxzsrc\ParaCraftSDKGit\src\include\ParaEngine;D:\lxzsrc\ParaCraftSDKGit\src\include\ParaEngine\Core;D:\lxzsrc\ParaEngine\Server\trunk\boost_1_55_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -212,7 +212,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>D:\lxzsrc\ParaCraftSDKGit\src\include\ParaEngine;D:\lxzsrc\ParaCraftSDKGit\src\include\ParaEngine\Core;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\lxzsrc\ParaCraftSDKGit\src\include\ParaEngine;D:\lxzsrc\ParaCraftSDKGit\src\include\ParaEngine\Core;D:\lxzsrc\ParaEngine\Server\trunk\boost_1_55_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>RelWithDebInfo/</AssemblerListingLocation>
       <CompileAs>CompileAsCpp</CompileAs>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -228,10 +228,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"RelWithDebInfo\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\lxzsrc\ParaCraftSDKGit\src\include\ParaEngine;D:\lxzsrc\ParaCraftSDKGit\src\include\ParaEngine\Core;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\lxzsrc\ParaCraftSDKGit\src\include\ParaEngine;D:\lxzsrc\ParaCraftSDKGit\src\include\ParaEngine\Core;D:\lxzsrc\ParaEngine\Server\trunk\boost_1_55_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>D:\lxzsrc\ParaCraftSDKGit\src\include\ParaEngine;D:\lxzsrc\ParaCraftSDKGit\src\include\ParaEngine\Core;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\lxzsrc\ParaCraftSDKGit\src\include\ParaEngine;D:\lxzsrc\ParaCraftSDKGit\src\include\ParaEngine\Core;D:\lxzsrc\ParaEngine\Server\trunk\boost_1_55_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>

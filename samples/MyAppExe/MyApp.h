@@ -14,6 +14,8 @@ namespace MyCompany
 		/** run the application */
 		int Run(HINSTANCE hInst, const char* lpCmdLine);
 
+		void RegisterNPL_API();
+
 	private:
 		ParaEngine::CPluginLoader m_ParaEngine_plugin;
 		ParaEngine::IParaEngineCore * m_pParaEngine;

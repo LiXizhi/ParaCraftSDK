@@ -9,11 +9,16 @@
 #include "PEtypes.h"
 #include "IParaEngineApp.h"
 #include "IParaEngineCore.h"
+#include "INPL.h"
+#include "INPLRuntime.h"
+#include "INPLRuntimeState.h"
+#include "INPLAcitvationFile.h"
 #include "PluginLoader.hpp"
 
 #include "MyApp.h"
 
 using namespace ParaEngine;
+using namespace NPL;
 using namespace MyCompany;
 
 MyCompany::CMyApp::CMyApp(HINSTANCE hInst /*= NULL*/) : m_pParaEngine(NULL), m_pParaEngineApp(NULL), m_hInst(hInst)
@@ -69,12 +74,43 @@ int MyCompany::CMyApp::Run(HINSTANCE hInst, const char* lpCmdLine)
 	if (m_pParaEngineApp->StartApp(lpCmdLine) != S_OK)
 		return E_FAIL;
 
+	RegisterNPL_API();
+
 	// Set Frame Rate
 	//m_pParaEngineApp->SetRefreshTimer(1/45.f, 0);
 	m_pParaEngineApp->SetRefreshTimer(1 / 30.f, 0);
 
 	// Run to end
 	return m_pParaEngineApp->Run(hInst);
+}
+
+void MyCompany::CMyApp::RegisterNPL_API()
+{
+	/* example of registering C++ file. */
+	class CMyAppAPI : public INPLActivationFile
+	{
+	public:
+		CMyAppAPI(IParaEngineApp* pApp) :m_pApp(pApp){}
+		virtual NPLReturnCode OnActivate(INPLRuntimeState* pState)
+		{
+			HICON hIcon = LoadIcon(NULL, IDI_WARNING);
+			SendMessage(m_pApp->GetMainWindow(), WM_SETICON, ICON_BIG, (LPARAM)hIcon);
+			return NPLReturnCode::NPL_OK;
+		};
+	protected:
+		IParaEngineApp* m_pApp;
+	};
+
+	auto pNPLRuntime = m_pParaEngineApp->GetNPLRuntime();
+	if (pNPLRuntime)
+	{
+		// main NPL thread
+		auto pMainState = pNPLRuntime->GetMainState();
+		if (pMainState)
+		{
+			pMainState->RegisterFile("MyApp.cpp", new CMyAppAPI(m_pParaEngineApp));
+		}
+	}
 }
 
 

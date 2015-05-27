@@ -3,7 +3,7 @@
 // Copyright (C) 2007 - 2010 ParaEngine Corporation, All Rights Reserved.
 // Author:	LiXizhi
 // Date:	2010.2
-// Desc:	Use this fine to load dll, if one wants to link to core lib at runtime. 
+// Desc:	Use this file to load dll, if one wants to link to core lib at runtime. 
 //			PE_MODULE_STANDALONE is usually defined with delayed core lib. 
 //-----------------------------------------------------------------------------
 #include <vector>
@@ -19,6 +19,7 @@ namespace ParaEngine
 	using namespace std;
 	// forward declarations.
 	class ClassDescriptor;
+	class IParaEngineCore;
 
 	//////////////////////////////////////////////////////////////////////////
 	// plug-in library functions to be explicitly imported to the game engine. 
@@ -33,9 +34,11 @@ namespace ParaEngine
 	typedef ClassDescriptor* (*lpFnLibClassDesc)(int i);
 	/** "LibInit": this is optional in a plug-in */
 	typedef void (*lpFnLibInit)();
+	/** "LibInitParaEngine": this is optional in a plug-in */
+	typedef void (*lpFnLibInitParaEngine)(IParaEngineCore* pIParaEngineCore);
 	/** "LibActivate": this is optional in a plug-in */
 	typedef int (*lpFnLibActivate)(int nType, void* pVoid);
-	
+		
 	typedef void (STDCALL *pfnEnsureInit)(void);
 	typedef void (STDCALL *pfnForceTerm)(void);
 

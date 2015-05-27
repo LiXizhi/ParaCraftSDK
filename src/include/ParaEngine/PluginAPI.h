@@ -11,6 +11,10 @@
 namespace ParaEngine
 {
 	class IParaEngineCore;
+}
+
+namespace ParaEngine
+{
 /** define PE_MODULE_STANDALONE if the plugin does not link to Core lib under win32 */
 #ifndef PE_MODULE_STANDALONE
 	/** Returns the state of the VERSION_PARAENGINE */ 
@@ -97,3 +101,50 @@ namespace ParaEngine
 		virtual void* activate(int cmd, void* arg1=0, void* arg2=0, void* arg3=0) { return 0; } 
 	};
 }
+
+#if !defined(PE_CORE_EXPORTING) && !defined(PARAENGINE_MOBILE)
+
+namespace ParaEngine
+{
+	typedef IParaEngineCore* (STDCALL* funcPtrGetCOREInterface_type)();
+
+	/** this class is only used in ParaEngine dll plugins to call main exe functions from the loaded DLL
+	The dll no need to actually link to the executable. It uses GetProcAddress in win32.  Under linux, it just calls GetCOREInterface() directly.
+	usage:
+	ParaEngine::CParaEngineCore::GetParaEngineCOREInterface()->WriteToLog("hello %s\n", "world");
+	*/
+	class CParaEngineCore
+	{
+	public:
+		static IParaEngineCore* GetParaEngineCOREInterface()
+		{
+			static IParaEngineCore* s_pCore = NULL;
+			if (s_pCore == NULL)
+			{
+#ifdef WIN32
+#ifdef _DEBUG
+				HINSTANCE hDLL = (HINSTANCE)::LoadLibrary("ParaEngineClient_d.dll");
+#else
+				HINSTANCE hDLL = (HINSTANCE)::LoadLibrary("ParaEngineClient.dll");
+#endif
+				if(hDLL != INVALID_HANDLE_VALUE)
+				{
+					funcPtrGetCOREInterface_type pFuncPtr = (funcPtrGetCOREInterface_type)::GetProcAddress(hDLL, "GetParaEngineCOREInterface");
+					if(pFuncPtr){
+						s_pCore = pFuncPtr();
+					}
+					else{
+						throw "can not GetCOREInterface";
+					}
+					::FreeLibrary(hDLL);
+				}
+#else
+				s_pCore = GetCOREInterface();
+#endif
+			}
+			return s_pCore;
+		}
+	};
+}
+
+#endif

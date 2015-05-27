@@ -68,7 +68,7 @@ Sound related:
   <block singleSideTex="true" name="Water" text="水" searchkey="水流动蓝兰" mc_id="8" id="75" mapcolor="#ddeaf0" speedReduction="0.4" associated_blockid="76" class="BlockLiquidFlow" material="water" categoryID="8" normalMap="Texture/ripple/WaterBumpMap.dds" texture="Texture/blocks/water/water_fps10_a009.png" liquid="true" blendedTexture="true" transparent="true" cubeMode="true"  />
   <!--name="Stationary_Water" text="静态水" searchkey="" mc_id="9"-->
   <block singleSideTex="true" name="Still_Water" text="静态水" searchkey="" mc_id="9" speedReduction="0.4" id="76" mapcolor="#ddeaf0" associated_blockid="75" class="BlockLiquidStill" material="water" categoryID="8" normalMap="Texture/ripple/WaterBumpMap.dds" texture="Texture/blocks/water/water_fps10_a009.png" liquid="true" blendedTexture="true" transparent="true" cubeMode="true"  />
-  <block singleSideTex="true" name="Lava" text="岩浆" searchkey="岩浆发光熔岩红" mc_id="10" id="82" categoryID="5" mapcolor="#f88633" icon="Texture/blocks/items/lava_flow.png" texture="Texture/blocks/lava/lava_fps10_a010.png" light="true" obstruction="true" solid="true" cubeMode="true"  />
+  <block singleSideTex="true" name="Lava" text="岩浆" searchkey="岩浆发光熔岩红" mc_id="10" id="82" mapcolor="#f88633" icon="Texture/blocks/items/lava_flow.png" texture="Texture/blocks/lava/lava_fps10_a010.png" light="true" categoryID="5" obstruction="true" solid="true" cubeMode="true"  />
   <!--name="Stationary_Lava" text="静态岩浆" searchkey="" mc_id="11"-->
   <block singleSideTex="true" name="Sand" text="沙子" searchkey="沙子灰白纯" mc_id="12" id="51" mapcolor="#ebdcb3" step_sound="sand" material="sand" icon="Texture/blocks/items/sand.png" texture="Texture/blocks/sand.png" obstruction="true" solid="true" cubeMode="true"  />
   <block singleSideTex="true" name="Gravel" text="沙砾" searchkey="沙砾灰黑" mc_id="13" mapcolor="#735439" id="12" step_sound="gravel" material="sand" icon="Texture/blocks/items/gravel.png" texture="Texture/blocks/gravel.png" obstruction="true" solid="true" cubeMode="true"  />
@@ -138,6 +138,7 @@ Sound related:
   <block singleSideTex="true" name="Black_Carpet" text="黑色地毯" mc_id="171:15" id="249" mapcolor="#0c0500" step_sound="grass" icon="Texture/blocks/items/carpet_black.png" texture="Texture/blocks/wool_colored_black.png" obstruction="false" cubeMode="true" template="carpet"  />
   <block singleSideTex="true" name="Mirror" text="镜子" searchkey="镜子" id="252" material="glass" icon="Texture/blocks/items/mirror.png" categoryID="9" step_sound="glass" texture="Texture/blocks/mirror.png" obstruction="true" solid="true" cubeMode="true" />
   <block threeSideTex="true" name="Bone" text="骨骼" searchkey="骨骼" class="BlockBone" id="253" material="glass" icon="Texture/blocks/items/bone.png" step_sound="glass" texture="Texture/blocks/wool_colored_silver.png" obstruction="true" blockcamera="true" template="bone?filename=model/blockworld/Bone/Bone"/>
+  <block threeSideTex="true" name="BlockModel" text="模型" searchkey="模型" class="BlockModel" entity_class="EntityBlockModel" item_class="ItemBlockModel" id="254" icon="Texture/blocks/items/ts_char_off.png" texture="Texture/blocks/wool_colored_white.png" obstruction="true"/>
   <!--name="Hardened_Clay" text="硬化粘土" mc_id="172" 先不做-->
   <!--name="Block_Of_Coal" text="煤炭块" mc_id="173" 先不做-->
   
@@ -200,7 +201,7 @@ Sound related:
   <!--TODO 2014.1.27: use Texture/blocks/obsidianBlack.png-->
   <block singleSideTex="true" name="Obsidian" text="黑曜石" searchkey="黑曜石" mc_id="49" id="146" mapcolor="#261a1a" icon="Texture/blocks/items/stone_obsidian.png" material="rock" step_sound="stone" texture="Texture/blocks/obsidian.png" obstruction="true" solid="true" cubeMode="true"  />
   <!--Light source-->
-  <block name="Torch" text="火把" searchkey="火把" mc_id="50" id="100" categoryID="5" itemModel="icon" itemModelScaling="1" inhandOffset="{0,0.3,0}" icon="model/blockworld/Torch/Torch_ground.x.png" texture="Texture/blocks/torch.png" light="true" torchLightValue="14" customModel="true" template="Torch?filename=model/blockworld/Torch/Torch"/>
+  <block name="Torch" text="火把" searchkey="火把" mc_id="50" id="100"  itemModel="icon" itemModelScaling="1" inhandOffset="{0,0.3,0}" icon="model/blockworld/Torch/Torch_ground.x.png" texture="Texture/blocks/torch.png" light="true" categoryID="5" torchLightValue="14" customModel="true" template="Torch?filename=model/blockworld/Torch/Torch"/>
   <!--name="Fire" text="火" searchkey="" mc_id="51" 建星做-->
   <!--name="Mob_Spawner" text="刷怪箱" searchkey="" mc_id="52" 先不做-->
   <block name="Oak_Wood_Stairs" text="橡木楼梯" searchkey="橡木楼梯" mc_id="53" id="112" mapcolor="#73582b" icon="Texture/blocks/items/stairs_oak.png" step_sound="wood" texture="Texture/blocks/planks_oak.png" template="Stairs?filename=model/blockworld/StairsWood/StairsWood" />
@@ -260,20 +261,20 @@ Sound related:
   <block name="PistonMoving" text="运动中的活塞" searchkey="运动中的活塞" mc_id="204" id="205" mapcolor="#776b31" class="BlockPistonMoving" icon="model/blockworld/Piston/Piston_on.x.png" obstruction="true" />
   <!--added by Jingqi 2013.11.3: name="Redstone_Ore" text="红石矿石" searchkey="" mc_id="73"-->
   <block singleSideTex="true" name="Redstone_Ore" text="红石矿石" searchkey="红石矿石" mc_id="73" id="16" mapcolor="#871804" icon="Texture/blocks/items/ore_redstone.png" texture="Texture/blocks/redstone_ore.png" obstruction="true" solid="true" cubeMode="true"  />
-  <block singleSideTex="true" name="Lamp" text="灯" searchkey="灯" mc_id="124" id="6" mapcolor="#f4c249" icon="Texture/blocks/items/Light.png" texture="Texture/blocks/redstoneLight_lit.png" light="true" obstruction="true" solid="true" cubeMode="true"  />
+  <block singleSideTex="true" name="Lamp" text="灯" searchkey="灯" mc_id="124" id="6" mapcolor="#f4c249" icon="Texture/blocks/items/Light.png" texture="Texture/blocks/redstoneLight_lit.png" light="true" categoryID="5" obstruction="true" solid="true" cubeMode="true"  />
   <block singleSideTex="true" name="Redstone_Lamp" text="红石灯" searchkey="红石灯" mc_id="123" id="199" mapcolor="#f2c849" class="BlockRedstoneLight" toggle_blockid="207" icon="Texture/blocks/items/redstoneLight_on.png" texture="Texture/blocks/redstone_lamp_off.png" obstruction="true" solid="true" cubeMode="true"  />
   <block singleSideTex="true" name="Redstone_Lamp_On" text="开启的红石灯" searchkey="开启的红石灯" mc_id="124" id="207" mapcolor="#ffd65b" class="BlockRedstoneLight" toggle_blockid="199" icon="Texture/blocks/items/redstoneLight_on.png" texture="Texture/blocks/redstone_lamp_on.png" light="true" obstruction="true" solid="true" cubeMode="true"  />
   <!--name="Pumpkin_Lantern" text="南瓜灯" searchkey="" mc_id="91" 最好换个材质脸（夏日风情的南瓜灯是无脸的）-->
-  <block threeSideTex="true" name="Pumpkin_Lantern" text="南瓜灯" searchkey="南瓜灯" mc_id="91" id="220" mapcolor="#f1be51" icon="Texture/blocks/items/pumpkin_lantern.png" texture="Texture/blocks/pumpkinLight_three.png" light="true" obstruction="true" solid="true" cubeMode="true"  />
+  <block threeSideTex="true" name="Pumpkin_Lantern" text="南瓜灯" searchkey="南瓜灯" mc_id="91" id="220" mapcolor="#f1be51" icon="Texture/blocks/items/pumpkin_lantern.png" texture="Texture/blocks/pumpkinLight_three.png" light="true" categoryID="5" obstruction="true" solid="true" cubeMode="true"  />
 
   <!--name="Redstone_Ore_Glowing" text="发光的红石矿石" searchkey="" mc_id="74" 先不做-->
   <!--Added Xizhi 2013.12.4: name="Redstone_Torch" text="红石火把" searchkey="" mc_id="75"-->
   <block name="Redstone_Torch" text="红石火把" itemModel="icon" searchkey="红石火把" mc_id="75" id="191" class="BlockRedstoneTorch" icon="Texture/blocks/items/redstone_torch.png" texture="Texture/blocks/redstone_torch_off.png" toggle_blockid="192" customModel="true" template="Torch?filename=model/blockworld/Redstone_Torch/Redstone_Torch_off" />
   <!--Added Xizhi 2013.12.4: name="Redstone_Torch_On" text="点亮的红石火把" searchkey="" mc_id="76"-->
-  <block name="Redstone_Torch_On" text="红石火把" itemModel="icon" searchkey="红石火把" mc_id="76" id="192" class="BlockRedstoneTorch" icon="Texture/blocks/items/redstone_torch.png" texture="Texture/blocks/redstone_torch_on.png"  toggle_blockid="191" light="true" torchLightValue="7" customModel="true" template="Torch?filename=model/blockworld/Redstone_Torch/Redstone_Torch_on" />
+  <block name="Redstone_Torch_On" text="红石火把" itemModel="icon" searchkey="红石火把" mc_id="76" id="192" class="BlockRedstoneTorch" icon="Texture/blocks/items/redstone_torch.png" texture="Texture/blocks/redstone_torch_on.png"  toggle_blockid="191" light="true" categoryID="5" torchLightValue="7" customModel="true" template="Torch?filename=model/blockworld/Redstone_Torch/Redstone_Torch_on" />
   <!--Added Xizhi 2014.2.18: -->
   <block threeSideTex="true" name="Redstone_Conductor" text="向上导体" searchkey="向上导体" id="225" mapcolor="#c1221a" class="BlockRedstoneConductor" toggle_blockid="226" icon="Texture/blocks/items/redstone_conductor.png" texture="Texture/blocks/redstone_conductor_off.png" obstruction="true" solid="true" cubeMode="true"  />
-  <block threeSideTex="true" name="Redstone_Conductor_On" text="充能的向上导体" searchkey="充能的向上导体" id="226" mapcolor="#c1221a" class="BlockRedstoneConductor" toggle_blockid="225" icon="Texture/blocks/items/redstone_conductor.png" texture="Texture/blocks/redstone_conductor_on.png" light="true" torchLightValue="7" obstruction="true" solid="true" cubeMode="true"  />
+  <block threeSideTex="true" name="Redstone_Conductor_On" text="充能的向上导体" searchkey="充能的向上导体" id="226" mapcolor="#c1221a" class="BlockRedstoneConductor" toggle_blockid="225" icon="Texture/blocks/items/redstone_conductor.png" texture="Texture/blocks/redstone_conductor_on.png" light="true" categoryID="5" torchLightValue="7" obstruction="true" solid="true" cubeMode="true"  />
   <!--Added Xizhi 2013.12.4: name="Stone_Button" text="按钮" searchkey="" mc_id="77" 建星做-->
   <block name="Stone_Button" text="按钮" searchkey="按钮" mc_id="77" id="105" class="BlockButton" icon="model/blockworld/Redstone_Button/Redstone_Button_off.x.png" click_sound="click" toggle_sound="click" selection_effect="model_highlight" texture="Texture/blocks/Redstone_Button_off.png" texture2="Texture/blocks/Redstone_Button_on.png" customModel="true" hasAction="true" template="Lever?filename=model/blockworld/Redstone_Button/Redstone_Button" />
   <!--(Modified Xizhi 2013.11.4) 为snowcover，按厚度有7种不同的状态，建星做-->
@@ -315,7 +316,7 @@ Sound related:
   <block name="IronTrapdoor" text="铁窗" searchkey="铁窗" id="194" class="BlockTrapDoor" icon="model/blockworld/WindowIron/WindowIron.x.png" toggle_blockid="195" toggle_sound="door_open" texture="Texture/blocks/door_iron_upper.png" obstruction="true" customModel="true" transparent="true" alphaTestTexture="true" template="Trapdoor?filename=model/blockworld/WindowWood/WindowWood" />
   <block name="IronTrapdoor_On" text="铁窗(开)" searchkey="铁窗(开)" id="195" class="BlockTrapDoor" icon="model/blockworld/WindowIron/WindowIron.x.png" toggle_blockid="194" toggle_sound="door_open" texture="Texture/blocks/door_iron_upper.png" customModel="true" transparent="true" alphaTestTexture="true" template="Trapdoor_On?filename=model/blockworld/WindowWood/WindowWood" />
   <!--added by Jingqi 2013.11.3: name="Block_Of_Redstone" text="红石块" searchkey="" mc_id="152"-->
-  <block singleSideTex="true" name="Block_Of_Redstone" text="红石块" class="BlockPowered" searchkey="红石块" mc_id="155" id="157" mapcolor="#"  icon="Texture/blocks/items/redstone_block.png" texture="Texture/blocks/redstone_block_new.png" obstruction="true" solid="true" light="true" torchLightValue="7" cubeMode="true"  />
+  <block singleSideTex="true" name="Block_Of_Redstone" text="红石块"  class="BlockPowered" searchkey="红石块" mc_id="155" id="157" mapcolor="#"  icon="Texture/blocks/items/redstone_block.png" texture="Texture/blocks/redstone_block_new.png" obstruction="true" solid="true" light="true" categoryID="5" torchLightValue="7" cubeMode="true"  />
 
   <!--name="SilverfishStone" text="隐藏的蠹虫" searchkey="" mc_id="97" 先不做-->
   <block singleSideTex="true" name="StoneBrick" text="石砖" searchkey="石砖" mc_id="98" id="68" mapcolor="#b3ad90" material="rock" step_sound="stone" icon="Texture/blocks/items/stonebrick.png" texture="Texture/blocks/stonebrick.png" obstruction="true" solid="true" cubeMode="true"  />
@@ -470,7 +471,7 @@ Sound related:
   <block threeSideTex="true" id="79" texture="Texture/tileset/blocks/window_three.dds" obstruction="true" solid="true" cubeMode="true"  />
   <block singleSideTex="true" text="木箱" searchkey="木箱" id="80" mapcolor="#67542c" icon="Texture/blocks/items/planks_oak.png" texture="Texture/blocks/trapdoor.png" obstruction="true" solid="true" cubeMode="true"  />
   <block threeSideTex="true" name="PhysicalBox" text="可移动木箱" searchkey="可移动木箱" id="83" mapcolor="#67542c" hasAction="true" class="BlockDynamic" icon="Texture/blocks/items/movablebox.png" texture="Texture/blocks/box_three.png" obstruction="true" solid="true" cubeMode="true"  />
-  <block threeSideTex="true" text="灯笼鼓" searchkey="灯笼鼓" id="90" icon="Texture/blocks/items/drum.png" texture="Texture/blocks/drum.png" light="true" obstruction="true" solid="true" cubeMode="true"  />
+  <block threeSideTex="true" text="灯笼鼓" searchkey="灯笼鼓" id="90" icon="Texture/blocks/items/drum.png" texture="Texture/blocks/drum.png" light="true" categoryID="5" obstruction="true" solid="true" cubeMode="true"  />
 
   <!--lever button 2 states with toggle_blockid -->
   <!--<block text="开关(0)" id="106" icon="model/04deco/v5/blockworld/Lever/Lever_Up.x.png" click_sound="wood_click" toggle_sound="wood_click" toggle_blockid="107" selection_effect="model_highlight" texture="" customModel="true" hasAction="true" template="Lever?filename=model/04deco/v5/blockworld/Lever/Lever_Up" />
@@ -487,7 +488,7 @@ Sound related:
   
   
   可用ID： 189 is free
-  >=253 以上 
+  >=254 以上 
   
   
   

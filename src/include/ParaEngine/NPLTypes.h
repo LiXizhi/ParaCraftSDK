@@ -17,6 +17,10 @@
 #define NPL_VERSION_MAJOR	1
 #define NPL_VERSION_MINOR	0
 
+#ifndef ParaIntrusivePtr
+#define ParaIntrusivePtr boost::intrusive_ptr
+#endif
+
 namespace NPL
 {
 	struct NPLAddress;
@@ -41,7 +45,7 @@ namespace NPL
 
 	typedef boost::shared_ptr<CNPLRuntimeState> NPLRuntimeState_ptr;
 	typedef boost::shared_ptr<NPLServerInfo> NPLServerInfo_ptr;
-	typedef boost::intrusive_ptr<NPLMessage> NPLMessage_ptr;
+	typedef ParaIntrusivePtr<NPLMessage> NPLMessage_ptr;
 	typedef boost::shared_ptr<NPLRuntimeAddress> NPLRuntimeAddress_ptr;
 	typedef boost::shared_ptr<NPLTimer> NPLTimer_ptr;
 

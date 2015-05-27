@@ -18,8 +18,8 @@
 #else
 
 #ifdef PE_CORE_EXPORTING
-#define PE_CORE_DECL    
-// #define PE_CORE_DECL    __attribute__ ((visibility("default")))
+// #define PE_CORE_DECL    
+#define PE_CORE_DECL    __attribute__ ((visibility("default")))
 #define EXPIMP_TEMPLATE
 #else
 #define PE_CORE_DECL

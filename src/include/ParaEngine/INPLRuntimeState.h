@@ -5,6 +5,7 @@
 namespace NPL
 {
 	class INPLRuntime;
+	class INPLActivationFile;
 	/**
 	* The types of CNPLRuntimeState
 	*/
@@ -16,6 +17,8 @@ namespace NPL
 		NPLRuntimeStateType_NPL_LITE,
 		/// it consumes nothing. and is usually used with DLL plugins. 
 		NPLRuntimeStateType_DLL,
+		/// same as NPLRuntimeStateType_NPL, but with externally set lua state
+		NPLRuntimeStateType_NPL_ExternalLuaState,
 	};
 
 	/**
@@ -161,5 +164,11 @@ namespace NPL
 		* @return : If the function succeeds, the return value is true
 		*/
 		virtual bool ChangeTimer(int nIDEvent, int dueTime, int period) = 0;
+
+		/** function to register the a file handler in the current NPL state, so that it is callable from NPL script or C++
+		* @param sFilename: any name with cpp file extension can be used. usually it is "states.cpp". The name does not need to be same as the real cpp file.
+		* @param pFileHandler: if NULL it will unregister. If not, it is the file handler pointer, the pointer must be always valid, it is usually a static singleton object.
+		*/
+		virtual void RegisterFile(const char* sFilename, INPLActivationFile* pFileHandler = NULL) = 0;
 	};
 }

@@ -26,6 +26,7 @@ list(APPEND MyApp_SRCS ${MyApp_FILES})
 # add the binary tree to the search path for include files
 include_directories("${ParaEngineClient_SOURCE_DIR}")
 include_directories("${ParaEngineClient_SOURCE_DIR}/Core")
+INCLUDE_DIRECTORIES( ${Boost_INCLUDE_DIRS} )
 
 IF(MSVC)
 	# statically link MSVC to reduce dependancies

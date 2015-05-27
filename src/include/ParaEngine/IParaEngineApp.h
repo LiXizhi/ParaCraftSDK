@@ -16,6 +16,20 @@ namespace NPL{
 	class INPLRuntime;
 }
 
+#ifndef WIN32
+#ifndef WM_USER
+	#define WM_USER                         0x0400
+#endif
+#ifndef LRESULT
+	#define LRESULT     long*
+#endif
+#ifndef WPARAM
+	#define WPARAM     int*
+#endif
+#ifndef LPARAM
+	#define LPARAM     int*
+#endif
+#endif
 namespace ParaEngine
 {
 	struct CWinRawMsg;
@@ -358,12 +372,29 @@ namespace ParaEngine
 		virtual void SetReturnCode(int nReturnCode) = 0;
 		virtual int GetReturnCode() = 0;
 
-		/** get the NPL runtime system associate with the application. NPL provides communication framework accross different language systems. */
+		/** get the NPL runtime system associate with the application. NPL provides communication framework across different language systems. */
 		virtual NPL::INPLRuntime* GetNPLRuntime() = 0;
 
+		/** whether the last mouse input is from touch or mouse. by default it is mouse mode. */
 		virtual bool IsTouchInputting() = 0;
 
-		virtual int32_t GetTouchPointX() = 0;
-		virtual int32_t GetTouchPointY() = 0;
+		virtual bool IsSlateMode() = 0;
+
+		/** obsoleted function: */
+		virtual int32 GetTouchPointX() = 0;
+		virtual int32 GetTouchPointY() = 0;
+
+		/** append text to log file. */
+		virtual void WriteToLog(const char* sFormat, ...) = 0;
+
+		/** write app log to file with time and code location. */
+		virtual void AppLog(const char* sMessage) { WriteToLog(sMessage); };
+
+		/** whether the last mouse input is from touch or mouse. by default it is mouse mode. */
+		virtual void SetTouchInputting(bool bTouchInputting){};
+
+		/** show a system message box to the user. mostly about fatal error.  */
+		virtual void SystemMessageBox(const std::string& msg) {};
 	};
+
 }

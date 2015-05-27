@@ -13,6 +13,7 @@
 #include "INPLRuntime.h"
 #include "INPLRuntimeState.h"
 #include "INPLAcitvationFile.h"
+#include "NPLInterface.hpp"
 #include "PluginLoader.hpp"
 
 #include "MyApp.h"
@@ -86,15 +87,23 @@ int MyCompany::CMyApp::Run(HINSTANCE hInst, const char* lpCmdLine)
 
 void MyCompany::CMyApp::RegisterNPL_API()
 {
-	/* example of registering C++ file. */
+	/* example of registering C++ file. In NPL script, call
+	   NPL.activate("MyApp.cpp", {type="SetIcon"});
+	*/
 	class CMyAppAPI : public INPLActivationFile
 	{
 	public:
 		CMyAppAPI(IParaEngineApp* pApp) :m_pApp(pApp){}
 		virtual NPLReturnCode OnActivate(INPLRuntimeState* pState)
 		{
-			HICON hIcon = LoadIcon(NULL, IDI_WARNING);
-			SendMessage(m_pApp->GetMainWindow(), WM_SETICON, ICON_BIG, (LPARAM)hIcon);
+			auto msg = NPLInterface::NPLHelper::MsgStringToNPLTable(pState->GetCurrentMsg(), pState->GetCurrentMsgLength());
+			std::string sType = msg["type"];
+			if (sType == "SetIcon")
+			{
+				// example of changing application icon. 
+				HICON hIcon = LoadIcon(NULL, IDI_WARNING);
+				SendMessage(m_pApp->GetMainWindow(), WM_SETICON, ICON_BIG, (LPARAM)hIcon);
+			}
 			return NPLReturnCode::NPL_OK;
 		};
 	protected:

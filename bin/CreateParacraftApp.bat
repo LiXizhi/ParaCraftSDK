@@ -1,7 +1,7 @@
 echo off
 set PC_SDK_ROOT=%~dp0..\
 
-Set /p appname=请输入APP的名字:
+Set /p appname=Please enter app name to create:
 
 REM create in "./_apps/[appname]" folder
 set appfolder=%PC_SDK_ROOT%_apps\%appname%
@@ -21,7 +21,7 @@ echo call "ParaEngineClient.exe" bootstrapper="source/%appname%/main.lua" single
 echo popd >> %RunFileName%
 
 
-echo 恭喜！生成完毕: %appfolder%\%appname%
+echo Congrat! successfully created at: %appfolder%\%appname%
 
 start explorer.exe "%appfolder%"
 

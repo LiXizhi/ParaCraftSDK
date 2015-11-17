@@ -16,9 +16,6 @@ NPL.load("(gl)script/apps/IMServer/IMserver_client.lua");
 -- 通讯系统
 JabberClientManager = commonlib.gettable("IMServer.JabberClientManager");
 
--- 选择一个操作系统：
-System = commonlib.inherit(Map3DSystem);
-
 --读配置文件
 local function load_config()
 	System.options.is_client = true;

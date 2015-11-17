@@ -15,8 +15,6 @@ Or run application with command line: bootstrapper="script/apps/Taurus/bootstrap
 ]]
 
 NPL.load("(gl)script/kids/ParaWorldCore.lua"); -- ParaWorld platform includes
--- Choose a core system. Code name("Map3DSystem") is the latest ParaWorld platform system implementation.
-System = commonlib.inherit(Map3DSystem);
 
 -- if asset is not found locally, we will look in this place
 -- TODO: read this from config file. 

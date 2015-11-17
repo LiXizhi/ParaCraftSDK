@@ -5,11 +5,11 @@ set PC_SDK_ROOT=%~dp0..\
 Set pub_dir=%PC_SDK_ROOT%published\
 Set redist_dir=%PC_SDK_ROOT%redist\
 Set bin_dir=%PC_SDK_ROOT%bin\
-Set /p appname=请输入要发布的APP名字（空表示为产品本身）:
-Set start_filename=运行%appname%.bat
+Set /p appname=Please enter application name (empty for current product):
+Set start_filename=run %appname%.bat
 
 pushd %redist_dir%
-echo 正在清理%redist_dir%中的临时文件
+echo cleaning up temp files in %redist_dir%
 del asset.log
 del log.txt
 del perf.txt
@@ -37,22 +37,22 @@ rd "launcher_caches" /s /q
 rd "launcher_res" /s /q
 rd "caches" /s /q
 rd "bin64" /s /q
-echo 恭喜！%redist_dir%清理完毕
-echo 请自己将 %redist_dir% worlds目录手工清理. 
+echo Congrat! %redist_dir% is cleaned up
+echo please manually remove all files in world directory %redist_dir%
 
 REM application related files
 rd "apps" /s /q
 del *.bat
 popd
 
-REM 生成启动文件
+REM generate start file
 Set RunFileName="%redist_dir%\%start_filename%"
 del %RunFileName%
 if "%appname%" NEQ "" (
 	mkdir "%redist_dir%apps"
 	mkdir "%redist_dir%apps\%appname%"
 	xcopy "%PC_SDK_ROOT%_apps\%appname%" "%redist_dir%apps\%appname%" /C /E
-	echo 成功将"%PC_SDK_ROOT%apps\%appname%" 发布到了apps目录
+	echo Successfully published app to "%PC_SDK_ROOT%apps\%appname%"
 	
 	REM  create the Run.bat file
 	echo @echo off >> %RunFileName%
@@ -61,15 +61,15 @@ if "%appname%" NEQ "" (
 	echo popd >> %RunFileName%
 ) else (
 	echo call "%%~dp0ParaCraft.exe" >> %RunFileName%
-	echo call "%%~dp0ParaEngineClient.exe" single="false" mc="true" noupdate="true">> %redist_dir%\离线运行.bat
+	echo call "%%~dp0ParaEngineClient.exe" single="false" mc="true" noupdate="true">> %redist_dir%\run_offline.bat
 )
 
-echo 恭喜！生成完毕
-echo 请自己将 %redist_dir% 打包并发布. 
+echo Congrat! finished!
+echo please manually zip and publish %redist_dir% 
 
-Set /p tmp=是否将redist目录打包为zip文件（确认按Y）
+Set /p tmp=Do you want to zip redist directory (Y to confirm)
 if '%tmp%'=='Y' (
-	call "%bin_dir%7z.exe" a [离线版客户端]ParaCraft%appname%%DATE:~0,4%%DATE:~5,2%%DATE:~8,2%.zip %redist_dir%
+	call "%bin_dir%7z.exe" a [Offline]ParaCraft%appname%%DATE:~0,4%%DATE:~5,2%%DATE:~8,2%.zip %redist_dir%
 ) else (
 	pause
 	start explorer.exe "%redist_dir%"

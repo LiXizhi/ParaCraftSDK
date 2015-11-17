@@ -1,6 +1,6 @@
 echo off
 set PC_SDK_ROOT=%~dp0..\
-Set /p modname=请输入Mod的名字:
+Set /p modname=Please enter mod/plugin name:
 
 REM create in "./_mod/[modname]" folder
 set modfolder=%PC_SDK_ROOT%_mod\%modname%
@@ -28,6 +28,6 @@ setlocal enabledelayedexpansion
 ))>"%modfolder%\Mod\%modname%\main.lua"
 
 
-echo 恭喜！生成完毕: %modfolder%
+echo Congrat, succesfully generated at: %modfolder%
 
 start explorer.exe "%modfolder%"

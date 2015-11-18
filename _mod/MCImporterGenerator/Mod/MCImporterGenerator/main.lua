@@ -2,7 +2,9 @@
 Title: mc importer
 Author(s): lixizhi@yeah.net
 Date: 2015.11.17
-Desc: a demo of mixed C++/NPL plugin. 
+Desc: a demo of mixed C++/NPL plugin. This plugin will import mc world into paracraft.
+Requirements: One needs to have MCImporter.dll copied to [redist]/MCImporter.dll
+
 1. during init, the plugin registered a Chunk generator called "MCImporter" and /mcimport command
 2. the /mcimport command will allow user to select a minecraft world directory and create a world with it. 
 3. When the player moves around the newly created world, the importer's GenerateChunkImp() method is called 
@@ -45,7 +47,7 @@ function MCImporterGenerator:RegisterWorldGenerator()
 	local ChunkGenerators = commonlib.gettable("MyCompany.Aries.Game.World.ChunkGenerators");
 
 	NPL.load("(gl)Mod/MCImporterGenerator/MCImporterChunkGenerator.lua");
-	local MCImporterChunkGenerator = commonlib.gettable("MyCompany.Aries.Game.World.Generators.MCImporterChunkGenerator");
+	local MCImporterChunkGenerator = commonlib.gettable("Mod.MCImporterGenerator.MCImporterChunkGenerator");
 	ChunkGenerators:Register(MCImporterGenerator.generator_name, MCImporterChunkGenerator);
 end
 
@@ -78,9 +80,10 @@ end
 -- allow the user to choose which world to import. 
 function MCImporterGenerator:OnClickImportWorld()
 	NPL.load("(gl)script/ide/OpenFileDialog.lua");
-	local filename = CommonCtrl.OpenFileDialog.ShowDialog_Win32(nil, "minecraft world directory:", ParaIO.GetCurDirectory(0), false);
-	if(filename) then
-		local src_dir = filename:gsub("[/\\][^/\\]*$", "");
+	-- local filename = CommonCtrl.OpenFileDialog.ShowDialog_Win32(nil, "minecraft world directory:", ParaIO.GetCurDirectory(0), false);
+	local src_dir = CommonCtrl.OpenFileDialog.ShowOpenFolder_Win32();
+	if(src_dir and src_dir~="") then
+		src_dir = src_dir:gsub("[/\\]$", "");
 		local worldname = src_dir:match("[^/\\]+$");
 		if(worldname and src_dir) then
 			self:CreateWorldFromMCWorld(worldname, src_dir)

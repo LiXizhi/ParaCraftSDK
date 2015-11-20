@@ -5,7 +5,7 @@ Date: 2015.11.17
 Desc: a demo of mixed C++/NPL plugin. This plugin will import mc world into paracraft.
 Requirements: One needs to have MCImporter.dll copied to [redist]/MCImporter.dll
 
-1. during init, the plugin registered a Chunk generator called "MCImporter" and /mcimport command
+1. during init, the plugin registered a Chunk generator called "MCImporter",  /mcimport command and file.mcimport menuitem
 2. the /mcimport command will allow user to select a minecraft world directory and create a world with it. 
 3. When the player moves around the newly created world, the importer's GenerateChunkImp() method is called 
 	which asks the C++ MCimporter dll to load the chunk dynamically. 
@@ -40,6 +40,7 @@ function MCImporterGenerator:init()
 	LOG.std(nil, "info", "MCImporterGenerator", "plugin initialized");
 	self:RegisterWorldGenerator();
 	self:RegisterCommand();
+	self:RegisterMenuItem();
 end
 
 function MCImporterGenerator:RegisterWorldGenerator()
@@ -63,6 +64,11 @@ function MCImporterGenerator:RegisterCommand()
 	};
 end
 
+function MCImporterGenerator:RegisterMenuItem()
+	-- add menu item to desktop 
+	self:RegisterMenuItem("file", {text = L"import minecraft world...", name = "file.mcimport", cmd="/mcimport", }, "file.loadworld");
+end
+
 function MCImporterGenerator:OnLogin()
 end
 -- called when a new world is loaded. 
@@ -77,6 +83,12 @@ end
 function MCImporterGenerator:OnDestroy()
 end
 
+function MCImporterGenerator:IsValidMCWorldDirectory(src_dir)
+	if(ParaIO.DoesFileExist(src_dir.."\\level.dat", false)) then
+		return true;
+	end
+end
+
 -- allow the user to choose which world to import. 
 function MCImporterGenerator:OnClickImportWorld()
 	NPL.load("(gl)script/ide/OpenFileDialog.lua");
@@ -86,7 +98,11 @@ function MCImporterGenerator:OnClickImportWorld()
 		src_dir = src_dir:gsub("[/\\]$", "");
 		local worldname = src_dir:match("[^/\\]+$");
 		if(worldname and src_dir) then
-			self:CreateWorldFromMCWorld(worldname, src_dir)
+			if(self:IsValidMCWorldDirectory(src_dir)) then
+				self:CreateWorldFromMCWorld(worldname, src_dir)
+			else
+				_guihelper.MessageBox("Directory is not a valid minecraft world directory, please select a valid folder.");
+			end
 		end
 	end
 end
@@ -95,8 +111,7 @@ function MCImporterGenerator:CreateWorldFromMCWorld(worldname, src_dir)
 	NPL.load("(gl)script/apps/Aries/Creator/Game/Login/CreateNewWorld.lua");
 	local WorldCommon = commonlib.gettable("MyCompany.Aries.Creator.WorldCommon")
 	local CreateNewWorld = commonlib.gettable("MyCompany.Aries.Game.MainLogin.CreateNewWorld")
-	local GameLogic = commonlib.gettable("MyCompany.Aries.Game.GameLogic");
-
+	
 	local params = {
 		worldname = worldname,
 		title = worldname,

@@ -1,0 +1,143 @@
+<?npl
+--[[
+Title: Query API
+Author: LiXizhi
+Date: 2015/6/12
+Desc: The query API attempts to get which part of the user is on. It
+ also provides functionality for getting URL query information.
+]]
+
+local util = commonlib.gettable("WebServer.util");
+
+WP_Query = commonlib.inherit(nil, {});
+
+function WP_Query:ctor()
+end
+
+-- Parse a query string and set query type booleans.
+-- @param query: if nil, the current request's query is used. it can also be a query string
+function WP_Query:parse_query(query)
+	local params;
+	if (type(query) == "string") then
+		params = util.parse_str(query);
+	else
+		params = request:getparams() or {};
+	end
+	if(params["robots"]) then
+		self.m_is_robots = true;
+	end
+
+	local url = request:url();
+	local pagename = url:match("^/*([^%?]+)");
+	self.m_pagename = pagename;
+	if(pagename == "api") then
+		
+	else
+		if(pagename:match("^ajax/")) then
+			self.m_is_ajax = true;
+			pagename = pagename:gsub("^ajax/", "");
+			self.m_pagename = pagename;
+		elseif(pagename == "" or pagename == "index.page") then
+			self.m_is_front_page = true;
+		end
+		
+		-- ordinary page: check for page existance 
+		local page_path = WP_CONTENT_DIR.."/pages/"..pagename..".page";
+		if(file_exists(page_path)) then
+			self.m_page_path = page_path;
+			self.m_is_page = true;
+		end
+		
+		self.m_is_single = true;
+
+		-- everything else is a home page. 
+		if (not (self.m_is_single or self.m_is_page)) then
+			self.m_is_home = true;
+		end
+	end
+	
+end
+
+function WP_Query:page_path()
+	return self.m_page_path;
+end
+
+function WP_Query:is_home()
+	return self.m_is_home;
+end
+
+function WP_Query:is_ajax()
+	return self.m_is_ajax;
+end
+
+function WP_Query:is_page()
+	return self.m_is_page;
+end
+
+
+function WP_Query:pagename()
+	return self.m_pagename;
+end
+
+function WP_Query:is_robots()
+	return self.m_is_robots;
+end
+
+function WP_Query:is_search()
+	return self.m_is_search;
+end
+
+function WP_Query:is_single()
+	return self.m_is_single;
+end
+
+function WP_Query:is_category()
+	return self.m_is_category;
+end
+
+function WP_Query:is_front_page()
+	return self.m_is_front_page;
+end
+
+-----------------------------------------------
+-- globals
+-----------------------------------------------
+function page_path()
+	return wp_query.m_page_path;
+end
+
+function is_home()
+	return wp_query.m_is_home;
+end
+
+function is_page()
+	return wp_query.m_is_page;
+end
+
+function pagename()
+	return wp_query.m_pagename;
+end
+
+function is_robots()
+	return wp_query.m_is_robots;
+end
+
+function is_search()
+	return wp_query.m_is_search;
+end
+
+function is_single()
+	return wp_query.m_is_single;
+end
+
+function is_category()
+	return wp_query.m_is_category;
+end
+
+function is_front_page()
+	return wp_query.m_is_front_page;
+end
+
+function is_ajax()
+	return wp_query.m_is_ajax;
+end

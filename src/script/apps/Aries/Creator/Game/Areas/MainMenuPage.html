@@ -1,0 +1,68 @@
+﻿<!-- "script/apps/Aries/Creator/Game/Areas/MainMenuPage.html" -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+</head>
+<body>
+    <pe:mcml>
+<script refresh="false" type="text/npl" src="MainMenuPage.lua"><![CDATA[
+local BlockTemplatePage = commonlib.gettable("MyCompany.Aries.Creator.Game.Desktop.BlockTemplatePage");
+local GameLogic = commonlib.gettable("MyCompany.Aries.Game.GameLogic")
+local BlockEngine = commonlib.gettable("MyCompany.Aries.Game.BlockEngine")
+block_types = commonlib.gettable("MyCompany.Aries.Game.block_types")
+MainMenuPage = commonlib.gettable("MyCompany.Aries.Creator.Game.Desktop.MainMenuPage");
+MainMenuPage.OnInit();
+
+function OnOpenExternalPage()
+    _guihelper.MessageBox("电影拍摄功能, 即将开放! 点击打开视频官网", function()
+        local paidashi_url = "http://www.aipai.com/game_gameid-47617.html";
+        ParaGlobal.ShellExecute("open", paidashi_url, "", "", 1);    
+    end)
+end
+
+function ClosePage()
+    Page:CloseWindow();
+end
+
+]]></script>
+<div style="background:url(Texture/whitedot.png);background-color:#000000cc">
+<pe:container name="menu" alignment="_lt" style="position:relative;margin-top:9px;height:100px;width:512px;background:;">
+    <form name="mode">
+        <input type="radio" tooltip="生存模式(Survival)&#10;有怪物" onclick="MainMenuPage.OnClickChangeGameMode" style="float:left;width:32px;height:32px;margin-left:22px;background-color:#ffffffff;" name="gamemode" id="radio1" value="survival" UncheckedBG="Texture/Aries/Creator/Desktop/Inventory_32bits.png;32 399 32 32" CheckedBG="Texture/Aries/Creator/Desktop/Inventory_32bits.png;32 434 32 32"/>
+        <input type="radio" tooltip="创造模式(Creative)&#10;无限资源" onclick="MainMenuPage.OnClickChangeGameMode" style="float:left;width:32px;height:32px;margin-left:5px;background-color:#ffffffff;"  name="gamemode" id="radio2" value="editor" UncheckedBG="Texture/Aries/Creator/Desktop/Inventory_32bits.png;67 399 32 32" CheckedBG="Texture/Aries/Creator/Desktop/Inventory_32bits.png;67 434 32 32"/>
+        <input type="radio" tooltip="探险模式(Adventure)&#10;不可破坏世界" onclick="MainMenuPage.OnClickChangeGameMode" style="float:left;width:32px;height:32px;margin-left:5px;background-color:#ffffffff;"  name="gamemode" id="radio3" value="game" UncheckedBG="Texture/Aries/Creator/Desktop/Inventory_32bits.png;102 399 32 32" CheckedBG="Texture/Aries/Creator/Desktop/Inventory_32bits.png;102 434 32 32"/>
+    </form>
+    <div style="float:left;margin-left:20px;">
+        <input type="button" name="toggle_sky"   tooltip="切换仿真天空" onclick="MainMenuPage.OnClick" style="float:left;margin-top:0px;width:32px;height:32px;margin-left:5px;background:;" Normal_BG="Texture/Aries/Creator/Desktop/Inventory_32bits.png;137 399 32 32" MouseOver_BG="Texture/Aries/Creator/Desktop/Inventory_32bits.png;137 434 32 32" />
+        <!--<input type="button" name="time_morning" onclick="MainMenuPage.OnClick" style="float:left;margin-top:0px;width:32px;height:32px;margin-left:5px;background:;" Normal_BG="Texture/Aries/Creator/Desktop/Inventory_32bits.png;172 399 32 32" MouseOver_BG="Texture/Aries/Creator/Desktop/Inventory_32bits.png;172 434 32 32" />
+        <input type="button" name="time_noon"    onclick="MainMenuPage.OnClick" style="float:left;margin-top:0px;width:32px;height:32px;margin-left:5px;background:;" Normal_BG="Texture/Aries/Creator/Desktop/Inventory_32bits.png;207 399 32 32" MouseOver_BG="Texture/Aries/Creator/Desktop/Inventory_32bits.png;207 434 32 32" />
+        <input type="button" name="time_evening" onclick="MainMenuPage.OnClick" style="float:left;margin-top:0px;width:32px;height:32px;margin-left:5px;background:;" Normal_BG="Texture/Aries/Creator/Desktop/Inventory_32bits.png;242 399 32 32" MouseOver_BG="Texture/Aries/Creator/Desktop/Inventory_32bits.png;242 434 32 32" />
+        <input type="button" name="time_night"   onclick="MainMenuPage.OnClick" style="float:left;margin-top:0px;width:32px;height:32px;margin-left:5px;background:;" Normal_BG="Texture/Aries/Creator/Desktop/Inventory_32bits.png;277 399 32 32" MouseOver_BG="Texture/Aries/Creator/Desktop/Inventory_32bits.png;277 434 32 32" />-->
+        <div style="float:left;margin-top:0px;width:172px;height:32px;margin-left:5px;background:url(Texture/Aries/Creator/Desktop/Inventory_32bits.png#172 399 192 32);">
+            <pe:sliderbar name="mcTimeSlider" min="0" max="100" value="30" button_bg="Texture/Aries/Creator/Desktop/Inventory_32bits.png;282 446 18 18" button_width="18" button_height="18" style="float:left;margin-left:26px;margin-top:2px;width:124px;height:28px;background:;" onchange="MainMenuPage.OnTimeSliderChanged()" tooltip="拖动滑块调整光线强调"></pe:sliderbar>
+        </div>
+        
+    </div>
+</pe:container>
+<pe:container name="views" visible="true" alignment="_rt" style="position:relative;height:48px;width:430px;background:;">
+    <!--<div style="float:left;width:169px;">
+        <input type="button" name="paidashi_1" onclick="OnOpenExternalPage" style="float:left;margin-top:9px;width:32px;height:32px;margin-left:5px;background:url(Texture/Aries/Creator/Desktop/Paidashi_32bits.png#43 32 32 32);"  />
+        <input type="button" name="paidashi_2" onclick="OnOpenExternalPage" style="float:left;margin-top:9px;width:32px;height:32px;background:url(Texture/Aries/Creator/Desktop/Paidashi_32bits.png#72 32 32 32);"  />
+        <input type="button" name="paidashi_3" onclick="OnOpenExternalPage" style="float:left;margin-top:9px;width:32px;height:32px;background:url(Texture/Aries/Creator/Desktop/Paidashi_32bits.png#100 32 32 32);"  />
+        <input type="button" name="paidashi_4" onclick="OnOpenExternalPage" style="float:left;margin-top:9px;width:32px;height:32px;background:url(Texture/Aries/Creator/Desktop/Paidashi_32bits.png#130 32 32 32);"  />
+        <input type="button" name="paidashi_5" onclick="OnOpenExternalPage" style="float:left;margin-top:9px;width:32px;height:32px;background:url(Texture/Aries/Creator/Desktop/Paidashi_32bits.png#166 32 40 32);"  />
+    </div>-->
+    <div style="float:left;margin-left:219px;">
+        <input type="radio" style="float:left;width:37px;height:37px;margin-left:10px;margin-top:4px;" tooltip="创建" name="toolbar_view" value="builder" onclick="MainMenuPage.OnChangeView" CheckedBG="Texture/Aries/Creator/Desktop/Inventory_32bits.png;65 470 37 37" UncheckedBG="Texture/Aries/Creator/Desktop/Inventory_32bits.png;28 470 37 37"/>
+        <input type="radio" style="float:left;width:32px;height:41px;margin-left:10px;"                tooltip="环境与特效" name="toolbar_view" value="env" onclick="MainMenuPage.OnChangeView" UncheckedBG="Texture/Aries/Creator/Desktop/Inventory_32bits.png;103 470 32 41" CheckedBG="Texture/Aries/Creator/Desktop/Inventory_32bits.png;137 470 32 41"/>
+        <input type="radio" style="float:left;width:24px;height:37px;margin-left:10px;margin-top:4px;" tooltip="世界" name="toolbar_view" value="world" onclick="MainMenuPage.OnChangeView" CheckedBG="Texture/Aries/Creator/Desktop/Inventory_32bits.png;194 470 24 37" UncheckedBG="Texture/Aries/Creator/Desktop/Inventory_32bits.png;170 470 24 36"/>
+        <input type="radio" style="float:left;width:36px;height:36px;margin-left:10px;margin-top:4px;" tooltip="退出"  name="toolbar_view" value="esc" onclick="MainMenuPage.OnChangeView" UncheckedBG="Texture/Aries/Creator/Desktop/Inventory_32bits.png;218 469 36 36" CheckedBG="Texture/Aries/Creator/Desktop/Inventory_32bits.png;254 470 36 36" />
+    </div>
+</pe:container>
+</div>
+</pe:mcml>
+</body>
+</html>
+

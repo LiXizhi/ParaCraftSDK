@@ -1,0 +1,50 @@
+<?npl
+--[[
+Title: XML RPC protocol support
+Author: LiXizhi
+Date: 2015/6/11
+Desc: load environment and template
+]]
+
+-- Whether this is an XML-RPC Request
+XMLRPC_REQUEST = true;
+
+-- Some browser-embedded clients send cookies. We don't want them.
+request:clear_cookie();
+
+-- Include the bootstrap for setting up WordPress environment
+include('./wp-load.page');
+
+if(request:get("rsd")) then
+  -- list Really Simple Discovery of all services on the server
+  echo([[<?xml version="1.0" encoding="utf-8"?]]..'>');
+?>
+<rsd version="1.0" xmlns="http://archipelago.phrasewise.com/rsd">
+  <service>
+    <engineName>NPL</engineName>
+    <engineLink>http://www.paracraft.cn/</engineLink>
+    <apis>
+      <api name="NPL" preferred="true" apiLink="<?npl echo (site_url('xmlrpc.page', 'rpc')) ?>" />
+      <api name="Auth" preferred="false" apiLink="<?npl echo (site_url('xmlrpc.page', 'rpc')) ?>" />
+      <api name="Debug" preferred="false" apiLink="<?npl echo (site_url('xmlrpc.page', 'rpc')) ?>" />
+      <api name="Log" preferred="false" apiLink="<?npl echo (site_url('xmlrpc.page', 'rpc')) ?>" />
+      <?npl
+      -- @link http://cyber.law.harvard.edu/blogs/gems/tech/rsd.html
+	    do_action( 'xmlrpc_rsd_apis' );
+      ?>
+    </apis>
+  </service>
+</rsd>
+<?npl
+  exit();
+end
+
+include_once(ABSPATH .. WPINC .. '/class-wp-xmlrpc-server.page');
+
+wp_xmlrpc_server = wp_xmlrpc_server_class:new();
+
+-- handle the request
+wp_xmlrpc_server:serve_request();
+
+?>
+

@@ -1,0 +1,84 @@
+<?npl
+--[[
+Title: block based world-map
+Author: LiXizhi
+Date: 2015/6/23
+Desc: ported from BuilderFramePage.lua
+]]
+NPL.load("(gl)script/apps/Aries/Creator/Game/Items/ItemClient.lua");
+local ItemClient = commonlib.gettable("MyCompany.Aries.Game.Items.ItemClient");
+local block_types = commonlib.gettable("MyCompany.Aries.Game.block_types");
+local BuilderFramePage = {};
+
+BuilderFramePage.category_index = 1;
+BuilderFramePage.Current_Item_DS = {};
+
+BuilderFramePage.category_ds = {
+    {text="方块", name="static",     enabled=true},
+    -- {text="自然", name="nature",     enabled=true},
+    {text="人物", name="character",  enabled=true},
+    -- {text="背包", name="playerbag",     enabled=true},
+    {text="机关", name="gear",	     enabled=true},
+    {text="装饰", name="deco",       enabled=true},
+	  {text="工具", name="tool",	     enabled=true},
+	  -- {text="模板", name="template",   enabled=true},
+}
+
+function BuilderFramePage.GetCategoryButtons()
+	return BuilderFramePage.category_ds;
+end
+
+function BuilderFramePage.OnChangeCategory(index)
+  BuilderFramePage.category_index = index or BuilderFramePage.category_index;
+	local category = BuilderFramePage.GetCategoryButtons()[BuilderFramePage.category_index];
+	if(category) then
+		BuilderFramePage.Current_Item_DS = ItemClient.GetBlockDS(category.name);
+		BuilderFramePage.category_name = category.name;
+	end
+end
+
+function BuilderFramePage.DrawCategories()
+  for i, category in ipairs(BuilderFramePage.GetCategoryButtons()) do
+    local selected_styles = "";
+    if(i == BuilderFramePage.category_index) then
+      selected_styles = "style='color:#ccccff'";
+    end
+    echo(format('<li><a %s target="_self" name="%s" href="?category=%s">%s</a></li>', selected_styles, category.name, i, category.text));
+  end
+end
+
+function BuilderFramePage.DrawBlockList()
+  for i, item in ipairs(BuilderFramePage.Current_Item_DS) do
+    local block_id = item.block_id;
+    local block_template = block_types.get(block_id or 0);
+    if(block_template) then
+      local icon = block_template:GetIcon();
+      if(icon and icon~="") then
+        echo(format('<img src="%s" title="%s"/>\n', icon, block_template:GetTooltip()));
+      end
+    end
+  end
+end
+
+-- switch to proper category
+local category_id = tonumber(request:get("category") or 1);
+BuilderFramePage.OnChangeCategory(category_id);
+?>
+<div class="title">Block List</div>
+<div style="margin-top:5px;">
+  <form name="search" method="post" action="">
+    <div style="float:left;">
+      <input type="text" name="x" style="width:120px;"></input>
+    </div>
+    <input type="submit" name="search" value="Search"></input>
+  </form>
+</div>
+<div class="navbar" style="margin-top:5px;clear:both;">
+  <ul class="nav" style="background-color:#000000">
+    <?npl BuilderFramePage.DrawCategories(); ?>
+  </ul>
+</div>
+<div style="padding-top:5px;clear:both;">
+  <?npl BuilderFramePage.DrawBlockList(); ?>
+</div>
+

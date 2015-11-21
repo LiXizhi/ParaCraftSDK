@@ -1,0 +1,149 @@
+<?npl
+--[[
+Title: A class for displaying various tree-like structures.
+Author: LiXizhi
+Date: 2015/6/14
+Desc: Extend the Walker class to use it
+]]
+
+Walker = commonlib.inherit(nil, {});
+
+Walker.db_fields = {};
+
+function Walker:ctor()
+	-- Max number of pages walked by the paged walker
+	self.max_pages = 1;
+end
+
+-- virtual: Starts the list before the elements are added.
+-- @param output: array of output strings
+function Walker:start_lvl( output, depth, args)
+end
+
+-- virtual: Ends the list of after the elements are added.
+-- @param output: array of output strings
+function Walker:end_lvl( output, depth, args)
+end
+
+-- virtual: Start the element output.
+-- @param output: array of output strings
+function Walker:start_el( output, object, depth, args, current_object_id)
+end
+
+-- virtual: Ends the element output.
+-- @param output: array of output strings
+function Walker:end_el( output, object, depth, args)
+end
+
+-- Traverse elements to create list from elements.
+-- Display one element if the element doesn't have any children otherwise,
+-- display the element and its children. Will only traverse up to the max
+-- depth and no ignore elements under that depth. It is possible to set the
+-- max depth to include all depths, see walk() method.
+-- @param output: array of output strings
+function Walker:display_element( element, children_elements, max_depth, depth, args, output)
+	if ( not element ) then
+		return;
+	end
+
+	local id_field = self.db_fields['id'];
+	local id       = element[id_field];
+
+	-- display this element
+	self.has_children = children_elements:contains(id);
+	
+	call_user_func({self, 'start_el'}, output, element, depth, args);
+
+	local newlevel;
+	-- descend only when the depth is right and there are childrens for this element
+	if ( (max_depth == 0 or max_depth > depth+1 ) and children_elements:contains(id) ) then
+		for _, child in children_elements[id]:pairs() do
+			if ( not newlevel ) then
+				newlevel = true;
+				-- start the child delimiter
+				call_user_func({self, 'start_lvl'}, output, depth, args);
+			end
+			self:display_element( child, children_elements, max_depth, depth + 1, args , output);
+		end
+		children_elements[id] = nil;
+	end
+
+	if ( newlevel ) then
+		--end the child delimiter
+		call_user_func({self, 'end_lvl'}, output, depth, args);
+	end
+
+	--end this element
+	call_user_func({self, 'end_el'}, output, element, depth, args);
+end
+
+-- Display array of elements hierarchically.
+-- Does not assume any existing order of elements.
+-- @param elements: should be ArrayMap() object
+-- @param max_depth: 
+--   max_depth = -1 means flatly display every element.
+--   max_depth = 0 means display all levels.
+--   max_depth > 0 specifies the number of display levels.
+-- @return string
+function Walker:walk( elements, max_depth, args )
+	local output = {};
+
+	if (max_depth < -1) then
+		return "";
+	end
+
+	if (not elements or elements:size() == 0) then
+		return "";
+	end
+
+	local parent_field = self.db_fields['parent'];
+
+	local empty_array;
+
+	-- flat display
+	if ( -1 == max_depth ) then
+		empty_array = commonlib.ArrayMap:new();
+		for _, e in ipairs(elements) do
+			self:display_element( e, empty_array, 1, 0, args , output);
+		end
+		return table.concat(output);
+	end
+
+	-- Need to display in hierarchical order.
+	-- Separate elements into two buckets: top level and children elements.
+	-- Children_elements is two dimensional array, eg.
+	-- Children_elements[10] contains all sub-elements whose parent is 10.
+	local top_level_elements = {};
+	local children_elements = commonlib.ArrayMap:new();
+	for _, e in elements:pairs() do
+		if ( not e[parent_field] ) then
+			top_level_elements[#top_level_elements+1] = e;
+		else
+			local elems = children_elements:createget(e[parent_field]);
+			elems:add(e);
+		end
+	end
+
+	-- When none of the elements is top level.
+	-- Assume the first one must be root of the sub elements.
+	if ( not next(top_level_elements) ) then
+		local root = elements:at(1);
+
+		top_level_elements = {};
+		children_elements:clear();
+		for _, e in elements:pairs() do
+			if ( root[parent_field] == e[parent_field] ) then
+				top_level_elements[#top_level_elements+1] = e;
+			else
+				local elems = children_elements:createget(e[parent_field]);
+				elems:add(e);
+			end
+		end
+	end
+
+	for _, e in ipairs(top_level_elements) do
+		self:display_element( e, children_elements, max_depth, 0, args, output );
+	end
+	
+	return table.concat(output);
+end

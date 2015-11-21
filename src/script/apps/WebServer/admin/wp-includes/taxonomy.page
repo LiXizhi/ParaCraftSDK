@@ -1,0 +1,154 @@
+<?npl
+--[[
+Title: Taxonomy
+Author: LiXizhi
+Date: 2015/6/20
+Desc: get object of a given category from database
+]]
+
+
+function taxonomy_exists(taxonomy)
+	return true;
+end
+
+-- 
+-- Get all Term data from database by Term ID.
+-- 
+-- The usage of the get_term function is to apply filters to a term object. It
+-- is possible to get a term object from the database before applying the
+-- filters.
+-- 
+-- term ID must be part of taxonomy, to get from the database. Failure, might
+-- be able to be captured by the hooks. Failure would be the same value as wpdb
+-- returns for the get_row method.
+-- 
+-- @param term If integer, will get from database. If object will apply filters and return term.
+-- @param taxonomy: Taxonomy name that term is part of.
+-- @return mixed|nil Term Row from database. Will return nil if term is empty. 
+function get_term(term, taxonomy)
+	if ( not term ) then
+		return;
+	end
+
+	if ( not taxonomy_exists(taxonomy) ) then
+		return;
+	end
+	local _term;
+	if ( type(term) == "table" and not term.filter ) then
+		wp_cache_add(term.term_id, term, taxonomy);
+		_term = term;
+	else
+		if ( type(term) == "table" ) then
+			term = term.term_id;
+		end
+		term = tonumber(term);
+		if(not term) then
+			return;
+		end
+		_term = wp_cache_get(term, taxonomy);
+		if ( not _term ) then
+			_term = wpdb:get_row(taxonomy, {term_id=tostring(term)});
+			if ( not _term ) then
+				return;
+			end
+			wp_cache_add(term, _term, taxonomy);
+		end
+	end
+
+	-- Filter a term.
+	_term = apply_filters( 'get_term', _term, taxonomy );
+
+	-- Filter a taxonomy.
+	_term = apply_filters( "get_taxonomy", _term, taxonomy );
+	
+	return _term;
+end
+
+
+-- Get all Term data from database by Term field and data.
+-- If value does not exist, the return value will be nil. If taxonomy exists
+-- and field and value combinations exist, the Term will be returned.
+-- @param field: Either 'slug', 'name', 'id' (term_id), or 'term_taxonomy_id'. default to 'id'
+-- @param value: string|int  Search for this term value
+-- @param taxonomy:string  Taxonomy Name
+-- @return mixed Term Row from database. Will return nil if taxonomy does not exist or term was not found.
+function get_term_by(field, value, taxonomy)
+	if ( not taxonomy_exists(taxonomy) ) then
+		return;
+	end
+
+	if ( 'slug' == field ) then
+		field = 'slug';
+		if ( not value ) then
+			return;
+		end
+	elseif ( 'name' == field ) then
+		-- Assume already escaped
+		field = 'name';
+	elseif ( 'term_taxonomy_id' == field ) then
+		field = 'term_taxonomy_id';
+	else
+		return get_term( value, taxonomy);
+	end
+
+	term = wpdb:get_row(taxonomy, {[field]=tostring(value)});
+	if ( not term ) then
+		return;
+	end
+
+	wp_cache_add(term.term_id, term, taxonomy);
+
+	term = apply_filters( 'get_term', term, taxonomy );
+
+	term = apply_filters( "get_taxonomy", term, taxonomy );
+
+	return term;
+end
+
+-- TODO: not used. 
+-- @param term_ids: Term id or array of term ids of terms that will be used
+-- @param taxonomies: String of taxonomy name or Array of string values of taxonomy names
+-- @return array of items
+function get_objects_in_term( term_ids, taxonomies)
+	if ( not type( term_ids ) == "table" ) then
+		term_ids = {term_ids};
+	end
+	if ( not type( taxonomies ) == "table") then
+		taxonomies = {taxonomies};
+	end
+	local items = {};
+	for i, term_id in ipairs(term_ids) do
+		local term = get_term(term_id, taxonomies[i]);
+		items[#items+1] = term.items;
+	end
+	local is_single_taxonomy = (#term_ids) == 1;
+	if(is_single_taxonomy) then
+		return items[1];
+	else
+		return items;
+	end
+end
+
+-- TODO: not used. 
+-- @param taxonomies Taxonomy name or list of Taxonomy names.
+-- @return array of Term Objects and their children. 
+function get_terms(taxonomies, args)
+	
+	if ( not type( taxonomies ) == "table" ) then
+		taxonomies = {taxonomies};
+	end
+	local terms = {};
+	for i, texonomy in ipairs(taxonomies) do
+		local rows = wpdb:get_results(taxonomy);
+		if(rows) then
+			terms[#terms+1] = rows;
+		end
+	end
+
+	local is_single_taxonomy = (#taxonomies) == 1;
+	if(is_single_taxonomy) then
+		return terms[1];
+	else
+		return terms;
+	end
+end

@@ -9,7 +9,6 @@
 *.dll
 obj/*
 redist/
-src/config/Aries/creator/bom
 published/
 ParaCraft/
 NPLRuntime/
@@ -24,7 +23,6 @@ _mod/*
 !_mod/MCImporterGenerator/
 src/sync_src.bat
 src/sdkpath.txt
-src/script/
 Debug/
 Release/
 *.opensdf

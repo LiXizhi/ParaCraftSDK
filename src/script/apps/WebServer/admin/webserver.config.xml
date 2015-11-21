@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- web server configuration file: this node can be child node, thus embedded in shared xml -->
+<WebServer>
+  <!--which HTTP ip and port this server listens to. -->
+  <servers>
+    <!--
+    @param host, port: which ip port to listen to. if * it means all.
+    @param polling_interval: time in milliseconds to poll(socket.select) to sending/receiving data. default to 10 milliseconds, which is as fast as possible.
+    @param thread_name: which NPL host_state_name (thread) this server runs on. if "" or omitted, it means the calling thread. 
+     one thread can only host one http server. 
+    -->
+    <server host="*" port="8080" polling_interval="100" host_state_name="">
+      <defaultHost rules_id="simple_rule"></defaultHost>
+      <virtualhosts>
+        <host name="www.sitename.com" rules_id="simple_rule"></host>
+      </virtualhosts>
+    </server>
+  </servers>
+  
+  <!--rules used when starting a web server. Multiple rules with different id can be defined. --> 
+  <rules id="simple_rule">
+    <!--URI map everything without extension to index.page-->
+    <rule match='{"^[^%./]*/$", "^[/%w_]+$", "robots.txt"}' with="WebServer.redirecthandler" params='{"/index.page"}'></rule>
+    <!--npl script example-->
+    <!--<rule match="%.lua$" with="WebServer.makeGenericHandler" params='{docroot="script/apps/WebServer/test", params={}, extra_vars=nil}'></rule>-->
+    <rule match="%.lua$" with="WebServer.npl_script_handler" params='%CD%'></rule>
+    <!--npl server page example-->
+    <rule match="%.page$" with="WebServer.npl_page_handler" params='%CD%'></rule>
+    <!--Serve files statically in Textures, model, character directory, so that we can use any available png textures. -->
+    <rule match='{"^/?Texture/", "^/?model/", "^/?character/"}' with="WebServer.filehandler" params='{baseDir = ""}'></rule>
+    <!--filehandler example, base dir is where the root file directory is. %CD% means current file's directory-->
+    <rule match="." with="WebServer.filehandler" params='{baseDir = "%CD%"}'></rule>
+  </rules>
+</WebServer>

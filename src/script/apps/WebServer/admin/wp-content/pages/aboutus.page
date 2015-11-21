@@ -1,0 +1,28 @@
+<?npl
+--[[
+Title: about us
+Author: LiXizhi
+Date: 2015/6/8
+Ajax: 
+  ajax/aboutus
+  ajax/aboutus?action=getauthor
+  
+]]
+if(is_ajax()) then
+  add_action('wp_ajax_getauthor', function()
+    local response = {name="LiXizhi", email="lixizhi@yeah.net"}
+    wp_send_json(response);
+  end)
+  add_action('wp_ajax_aboutus', function()
+    local response = {aboutus="developer of Paracraft, NPL, ParaEngine"}
+    wp_send_json(response);
+  end)
+  return;
+end
+?>
+<h1>About us</h1>
+<p>Welcome. NPL/ParaEngine is a life-long project to me, aiming to explore new logics in 3d design, AI and education. Hope you can join and contribute. We are always open source. </p>
+<p style="text-align: right">&#8212; LiXizhi@yeah.net</p>
+<h1>View Source</h1>
+<p>All client/server code of paracraft are written in NPL. This website itself is written in NPL, click view source at the bottom of each page to see its source code. </p>
+

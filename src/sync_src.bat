@@ -6,7 +6,7 @@ if exist %~dp0sdkpath.txt (
 	set default_sdk_path=D:\workroot\KidsMovie\ParaEngineSDK	
 )
 
-set /p SDK_PATH=请输入SDK路径(Enter键默认到%default_sdk_path%):
+set /p SDK_PATH=Please enter SDK path(press Enter to default to %default_sdk_path%):
 
 if "%SDK_PATH%" == "" (
 	set SDK_PATH=%default_sdk_path%
@@ -15,8 +15,5 @@ if "%SDK_PATH%" == "" (
 )
 
 xcopy "%SDK_PATH%\src"  "%~dp0" /e /d /y /c
-xcopy "%SDK_PATH%\config\Aries\creator\bom\*.xml"  "%~dp0config\Aries\creator\bom\" /e /d /y /c
-xcopy "%SDK_PATH%\config\Aries\creator\block_types.xml"  "%~dp0config\Aries\creator\" /e /d /y /c
-xcopy "%SDK_PATH%\config\Aries\creator\BuildingTasks.xml"  "%~dp0config\Aries\creator\" /e /d /y /c
 
 exit 0

@@ -1,0 +1,54 @@
+<?npl
+--[[
+Title: run any NPL code from web page
+Author: LiXizhi
+Date: 2015/6/23
+Desc: TODO: only admin can run this!!!!!!
+]]
+
+local code = request:get("text");
+local function GetCode()
+  return code or "";
+end
+
+-- Run code and print result
+local function RunWithResult()
+  if(not code or code == "") then
+    return;
+  end
+  if(request:get("btnRunCode")) then
+    local fromLogPos = commonlib.log.GetLogPos();
+    local code_func, errormsg = loadstring(code);
+    if(code_func) then
+	    local ok, result = pcall(code_func);
+	    if(ok) then
+	      echo("<p style='color:green'>success!</p>")
+	      echo(string.gsub(sanitize(ParaGlobal.GetLog(fromLogPos, -1) or ""), "\n", "<br/>"));
+	    else
+	      echo("<p style='color:red'>Runtime error: </p>")
+	      echo(sanitize(result));
+	    end
+    else
+	    echo("<p style='color:red'>Syntax error: </p>")
+	    echo(sanitize(errormsg));
+    end
+  else
+    include_pagecode(code);
+  end
+end
+
+?>
+<div class="title">NPL console</div>
+<p>paste any NPL code here to execute</p>
+<form name="code" method="post" action="">
+  <p>
+    <textarea name="text" rows="10" style="max-width:100%;width:600px;"><?npl echo(sanitize(GetCode())); ?></textarea>
+  </p>
+  <p>
+    <input type="submit" name="btnRunCode" value="Run as code"/>
+    <input type="submit" name="btnRunPage" value="Run as page"/>
+    <input type="button" name="btnSave" value="Save"/>
+  </p>
+</form>
+<hr/>
+<?npl RunWithResult();?>

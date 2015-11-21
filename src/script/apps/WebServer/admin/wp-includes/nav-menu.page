@@ -1,0 +1,71 @@
+<?npl
+--[[
+Title: Navigation Menu functions
+Author: LiXizhi
+Date: 2015/6/14
+Desc: 
+]]
+
+local _wp_registered_nav_menus = {};
+
+-- Register navigation menus for a theme.
+-- @param locations:  Associative array of menu location identifiers (like a slug)
+function register_nav_menus( locations ) 
+	for location, desc in pairs(locations) do
+		_wp_registered_nav_menus[location] = desc;
+	end
+end
+
+-- Unregisters a navigation menu for a theme.
+-- @param location the menu location identifier
+function unregister_nav_menu( location )
+	if ( _wp_registered_nav_menus[location] ) then
+		_wp_registered_nav_menus[location]  = nil;
+		return true;
+	end
+	return false;
+end
+
+-- Whether a registered nav menu location has a menu assigned to it.
+function has_nav_menu( location )
+	if ( not _wp_registered_nav_menus[location ] ) then
+		return false;
+	end
+
+	local locations = get_nav_menu_locations();
+	return ( locations[ location ] ~= nil );
+end
+
+function get_nav_menu_locations()
+	return get_theme_mod( 'nav_menu_locations' ) or {};
+end
+
+--  Returns a navigation menu object.
+-- @param menu: Menu ID, slug, or name.
+function wp_get_nav_menu_object(menu)
+	if ( not menu ) then
+		return;
+	end
+
+	local menu_obj = get_term( menu, 'nav_menu' );
+
+	if ( not menu_obj ) then
+		menu_obj = get_term_by( 'slug', menu, 'nav_menu' );
+	end
+
+	if ( not menu_obj ) then
+		menu_obj = get_term_by( 'name', menu, 'nav_menu' );
+	end
+
+	return menu_obj;
+end
+
+
+function wp_get_nav_menus(args)
+	return apply_filters( 'wp_get_nav_menus', get_terms( 'nav_menu',  args), args );
+end
+
+function wp_get_nav_menu_items(menu)
+	menu = wp_get_nav_menu_object( menu );
+	return menu.items;
+end

@@ -1,0 +1,49 @@
+<?npl
+--[[
+Title: Database Access Abstraction Object
+Author: LiXizhi
+Date: 2015/6/15
+Desc: It is possible to replace this class with your own
+by setting the wpdb global variable in wp-content/db.page
+file to your class. The wpdb class will still be included,
+so you can extend it or simply use your own.
+]]
+
+wpdb_class = commonlib.inherit(nil, {});
+
+function wpdb_class:ctor()
+end
+
+function wpdb_class:init(db_user, db_password, db_name, db_host)
+	NPL.load("(gl)script/ide/System/Database/XmlDatabase.lua");
+	local Database = commonlib.gettable("System.Database.Xml.Database");
+	self.db = Database:new_from_pool(db_name);
+	self.db:init(db_user, db_password, db_name, db_host);
+	return self;
+end
+
+-- TODO:
+function wpdb_class:prepare(query)
+end
+
+function wpdb_class:query(query)
+	return self.db:query(query);
+end
+
+-- @param where: {name=value} of the primary key. 
+function wpdb_class:get_row(table_name, where)
+	return self.db:query(self.db:new_query():select_row(table_name, nil, where));
+end
+
+
+function wpdb_class:update(table_name, row)
+	return self.db:query(self.db:new_query():update_row(table_name, row));
+end
+
+function wpdb_class:delete(table_name, where)
+	return self.db:query(self.db:new_query():delete_row(table_name, where));
+end
+
+function wpdb_class:get_results(table_name)
+	return self.db:query(self.db:new_query():select_rows(table_name));
+end

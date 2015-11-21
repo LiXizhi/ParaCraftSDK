@@ -1,0 +1,10 @@
+<?npl
+if(not ABSPATH) then die() end
+
+get_header(); ?>
+
+<div class="container">
+  <?npl nplinfo(); ?>  
+</div>
+
+<?npl get_footer(); ?>

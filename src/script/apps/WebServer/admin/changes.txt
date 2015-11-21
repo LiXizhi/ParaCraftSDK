@@ -1,0 +1,9 @@
+Author: LiXizhi@yeah.net
+Desc: WebServer/admin is a NPL based web site framework similar to the famous WordPress.org. 
+
+2015.6.11
+	- rsd service added: http://localhost:8080/xmlrpc.page?rsd
+
+2015.6.10
+	- initial framework done
+	- readme file: http://localhost:8080/readme.html

@@ -1,0 +1,13 @@
+<?npl
+--[[
+Title: all requests are directed to this page.
+Author: LiXizhi
+Date: 2015/6/10
+Desc: This file doesn't do anything, but loads pe_main.page 
+]]
+
+-- Tells framework to load theme and output it.
+WP_USE_THEMES = true;
+
+-- load main environment and template
+include(dirname( __FILE__ ) .. "wp-main.page");

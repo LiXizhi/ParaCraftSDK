@@ -1,0 +1,40 @@
+<?npl
+--[[
+Title: site-wide cache API
+Author: LiXizhi
+Date: 2015/6/14
+Desc: 
+]]
+NPL.load("(gl)script/apps/WebServer/mem_cache.lua");
+wp_object_cache = WebServer.mem_cache:GetInstance();
+
+-- Retrieves the cache contents from the cache by key and group.
+-- @param key: What the contents in the cache are called
+-- @param group: Where the cache contents are grouped
+-- @param force: boolean Whether to force an update of the local cache from the persistent cache -- (default is false)
+-- @return data, res:  data is contents on success, the second res is Whether key was found in the cache
+function wp_cache_get(name, group, force)
+	return wp_object_cache:get(name, group, force);
+end
+
+-- Adds data to the cache, if the cache key doesn't already exist.
+-- @param key: The cache key to use for retrieval later
+-- @param data:  The data to add to the cache store
+-- @param group: The group to add the cache to
+-- @param expire: When the cache data should be expired
+-- @return bool False if cache key and group already exist, true on success
+function wp_cache_add( key, data, group, expire)
+	return wp_object_cache:add( key, data, group, expire );
+end
+
+-- Replaces the contents of the cache with new data.
+-- @return bool False if not exists, true if contents were replaced
+function wp_cache_replace( key, data, group, expire)
+	return wp_object_cache:replace( key, data, group, expire );
+end
+
+-- Saves the data to the cache.
+-- @return bool False on failure, true on success
+function wp_cache_set( key, data, group, expire)
+	return wp_object_cache:set( key, data, group, expire );
+end

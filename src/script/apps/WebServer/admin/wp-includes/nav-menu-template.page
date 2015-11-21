@@ -1,0 +1,256 @@
+<?npl
+--[[
+Title: Navigation Menu template functions
+Author: LiXizhi
+Date: 2015/6/14
+Desc: 
+]]
+
+-- Create HTML list of nav menu items.
+Walker_Nav_Menu = commonlib.inherit(Walker, {});
+
+Walker_Nav_Menu.db_fields = {parent = 'menu_item_parent', id = 'id' };
+Walker_Nav_Menu.tree_type = {'post_type', 'taxonomy', 'custom'}
+
+function Walker_Nav_Menu:ctor()
+end
+
+function Walker_Nav_Menu:start_lvl( output, depth)
+	local indent = string.rep("\t", depth);
+	output[#output+1] = format("\n%s<ul class=\"sub-menu\">\n", indent);
+end
+
+function Walker_Nav_Menu:end_lvl( output, depth )
+	local indent = string.rep("\t", depth);
+	output[#output+1] = (indent.."</ul>\n");
+end
+
+function Walker_Nav_Menu:start_el( output, item, depth, args, id)
+	local indent;
+	if(depth) then
+		indent = string.rep( "\t", depth );
+	else
+		indent = '';
+	end
+
+	local classes = item.classes or {};
+	classes[#classes+1] = 'menu-item-' .. item.id;
+
+	-- Filter the CSS class(es) applied to a menu item's <li>.
+	local class_names = table.concat( apply_filters( 'nav_menu_css_class', classes, item, args ), ' ');
+	if(class_names and class_names~="") then
+		class_names = ' class="' .. class_names .. '"';
+	else
+		class_names = "";
+	end
+	
+
+	-- Filter the id applied to a menu item's <li>.
+	id = apply_filters( 'nav_menu_item_id', 'menu-item-'.. item.id, item, args );
+	if(id) then
+		id = ' id="' .. ( id ) .. '"';
+	else
+		id = '';
+	end
+
+	output[#output+1] = format("%s<li%s%s>", indent, id, class_names);
+
+	local atts = {};
+	atts['title']  = item.title or '';
+	atts['target'] = item.target or '';
+	atts['rel']    = item.rel or '';
+	atts['href']   = item.url or item.href or '';
+
+	-- Filter the HTML attributes applied to a menu item's <a>.
+	atts = apply_filters( 'nav_menu_link_attributes', atts, item, args );
+
+	local attributes = '';
+	for attr, value in pairs(atts) do
+		if ( value ~= '' ) then
+			if('href' == attr) then
+				value = esc_url( value )
+			else
+				value = esc_attr( value )
+			end
+			attributes = attributes..' ' .. attr .. '="' .. value .. '"';
+		end
+	end
+
+	local item_output = args.before;
+	item_output = item_output.. '<a'.. attributes ..'>';
+	item_output = item_output..args.link_before .. apply_filters( 'the_title', item.title, item.id ) .. args.link_after;
+	item_output = item_output..'</a>';
+	item_output = item_output..args.after;
+
+	-- Filter a menu item's starting output.
+	output[#output+1] = apply_filters( 'walker_nav_menu_start_el', item_output, item, depth, args );
+end
+
+-- Ends the element output, if needed.
+function Walker_Nav_Menu:end_el( output, item, depth, args)
+	output[#output+1] = "</li>\n";
+end
+
+
+function _wp_menu_item_classes_by_context(menu)
+end
+
+-- Retrieve the HTML list content for nav menu items.
+function walk_nav_menu_tree( items, depth, r )
+	local walker = r.walker or Walker_Nav_Menu:new();
+	return call_user_func( {walker, "walk"}, items, depth, r);
+end
+
+local default_menu_args = {
+	menu = nil, container = 'div', container_class = "", container_id = nil, 
+	menu_class = 'menu', menu_id = nil,	echo = true, fallback_cb = 'wp_page_menu', 
+	before = "", after = "", link_before = "", link_after = "", 
+	items_wrap = '<ul id="%1s" class="%2s">%3s</ul>',
+	depth = 0, walker = nil, theme_location = nil 
+};
+default_menu_args.__index = default_menu_args;
+
+-- Displays a navigation menu.
+-- @param args: table of {
+--  Optional. Array of nav menu arguments.
+--  menu            Desired menu. Accepts (matching in order) id, slug, name. Default empty.
+--  menu_class      CSS class to use for the ul element which forms the menu. Default 'menu'.
+--  menu_id         The ID that is applied to the ul element which forms the menu.
+--                   Default is the menu slug, incremented.
+--  container       Whether to wrap the ul, and what to wrap it with. Default 'div'.
+--  container_class Class that is applied to the container. Default 'menu-{menu slug}-container'.
+--  container_id    The ID that is applied to the container. Default empty.
+--  fallback_cb     If the menu doesn't exists, a callback function will fire.
+--                  Default is 'wp_page_menu'. Set to false for no fallback.
+--  before          Text before the link text. Default empty.
+--  after           Text after the link text. Default empty.
+--  link_before     Text before the link. Default empty.
+--  link_after      Text after the link. Default empty.
+--  echo            Whether to echo the menu or return it. Default true.
+--  depth           How many levels of the hierarchy are to be included. 0 means all. Default 0.
+--  walker          Instance of a custom walker class. Default empty.
+--  theme_location  Theme location to be used. Must be registered with register_nav_menu()
+--                   in order to be selectable by the user.
+--  items_wrap      How the list items should be wrapped. Default is a ul with an id and class.
+--					Uses printf() format with numbered placeholders.
+-- }
+-- @return mixed Menu output if echo is false, false if there are no items or no menu was found.
+function wp_nav_menu( args )
+	local menu_items;
+	setmetatable(args, default_menu_args)
+
+	-- Filter the arguments used to display a navigation menu.
+	args = apply_filters( 'wp_nav_menu_args', args );
+
+	-- Filter whether to short-circuit the wp_nav_menu() output.
+	local nav_menu = apply_filters( 'pre_wp_nav_menu', nil, args );
+
+	if ( nav_menu ) then
+		if ( args.echo ) then
+			echo(nav_menu);
+			return;
+		end
+		return nav_menu;
+	end
+
+	--Get the nav menu based on the requested menu
+	local menu = wp_get_nav_menu_object( args.menu );
+
+	--Get the nav menu based on the theme_location
+	if ( not menu and args.theme_location) then
+		local locations = get_nav_menu_locations();
+		if(locations[args.theme_location]) then
+			menu = wp_get_nav_menu_object( locations[ args.theme_location ] );
+		end
+	end
+
+	--get the first menu that has items if we still can't find a menu
+	if ( not menu and not args.theme_location ) then
+		local menus = wp_get_nav_menus();
+		if(menus) then
+			local menu = next(menus);
+		end
+	end
+
+	-- If the menu exists, get its items.
+	if ( menu and not menu_items) then
+		menu_items = wp_get_nav_menu_items( menu.term_id);
+	end
+
+	-- If no menu was found: Fall back (if one was specified), or bail.
+	if ((not menu) and args.fallback_cb) then
+		return call_user_func( args.fallback_cb, args);
+	end
+
+	if ( not menu ) then
+		return;
+	end
+
+	local nav_menu = '';
+	local items = '';
+
+	--Set up the menu_item variables
+	_wp_menu_item_classes_by_context( menu_items );
+
+	local sorted_menu_items = commonlib.ArrayMap:new();
+	local menu_items_with_children = {};
+
+	for i, menu_item in pairs(menu_items) do
+		sorted_menu_items[ menu_item.menu_order or i ] = menu_item;
+		if ( menu_item.menu_item_parent ) then
+			menu_items_with_children[ menu_item.menu_item_parent ] = true;
+		end
+	end
+
+	--Add the menu-item-has-children class where applicable
+	if ( not next(menu_items_with_children) ) then
+		for _, menu_item in sorted_menu_items:pairs() do
+			if ( menu_items_with_children[ menu_item.id ] ) then
+				menu_item.classes[#menu_item.classes+1] = 'menu-item-has-children';
+			end
+		end
+	end
+
+	menu_items = nil;
+	
+	-- Filter the sorted list of menu item objects before generating the menu's HTML.
+	sorted_menu_items = apply_filters( 'wp_nav_menu_objects', sorted_menu_items, args );
+
+	items = items .. walk_nav_menu_tree( sorted_menu_items, args.depth, args );
+	sorted_menu_items = nil;
+
+	--Attributes
+	local wrap_id;
+	if ( args.menu_id ) then
+		wrap_id = args.menu_id;
+	else
+		wrap_id = 'menu-' .. menu.slug;
+	end
+	local menu_id_slugs = {};
+	menu_id_slugs[#menu_id_slugs+1] = wrap_id;
+
+	local wrap_class = args.menu_class or '';
+
+	-- Filter the HTML list content for navigation menus.
+	items = apply_filters( 'wp_nav_menu_items', items, args );
+
+	-- Filter the HTML list content for a specific navigation menu.
+	items = apply_filters( format("wp_nav_menu_%s_items", menu.slug), items, args );
+
+	--Don't print any markup if there are no items at this point.
+	if ( not items or items == '' ) then
+		return;
+	end
+
+	nav_menu = nav_menu..string.format( args.items_wrap, wrap_id, wrap_class, items);
+	items = nil;
+
+	-- Filter the HTML content for navigation menus.
+	nav_menu = apply_filters( 'wp_nav_menu', nav_menu, args );
+
+	if ( args.echo ) then
+		echo(nav_menu);
+	else
+		return nav_menu;
+	end
+end

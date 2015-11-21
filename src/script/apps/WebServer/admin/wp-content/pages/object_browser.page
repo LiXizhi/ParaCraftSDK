@@ -1,0 +1,146 @@
+<?npl 
+--[[
+Title: browsing all global DOMs in ParaEngine
+Author: LiXizhi
+Date: 2015/6/28
+Desc: 
+]]
+NPL.load("(gl)script/ide/System/Core/DOM.lua");
+local categories = {}
+for i, name in ipairs(System.Core.DOM.GetAllDOMNames()) do
+  categories[i] = {name="-"..name, text=name};
+end
+
+if(is_ajax()) then
+  add_action('wp_ajax_object_browser', function()
+    NPL.load("(gl)script/ide/System/Core/ObjectPath.lua");
+    local ObjectPath = commonlib.gettable("System.Core.ObjectPath")
+    
+    local rows = {};
+    local path = request:get("id");
+    if(not path) then
+      local category = tonumber(request:get("category") or 1) or 1;
+      category = categories[category];
+      if(category) then
+        path = category.name;
+      end
+    end
+    path = path or "/all";
+    path = path:gsub("-", "/");
+    local objpath = ObjectPath:new():init(path or "/all");
+    local data = objpath:data();
+   
+    if(data) then
+      if(objpath:IsRoot()) then
+        local name = data:GetField("name", "");
+        local ClassName = data:GetClassName();
+        if(type(name)~="string" or name == "") then
+          name = path;
+        end
+        local row = {id=path:gsub("/", "-"), name=name, type="Root", state="open"}
+        rows[#rows+1] = row;
+      end
+      local children = objpath:GetChildPathStrings();
+      if(children and #children> 0) then
+        for _, child in ipairs(children) do
+          local child_path = ObjectPath:new():init(child, objpath);
+          local child_data = child_path:data();
+          if(child_data) then
+            local name = child_data:GetField("name", "");
+            local ClassName = child_data:GetClassName();
+            if(type(name)~="string" or name == "") then
+              name = ClassName;
+            end
+            local row = {id=child:gsub("/", "-"), name=name, type=ClassName, state = if_else(child_path:HasChild(), "closed", "open")}
+            rows[#rows+1] = row;
+          else
+            LOG.std(nil, "warn", "object_browser.page", "invalid data at path %s", child_path:GetPath());
+          end
+        end
+      end
+    end
+    
+    wp_send_json(rows);
+  end)
+  return;
+end
+  
+local ObjectBrowser = {};
+
+ObjectBrowser.category_index = 1;
+
+function ObjectBrowser:DrawCategories()
+  for i, category in ipairs(categories) do
+    local selected_styles = "";
+    if(i == self.category_index) then
+      selected_styles = "style='color:#6666ff'";
+    end
+    echo(format('<div %s href="?category=%d">%s</div>', selected_styles, i, category.text));
+  end
+end
+
+function ObjectBrowser:CurrentCategoryName()
+  echo(categories[self.category_index].text);
+end
+
+ObjectBrowser.category_index = tonumber(request:get("category") or 1);
+?>
+<?npl
+wp_enqueue_style("easyui", "/wp-includes/js/jeasyui/themes/default/easyui.css"); 
+wp_enqueue_style("easyui_icon", "/wp-includes/js/jeasyui/themes/icon.css"); 
+wp_enqueue_script("easyui", "/wp-includes/js/jeasyui/jquery.easyui.min.js"); 
+?>
+<div style="clear:both;">
+  <div class="title" style="padding-bottom:5px;padding-top:5px;">
+      <div style="float:left;padding-top:3px;">Select category: </div><a href="#" class="easyui-menubutton" menu="#object_category" iconCls="icon-edit"><?npl ObjectBrowser:CurrentCategoryName()?></a>
+      <div style="float:right;">
+        <form name="search" method="post" action="">
+          <div style="float:left;">
+            <input type="text" name="searchtext" style="max-width:150px;"></input>
+          </div>
+          <input type="submit" name="search" value="Search"></input>
+        </form>
+      </div>
+  </div>
+  <div id="object_category">
+      <?npl ObjectBrowser:DrawCategories(); ?>
+  </div>
+</div>
+<div style="clear:both;"></div>
+<div id="objview_cm" class="easyui-menu" style="width:120px;">
+  <div onclick="refresh_objview()">Refresh</div>
+</div>
+<table id="objview" class="easyui-treegrid"
+      idField="id" treeField="name" remoteSort="false" singleSelect="true"
+      data-options='onClickRow:function(row){
+        if(typeof(ShowProperty) == "function")
+          ShowProperty(row.id);
+      }, onContextMenu: onObjViewContextMenu'
+      url="ajax/object_browser?category=<?npl echo(tonumber(ObjectBrowser.category_index))?>"
+      title="Objects of <?npl ObjectBrowser:CurrentCategoryName()?>" 
+      >
+  <thead>
+    <tr>
+      <th field="name" sortable="true" width="50%">Name</th>
+      <th field="type" >Type</th>
+      <th field="id" >Path</th>
+    </tr>
+  </thead>
+</table>
+<script type="text/javascript">
+  function onObjViewContextMenu(e,row){
+      e.preventDefault();
+      $(this).treegrid('select', row.id);
+      $('#objview_cm').menu('show',{
+          left: e.pageX,
+          top: e.pageY
+      });
+  }
+  function refresh_objview(){
+      var t = $('#objview');
+      var row = t.treegrid('getSelected');
+      if (row){
+        t.treegrid('reload', row.id);
+      }
+  }
+</script>

@@ -1,0 +1,12 @@
+<?npl
+--[[
+Title: theme class
+Author: LiXizhi
+Date: 2015/6/14
+Desc: 
+]]
+
+WP_Theme = commonlib.inherit(nil, {});
+
+function WP_Theme:init(stylesheet, theme_root)
+end

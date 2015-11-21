@@ -1,0 +1,91 @@
+<?npl
+--[[
+Title: plugins 
+Author: LiXizhi
+Date: 2015/6/12
+Desc: 
+]]
+local Filters = commonlib.gettable("System.Core.Filters");
+local filter = Filters:new();
+
+function do_action(name, ...)
+	filter:apply_filters(name, ...);
+end
+
+-- Hooks a function on to a specific action.
+-- 
+-- Actions are the hooks that the framework core launches at specific points
+-- during execution, or when specific events occur. Plugins can specify that
+-- one or more of its NPL functions are executed at these points, using the action API.
+-- 
+-- @param tag:  The name of the action to which the function_to_add is hooked.
+-- @param function_to_add: function or the name of the function you wish to be called.
+-- @param priority: Used to specify the order in which the functions associated with a particular action are executed. Default 10.
+--		Lower numbers correspond with earlier execution, and functions with the same priority are executed in the order in which they were added to the action.
+-- @return bool Will always return true.
+function add_action(tag, function_to_add, priority)
+	if(type(function_to_add) == "string") then
+		function_to_add = _GLOBAL[function_to_add];
+	end
+	return filter:add_action(tag, function_to_add, priority);
+end
+
+-- Hook a function or method to a specific filter action.
+-- A plugin can modify data by binding a callback to a filter hook. When the filter
+-- is later applied, each bound callback is run in order of priority, and given
+-- the opportunity to modify a value by returning a new value.
+function add_filter( tag, function_to_add, priority)
+	if(type(function_to_add) == "string") then
+		function_to_add = _GLOBAL[function_to_add];
+	end
+	return filter:add_filter( tag, function_to_add, priority);
+end
+
+function current_action()
+	return filter:current_action();
+end
+
+function current_filter()
+	return filter:current_filter();
+end
+
+-- Remove all of the hooks from a filter.
+-- @param priority: int|bool  Optional. The priority number to remove. Default nil.
+function remove_all_filters(tag, priority)
+	return filter:remove_all_filters(tag, priority);
+end
+
+function remove_filter( tag, function_to_remove, priority)
+	return filter:remove_filter( tag, function_to_remove, priority);
+end
+
+-- Call the functions added to a filter hook.
+-- 
+-- The callback functions attached to filter hook tag are invoked by calling
+-- this function. This function can be used to create a new filter hook by
+-- simply calling this function with the name of the new hook specified using
+-- the tag parameter.
+-- 
+-- The function allows for additional arguments to be added and passed to hooks.
+-- <code>
+-- -- Our filter callback function
+-- function example_callback( str, arg1, arg2 )
+--	--(maybe) modify string
+--	return str;
+-- end
+-- add_filter( 'example_filter', 'example_callback', 10, 3 );
+-- 
+-- -- Apply the filters by calling the 'example_callback' function we
+-- -- "hooked" to 'example_filter' using the add_filter() function above.
+-- -- - 'example_filter' is the filter hook tag
+-- -- - 'filter me' is the value being filtered
+-- -- - arg1 and arg2 are the additional arguments passed to the callback.
+-- local value = apply_filters( 'example_filter', 'filter me', arg1, arg2 );
+-- </code>
+-- 
+-- @param tag   The name of the filter hook.
+-- @param value The value on which the filters hooked to <tt>tag</tt> are applied on.
+-- @return mixed The filtered value after all hooked functions are applied to it.
+function apply_filters( tag, value, ... ) 
+	return filter:apply_filters( tag, value, ... ) ;
+end

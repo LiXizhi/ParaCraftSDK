@@ -1,0 +1,128 @@
+<?npl
+   
+sensitive_bootstrap_walker_nav_menu = commonlib.inherit(Walker_Nav_Menu, {});
+
+function sensitive_bootstrap_walker_nav_menu:start_lvl( output, depth, args)
+	indent = string.rep( "\t", depth );
+	output[#output+1] = "\n"..indent.."<ul role=\"menu\" class=\" dropdown-menu\">\n";
+end
+
+
+function sensitive_bootstrap_walker_nav_menu:start_el(output, item, depth, args, id )
+	local indent;
+	if(depth) then
+		indent = string.rep( "\t", depth );
+	else
+		indent = '';
+	end
+
+	-- Dividers, Headers or Disabled
+	-- =============================
+	-- Determine whether the item is a Divider, Header, Disabled or regular menu item. 
+	-- 
+	if ( item.title == 'divider' and depth == 1 ) then
+		output[#output+1] = indent .. '<li role="presentation" class="divider">';
+	elseif( item.title == 'dropdown-header' and depth == 1 ) then
+		output[#output+1] = indent .. '<li role="presentation" class="dropdown-header">' .. esc_attr( item.title );
+	elseif( item.title == 'disabled') then
+		output[#output+1] = indent .. '<li role="presentation" class="disabled"><a href="#">' .. esc_attr( item.title ) .. '</a>';
+	else
+		local value = '';
+
+		local classes = item.classes or {};
+		classes[#classes+1] = 'menu-item-' .. item.id;
+
+		-- Filter the CSS class(es) applied to a menu item's <li>.
+		local class_names = table.concat( apply_filters( 'nav_menu_css_class', classes, item, args ), ' ');
+
+		if ( args.has_children ) then
+			class_names = class_names..' dropdown';
+		end
+
+		if ( commonlib.Array.contains(classes, 'current-menu-item') ) then
+			class_names = class_names..' active';
+		end
+
+		if(class_names and class_names~="") then
+			class_names = ' class="' .. class_names .. '"';
+		else
+			class_names = "";
+		end
+
+		id = apply_filters( 'nav_menu_item_id', 'menu-item-'.. item.id, item, args );
+		if(id) then
+			id = ' id="' .. ( id ) .. '"';
+		else
+			id = '';
+		end
+
+		output[#output+1] = format("%s<li%s%s>", indent, id, class_names);
+
+		local atts = {};
+		atts['title']  = item.title or '';
+		atts['target'] = item.target or '';
+		atts['rel']    = item.rel or '';
+		atts['href']   = item.url or item.href or '';
+
+		-- If item has_children add atts to a.
+		if ( args.has_children and depth == 0 ) then
+			atts['href']   		= '#';
+			atts['data-toggle']	= 'dropdown';
+			atts['class']			= 'dropdown-toggle';
+			atts['aria-haspopup']	= 'true';
+		else 
+			atts['href'] = item.url or item.href or '';
+		end
+
+		atts = apply_filters( 'nav_menu_link_attributes', atts, item, args );
+
+		local attributes = '';
+		for attr, value in pairs(atts) do
+			if ( value ~= '' ) then
+				if('href' == attr) then
+					value = esc_url( value )
+				else
+					value = esc_attr( value )
+				end
+				attributes = attributes..' ' .. attr .. '="' .. value .. '"';
+			end
+		end
+
+		local item_output = args.before;
+
+		-- 
+		-- Glyphicons
+		-- ===========
+		-- Since the the menu item is NOT a Divider or Header we check the see
+		-- if there is a value in the title property. If the title
+		-- property is NOT null we apply it as the class name for the glyphicon.
+		-- 
+		if ( item.title and item.title~="" ) then
+			item_output = item_output .. '<a'.. attributes ..'><span class="glyphicon ' .. esc_attr( item.title ) .. '"></span>&nbsp;';
+		else
+			item_output = item_output..'<a'.. attributes ..'>';
+		end
+
+		item_output = item_output.. args.link_before .. apply_filters( 'the_title', item.title, item.id ) .. args.link_after;
+		item_output = item_output.. if_else( args.has_children and 0 == depth,  ' <span class="caret"></span></a>', '</a>');
+		item_output = item_output.. args.after;
+
+		output[#output+1] = apply_filters( 'walker_nav_menu_start_el', item_output, item, depth, args );
+	end
+end
+
+
+function sensitive_bootstrap_walker_nav_menu:display_element( element, children_elements, max_depth, depth, args, output )
+	if ( not element ) then
+		return;
+	end
+	local id_field = self.db_fields['id'];
+
+	-- Display this element.
+	if ( type(args) == "table") then
+		args.has_children = children_elements[ element[id_field] ]~=nil;
+	end
+
+	return sensitive_bootstrap_walker_nav_menu._super.display_element(self,  element, children_elements, max_depth, depth, args, output );
+end
+

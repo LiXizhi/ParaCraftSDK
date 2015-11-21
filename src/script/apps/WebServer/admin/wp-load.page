@@ -1,0 +1,15 @@
+<?npl
+--[[
+Title: boot strap all
+Author: LiXizhi
+Date: 2015/6/10
+Desc: Bootstrap file for setting the ABSPATH constant and loading the pe-config.page file. 
+The pe-config.page file will then load the pe-settings.php file, 
+which will then set up the actual environment.
+]]
+
+ABSPATH = dirname(__FILE__);
+
+include_once( ABSPATH .. 'wp-config.page' );
+
+

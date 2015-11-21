@@ -1,0 +1,10 @@
+<?npl get_header(); ?>    
+          
+<div class="clear"></div>
+<p> 404 file not found</p>
+
+<?npl 
+nplinfo();
+?>
+        
+<?npl get_footer(); ?>

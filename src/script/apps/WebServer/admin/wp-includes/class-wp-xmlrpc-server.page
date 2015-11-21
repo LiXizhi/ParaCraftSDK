@@ -1,0 +1,20 @@
+<?npl
+--[[
+Title: XML-RPC protocol support
+Author: LiXizhi
+Date: 2015/6/11
+Desc: handle all standard NPL rpc request, such as login, logout, etc. 
+]]
+wp_xmlrpc_server_class = commonlib.inherit(nil, {});
+
+function wp_xmlrpc_server_class:ctor()
+	self.message = {name="result"};
+end
+
+function wp_xmlrpc_server_class:serve_request()
+	response:send_xml(self.message);
+end
+
+function wp_xmlrpc_server_class:login(name, password)
+	
+end

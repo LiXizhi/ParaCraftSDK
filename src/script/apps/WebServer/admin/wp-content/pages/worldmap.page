@@ -1,0 +1,186 @@
+<?npl
+--[[
+Title: block based world-map
+Author: LiXizhi
+Date: 2015/6/23
+Desc: Ported from NPL.load("(gl)script/apps/Aries/Creator/Game/Items/Minimap/MinimapSurface.lua");
+]]
+if(not System.options.mc) then
+  echo("error: you need to run server in a paracraft world in order to render its world map");
+  return
+end
+
+local EntityManager = commonlib.gettable("MyCompany.Aries.Game.EntityManager");
+local BlockEngine = commonlib.gettable("MyCompany.Aries.Game.BlockEngine");
+
+local MinimapSurface = commonlib.inherit(commonlib.gettable("System.Core.ToolBase"));
+
+MinimapSurface:Property({"width", 512, get="width", auto=true});
+MinimapSurface:Property({"height", 512, get="height", auto=true});
+MinimapSurface:Property({"CenterX", nil, desc="map center in block position"});
+MinimapSurface:Property({"CenterY", nil, desc="map center in block position"});
+MinimapSurface:Property({"MapRadius", 16, "GetMapRadius", "SetMapRadius", desc="map radius in block coordinate"});
+MinimapSurface:Property({"BlocksPerFrame", 32*32, desc = "how many blocks to render per frame. "});
+MinimapSurface:Signal("mapChanged");
+
+-- mapping from block_id to block color like "#ff0000"
+local color_table = nil;
+
+function MinimapSurface:ctor()
+  self:ResetDrawProgress();
+	self:BuildBlockColorTable();
+end
+
+function MinimapSurface:BuildBlockColorTable()
+	if(color_table) then
+		return
+	end
+	color_table = {};
+	NPL.load("(gl)script/apps/Aries/Creator/Game/blocks/block_types.lua");
+	local block_types = commonlib.gettable("MyCompany.Aries.Game.block_types");
+
+	-- some random color used
+	local default_colors = {"#ff0000", "#ffff00", "#ff00ff", "#00ff00", "#0000cc", "#00ffff"};
+	default_colors_count = #default_colors;
+	for id=1, 256 do
+		local block_template = block_types.get(id);
+		if(block_template) then
+			local color = block_template.mapcolor;
+			if(not color) then
+				color = default_colors[(id%default_colors_count)+1];
+			end
+			color_table[id] = color;
+		end
+	end
+end
+
+
+-- set center of the map in block coordinate system.
+-- @param x,y: if nil, it will be current player's position. 
+function MinimapSurface:SetMapCenter(x, y)
+	if(not x or not y) then
+		local _;
+		x, _, y = EntityManager.GetPlayer():GetBlockPos();
+	end
+	if(self.CenterX~=x or self.CenterY~=y) then
+		self.CenterX = x;
+		self.CenterY = y;
+    self:Invalidate();
+	end
+end
+
+
+function MinimapSurface:Invalidate()
+	self:ResetDrawProgress();
+end
+
+-- in block coordinate
+function MinimapSurface:GetMapRadius()
+	return self.MapRadius;
+end
+
+-- in block coordinate
+function MinimapSurface:SetMapRadius(radius)
+	local radius = math.max(16, math.min(radius, 512));
+	if(self.MapRadius~=radius) then
+		self.MapRadius = radius;
+    self:Invalidate();
+	end
+end
+
+function MinimapSurface:Begin_Background()
+  echo('<div style="color:white;position:relative;margin-top:5px;width:512px;height:512px;border:1px solid #333333;">')
+end
+
+function MinimapSurface:End_Background()
+  echo('</div>')
+end
+
+function MinimapSurface:GetHighmapColor(x,z)
+	local block_id, y = BlockEngine:GetNextBlockOfTypeInColumn(x,255,z, 4, 255);
+	if(block_id and block_id > 0) then
+		return color_table[block_id] or "#0000ff";
+	else
+		return "#000000"
+	end
+end
+
+function MinimapSurface:ResetDrawProgress()
+	self.backgroundPainted = false;
+	self.last_x, self.last_y = 0,0;
+	if(not self.CenterX) then
+		self:SetMapCenter(nil, nil);
+		return;
+	end
+	self.map_left = self.CenterX - self.MapRadius;
+	self.map_top = self.CenterY - self.MapRadius;
+	self.map_width = self.MapRadius * 2;
+	self.map_height = self.MapRadius * 2;
+	if(self:width() > 0) then
+		self.step_size = self.map_width / self:width();
+		self.block_size = 1 / self.step_size;
+		if(self.step_size <= 1) then
+			self.step_size = 1;
+			self.block_count = self.map_width;
+			self.block_size = self:width()/self.block_count;
+		else
+			self.block_count = math.floor(self:width()/self.block_size);
+		end
+	end
+end
+
+
+function MinimapSurface:DrawPlayerPos()
+	-- draw a red cross for player info
+	local playerX, playerY, playerZ = EntityManager.GetPlayer():GetBlockPos();
+		
+  -- draw player and map pos text
+  echo("<div style='color:green'>")
+  echo(format("center:%d, %d  player:%d %d %d", self.CenterX, self.CenterY, playerX, playerY, playerZ))
+  echo("</div>")
+end
+
+function MinimapSurface:DrawSome()
+	local step_size = self.step_size;
+	local block_size = self.block_size;
+	local block_count = self.block_count;
+
+	local from_x, from_y = self.map_left, self.map_top;
+	local count = 0;
+  while (true) do
+		local color = self:GetHighmapColor(from_x+self.last_x*step_size, from_y+self.last_y*step_size);
+		echo(format("<div style='background-color:%s;position:absolute;left:%dpx;top:%dpx;width:%dpx;height:%dpx'></div>\n", color, self.last_x*block_size, self.last_y*block_size, block_size, block_size));
+		count = count + 1;
+    if(self.last_y >= (block_count-1)) then
+			self.last_y = 0;
+			self.last_x = self.last_x + 1;
+		else
+			self.last_y = self.last_y + 1;
+		end
+		if(count >= self.BlocksPerFrame or self.last_x > block_count) then
+			break;
+		end
+	end
+end
+
+function MinimapSurface:paintEvent()
+  self:DrawPlayerPos();
+  self:Begin_Background();
+  self:DrawSome();
+  self:End_Background();
+end
+
+-- create instance
+local worldmap = MinimapSurface:new();
+?>
+<div class="title">Block World Map</div>
+<div style="margin-top:5px;">
+  <form name="search" method="post" action="">
+    <div style="float:left;">
+    x: <input type="text" name="x" style="width:80px;"></input>
+    z: <input type="text" name="z" style="width:80px;"></input>
+    </div>
+    <input type="submit" name="search" value="Goto"></input>
+  </form>
+</div>
+<?npl worldmap:paintEvent(); ?>

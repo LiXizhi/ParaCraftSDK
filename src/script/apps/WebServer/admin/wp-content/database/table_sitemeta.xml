@@ -1,0 +1,17 @@
+<xml_table table_index="key">
+  <row key="stylesheet" value="sensitive"/>
+  <row key="template" value="sensitive"/>
+  <row key="theme_mods_sensitive" value='{
+       nav_menu_locations = {
+          primary = "main",
+       }
+  }'/>
+  <row key="sensitive_general_settings" value='{
+        a=1,
+  }'/>
+  <row key="sensitive_homepage_settings" value='{
+        b=2,
+  }'/>
+  <row key="sitename" value="NPL Code Wiki"/>
+  <row key="sitedescription" value="administration site for NPL/ParaEngine."/>
+</xml_table>

@@ -1,0 +1,121 @@
+<?npl
+--[[
+Title: global persistent options
+Author: LiXizhi
+Date: 2015/6/14
+Desc: current implementation uses XmlDatabase
+]]
+
+-- Retrieve option value based on name of option.
+-- 
+-- If the option does not exist or does not have a value, then the return value
+-- will be false. This is useful to check whether you need to install an option
+-- and is commonly used during installation of plugin options and to test
+-- whether upgrading is required.
+-- 
+-- @param option: Name of option to retrieve. 
+-- @param default: Optional. Default value to return if the option does not exist.
+-- @return mixed Value set for the option.
+function get_option(option, default)
+	if ( not option or option=="") then
+		return false;
+	end
+	
+	local pre = apply_filters( 'pre_option_' .. option);
+	if ( pre ~= nil) then
+		return pre;
+	end
+	-- prevent non-existent options from triggering multiple queries
+	local notoptions_key = "meta:notoptions";
+	local notoptions = wp_cache_get( notoptions_key, 'site-options' ) or {};
+	if(notoptions[option]) then
+		-- Filter a specific default site option.
+		return apply_filters( 'default_site_option_' .. option, default);
+	end
+
+	local value;
+	local alloptions = wp_load_alloptions();
+	
+	if ( alloptions[option] ) then
+		value = alloptions[option];
+	else
+		local cache_key = "meta:"..option;
+		value = wp_cache_get( cache_key, 'site-options' );
+		if(value==nil) then
+			local row = wpdb:get_row('sitemeta', {key=option});
+			if(row) then
+				value = row.value;
+				wp_cache_set( cache_key, value, 'site-options' );
+			else
+				notoptions[option] = true;
+				
+				wp_cache_set( notoptions_key, notoptions, 'site-options' );
+				value = apply_filters( 'default_site_option_' .. option, default);
+			end
+		end
+	end
+	return apply_filters( 'option_' .. option, value);
+end
+
+-- Loads and caches all autoloaded options, if available or all options.
+function wp_load_alloptions()
+	local alloptions = wp_cache_get('alloptions', 'site-options');
+	if(not alloptions) then
+		local alloptions_db = wpdb:get_results("sitemeta");
+		
+		alloptions = {};
+		for _, row in ipairs(alloptions_db) do
+			alloptions[row.key] = row.value;
+		end
+		wp_cache_add( 'alloptions', alloptions, 'site-options' );
+	end
+	return alloptions;
+end
+
+-- Update the value of an option that was already added.
+function update_option( option, value )
+	if ( type( value ) == "table" ) then
+		value = commonlib.copy(value);
+	end
+
+	local old_value = get_option( option );
+
+	value = apply_filters( 'pre_update_option_' .. option, value, old_value );
+
+	value = apply_filters( 'pre_update_option', value, option, old_value );
+
+	-- If the new and old values are the same, no need to update.
+	if ( value == old_value ) then
+		return;
+	end
+
+	if ( old_value == nil) then
+		return add_option( option, value );
+	end
+	
+	do_action( 'update_option', option, old_value, value );
+
+	local result = wpdb:update( 'sitemeta', {value = value, key = option});
+	if ( not result ) then
+		return false;
+	end
+
+	local notoptions = wp_cache_get( 'notoptions', 'options' );
+	if ( notoptions and notoptions[option] ) then
+		notoptions[option] = nil;
+		wp_cache_set( 'notoptions', notoptions, 'options' );
+	end
+
+	local alloptions = wp_load_alloptions();
+	
+	if ( alloptions[option] ) then
+		alloptions[option] = value;
+		wp_cache_set( 'alloptions', alloptions, 'options' );
+	else
+		wp_cache_set( option, value, 'options' );
+	end
+		
+	do_action( "update_option_"..option, old_value, value );
+	do_action( 'updated_option', option, old_value, value );
+	return true;
+end

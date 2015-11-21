@@ -1,0 +1,267 @@
+
+<Commands>
+	<Type name="new">
+		<Command quick_ref="/savemodel [modelname]" name="savemodel" desc="save bmax model with current selection
+@param modelname: if no name is provided, it will be &quot;default&quot;
+/savemodel test
+"/>
+	</Type>
+	<Type name="new">
+		<Command quick_ref="/worldsize radius [center_x center_y center_z]" name="worldsize" desc="set the world size. mostly used on 32/64bits server to prevent running out of memory. 
+@param radius: in meters such as 512. 
+@param center_x center_y center_z: default to current home position. 
+"/>
+	</Type>
+	<Type name="new">
+		<Command quick_ref="/setcolor [x y z] [#rgb]" name="setcolor" desc="set block color. Only certain color block can be painted this way.
+@param x y z: block position, if not provided, it is the block where the player is standing
+@param rgb: #rgb value default to &quot;#ffffff&quot; white color
+Example:
+	/setcolor #ff0000    paint block at player position Red.
+	/setcolor 10 10 10 #ff0000    paint block at world pos to red color
+	/setcolor ~ ~1 ~ #ff0000	paint with relative to player position. 
+	"/>
+		<Command quick_ref="/webserver [doc_root_dir] [ip_host] [port]" name="webserver" desc="start web server at given directory
+e.g.
+	/webserver						start the default NPL/ParaEngine debug server (mostly for client debugging)
+	/webserver www/my_web_site      start your own HTTP server.
+"/>
+	</Type>
+	<Type name="new">
+		<Command quick_ref="/maxrenderdist [64-1024]" name="maxrenderdist" desc="max renderdist allowed. this will greatly skill framerate if set too large. 
+/maxrenderdist 512
+"/>
+	</Type>
+	<Type name="new">
+		<Command quick_ref="/createentity [class_name] [name] [x y z] [filename] [...]" name="createentity" desc="create a new entity based on class_name. Class name should be a registered entity class. "/>
+		<Command quick_ref="/dof [0-1]" name="dof" desc="设置景深(DOF)"/>
+		<Command quick_ref="/createmob name [x y z] [filename] [...]" name="createmob" desc="create a mob entity. e.g.
+/createmob test chicken.x
+@param filename can be relative to world directory
+"/>
+		<Command quick_ref="/movieoutputmode [on|off]" name="movieoutputmode" desc="enable or disable movie output mode."/>
+		<Command quick_ref="/generatemodel [modelpath]" name="generatemodel" desc="generate x model with current selection
+/generatemodel test
+"/>
+		<Command quick_ref="/brightness [0-1]" name="brightness" desc="set brightness factor (0-1) used in HDR shader 3, 4. default value is 0.5. the larger the more detail in brighter region. 
+/brightness 0.1    more detail with dark colors
+/brightness 0.8    more detail with bright colors
+"/>
+		<Command quick_ref="/rsync [-asset] [src]" name="rsync" desc="sync all files from source folder. 
+-asset only sync remote asset manifest files from src. 
+examples:
+/rsync -asset D:\lxzsrc\ParaCraftSDKGit\build\ParacraftBuild\res
+"/>
+	</Type>
+	<Type name="new">
+		<Command quick_ref="/sun [0,2] [0,2] [0,2]" name="sun" desc="set sun color. This will change the diffuse color of all objects.  if no parameter, 1,1,1 is used. "/>
+		<Command quick_ref="/msg any text message" name="msg" desc="show message in a message box to the user"/>
+		<Command quick_ref="/stereocontroller [on|off]" name="stereocontroller" desc="turn on/off stereo controller"/>
+		<Command quick_ref="/system [settingchange|exit]" name="system" desc="refresh system settings
+/system settingchange
+"/>
+		<Command quick_ref="/dump [scene|gui|asset|all|view|player]" name="dump" desc="dump information to log.txt file"/>
+		<Command quick_ref="/menu [menu_cmd_name]" name="menu" desc="menu commands"/>
+		<Command quick_ref="/createtexturepack [DefaultPackName]" name="createtexturepack" desc="generate all replaceable textures to default name. duplicated_texture are named duplicate_block_id_filename 
+/createtexturepack         create to default directory. Clear the dir first. 
+"/>
+		<Command quick_ref="/texgen [-all] [-i] [unit_size] [altas_size]" name="texgen" desc="generate texture altas for all blocks. See log.txt for output files
+@param	-i: whether to save as individual file. 
+
+/texgen -all 32 512		 generate all textures 32*32 each
+/texgen -all			 same as above.
+/texgen -all 64 512		 generate all textures 64*64 each on several textures
+/texgen -all -i 64		generate individual image file for each block. 
+"/>
+		<Command quick_ref="/dropfile [absolute_filepath]" name="dropfile" desc="drag and drop an external file to the app. following files are supported:
+texture template zip file
+world zip file
+block template xml file
+other files...
+"/>
+	</Type>
+	<Type name="脚本解释">
+		<Command quick_ref="/activate [x y z]" name="activate" desc="return a value"/>
+		<Command quick_ref="/add Coin 1" name="add" desc="add [name] [value]"/>
+		<Command quick_ref="/addactor [npc|camera]" name="addactor" desc="add a new actor to the current active scene"/>
+		<Command quick_ref="/addkey [text|time|tip|fadein|fadeout] [value]" name="addkey" desc=""/>
+		<Command quick_ref="/addrule class_name rule" name="addrule" desc="add game rule"/>
+		<Command quick_ref="/advancetime [~][time]" name="advancetime" desc="advancetime any queued time event for the calling entity"/>
+		<Command quick_ref="/anim [@playername] anim_name_or_id[,anim_name_or_id ...]" name="anim" desc="play animation"/>
+		<Command quick_ref="/applytexturepack [folder_or_zipfile]" name="applytexturepack" desc="apply a given texture pack if not exist download from the provided url"/>
+		<Command quick_ref="/block block_id attr_name attr_value" name="block" desc="set block attribute for all blocks of that type"/>
+		<Command quick_ref="/blockimage [-xy|-yz|-xz] [colors:1|2|3|16] filename [x y z]" name="blockimage" desc="load image as blocks at given position"/>
+		<Command quick_ref="/call [code with return value]" name="call" desc="execute code and return value"/>
+		<Command quick_ref="/ccs [-geoset|g|model|m] [@playername] [integer or hair|shirt|pant|boot|hand|wing|eye] [id]" name="ccs" desc="toggle model or geoset"/>
+		<Command quick_ref="/chat any text" name="chat" desc="send a chat message"/>
+		<Command quick_ref="/cheat [on|off]" name="cheat" desc="whether to turn on or off cheating"/>
+		<Command quick_ref="/circle [plane] [radius]" name="circle" desc="以人物所在坐标为原点,在[plane]对应的平面上，以[radius]值为半径做一个圆形方块。">
+			<Param name="plane" desc="填入x、y、z其中一个字母，表示在那个平面上用手上的方块生成圆形。"/>
+			<Param name="radius" desc="填入一个数字，表示圆形的半径。"/>
+			<Instance desc="以2为半径，在角色脚底做一个圆形方块。" content="/circle 2"/>
+			<Instance desc="以人物所在坐标为原点，在x轴垂直平面上，以2为半径做一个圆形方块" content="/circle x 2"/>
+		</Command>
+		<Command quick_ref="/clearbag [@playername] [itemid] [count]" name="clearbag" desc="clear bag of a given player"/>
+		<Command quick_ref="/clicktocontinue [on|off]" name="clicktocontinue" desc="whether to turn on or off clicktocontinue"/>
+		<Command quick_ref="/clone [-update] from_x from_y from_z (dx dy dz) to to_x to_y to_z (dx dy dz)" name="clone" desc="set block at given position. "/>
+		<Command quick_ref="/testblocks from_x from_y from_z (dx dy dz) to to_x to_y to_z" name="compareblocks" desc="Compare the blocks at two locations in cuboid regions. "/>
+		<Command quick_ref="/configserver" name="configserver" desc="config the server"/>
+		<Command quick_ref="/connect [ip] [port] [username] [password]" name="connect" desc="connect to a given private server"/>
+		<Command quick_ref="/create [id|filename] [bx] [by] [bz]" name="create" desc="create item, entity, model, character, etc."/>
+		<Command quick_ref="/day" name="day" desc="/day 20 set how many mins in a day."/>
+		<Command quick_ref="/del" name="del" desc="delete selected blocks"/>
+		<Command quick_ref="/density [value|1.2]" name="density" desc="density of the player"/>
+		<Command quick_ref="/disableinput [@playername] [x y z] [true|false]" name="disableinput" desc="disableinput for a given entity or block entity"/>
+		<Command quick_ref="/disconnect" name="disconnect" desc="disconnect a given private server"/>
+		<Command quick_ref="/dostring string" name="dostring" desc="load and do string in sandbox environment"/>
+		<Command quick_ref="/durability [value]" name="durability" desc="set item durablilty in hand"/>
+		<Command quick_ref="/echo any text message" name="echo" desc=""/>
+		<Command quick_ref="/edititem [item_id]" name="edititem" desc="set item durablilty in hand"/>
+		<Command quick_ref="/ellipsoid radiusX radiusY radiusZ [beSolid]" name="ellipsoid" desc="ellipsoid"/>
+		<Command quick_ref="/end" name="end" desc="same as /return 15"/>
+		<Command quick_ref="/facing [@playername] angle" name="facing" desc="set facing of a given player. "/>
+		<Command quick_ref="/fill [block_id]" name="fill" desc="使用手中的方块或者[block_id]填充选中范围(包括空气)的所有空间。">
+			<Param name="block_id" desc="填入特定的方块ID。"/>
+			<Instance desc="使用手中的方块填充选中范围(包括空气)的所有空间。" content="/fill"/>
+			<Instance desc="使用ID为62的草方块填充选中范围(包括空气)的所有空间。" content="/fill 62"/>
+		</Command>
+		<Command quick_ref="/flood [radius or 10] [block_id or water] [x or playerPosX] [y] [z] " name="flood" desc="flood"/>
+		<Command quick_ref="/focus [@playername]" name="focus" desc="附身在当前世界某个角色[@playname]身上，若角色名字不存在或为空，则附身回主角身上。">
+			<Param name="@playername" desc="填入当前世界某个角色的名字，表示在附身到那个角色身上。"/>
+			<Instance desc="附身在当前世界名为Jack的角色身上，附身期间可随意控制Jack的行为。" content="/focus Jack"/>
+			<Instance desc="附身回主角身上。" content="/focus"/>
+		</Command>
+		<Command quick_ref="/fog [-color|skycolor|fogstart|fogend] values" name="fog" desc="change fog color and range"/>
+		<Command quick_ref="/fov [fieldofview:1.57] [animSpeed]" name="fov" desc="change field of view with an animation"/>
+		<Command quick_ref="/fps [true|false|1|0]" name="fps" desc="进入/取消第一人称模式。">
+			<Param name="true|1" desc="填入[true]或者[1]进入第一人称模式。"/>
+			<Param name="false|0" desc="填入[false]或者[0]取消第一人称模式。"/>
+			<Instance desc="进入第一人称模式。" content="/fps true"/>
+			<Instance desc="进入第一人称模式。" content="/fps 1"/>
+			<Instance desc="取消第一人称模式。" content="/fps false"/>
+			<Instance desc="取消第一人称模式。" content="/fps 0"/>
+		</Command>
+		<Command quick_ref="/generatecmdfile" desc="generate command xml file" name="generatecmdfile" ignore="true"/>
+		<Command quick_ref="/generatesrc" desc="generate the open soucre codes" name="generatesrc" ignore="true"/>
+		<Command quick_ref="/get Coin" name="get" desc="get [name]"/>
+		<Command quick_ref="/give [@playername] [block] [count] [serverdata]" name="give" desc="give a certain item to a given player"/>
+		<Command quick_ref="/goto [@playername] [x y z]" name="goto" desc="goto to a given position."/>
+		<Command quick_ref="/gravity [@playername] [value|9.81]" name="gravity" desc="gravity of the player"/>
+		<Command quick_ref="/grey [r g b] [glow_r glow_g glow_b]" name="grey" desc="grey 0.85 0.79 0.74 0.27 0.14 0.03"/>
+		<Command quick_ref="/greyblur [on|off]" name="greyblur" desc="/greyblur on"/>
+		<Command quick_ref="/hide [desktop|player|...]" name="hide" desc="hide the current player"/>
+		<Command quick_ref="/home" name="home" desc="go to home born position"/>
+		<Command quick_ref="/hsv [h s v] [multiply_r multiply_g multiply_b]" name="hsv" desc="/hsv 0 0 0"/>
+		<Command quick_ref="/if var1==var2 /othercommand" name="if" desc="do a command if var1==var2, also support operators like &lt; &lt;= &gt;= &gt;"/>
+		<Command quick_ref="/info" name="info" desc="toggle info window (F3)"/>
+		<Command quick_ref="/install [url]" name="install" desc="install a texture package from url"/>
+		<Command quick_ref="/jumpto [line_offset|end|begin]" name="jumpto" desc="goto a given line or start or end of line"/>
+		<Command quick_ref="/light [0,2] [0,2] [0,2]" name="light" desc="set light block color. if no parameter, 1,1,1 is used. "/>
+		<Command quick_ref="/loadregion [x y z] [radius]" name="loadregion" desc="load region that contains a given point."/>
+		<Command quick_ref="/loadtemplate [-a seconds] [-r] [x y z] [templatename]" name="loadtemplate" desc="load template to the given position"/>
+		<Command quick_ref="/loadworld [worldname|url|filepath]" name="loadworld" desc="loadworld a world by worldname or url or relative to parent directory"/>
+		<Command quick_ref="/lookat [@playername] [x y z]" name="lookat" desc="look at a given direction. "/>
+		<Command quick_ref="/makeasset" name="makeasset" desc="show the asset maker"/>
+		<Command quick_ref="/map" name="map" desc="map"/>
+		<Command quick_ref="/midi [0-7]" name="midi" desc="play a midi note"/>
+		<Command quick_ref="/mirror [clone|no_clone] [x|y|z] from_x from_y from_z (dx dy dz) to pivot_x pivot_y pivot_z" name="mirror" desc="mirror a region of blocks to another region alone agiven axis"/>
+		<Command quick_ref="/mode game" name="mode" desc="locking game mode to the given value"/>
+		<Command quick_ref="/move [@playername] [x y z]" name="move" desc="move to a given position."/>
+		<Command quick_ref="/moviecamera [on|off]" name="moviecamera" desc="enable or disable movie camera in the movieclip block."/>
+		<Command quick_ref="/movieclip [-stop]" name="movieclip" desc="stop a given movie clip"/>
+		<Command quick_ref="/music [filename|1~6] [from_time]" name="music" desc="change background music. specify a number for internal music"/>
+		<Command quick_ref="/name [name#tooltip1#tooltip2]" name="name" desc="give a name to the current item in hand"/>
+		<Command quick_ref="/offsetworld offsetY]" name="offsetworld" desc="offset the world vertically to make room for scene"/>
+		<Command quick_ref="/open [-p] url" name="open" desc="open url in external browser"/>
+		<Command quick_ref="/pause" name="pause" desc="pause any queued time event for the calling entity"/>
+		<Command quick_ref="/quest [quest_id]" name="quest" desc="start or complete the current step in the quest"/>
+		<Command quick_ref="/rain" name="rain" desc="change weather to rain"/>
+		<Command quick_ref="/record" name="record" desc="toggle recording"/>
+		<Command quick_ref="/recorder" name="recorder" desc="show video recorder"/>
+		<Command quick_ref="/reflection [0,1]" name="reflection" desc="0 disable; 1 enable"/>
+		<Command quick_ref="/register username password" name="register" desc="register a new user or change password"/>
+		<Command quick_ref="/registeritem [block_id:2000-2999] [texture] [base_block_id]" name="registeritem" desc="register a custom item"/>
+		<Command quick_ref="/renderdist 96" name="renderdist" desc="renderdist [10-200]"/>
+		<Command quick_ref="/replace [from_id] [to_id]" name="replace" desc="把当前选中方块中的[from_id]替换为[to_id]。">
+			<Param name="from_id" desc="填入准备替换的方块ID。"/>
+			<Param name="SolidMode" desc="填入要换成的方块ID。"/>
+			<Instance desc="把当前选中方块中的ID为62的草方块替换为ID为5的雪方块。" content="/replace 62 5"/>
+		</Command>
+		<Command quick_ref="/replacetexture from_id to_id_or_filename" name="replacetexture" desc="replace a block texture to another texture or 0"/>
+		<Command quick_ref="/resume" name="resume" desc="resume any queued time event for the calling entity"/>
+		<Command quick_ref="/return true|integer" name="return" desc="return a value"/>
+		<Command quick_ref="/ring [plane] radius [thickness]" name="ring" desc="ring"/>
+		<Command quick_ref="/rotate [x|y|z] from_x from_y from_z (dx dy dz) angle [to pivot_x pivot_y pivot_z]" name="rotate" desc="rotate a region of blocks to along a given axis"/>
+		<Command quick_ref="/rule" name="rule" desc="show all rules or reset rules"/>
+		<Command quick_ref="/save" name="save" desc="save the world Ctrl+S"/>
+		<Command quick_ref="/savetemplate [templatename]" name="savetemplate" desc="save template with current selection"/>
+		<Command quick_ref="/scaling [@playername] size" name="scaling" desc="set scaling of a given player. "/>
+		<Command quick_ref="/sel [radius] [height]" name="sel" desc="select all block below the current player&apos;s feet "/>
+		<Command quick_ref="/selectobj" name="selectobj" desc="选中主角视野画面中的特殊机关方块，比如拉杆，踏板等。">
+			<Instance desc="选中主角视野画面中的特殊机关方块。" content="/selectobj"/>
+		</Command>
+		<Command quick_ref="/set [-p] [@playername] name [=] value_prompt_msg" name="set" desc="set entity variable"/>
+		<Command quick_ref="/setblock x y z (dx dy dz) [block] [data] [where sameblock]" name="setblock" desc="set block at given position. "/>
+		<Command quick_ref="/sethome" name="sethome" desc="set home born position"/>
+		<Command quick_ref="/shader [0,1,2]" name="shader" desc="0 fixed function; 1 standard; 2 fancy graphics"/>
+		<Command quick_ref="/shadow [0,1]" name="shadow" desc="0 disable; 1 enable"/>
+		<Command quick_ref="/show" name="show" desc="show the current player"/>
+		<Command quick_ref="/skin char_male02.png" name="skin" desc="skin [filename]"/>
+		<Command quick_ref="/sky [-tex] [sim|white|green|filename]" name="sky" desc="change sky model or its textures"/>
+		<Command quick_ref="/snow" name="snow" desc="change weather to snow"/>
+		<Command quick_ref="/sound name [filename] [volume:0-1] [pitch:0-1]" name="sound" desc="play a non-loop sound"/>
+		<Command quick_ref="/speeddecay [@playername] [surface_decay] [air_decay]" name="speeddecay" desc="speed lost per second when in air or on surface of block"/>
+		<Command quick_ref="/speedscale [value|1]" name="speedscale" desc="speedscale of the player"/>
+		<Command quick_ref="/sphere radius [SolidMode]" name="sphere" desc="以人物所在坐标为原点,以[radius]值为半径做一个圆球形立体方块。">
+			<Param name="radius" desc="填入数字作为圆球形立体方块的半径。"/>
+			<Param name="SolidMode" desc="填入[true]或者不填，则新建一个实心的圆球形立体方块，反之填入[false]则新建一个空心的圆球形立体方块。"/>
+			<Instance desc="以人物所在坐标为原点,做一个半径为5的实心圆球形立体方块。" content="/sphere 5"/>
+			<Instance desc="以人物所在坐标为原点,做一个半径为5的空心圆球形立体方块。" content="/sphere 5 false"/>
+		</Command>
+		<Command quick_ref="/startserver [ip_host] [port]" name="startserver" desc="start private server on host port"/>
+		<Command quick_ref="/stat get blocks_created" name="stat" desc="stat [op] [name] [value]"/>
+		<Command quick_ref="/stereo [on|off] [eye_dist]" name="stereo" desc="turn on/off stereo mode"/>
+		<Command quick_ref="/stopserver" name="stopserver" desc="stop server"/>
+		<Command quick_ref="/sound name " name="stopsound" desc="stop a sound"/>
+		<Command quick_ref="/t [~][seconds] /othercmd" name="t" desc="使得已编写的代码延迟[seconds]时间后启动。">
+			<Param name="seconds" desc="填入数字，使得代码在规定好的第几秒启动。"/>
+			<Param name="~seconds" desc="填入数字，使得代码在距离上一个/t代码几秒后启动。"/>
+			<Instance desc="此行后的代码将会在10秒后启动。" content="/t 10"/>
+			<Instance desc="此行后的代码将会在第20秒后启动。" content="/t 20"/>
+			<Instance desc="此行后的代码将会在10秒后启动。" content="/t ~10"/>
+			<Instance desc="此行后的代码将会在第20秒后启动。" content="/t ~10"/>
+		</Command>
+		<Command quick_ref="/take [@playername] 61" name="take" desc="take [@playername] [block_id]"/>
+		<Command quick_ref="/terrain -remove" name="terrain" desc="make terrain hole: /terrain -r 256"/>
+		<Command quick_ref="/testblock x y z [(dx dy dz)] blockid [data]" name="testblock" desc="return true if all blocks match a given one"/>
+		<Command quick_ref="/text [-p] [-w] text" name="text" desc="show movie text at the bottom of the screen"/>
+		<Command quick_ref="/tickrate [@playername] rate" name="tickrate" desc="set how many times per second an entity need to be updated"/>
+		<Command quick_ref="/time [-1,1]" name="time" desc="set time of day. 0 or nil means noon"/>
+		<Command quick_ref="/tip [-name] helloworld" name="tip" desc="show a screen message to a channel name with a given string"/>
+		<Command quick_ref="/torchcolor [r] [g] [b]" name="torchcolor" desc="set torch light color"/>
+		<Command quick_ref="/tp [x] [y] [z]" name="tp" desc="将主角传送到一个指定坐标点。">
+			<Param name="[x] [y] [z]" desc="填入X、Y、Z的坐标数字。"/>
+			<Instance desc="将主角传送到一个坐标 19242 11 19178 处。" content="/tp 19242 11 19178"/>
+		</Command>
+		<Command quick_ref="/translate from_x from_y from_z (dx dy dz) to offset_x offset_y offset_z" name="translate" desc="translate blocks">
+			<Param name="from_x from_y from_z" desc="填入原方块X、Y、Z的坐标数字。"/>
+			<Param name="[(dx dy dz)]" desc="填入以上一个坐标为原点的相对X、Y、Z的坐标数字。"/>
+			<Param name="offset_x offset_y offset_z" desc="填入要复制到的位置X、Y、Z的相对坐标数字。"/>
+			<Instance desc="将坐标19242 11 19178处的方块移动到原坐标的上方5格处。" content="/translate 19242 11 19178 to 0 5 0"/>
+			<Instance desc="将坐标19242 11 19178处的方块移动到原坐标的X轴正方向5格处。" content="/translate 19242 11 19178 to 5 0 0"/>
+			<Instance desc="将坐标19242 11 19178处的方块移动到原坐标的X轴负方向5格处。" content="/translate 19242 11 19178 to -5 0 0"/>
+			<Instance desc="将坐标19242 11 19178处，体积为5x5x5的方块群移动到原坐标的上方5格处。" content="/translate 19242 11 19178 (5 5 5) to 0 5 0"/>
+		</Command>
+		<Command quick_ref="/unflood [radius or 10] [x or playerPosX] [y] [z] " name="unflood" desc="unflood"/>
+		<Command quick_ref="/unregister username" name="unregister" desc="unregister a user"/>
+		<Command quick_ref="/upload" name="upload" desc="upload the world"/>
+		<Command quick_ref="/velocity [add|set] [@playername] [~|x] [~|y] [~|z]" name="velocity" desc="add or set velocity to a given mob entity. "/>
+		<Command quick_ref="/viewbobbing [on|off]" name="viewbobbing" desc="turn on/off or toggle viewbobbing"/>
+		<Command quick_ref="/viewport [@id] [alignment:_lt|_fi|_rt] [left] [top] [width] [height]" name="viewport" desc="change main viewport"/>
+		<Command quick_ref="/where [offset_y]" name="where" desc="获取当前角色的坐标，若填入参数则获取当前角色头顶[offset_y]的坐标。">
+			<Param name="offset_y" desc="填入Y坐标轴的位移，获取当前角色头顶坐标。"/>
+			<Instance desc="获取当前角色的坐标。" content="/where"/>
+			<Instance desc="获取当前角色头顶位移5的坐标。" content="/where 5"/>
+		</Command>
+	</Type>
+</Commands>

@@ -1,0 +1,60 @@
+<?npl
+--[[
+Title: Simple and uniform HTTP request API.
+Author: LiXizhi
+Date: 2015/6/27
+Desc: 
+]]
+
+
+-- Get the HTTP Origin of the current request.
+-- @return string URL of the origin. Empty string if no origin.
+function get_http_origin()
+	local origin = request:GetHost() or '';
+
+	-- Change the origin of an HTTP request.
+	return apply_filters( 'http_origin', origin );
+end
+
+
+-- Retrieve list of allowed HTTP origins.
+function get_allowed_http_origins()
+	local allowed_origins = {};
+	return apply_filters( 'allowed_http_origins' , allowed_origins );
+end
+
+-- Determines if the HTTP origin is an authorized one.
+-- @param origin: string Origin URL. If not provided, the value of get_http_origin() is used.
+-- @return orign if the origin is allowed. nil otherwise.
+function is_allowed_http_origin( origin)
+	local origin_arg = origin or get_http_origin();
+
+	if ( origin and not get_allowed_http_origins()[origin]) then
+		origin = '';
+	end
+
+	-- Change the allowed HTTP origin result.
+	return apply_filters( 'allowed_http_origin', origin, origin_arg );
+end
+
+-- Send Access-Control-Allow-Origin and related headers if the current request
+-- is from an allowed origin.
+-- 
+-- If the request is an OPTIONS request, the script exits with either access
+-- control headers sent, or a 403 response if the origin is not allowed. For
+-- other request methods, you will receive a return value.
+-- @return bool|string Returns the origin URL if headers are sent. Returns false
+-- if headers are not sent.
+function send_origin_headers()
+	local origin = get_http_origin();
+
+	if ( is_allowed_http_origin( origin ) ) then
+		return origin;
+	end
+
+	if ( 'OPTIONS' == request:GetMethod() ) then
+		response:SetReturnCode("forbidden");
+		exit();
+	end
+	return false;
+end

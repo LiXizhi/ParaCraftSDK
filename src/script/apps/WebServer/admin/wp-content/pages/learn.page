@@ -1,0 +1,82 @@
+<?npl
+--[[
+Title: learn npl
+Author: LiXizhi
+Date: 2015/7/1
+Desc: NPL learning lessons so that everyone can program. 
+]]
+-- add demo files here:
+local demos = {
+  {title="Hello World", path="demos/helloworld.lua", },
+  {title="Draw Something", path="demos/drawsomething.lua",  },
+  {title="Create Circle Page", path="demos/create_circle_form.page" },
+}
+local path = request:get("path") or demos[1].path;
+?>
+<?npl 
+    wp_enqueue_style("highlight", "/wp-includes/js/highlight/default.css"); 
+    wp_enqueue_script("highlight", "/wp-includes/js/highlight/highlight.pack.js"); 
+?>
+<script>hljs.initHighlightingOnLoad();</script>
+<h1>Learning Neural Parallel Language (NPL)</h1>
+<p>This website is dedicated to teach everyone (from kids to experienced developers) program with NPL. 
+</p>
+<div class="box hlight">
+  <ul>
+  <?npl 
+  local cur_demo;
+  local cur_index = 1;
+  for index, demo in ipairs(demos) do
+    echo("<li>")
+    local class = "";
+    if(demo.path == path) then
+      class = 'style="color:black;font-weight:bold"';
+      cur_demo = demo;
+      cur_index = index;
+    end
+    echo(format('<a %s href="?path=%s">Lesson %d: %s</a>', class, demo.path, index, demo.title));
+    echo("</li>")
+  end
+  ?>  
+  </ul>
+</div>
+<div class="easyui-accordion" style="width:100%px;height:auto;">
+  <?npl 
+  local demo = cur_demo or demos[1];
+  
+  local filename = dirname(__FILE__)..demo.path;
+  local text = get_file_text(filename);
+  if(text) then
+    text = sanitize(text);
+    echo(format([[<div title="Lesson %d: %s" data-options="iconCls:'icon-ok'" style="overflow:auto;padding:10px;">]], cur_index, demo.title));
+      
+    if(demo.path:match("page$")) then
+      echo("<pre><code>");
+      echo(text);
+      echo("</code></pre>\n");
+      echo("<hr/>\n");
+      include(filename);
+    else
+      echo("<pre><code>");
+      echo(text);
+      echo("</code></pre>\n");
+      ?>
+    <hr/>
+    <p>Try it yourself:</p>
+    <form name="code" method="post" action="console">
+      <p>
+        <textarea name="text" rows="6" style="max-width:100%;width:500px;"><?npl echo(text); ?></textarea>
+      </p>
+      <p>
+        <input type="submit" name="btnRunCode" value="Run as code"/>
+      </p>
+    </form>
+  <?npl
+    end
+    echo("</div>\n");
+  else
+    echo(filename.." does not exist<br/>");
+  end
+  ?>
+</div>  
+

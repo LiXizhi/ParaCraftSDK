@@ -1,0 +1,40 @@
+<?npl
+--[[
+Title: Executing AJAX process.
+Author: LiXizhi
+Date: 2015/6/27
+Desc: 
+]]
+
+DOING_AJAX = true;
+
+-- Load Bootstrap
+include_once( dirname( dirname( __FILE__ ) ) .. '/wp-load.page' );
+
+-- Allow for cross-domain requests (from the frontend). 
+send_origin_headers();
+
+-- Require an action parameter, default ot page name
+local action = request:get('action') or wp_query:pagename();
+if ( not action ) then
+	die(0);
+end
+
+addheader( 'Content-Type', 'text/html'); 
+addheader( 'X-Robots-Tag', 'noindex'); 
+
+send_nosniff_header();
+nocache_headers();
+
+-- Load/register Ajax Page Handlers according to page path
+if(page_path()) then
+  include_once( page_path());
+end
+
+if ( is_user_logged_in() ) then
+	-- Fires authenticated AJAX actions for logged-in users.
+	do_action( 'wp_ajax_' .. action);
+else
+	-- Fires non-authenticated AJAX actions for logged-out users.
+	do_action( 'wp_ajax_nopriv_' .. action);
+end

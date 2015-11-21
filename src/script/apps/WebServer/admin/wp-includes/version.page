@@ -1,0 +1,13 @@
+<?npl
+--[[
+Title: version
+Author: LiXizhi
+Date: 2015/6/10
+Desc: 
+]]
+
+-- The site version string
+wp_version = '0.1.0';
+
+-- Holds the required NPL runtime version
+required_npl_version = '1.0.0';

@@ -1,0 +1,51 @@
+﻿<!-- "script/apps/Aries/Creator/Game/Tasks/ExportTask.html" -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+</head>
+<body>
+<pe:mcml>
+<script refresh="true" type="text/npl" src="ExportTask.lua"><![CDATA[
+GameLogic = commonlib.gettable("MyCompany.Aries.Game.GameLogic")
+Export = commonlib.gettable("MyCompany.Aries.Game.Tasks.Export")
+function OnClose()
+    Page:CloseWindow();
+end
+
+function OnOK(name, values)
+   if(values.type == "bmax") then
+        Export.ExportAsBMax();
+   elseif(values.type == "template") then
+        Export.ExportAsTemplate();
+   end
+   OnClose();
+end
+]]></script>
+<aries:window style="width:512px;" title='<%=L"导出"%>' mode="thin" onclose="OnClose">
+    <div style="margin:10px;color:#ffffff;font-size:14px;">
+        <form name="exportForm">
+        <div><%=L"请选择你希望导出的文件类型"%></div>
+        <div style="margin:10px;">
+            <input type="radio" style="margin:2px" id="bmax" name="type" value="bmax" checked="checked"/>
+            <div for="bmax" style="float:left"><%=L"保存为bmax模型"%>
+                <div><%=L"bmax是一种基于方块的模型格式, 支持骨骼动画。可用于构建可放缩的模型方块或电影演员。"%></div>
+            </div>
+        </div>
+        <div style="margin:10px;">
+            <input type="radio" style="margin:2px" id="template" name="type" value="template"/>
+            <div for="template" style="float:left"><%=L"保存为template模版"%>
+                <div><%=L"template记录了方块的全部信息, 包括电影方块内部的演员。可以通过/loadtemplate等命令复制模版到场景中。"%></div>
+            </div>
+        </div>
+        <div style="margin:10px;">
+            <input type="submit" name="ok" value='<%=L"确定"%>' onclick="OnOK" style="min-width:80px;margin-left:150px;" class="mc_light_grey_button_with_fillet"/>
+            <input type="button" name="cancel" value='<%=L"取消"%>' onclick="OnClose" style="min-width:80px;margin-left:20px;" class="mc_light_grey_button_with_fillet"/>
+        </div>
+        </form>
+    </div>
+</aries:window>
+</pe:mcml> 
+</body>
+</html>

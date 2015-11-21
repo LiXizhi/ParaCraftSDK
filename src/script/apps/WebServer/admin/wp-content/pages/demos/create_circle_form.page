@@ -1,0 +1,15 @@
+<form method="POST" action="">
+Please Enter Radius:<br/>
+<input type="text" name="radius" value="4"/><br/>
+<input type="submit" name="btnCreate" value="Create It!" /><br/>
+</form>
+<? 
+if(request:get("btnCreate")) then
+	local radius = tonumber(request:get("radius"));
+	if(radius) then
+		GameLogic.CommandManager:RunCommand("/circle "..radius);
+	else
+		echo("invalid input");
+	end
+end
+?>

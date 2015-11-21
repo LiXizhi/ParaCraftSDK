@@ -15,7 +15,6 @@ file (GLOB_RECURSE ParacraftSrc_NPL_FILES ${PROJECT_SOURCE_DIR}/script/*.lua)
 SOURCE_GROUP("npl\\" FILES ${ParacraftSrc_NPL_FILES})
 list(APPEND ParacraftSrc_SRCS ${ParacraftSrc_NPL_FILES})
 
-
 ##############################
 file (GLOB ParacraftSrc_Config_FILES ${PROJECT_SOURCE_DIR}/config/Aries/creator/*.xml)
 SOURCE_GROUP("config\\" FILES ${ParacraftSrc_Config_FILES})

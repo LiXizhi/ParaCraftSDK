@@ -1,0 +1,62 @@
+<?npl
+--[[
+Title: Template loading functions.
+Author: LiXizhi
+Date: 2015/6/12
+Desc: 
+]]
+
+-- @param name: Filename without extension.
+-- @param templates: optional:if no file is found, find in templates.
+-- @return string Full path to template file.
+function get_query_template(name, templates)
+	if ( not templates ) then
+		templates = {name .. ".page"};
+	else
+		templates = commonlib.copy(templates);
+		table.insert(templates, 1, name .. ".page");
+	end
+	return locate_template(templates);
+end
+
+-- Retrieve the file name of the highest priority template file that exists.
+function locate_template(template_names, bLoad)
+	local located;
+	for  _, template_name in ipairs(template_names) do
+		if ( file_exists(STYLESHEETPATH .. '/' .. template_name)) then
+			located = STYLESHEETPATH .. '/' .. template_name;
+			break;
+		elseif ( file_exists(TEMPLATEPATH .. '/' .. template_name)) then
+			located = TEMPLATEPATH .. '/' .. template_name;
+			break;
+		end
+	end
+	if(located and bLoad) then
+		include(located);
+	end
+	return located;
+end
+
+function get_index_template()
+	return get_query_template('index');
+end
+
+function get_404_template()
+	return get_query_template('404');
+end
+
+function get_category_template()
+	return get_query_template('category');
+end
+
+function get_home_template()
+	return get_query_template('home', {"home.page", "index.page"});
+end
+
+function get_front_page_template()
+	return get_query_template('front_page', {'front-page.php'});
+end
+
+function get_page_template()
+	return get_query_template('page');
+end

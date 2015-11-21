@@ -1,0 +1,15 @@
+<div class="footer">
+  <div class="content ftxt" style="min-height:60px;">
+    <?npl 
+      local source_path = page_path() or __FILE__;
+      echo(format('<a href="viewsource?src=%s">View source:%s</a><br/>', source_path, source_path))
+    ?>
+    Copyright &copy; Tatfook Inc. Powered by ParaEngine and NPL |  <a href="http://www.nplproject.com">Official Website</a>
+  </div>
+</div>
+
+<?npl wp_footer(); ?>
+
+</div>
+</body>
+</html>

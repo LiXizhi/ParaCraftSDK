@@ -50,6 +50,9 @@ function MCImporterGenerator:RegisterWorldGenerator()
 	NPL.load("(gl)Mod/MCImporterGenerator/MCImporterChunkGenerator.lua");
 	local MCImporterChunkGenerator = commonlib.gettable("Mod.MCImporterGenerator.MCImporterChunkGenerator");
 	ChunkGenerators:Register(MCImporterGenerator.generator_name, MCImporterChunkGenerator);
+
+	-- add menu item to desktop 
+	self:RegisterMenuItem("file", {text = L"import minecraft world...", name = "file.mcimport", cmd="/mcimport", }, "file.loadworld");
 end
 
 function MCImporterGenerator:RegisterCommand()
@@ -62,11 +65,6 @@ function MCImporterGenerator:RegisterCommand()
 			self:OnClickImportWorld();
 		end,
 	};
-end
-
-function MCImporterGenerator:RegisterMenuItem()
-	-- add menu item to desktop 
-	self:RegisterMenuItem("file", {text = L"import minecraft world...", name = "file.mcimport", cmd="/mcimport", }, "file.loadworld");
 end
 
 function MCImporterGenerator:OnLogin()

@@ -4,7 +4,7 @@
 | Version 1.0  Date: 2015.4.8  |
 
 ---++ Install Guide
-Download and run ParacraftSDK.*.exe from http://pan.baidu.com/share/home?uk=4265314402
+   * see the [wiki page](https://github.com/LiXizhi/ParaCraftSDK/wiki)
    * Open ParacraftSDK.sln with visual studio 2013 or above. 
 
 It is recommended to stay up to date with our current source respositories (SourceTree recommended for git):

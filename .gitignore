@@ -21,6 +21,7 @@ _apps/*
 _mod/*
 !_mod/Test/
 !_mod/MCImporterGenerator/
+!_mod/STLExporter/
 src/sync_src.bat
 src/sdkpath.txt
 Debug/

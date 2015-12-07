@@ -8,7 +8,10 @@
 *.zip
 *.dll
 obj/*
-redist/
+!redist/
+redist/*
+!redist/ParaCraft.exe
+!redist/config.txt
 published/
 ParaCraft/
 NPLRuntime/

@@ -1,0 +1,2 @@
+company=北京联合大学
+companylogo=beijing_union_university_logo_32bits.png

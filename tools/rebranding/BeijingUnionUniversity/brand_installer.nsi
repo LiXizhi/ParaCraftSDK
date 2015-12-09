@@ -117,7 +117,7 @@ LangString FolderNoPermission ${LANG_ENGLISH} "you do not have write permission 
 
 Caption $(Caption) 
 !ifndef OutputFileName
-	!define OutputFileName  "ParacraftRebrandInstaller.exe"
+	!define OutputFileName  "ParacraftBeijingEduEdition.exe"
 !endif
 OutFile "${OutputFileName}"
 

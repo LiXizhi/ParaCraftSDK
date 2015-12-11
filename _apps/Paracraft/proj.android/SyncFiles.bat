@@ -10,7 +10,7 @@ rem xcopy %~dp0..\..\..\redist\assets_manifest.txt  assets\res\ /Y
 
 xcopy %~dp0..\source  assets\res\source\ /Y /E
 
-xcopy %~dp0..\..\..\build\ParacraftBuild\res  assets\res\ /Y /E
+xcopy D:\HudsonLocal\jobs\make_paracraft_android_apk\workspace\paracraft_android_res  assets\res\ /Y /E
 
 @if exist "%paraengine_so_filename%" (xcopy %paraengine_so_filename% lib\armeabi\ /Y)
-@if exist "%main_full_filename%" (copy %main_full_filename% assets\res\main_full.pkg /Y)
+@if exist "%main_full_filename%" (copy %main_full_filename% assets\res\main.pkg /Y)

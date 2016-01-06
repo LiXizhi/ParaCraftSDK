@@ -26,13 +26,24 @@ local CommandManager = commonlib.gettable("MyCompany.Aries.Game.CommandManager")
 Commands["show"] = {
 	name="show", 
 	quick_ref="/show [desktop|player|boundingbox|perf|info|touch|terrain] [on|off]", 
-	desc="show different type of things" , 
+	desc = [[show different type of things.
+Other show filters: 
+/show desktop.builder.[static|movie|character|playerbag|gear|deco|tool|template|env] [on|off]
+/show movie.controller
+e.g.
+/show desktop.builder.movie
+]], 
 	handler = function(cmd_name, cmd_text, cmd_params)
 		local name, bIsShow;
 		name, cmd_text = CmdParser.ParseString(cmd_text);
 		bIsShow, cmd_text = CmdParser.ParseBool(cmd_text);
+		name = name or "";
 
-		if(name == "desktop") then
+		-- apply the show filter
+		name = GameLogic.GetFilters():apply_filters("show", name, bIsShow);
+		if(not name) then
+			-- filter handles it already
+		elseif(name == "desktop") then
 			local Desktop = commonlib.gettable("MyCompany.Aries.Creator.Game.Desktop");
 			Desktop.ShowAllAreas();
 		elseif(name == "boundingbox") then
@@ -52,7 +63,7 @@ Commands["show"] = {
 			ParaTerrain.GetAttributeObject():SetField("RenderTerrain", if_else(bIsShow==nil, true, bIsShow));
 		elseif(name == "player") then
 			EntityManager.GetPlayer():SetVisible(true);
-		else
+		elseif(name == "") then
 			ParaScene.GetAttributeObject():SetField("ShowMainPlayer", true);
 		end
 	end,
@@ -67,7 +78,12 @@ Commands["hide"] = {
 	handler = function(cmd_name, cmd_text, cmd_params)
 		local name;
 		name, cmd_text = CmdParser.ParseString(cmd_text);
-		if(name == "desktop") then
+		name = name or "";
+		-- apply the hide filter
+		name = GameLogic.GetFilters():apply_filters("hide", name);
+		if(not name) then
+			-- filter handles it already
+		elseif(name == "desktop") then
 			local Desktop = commonlib.gettable("MyCompany.Aries.Creator.Game.Desktop");
 			Desktop.HideAllAreas();
 		elseif(name == "boundingbox") then
@@ -76,7 +92,7 @@ Commands["hide"] = {
 			GameLogic.options:ShowTouchPad(false);
 		elseif(name == "player") then
 			EntityManager.GetPlayer():SetVisible(false);
-		else
+		elseif(name == "") then
 			ParaScene.GetAttributeObject():SetField("ShowMainPlayer", false);
 		end
 	end,

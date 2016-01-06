@@ -26,6 +26,11 @@ end
 -- this is a private function: do not call this explicitly 
 function GameMode:SetInnerMode(mode)
 	self.mode = mode;
+	if(mode == "editor" or mode == "tutorial") then
+		self.bIsEditor = true;
+	else
+		self.bIsEditor = false;
+	end
 end
 
 function GameMode:GetMode()
@@ -38,8 +43,13 @@ function GameMode:CanPlaceExternalModel()
 	return not System.options.mc;
 end
 
+	
+function GameMode:CanClickEmptySlot()
+	return self:IsEditor();
+end
+
 function GameMode:IsEditor()
-	if(self.mode == "editor") then
+	if(self.bIsEditor) then
 		return true;
 	elseif(self.mode == "movie") then
 		return self:CanRightClickToCreateBlock();
@@ -50,8 +60,12 @@ end
 
 function GameMode:ActivateDefaultContext()
 	local context;
-	if(self.mode == "editor") then
-		context = AllContext:GetContext("edit");
+	if(self.bIsEditor) then
+		if(self.mode == "tutorial") then
+			context = AllContext:GetContext("tutorial");
+		else
+			context = AllContext:GetContext("edit");
+		end
 	elseif(self.mode == "movie") then
 		context = AllContext:GetContext("movie");
 	else
@@ -63,28 +77,28 @@ function GameMode:ActivateDefaultContext()
 end
 
 function GameMode:CanFly()
-	return self.mode=="editor" or self.mode == "movie";
+	return self.bIsEditor or self.mode == "movie";
 end
 
 function GameMode:WillDieWhenFallTooDeep()
-	return not (self.mode=="editor" or self.mode == "movie");
+	return not (self.bIsEditor or self.mode == "movie");
 end
 
 function GameMode:CanCollectItem()
-	return not (self.mode=="editor" or self.mode == "movie");
+	return not (self.bIsEditor or self.mode == "movie");
 end
 
 function GameMode:HasJumpRestriction()
-	return not (self.mode=="editor" or self.mode == "movie");
+	return not (self.bIsEditor or self.mode == "movie");
 end
 
 function GameMode:AllowDoubleClickJump()
-	return (self.mode=="editor");
+	return (self.bIsEditor);
 end
 
 -- E key to use creator bag instead of player's inventory
 function GameMode:IsUseCreatorBag()
-	return self.mode=="editor" or self.mode == "movie";
+	return self.bIsEditor or self.mode == "movie";
 end
 
 function GameMode:IsShowGoalTracker()
@@ -120,10 +134,10 @@ function GameMode:SetViewMode(bViewMode)
 end
 
 function GameMode:CanShowTimeLine()
-	return (self.mode=="movie") or (self.mode=="editor");
+	return (self.mode=="movie") or (self.bIsEditor);
 end
 function GameMode:IsShowExpHPBar()
-	return not (self.mode=="editor" or self.mode == "movie");
+	return not (self.bIsEditor or self.mode == "movie");
 end
 
 function GameMode:IsShowQuickSelectBar()
@@ -131,11 +145,11 @@ function GameMode:IsShowQuickSelectBar()
 end
 
 function GameMode:IsAllowGlobalEditorKey()
-	return (self.mode=="editor" or self.mode == "movie");
+	return (self.bIsEditor or self.mode == "movie");
 end
 
 function GameMode:AllowLongHoldToDestoryBlock()
-	return not (self.mode=="editor" or self.mode == "movie");
+	return not (self.bIsEditor or self.mode == "movie");
 end
 
 function GameMode:CanSelect()
@@ -169,7 +183,7 @@ function GameMode:CanRightClickToCreateBlock(gamemode)
 end
 
 function GameMode:CanEditBlock()
-	return (self.mode=="editor" or self.mode == "movie");
+	return (self.bIsEditor or self.mode == "movie");
 end
 
 -- can show the right bottom dock panel. this area is disabled in movie mode. 
@@ -182,7 +196,7 @@ function GameMode:CanDirectClickToActivateItem()
 end
 
 function GameMode:CanAddToHistory()
-	return (self.mode=="editor" or self.mode == "movie");
+	return (self.bIsEditor or self.mode == "movie");
 end
 
 function GameMode:CanDropItem()
@@ -191,7 +205,7 @@ end
 
 function GameMode:CanDestroyBlock(gamemode)
 	gamemode = gamemode or self.mode;
-	if((gamemode == "editor" or gamemode=="survival")) then
+	if((self.bIsEditor or gamemode=="survival")) then
 		return true;
 	elseif(gamemode == "movie") then
 		return self:CanRightClickToCreateBlock(gamemode)

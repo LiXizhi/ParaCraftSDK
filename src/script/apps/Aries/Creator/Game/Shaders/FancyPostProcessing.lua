@@ -150,7 +150,8 @@ function FancyV1:OnRenderLite(ps_scene, nPass)
 		params:SetParam("ViewAspect", "floatViewAspect");
 		params:SetParam("TanHalfFOV", "floatTanHalfFOV");
 		params:SetParam("cameraFarPlane", "floatCameraFarPlane");
-		params:SetFloat("FogStart", GameLogic.options.fog_start);
+		params:SetFloat("FogStart", GameLogic.options:GetFogStart());
+		params:SetFloat("FogEnd", GameLogic.options:GetFogEnd());
 
 		params:SetFloat("timeMidnight", timeMidnight);
 		local sunIntensity = attr:GetField("SunIntensity", 1);
@@ -245,7 +246,8 @@ function FancyV1:OnRenderHighWithHDR(ps_scene, nPass)
 
 		params:SetFloat("rainStrength", math.min(1, GameLogic.options:GetRainStrength()/10));
 		params:SetFloat("DepthOfViewFactor", self:GetDepthOfViewFactor());
-		params:SetFloat("FogStart", GameLogic.options.fog_start);
+		params:SetFloat("FogStart", GameLogic.options:GetFogStart());
+		params:SetFloat("FogEnd", GameLogic.options:GetFogEnd());
 		params:SetFloat("CloudThickness", GameLogic.options:GetCloudThickness());
 		params:SetFloat("EyeBrightness", self:GetEyeBrightness());
 		

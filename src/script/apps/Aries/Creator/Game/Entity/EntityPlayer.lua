@@ -22,6 +22,7 @@ NPL.load("(gl)script/apps/Aries/Creator/Game/Entity/PlayerHeadController.lua");
 NPL.load("(gl)script/apps/Aries/Creator/Game/Common/Direction.lua");
 NPL.load("(gl)script/apps/Aries/Creator/Game/Entity/PlayerSkins.lua");
 NPL.load("(gl)script/apps/Aries/Creator/Game/Common/DataWatcher.lua");
+NPL.load("(gl)script/apps/Aries/Creator/Game/Entity/EntityMovable.lua");
 local DataWatcher = commonlib.gettable("MyCompany.Aries.Game.Common.DataWatcher");
 local PlayerSkins = commonlib.gettable("MyCompany.Aries.Game.EntityManager.PlayerSkins")
 local Direction = commonlib.gettable("MyCompany.Aries.Game.Common.Direction")
@@ -46,7 +47,7 @@ local math_floor = math.floor;
 local rshift = mathlib.bit.rshift;
 local lshift = mathlib.bit.lshift;
 
-local Entity = commonlib.inherit(commonlib.gettable("MyCompany.Aries.Game.EntityManager.Entity"), commonlib.gettable("MyCompany.Aries.Game.EntityManager.EntityPlayer"));
+local Entity = commonlib.inherit(commonlib.gettable("MyCompany.Aries.Game.EntityManager.EntityMovable"), commonlib.gettable("MyCompany.Aries.Game.EntityManager.EntityPlayer"));
 NPL.load("(gl)script/apps/Aries/Creator/Game/Entity/EntityPlayerGSL.lua");
 
 -- persistent object by default. 
@@ -519,34 +520,19 @@ function Entity:SetClient()
 	self.inventory:SetClient();
 end
 
--- get skin texture file name
-function Entity:GetSkin()
-	if(self.skin) then
-		return self.skin;
-	else
-		local item = self:GetItemClass();
-		if(item) then
-			return item:GetSkinFile() or "";
-		else
-			return "";
-		end
-	end
-end
-
 -- @param chatmsg: ChatMessage or string. 
 function Entity:SendChatMsg(chatmsg, chatdata)
 end
 
 -- set new skin texture by filename. 
 function Entity:SetSkin(skin, bIgnoreSetSkinId)
-	self.skin = skin or self.skin;
+	Entity._super.SetSkin(self, skin, bIgnoreSetSkinId);
 	if(not bIgnoreSetSkinId) then
 		local skin_id = PlayerSkins:GetSkinID(self.skin);
 		if(skin_id) then
 			self.dataWatcher:SetField(2, skin_id);
 		end
 	end
-	self:RefreshClientModel();
 end
 
 function Entity:GetSkinId()
@@ -574,14 +560,6 @@ function Entity:RefreshClientModel(bForceRefresh, playerObj)
 		end
 	end
 end
-
-function Entity:RefreshSkin(player)
-	local player = player or self:GetInnerObject();
-	if(player) then
-		player:SetReplaceableTexture(2, ParaAsset.LoadTexture("", PlayerSkins:GetFileNameByAlias(self:GetSkin()), 1));
-	end
-end
-
 
 function Entity:UpdateDisplayName(text)
 	if(self:GetDisplayName()~=text) then

@@ -55,6 +55,7 @@ function ItemClient.PreloadItemClass()
 	NPL.load("(gl)script/apps/Aries/Creator/Game/Items/ItemTimeSeriesCamera.lua");
 	NPL.load("(gl)script/apps/Aries/Creator/Game/Items/ItemTimeSeriesNPC.lua");
 	NPL.load("(gl)script/apps/Aries/Creator/Game/Items/ItemTimeSeriesCommands.lua");
+	NPL.load("(gl)script/apps/Aries/Creator/Game/Items/ItemTimeSeriesOverlay.lua");
 	NPL.load("(gl)script/apps/Aries/Creator/Game/Items/ItemImage.lua");
 	NPL.load("(gl)script/apps/Aries/Creator/Game/Items/ItemDoor.lua");
 	NPL.load("(gl)script/apps/Aries/Creator/Game/Items/ItemRailcar.lua");

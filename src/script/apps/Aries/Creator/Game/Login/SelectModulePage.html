@@ -16,9 +16,11 @@ function DS_Items(index)
     return SelectModulePage.DS_Items(index);
 end
 
-function OnSwitchModStatus(bChecked,mcmlNode)
+function OnSwitchModStatus(name,mcmlNode)
     local item = mcmlNode:GetPreValue("this",true);
-    SelectModulePage.OnSwitchModStatus(bChecked,item.name);
+    item.checked = not item.checked;
+    SelectModulePage.OnSwitchModStatus(item.checked,item.name);
+    Page:Refresh(0.01);
 end
 
 function ClosePage()
@@ -30,9 +32,6 @@ function OnOk()
     ClosePage();
 end
 
-function CanChecked()
-    
-end
 
 function CanUseMod()
 
@@ -73,11 +72,21 @@ end
         <pe:gridview style="margin:10px" name="gvwModTable" CellPadding="5"  AllowPaging="false" DefaultNodeHeight = "20" ItemsPerLine="1"
                 DataSource="<%=DS_Items%>" >
 	        <Columns>
-		        <div style="color:#ffffff;">
-                    <div style="float:left;">
-                        <input type="checkbox" checked='<%=Eval("checked") %>' enabled="<%=CanChecked()%>" onclick="OnSwitchModStatus"/>
+		        <div style="color:#ffffff;" onclick="OnSwitchModStatus">
+                    <div style="float:left;" >
+                        <input type="checkbox" style="margin-top:2px;margin-right:3px" checked='<%=Eval("checked") %>' />
+                        <pe:if condition='<%=Eval("checked") %>'>
+                            <div style="float:left;min-width:60px;color:#81f515">
+                                <%=L"加载"%>
+                            </div>
+                        </pe:if>
+                        <pe:if condition='<%=not Eval("checked") %>'>
+                            <div style="float:left;min-width:60px;color:#ff6a00">
+                                <%=L"禁用"%>
+                            </div>
+                        </pe:if>
                     </div>
-                    <div style="float:left;margin-left:10px;margin-top:-2px;color:#ffffff;">
+                    <div style="float:left;margin-left:10px;color:#ffffff;">
                         <%=Eval("text") %>
                     </div>
                 </div>
@@ -88,10 +97,7 @@ end
 	        <FetchingDataTemplate>
 		        <b><%=L"无Mod"%></b>
 	        </FetchingDataTemplate>
-	        <!--<PagerSettings Position="TopAndBottom" height="26" PreviousPageText="" NextPageText=""/>-->
-	        <!--<PagerTemplate><form><input type="button" name="pre" value="previous page"/><input type="button" name="next" value="next page"/><label name="page" style="height:18px;margin:4px"/></form></PagerTemplate>-->
         </pe:gridview>
-        <!--<input type="checkbox" checked='<%=Eval("checked") %>' enabled="<%=CanChecked()%>" onclick="OnSwitchModStatus"/>-->
     </div>
     <div style="margin-top:15px;margin-bottom:20px;">
         <input type="button" value='<%=L"确定"%>' style="float:left;margin-left:170px;width:108px;height:32px;font-size:18px;font-weight:bold;color:#ffffff;shadow-quality:8;shadow-color:#80133f48;text-shadow:true;" onclick="OnOk" class="mc_light_grey_button_with_fillet"/>

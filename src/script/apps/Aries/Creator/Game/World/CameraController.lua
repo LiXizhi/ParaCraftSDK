@@ -121,7 +121,7 @@ function CameraController.OnFPSMouseTimer()
 				ParaUI.LockMouse(true);
 				local root_ = ParaUI.GetUIObject("root");
 				local _, _, width_screen, height_screen = root_:GetAbsPosition();
-				root_:GetAttributeObject():SetField("MousePosition", {width_screen / 2, height_screen / 2});
+				root_:SetField("MousePosition", {width_screen / 2, height_screen / 2});
 				ParaUI.GetUIObject("FPS_Cursor").visible = not (GameLogic.GameMode:IsViewMode());
 				if(CameraController.IsAlwaysRotateCameraWhenFPS) then
 					att:SetField("IsAlwaysRotateCameraWhenFPS", true);

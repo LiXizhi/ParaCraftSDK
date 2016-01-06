@@ -122,8 +122,15 @@ function WorldCommon.SaveWorld()
 	local LocalNPC = commonlib.gettable("MyCompany.Aries.Creator.AI.LocalNPC")
 	LocalNPC:SaveToFile();
 	WorldCommon.SaveWorldTag();
-	Map3DSystem.SendMessage_obj({type = Map3DSystem.msg.SCENE_SAVE})
-	-- WorldCommon.SetModified(false);
+	
+	if(System.options.mc) then
+		-- this ensures that folder modification time is changed
+		commonlib.Files.TouchFolder(GameLogic.GetWorldDirectory());
+	else
+		-- since sqlite will delete journal file anyway, the folder modification time is changed anyway. 
+		-- so no need to touch directory explicitly here
+		Map3DSystem.SendMessage_obj({type = Map3DSystem.msg.SCENE_SAVE})
+	end
 end
 
 

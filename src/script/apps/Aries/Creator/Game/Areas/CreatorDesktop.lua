@@ -7,6 +7,7 @@ Use Lib:
 -------------------------------------------------------
 NPL.load("(gl)script/apps/Aries/Creator/Game/Areas/CreatorDesktop.lua");
 local CreatorDesktop = commonlib.gettable("MyCompany.Aries.Creator.Game.Desktop.CreatorDesktop");
+CreatorDesktop.StaticInit();
 CreatorDesktop.ShowPage(true)
 -------------------------------------------------------
 ]]
@@ -166,6 +167,48 @@ function CreatorDesktop:OnGameModeChangedNew()
 	end
 end
 
+-- filtering the /show command
+-- /show desktop.builder.[static|movie|character|playerbag|gear|deco|tool|template|env]
+-- e.g. /show desktop.builder.env
+-- @param bShow: true to show, otherwise to hide
+function CreatorDesktop.ShowFilter(name, bShow)
+	if(name and (GameLogic.GameMode:IsEditor() or GameLogic.GameMode:IsMovieMode())) then
+		if(name:match("^desktop%.builder")) then
+			local tab = name:match("^desktop%.builder%.(.+)$");
+			if(bShow == false) then
+				-- hide page
+			elseif(tab == "env") then
+				CreatorDesktop.tabview_index = 2;
+			else
+				CreatorDesktop.tabview_index = 1;
+				local BuilderFramePage = commonlib.gettable("MyCompany.Aries.Creator.Game.Desktop.BuilderFramePage");
+				if(BuilderFramePage.GetCategoryButtons) then
+					local ds = BuilderFramePage.GetCategoryButtons();
+					for index, item in ipairs(ds) do
+						if(item.name == tab) then
+							BuilderFramePage.category_index = index;
+						end
+					end
+				end
+			end
+			CreatorDesktop.ShowNewPage(bShow~=false);
+			return;
+		end
+	end
+	return name;
+end
+
+function CreatorDesktop.StaticInit()
+	if(CreatorDesktop.isInited) then
+		return;
+	end
+	CreatorDesktop.isInited = true;
+	GameLogic.GetFilters():add_filter("show", CreatorDesktop.ShowFilter);
+	NPL.load("(gl)script/apps/Aries/Creator/Game/Areas/BuilderFramePage.lua");
+	local BuilderFramePage = commonlib.gettable("MyCompany.Aries.Creator.Game.Desktop.BuilderFramePage");
+	BuilderFramePage.OneTimeInit(1);
+end
+
 -- @param IsExpanded: nil to toggle. true or false to show expanded or not. false by default. 
 function CreatorDesktop.ShowNewPage(IsExpanded)
 	if(IsExpanded == nil) then
@@ -184,7 +227,6 @@ function CreatorDesktop.ShowNewPage(IsExpanded)
 	end
 
 	if(CreatorDesktop.new_page and CreatorDesktop.IsExpanded) then
-		NPL.load("(gl)script/apps/Aries/Creator/Game/Areas/BuilderFramePage.lua");
 		local BuilderFramePage = commonlib.gettable("MyCompany.Aries.Creator.Game.Desktop.BuilderFramePage");
 		BuilderFramePage.isSearching = false;
 		local search_text_obj = ParaUI.GetUIObject("block_search_text_obj");

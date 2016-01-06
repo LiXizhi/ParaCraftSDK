@@ -227,11 +227,22 @@ local function filehandler (req, res, baseDir)
 end
 
 -- public: file handler maker. it returns a handler that serves files in the baseDir dir
--- @param baseDir: the directory from which to serve files
+-- @param baseDir: the directory from which to serve files. "%world%" is current world directory
 -- @return the actual handler function(request, response) end
 function WebServer.filehandler (baseDir)
-	if type(baseDir) == "table" then baseDir = baseDir.baseDir end
+	if type(baseDir) == "table" then 
+		baseDir = baseDir.baseDir;
+	end
+
+	local bReplaceWorldDir;
+	if(type(baseDir) == "string" and baseDir:match("^%%world%%")) then
+		bReplaceWorldDir = true;
+	end
 	return function (req, res)
-		return filehandler (req, res, baseDir)
+		local baseDir_ = baseDir;
+		if(bReplaceWorldDir) then
+			baseDir_ = baseDir_:gsub("^%%world%%", ParaWorld.GetWorldDirectory());
+		end
+		return filehandler (req, res, baseDir_)	
 	end
 end

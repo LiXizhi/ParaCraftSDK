@@ -57,7 +57,7 @@ end
 
 -- @param default_text: default text to be displayed. 
 -- @param filters: "model", "bmax", "audio", "texture", nil for any file, or filters table
-function OpenFileDialog.ShowPage(text, OnClose, default_text, title, filters)
+function OpenFileDialog.ShowPage(text, OnClose, default_text, title, filters, IsSaveMode)
 	OpenFileDialog.result = nil;
 	OpenFileDialog.text = text;
 	OpenFileDialog.title = title;
@@ -66,6 +66,8 @@ function OpenFileDialog.ShowPage(text, OnClose, default_text, title, filters)
 	end
 	OpenFileDialog.filters = filters;
 	
+	OpenFileDialog.IsSaveMode = IsSaveMode == true;
+
 	local params = {
 			url = "script/apps/Aries/Creator/Game/GUI/OpenFileDialog.html", 
 			name = "OpenFileDialog.ShowPage", 

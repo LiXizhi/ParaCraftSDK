@@ -301,7 +301,7 @@ Sound related:
   <block singleSideTex="true" name="Glowstone" text="萤石块" searchkey="萤石块" mc_id="89" id="87" mapcolor="#cfab3d" step_sound="gravel" icon="Texture/blocks/items/stone_glow.png" texture="Texture/blocks/stone_glow.png" light="true" obstruction="true" solid="true" cubeMode="true"  />
   <!--name="Portal" text="下界传送门方块" searchkey="" mc_id="90" 先不做-->
   <!--added by Jingqi 2013.11.23: 要做成半格高-->
-  <block singleSideTex="true" name="Cake" text="蛋糕" searchkey="蛋糕" mc_id="92" id="84" step_sound="gravel" icon="Texture/blocks/items/cake.png" texture="Texture/blocks/cake_top.png" obstruction="true" solid="true" cubeMode="true"  />
+  <block singleSideTex="true" name="Cake" text="蛋糕" searchkey="蛋糕" mc_id="92" id="84" step_sound="gravel" texture="Texture/blocks/cake_top.png" obstruction="true" solid="true" cubeMode="true"  />
   <!--Added Xizhi 2013.12.7: name="Redstone_Repeater" text="红石中继器" searchkey="" mc_id="93" -->
   <block name="Redstone_Repeater" text="红石中继器" searchkey="红石中继器" mc_id="93" class="BlockRedstoneRepeater" id="197" disable_gen_icon="true" icon="Texture/blocks/items/Redstone_Repeater.png" toggle_blockid="198" click_sound="click" toggle_sound="click" hasAction="true" customModel="true" texture="Texture/blocks/Redstone_Repeater_off.png" template="RepeaterOff?filename=model/blockworld/Redstone_Repeater/Redstone_Repeater_off" />
   <!--Added Xizhi 2013.12.7: name="Redstone_Repeater_On" text="激活的红石中继器" searchkey="" mc_id="94" -->
@@ -538,6 +538,7 @@ Sound related:
   </block>
   <block id="10063" name="TimeSeriesCommands" text="命令序列" searchkey="命令序列" item_class="ItemTimeSeriesCommands" tooltip="命令序列" icon="Texture/blocks/items/ts_block.png"></block>
   <block id="10064" name="Minimap" text="小地图" searchkey="小地图" item_class="ItemMinimap" tooltip="小地图" icon="Texture/blocks/items/map_empty.png"></block>
+  <block id="10065" name="TimeSeriesOverlay" text="图层" searchkey="" item_class="ItemTimeSeriesOverlay" tooltip="图层" icon="Texture/blocks/items/ts_block.png"></block>
   
   <!--怪物和动物： id: 20000-20999-->
   <block id="20001" name="simple_mob" text="怪物" searchkey="怪物" tooltip="" item_class="ItemMob" icon="character/CC/03animals/treemonster/treemonster.x.png" gold_count="5" hp="100" respawn_time="300000">

@@ -9,7 +9,8 @@
 <script type="text/npl"><![CDATA[
 local page = document:GetPageCtrl();
 local MainLogin = commonlib.gettable("MyCompany.Aries.Game.MainLogin");
-
+NPL.load("(gl)script/apps/Aries/Creator/Game/Login/Rebranding.lua");
+Rebranding = commonlib.gettable("MyCompany.Aries.Creator.Game.Rebranding");
 
 -- @param name: "local", "internet"
 function OnSelect()
@@ -56,8 +57,14 @@ end
 <pe:container alignment="_ct" style="position:relative;background:;margin-left:-260px;margin-top:-200px;width:520px;height:500px;">
     <div style='<%=L"position:relative;margin-left:0px;margin-top:-10px;width:512px;height:177px;background:url(Texture/Aries/Creator/Mobile/blocks_Background.png#0 259 512 175);"%>'>
     </div>
+    <pe:if condition='<%=Rebranding:GetValue("companylogo")~=nil%>'>
+        <div style='<%=format("position:relative;margin-top:15px;margin-left:-220px;width:256px;height:64px;background:url(%s)", Rebranding:GetValue("companylogo"))%>'></div>
+    </pe:if>
+    <pe:if condition='<%=Rebranding:GetValue("company")~=nil and not Rebranding:GetValue("companylogo")%>'>
+        <div style="position:relative;margin-top:15px;margin-left:-220px;color:#572712"><%=Rebranding:GetValue("company")%></div>
+    </pe:if>
     <div style="position:relative;margin-left:0px;width:480px;margin-top:150px;color:#572712;font-size:14px;text-align:center">
-        <%=L"免费的电影创作工具"%>
+        <%=Rebranding:GetValue("titleaddon") or L"免费的电影创作工具"%>
     </div>
     <div style="margin-top:178px;margin-left:120px;">
         <input type="button" value='<%=L"开启创意世界" %>' class="mc_big_button" style="font-size:18px;font-weight:bold;color:#572712;shadow-quality:8;shadow-color:#f0cec8c4;text-shadow:true;text-offset-y:-8;width:240px;height:120px;" name="internet" onclick="OnSelect" />
@@ -79,7 +86,9 @@ end
 <!--persistent setting button-->
 <pe:container alignment="_rb" style="position:relative;background:;width:300px;height:50px;">
     <input type="button" value='<%="Credits"%>' align="right" spacing="20" class="mc_light_grey_button_with_fillet" style="position:relative;font-size:14px;height:36px;margin-right:160px" onclick="OnClickCredits" />
-    <input type="button" value='<%=L"捐赠" %>' align="right" spacing="20" class="mc_light_grey_button_with_fillet" style="font-size:14px;height:36px;margin-right:20px" onclick="OnClickDonate" />
+    <pe:if condition='<%=Rebranding:GetValue("donation")~="false"%>'>
+        <input type="button" value='<%=L"捐赠" %>' align="right" spacing="20" class="mc_light_grey_button_with_fillet" style="font-size:14px;height:36px;margin-right:20px" onclick="OnClickDonate" />
+    </pe:if>
 </pe:container>
 </pe:mcml>
 </body>

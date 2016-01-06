@@ -81,6 +81,7 @@ function Map3DSystem.UI.LoadWorld.LoadWorldImmediate(worldpath, bPerserveUI, bHi
 			return worldpath..L" failed loading the world."
 		end
 	else
+		LOG.std(nil, "error", "LoadWorld", "unable to find file: %s", Map3DSystem.world.sConfigFile or "");
 		return worldpath..L" world does not exist"
 	end	
 end

@@ -285,7 +285,7 @@ function ChatChannel.AppendChat( msgdata, bIgnoreSelf, nid )
 		return;
 	end
 	
-	if(msgdata.from and msgdata.from~="0") then
+	if(msgdata.from and msgdata.from~="0" and ExternalUserModule and ExternalUserModule.CanViewUser) then
 		if(msgdata.ChannelIndex == EnumChannels.BroadCast and not ExternalUserModule:CanViewUser(msgdata.from)) then
 			return;
 		end
@@ -347,7 +347,7 @@ function ChatChannel.OnProcessMsg(msgdata)
 			if(not System.options.mc) then
 				words = SmileyPage.ChangeToMcml(pure_text, 64);
 			end
-			headon_speech.Speek(player.name, words, 5);
+			headon_speech.Speek(player.name, words, 5, true);
 		end
 	end
 

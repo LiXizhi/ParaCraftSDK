@@ -99,11 +99,12 @@ function SceneContextManager:Select(context)
 	if(not context) then
 		return self:Unselect();
 	end
-	if(context ~= self:GetCurrentContext()) then
+	local lastContext = self:GetCurrentContext();
+	if(context ~= lastContext) then
 		if(self:Unselect() and context) then
 			-- LOG.std(nil, "debug", "SceneContextManager", "context selected");
 			current_context = context;
-			context:OnSelect();
+			context:OnSelect(lastContext);
 			self:contextSelected(); -- signal
 			return true;
 		end

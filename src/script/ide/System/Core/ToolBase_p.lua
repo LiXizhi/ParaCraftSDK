@@ -278,7 +278,7 @@ function ToolBase:SetField(name, value)
 				func(self, value);
 			end
 		end
-	else
+	elseif(property and property.private_name)then
 		self[property.private_name] = value;
 	end
 end

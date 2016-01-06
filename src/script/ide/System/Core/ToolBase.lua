@@ -40,7 +40,7 @@ MyTool:Signal("XXXChanged", function(only_for_doc)  end);
 -- create instance
 local tool1 = MyTool:new();
 local tool2 = MyTool:new();
-tool1:Connect("ValueChanged", tool2, "SetValue");
+tool1:Connect("ValueChanged", tool2, "SetValue", "UniqueConnection");
 -- disconnect 
 tool1:Disconnect("ValueChanged", tool2, "SetTag");
 -- invoke signals

@@ -186,13 +186,16 @@ end
 -- @param item_id: if nil, it count all items
 -- @param from_slot_id: default to 1
 -- @param to_slot_id: default to self:GetSlotCount()
-function InventoryBase:GetItemCount(item_id, from_slot_id, to_slot_id)
+-- @param filterFunc: can be nil, or function(itemStack) return true end. return true if item is counted. 
+function InventoryBase:GetItemCount(item_id, from_slot_id, to_slot_id, filterFunc)
 	local count = 0;
 	local slots = self.slots;
 	for i=(from_slot_id or 1), (to_slot_id or self:GetSlotCount()) do
 		local item = slots[i];
 		if(item and (not item_id or item.id == item_id) and item.count>0) then
-			count = count + item.count;
+			if(not filterFunc or filterFunc(item)) then
+				count = count + item.count;
+			end
 		end
 	end
 	return count;
@@ -201,19 +204,22 @@ end
 -- return a random item based on the total number of items in bags. 
 --  Each item has equal chance.
 -- @param bClone: if true, we will clone of item
-function InventoryBase:GetRandomItem(bClone)
+-- @param filterFunc: can be nil, or function(itemStack) return true end. return true if item is counted. 
+function InventoryBase:GetRandomItem(bClone, filterFunc)
 	local itemStack;
-	local nTotalCount = self:GetItemCount();
+	local nTotalCount = self:GetItemCount(nil, nil, nil, filterFunc);
 	if(nTotalCount > 0) then
 		local nIndex = math.random(1, nTotalCount);
 		local nCount = 0;
 		for i = 1, self:GetSlotCount() do
 			local itemStack_ = self:GetItem(i);
 			if(itemStack_) then
-				nCount = nCount + itemStack_.count;
-				if(nIndex <= nCount) then
-					itemStack = itemStack_;
-					break
+				if(not filterFunc or filterFunc(itemStack_)) then
+					nCount = nCount + itemStack_.count;
+					if(nIndex <= nCount) then
+						itemStack = itemStack_;
+						break
+					end
 				end
 			else
 				break;

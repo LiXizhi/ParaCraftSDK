@@ -43,7 +43,7 @@ NPL.load("(gl)script/ide/System/Scene/Overlays/Overlay.lua");
 local Overlay = commonlib.gettable("System.Scene.Overlays.Overlay");
 local layer1 = Overlay:new():init();
 layer1:SetPosition(ParaScene.GetPlayer():GetPosition());
-layer1.paintEvent = function(painter)
+layer1.paintEvent = function(self, painter)
 	self:SetColorAndName(painter, "#ff0000");
 	ParaPainter.DrawRect(-100, -100, 100, 100);
 	self:SetColorAndName(painter, "#00ff00");
@@ -307,6 +307,9 @@ function Overlay:SetPosition(x,y,z)
 			self.parent:SetPosition(x,y,z);
 		end
 	end
+end
+
+function Overlay:UpdateTileContainer()
 end
 
 -- get global 3d position

@@ -12,6 +12,7 @@ local EditMovieContext = commonlib.gettable("MyCompany.Aries.Game.SceneContext.E
 NPL.load("(gl)script/apps/Aries/Creator/Game/SceneContext/BaseContext.lua");
 NPL.load("(gl)script/apps/Aries/Creator/Game/Tasks/UndoManager.lua");
 NPL.load("(gl)script/apps/Aries/Creator/Game/Movie/MovieUISound.lua");
+local MovieClipController = commonlib.gettable("MyCompany.Aries.Game.Movie.MovieClipController");
 local MovieUISound = commonlib.gettable("MyCompany.Aries.Game.Movie.MovieUISound");
 local CameraController = commonlib.gettable("MyCompany.Aries.Game.CameraController")
 local SelectionManager = commonlib.gettable("MyCompany.Aries.Game.SelectionManager");
@@ -41,6 +42,7 @@ function EditMovieContext:OnSelect()
 	SelectionManager:Connect("selectedActorChanged", self, self.OnSelectedActorChange);
 	BaseContext.OnSelect(self);
 	self:EnableMousePickTimer(true);
+	MovieClipController:Connect("afterActorFocusChanged", self, self.OnAfterActorFocusChanged, "UniqueConnection");
 end
 
 -- virtual function: 
@@ -52,6 +54,7 @@ function EditMovieContext:OnUnselect()
 	self:SetActorAt("cur_actor", nil);
 	GameLogic.AddBBS("EditMovieContext", nil);
 	self:SetUseFreeCamera(false);
+	MovieClipController:Disconnect("afterActorFocusChanged", self, self.OnAfterActorFocusChanged);
 	return true;
 end
 
@@ -189,7 +192,8 @@ function EditMovieContext:updateManipulators()
 		-- always lock actors when free camera is used. 
 		self:ToggleLockAllActors(true);
 	end
-	self:SetUseFreeCamera(bUseFreeCamera, bRestoreLastActorFreeCameraPos)
+	self:SetUseFreeCamera(bUseFreeCamera);
+	self:SetRestoreActorFreeCameraPos(bRestoreLastActorFreeCameraPos);
 end
 
 local tip_count = 0;
@@ -220,7 +224,8 @@ function EditMovieContext:OnFreeCameraFocusLost()
 	end
 end
 
-function EditMovieContext:SetUseFreeCamera(bUseFreeCamera, bRestoreLastActorFreeCameraPos)
+-- whether to use a free camera rather than a actor focused camera. 
+function EditMovieContext:SetUseFreeCamera(bUseFreeCamera)
 	local cameraEntity = GameLogic.GetFreeCamera();
 
 	local actor = self:GetActor();
@@ -247,15 +252,33 @@ function EditMovieContext:SetUseFreeCamera(bUseFreeCamera, bRestoreLastActorFree
 			end
 		end
 		cameraEntity:HideCameraModel();
-		
 	end
-	if(bUseFreeCamera and bRestoreLastActorFreeCameraPos) then
+	
+	if(not bUseFreeCamera) then
+		self.m_bSaveActorFreeCameraPos = false;
+		cameraEntity:Disconnect("focusOut", self, self.OnFreeCameraFocusLost);
+	end
+end
+
+-- @param bRestoreLastActorFreeCameraPos: if true, restore last actor free camera pos, and also hook focusOut event
+-- to save free camera position. 
+function EditMovieContext:SetRestoreActorFreeCameraPos(bRestoreLastActorFreeCameraPos)
+	local cameraEntity = GameLogic.GetFreeCamera();
+	local actor = self:GetActor();
+	if(bRestoreLastActorFreeCameraPos) then
 		self.m_bSaveActorFreeCameraPos = true;
 		actor:RestoreLastFreeCameraPosition();
 		cameraEntity:Connect("focusOut", self, self.OnFreeCameraFocusLost, "UniqueConnection");
 	else
 		self.m_bSaveActorFreeCameraPos = false;
 		cameraEntity:Disconnect("focusOut", self, self.OnFreeCameraFocusLost);
+	end
+end
+
+function EditMovieContext:OnAfterActorFocusChanged()
+	local cameraEntity = GameLogic.GetFreeCamera();
+	if(cameraEntity and not cameraEntity:IsCameraHidden() and cameraEntity:GetTarget() == self:GetActor()) then
+		self:SetUseFreeCamera(true);
 	end
 end
 

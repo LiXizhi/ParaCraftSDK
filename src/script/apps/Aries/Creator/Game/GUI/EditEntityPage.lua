@@ -149,3 +149,25 @@ function EditEntityPage.OnClickOK()
 	end
 	page:CloseWindow();
 end
+
+function EditEntityPage.OnClickEmptyRuleSlot(slotNumber)
+	local entity = EditEntityPage.GetEntity()
+	if(entity) then
+		local contView = entity.rulebagView;
+		if(contView and slotNumber) then
+			local slot = contView:GetSlot(slotNumber);
+			entity:OnClickEmptySlot(slot);
+		end
+	end
+end
+
+function EditEntityPage.OnClickEmptyBagSlot(slotNumber)
+	local entity = EditEntityPage.GetEntity()
+	if(entity) then
+		local contView = entity.inventoryView;
+		if(contView and slotNumber) then
+			local slot = contView:GetSlot(slotNumber);
+			entity:OnClickEmptySlot(slot);
+		end
+	end
+end

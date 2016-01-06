@@ -74,7 +74,7 @@ function Files.Find(output, rootfolder,nMaxFileLevels, nMaxFilesNum, filter, zip
 		filterStr = "*.";
 	end
 	
-	if(not string.find(rootfolder, "[/\\]$")) then
+	if(rootfolder~="" and not string.find(rootfolder, "[/\\]$")) then
 		rootfolder = rootfolder.."/"
 	end
 	
@@ -175,4 +175,14 @@ function Files.DeleteFolder(foldername)
 	if(bSucceed) then  
 		return true;
 	end
+end
+
+-- it will change the folder's modification time to current time. 
+function Files.TouchFolder(foldername)
+	-- this is tricky, we will simply create a temporary file and delete it. 
+	local targetDir = foldername:gsub("[/\\]$", "");
+	local tmpFilename = targetDir.."/_touch.timestamp";
+	local file = ParaIO.open(tmpFilename, "w")
+	file:close();
+	ParaIO.DeleteFile(tmpFilename);
 end

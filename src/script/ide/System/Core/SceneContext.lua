@@ -132,7 +132,7 @@ end
 
 -- virtual function: 
 -- try to select this context. 
-function SceneContext:OnSelect()
+function SceneContext:OnSelect(lastContext)
 	self:UpdateAutoCameraManipulator();
 	self:selected();
 end

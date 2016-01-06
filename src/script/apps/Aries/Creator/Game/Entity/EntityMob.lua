@@ -191,6 +191,8 @@ function Entity:ToggleNextSkin(bPreviousSkin)
 		if(PlayerSkins:CheckModelHasSkin(obj:GetPrimaryAsset():GetKeyName())) then
 			self:SetSkin(PlayerSkins:GetNextSkin(bPreviousSkin));
 			return true;
+		else
+			self:SetSkin(nil);
 		end
 	end
 end
@@ -240,6 +242,16 @@ end
 
 function Entity:CanBePushedBy(fromEntity)
     return true;
+end
+
+-- virtual function: get array of item stacks that will be displayed to the user when user try to create a new item. 
+-- @return nil or array of item stack.
+function Entity:GetNewItemsList()
+	local itemStackArray = Entity._super.GetNewItemsList(self) or {};
+	local ItemStack = commonlib.gettable("MyCompany.Aries.Game.Items.ItemStack");
+	itemStackArray[#itemStackArray+1] = ItemStack:new():Init(block_types.names.CommandLine,1);
+	itemStackArray[#itemStackArray+1] = ItemStack:new():Init(block_types.names.Code,1);
+	return itemStackArray;
 end
 
 -- called every frame

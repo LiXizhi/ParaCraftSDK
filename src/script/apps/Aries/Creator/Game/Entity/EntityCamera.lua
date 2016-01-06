@@ -291,6 +291,10 @@ function Entity:SetTarget(actor)
 	end
 end
 
+function Entity:GetTarget()
+	return self.m_target;
+end
+
 -- @param actor: the parent ActorNPC
 function Entity:SetActor(actor)
 	self.m_actor = actor;

@@ -158,7 +158,6 @@ local function Aries_load_config(filename)
 		end
 	end
 	if(System.options.isAB_SDK)then
-		ParaEngine.GetAttributeObject():SetField("IgnoreWindowSizeChange",false);
 		System.options.clientconfig_file = ParaEngine.GetAppCommandLineByParam("config", "");
 		if(System.options.clientconfig_file=="") then
 			System.options.clientconfig_file = nil;
@@ -169,6 +168,7 @@ local function Aries_load_config(filename)
 		LOG.level = "INFO";
 	end
 	if(System.options.isAB_SDK or System.options.mc)then
+		ParaEngine.GetAttributeObject():SetField("IgnoreWindowSizeChange",false);
 		LOG.std(nil, "info", "AssetManifest", "use local file first");
 		ParaEngine.GetAttributeObject():GetChild("AssetManager"):SetField("UseLocalFileFirst", true);
 	end

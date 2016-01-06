@@ -66,6 +66,7 @@ if(not System.options.mc) then
 	NPL.load("(gl)script/apps/Aries/Team/TeamClientLogics.lua");
 	NPL.load("(gl)script/apps/Aries/Partners/PartnerPlatforms.lua");
 	NPL.load("(gl)script/apps/Aries/Movie/ReplayMode.lua");
+	NPL.load("(gl)script/kids/3DMapSystemApp/Assets/AssetManager.lua");
 end
 
 NPL.load("(gl)script/ide/EventDispatcher.lua");
@@ -2659,7 +2660,7 @@ function MyCompany.Aries.Handle_LoadWorld_Command(params)
 
 	local function stage_connect_world()
 		-- we will enable rest keep alive only if it is a standalone world. 
-		if(GameServer and GameServer.rest) then
+		if(GameServer and GameServer.rest and GameServer.rest.client) then
 			GameServer.rest.client:EnableKeepAlive(is_standalone);
 		end
 		params.world_size = params.world_size or worldinfo.locked_world_size;

@@ -91,10 +91,7 @@ Commands["brightness"] = {
 		factor, cmd_text = CmdParser.ParseInt(cmd_text);	
 		factor = factor or 0.5;
 		if(factor > 0 and factor<1) then
-			local effect = GameLogic.GetShaderManager():GetEffect("Fancy");
-			if(effect) then
-				effect:SetEyeBrightness(factor);
-			end
+			GameLogic.options:SetEyeBrightness(factor);
 		end
 	end,
 };
@@ -304,5 +301,32 @@ Commands["stereocontroller"] = {
 			mode = if_else(GameLogic.options:IsStereoControllerEnabled(), "off", "on");
 		end
 		GameLogic.options:SetStereoControllerEnabled(mode == "on");
+	end,
+};
+
+Commands["superrender"] = {
+	name="superrender", 
+	mode_deny = "",
+	mode_allow = "",
+	quick_ref="/superrender [on|off] [distance]", 
+	desc=[[turn on/off long distance multi-frame block world rendering.
+@param distance: distance to render usually between [0-2000] meters. if 0, it will disable this feature.
+e.g.
+/superrender on      turn on super rendering, default distance if 512 meters. 
+/superrender 1024    enable and render as far as 1024
+/superrender 0       same as turning off
+]], 
+	handler = function(cmd_name, cmd_text, cmd_params)
+		local enabled;
+		enabled, cmd_text = CmdParser.ParseBool(cmd_text);
+
+		local dist;
+		dist, cmd_text = CmdParser.ParseNumber(cmd_text);
+		if(dist) then
+			GameLogic.options:SetSuperRenderDist(dist);
+		else
+			local attr = ParaTerrain.GetBlockAttributeObject():GetChild("CMultiFrameBlockWorldRenderer");
+			attr:SetField("Enabled", enabled == true);	
+		end
 	end,
 };

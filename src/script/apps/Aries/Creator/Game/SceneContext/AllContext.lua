@@ -44,6 +44,11 @@ function AllContext:Init()
 	context = EditMovieContext:new():Register("movie");
 	contexts["movie"] = context;
 	
+	NPL.load("(gl)script/apps/Aries/Creator/Game/SceneContext/TutorialContext.lua");
+	local TutorialContext = commonlib.gettable("MyCompany.Aries.Game.SceneContext.TutorialContext");
+	context = TutorialContext:new():Register("tutorial");
+	contexts["tutorial"] = context;
+
 	NPL.load("(gl)script/apps/Aries/Creator/Game/SceneContext/RedirectContext.lua");
 
 	-- LOG.std(nil, "debug", "AllContext", "registering all context");

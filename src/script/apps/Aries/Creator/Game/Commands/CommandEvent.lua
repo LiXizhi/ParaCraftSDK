@@ -30,14 +30,13 @@ Examples:
 		targetEntity, cmd_text = CmdParser.ParsePlayer(cmd_text, fromEntity);
 		eventname, cmd_text = CmdParser.ParseString(cmd_text);
 		if(eventname) then
-			local event = Event:new_static(eventname);	
+			local event = Event:new(eventname);	
 			event.cmd_text = cmd_text;
 			if(targetEntity) then
 				targetEntity:event(event);
 			else
 				GameLogic:event(event);
 			end
-			event.cmd_text = nil;
 		end
 	end,
 };

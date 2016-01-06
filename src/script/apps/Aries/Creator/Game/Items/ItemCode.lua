@@ -66,6 +66,9 @@ end
 function ItemCode:OnActivate(itemStack, entity)
 	local filename = itemStack:GetData();
 	if(filename) then
+		--if(entity and entity.GetBlockPos) then
+			--itemStack:SetPosition(entity:GetBlockPos());
+		--end
 		return itemStack:ActivateScript(entity);
 	end
 end
@@ -76,7 +79,10 @@ function ItemCode:handleEntityEvent(itemStack, entity, event)
 	if(filename) then
 		local func = itemStack:GetScriptFunction(event:GetHandlerFuncName());
 		if(func) then
-			func(entity, event);
+			local ok, result = pcall(func, entity, event);
+			if(not ok) then
+				LOG.std(nil, "error", "ItemCode:handleEntityEvent", result);
+			end
 			return true;
 		end
 	end

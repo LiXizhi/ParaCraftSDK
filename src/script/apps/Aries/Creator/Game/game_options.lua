@@ -317,6 +317,10 @@ function options:OnLoadWorld()
 		if(self:IsShowTutorial()) then
 			GameLogic.RunCommand("menu", "help.webtutorials");
 		end
+
+		-- close *.db
+		ParaWorld.SetAttributeProvider("");
+		ParaWorld.SetNpcDB("");
 	else
 		self.jump_up_speed = 5;
 		self.lock_mouse_wheel = false;
@@ -432,7 +436,7 @@ end
 
 
 -- @param mode: "editor" or "game" or nil
-function options:SetGameMode(mode)
+function options:SetLockedGameMode(mode)
 	self.LockedGameMode = mode;
 end
 
@@ -473,6 +477,33 @@ function options:SetRenderDist(dist)
 	att:SetField("FarPlane", self.fog_end+1);
 
 	LOG.std(nil, "info", "options", "actual render dist is set to %d", actual_dist);
+end
+
+function options:SetFogStart(dist)
+	if(self.fog_start ~= dist) then
+		self.fog_start = dist;
+		local att = ParaScene.GetAttributeObject();
+		att:SetField("FogStart", self.fog_start);
+		if(self.fog_start > self.fog_end) then
+			self:SetFogEnd(self.fog_start + 32);
+		end
+	end
+end
+
+function options:GetFogStart()
+	return self.fog_start;
+end
+
+function options:SetFogEnd(dist)
+	if(self.fog_end ~= dist) then
+		self.fog_end = dist;
+		local att = ParaScene.GetAttributeObject();
+		att:SetField("FogEnd", self.fog_end);
+	end
+end
+
+function options:GetFogEnd()
+	return self.fog_end;
 end
 
 -- set player base speed scale.
@@ -876,4 +907,49 @@ end
 -- enUS or zhCN
 function options:GetCurrentLanguage()
 	return Translation.GetCurrentLanguage();
+end
+
+-- set brightness factor (0-1) used in HDR shader 3, 4. default value is 0.5. the larger the more detail in brighter region. 
+function options:GetEyeBrightness()
+	local effect = GameLogic.GetShaderManager():GetEffect("Fancy");
+	if(effect) then
+		return effect:GetEyeBrightness();
+	end
+	return 0.4;
+end
+
+-- set brightness factor (0-1) used in HDR shader 3, 4. default value is 0.5. the larger the more detail in brighter region. 
+function options:SetEyeBrightness(factor)
+	factor = factor or 0.5;
+	if(factor > 0 and factor<1) then
+		local effect = GameLogic.GetShaderManager():GetEffect("Fancy");
+		if(effect) then
+			effect:SetEyeBrightness(factor);
+		end
+	end
+end
+
+-- use multi-frame renderer to render remote blocks 
+-- @param dist: if 0, it will disable super rendering
+function options:SetSuperRenderDist(dist)
+	if(dist and dist>=0 and dist <= 5000) then
+		local attr = ParaTerrain.GetBlockAttributeObject():GetChild("CMultiFrameBlockWorldRenderer");
+		attr:SetField("RenderDistance", dist);
+		if(dist == 0) then
+			attr:SetField("Enabled", false);
+		else
+			attr:SetField("Enabled", true);
+			attr:SetField("Dirty", true);
+		end
+	end
+end
+
+-- @return 0 if super rendering is disabled. 
+function options:GetSuperRenderDist()
+	local attr = ParaTerrain.GetBlockAttributeObject():GetChild("CMultiFrameBlockWorldRenderer");
+	if(attr:GetField("Enabled", false)) then
+		return attr:GetField("RenderDistance", 0);
+	else
+		return 0;
+	end
 end

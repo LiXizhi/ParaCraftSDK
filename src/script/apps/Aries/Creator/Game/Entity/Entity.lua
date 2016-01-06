@@ -337,7 +337,9 @@ function Entity:OnFocusIn()
 	self.has_focus = true;
 	local obj = self:GetInnerObject();
 	if(obj) then
-		obj:ToCharacter():SetFocus();
+		if(obj.ToCharacter) then
+			obj:ToCharacter():SetFocus();
+		end
 		-- make it normal movement style
 		obj:SetField("MovementStyle", 0)
 		obj:SetField("SkipPicking", true);
@@ -397,6 +399,14 @@ function Entity:GetCurrentSpeedScale()
 	end
 end
 
+function Entity:GetWalkSpeed()
+	return self.speed or 4.0;
+end
+
+function Entity:SetWalkSpeed(speed)
+	self.speed = speed;
+end
+
 function Entity:SetSpeedScale(value)
 	self.speedscale = value;
 end
@@ -419,7 +429,7 @@ end
 -- @param bWalking: if nil it will toggle. if true, it will force walk or run. 
 function Entity:ToggleWalkRun(bWalking)
 	local obj = self:GetInnerObject();
-	if(obj) then
+	if(obj and obj.ToCharacter) then
 		local char = obj:ToCharacter();
 		if(char:IsValid())then
 			if(bWalking==false or (bWalking == nil and char:WalkingOrRunning())) then
@@ -434,7 +444,7 @@ end
 -- all entity default to running (not walking). 
 function Entity:IsWalking()
 	local obj = self:GetInnerObject();
-	if(obj) then
+	if(obj and obj.ToCharacter) then
 		local char = obj:ToCharacter();
 		if(char:IsValid())then
 			return char:WalkingOrRunning();
@@ -470,7 +480,9 @@ function Entity:SetAnimation(filenames)
 		else
 			self.lastAnimId = nil;
 			player:SetField("HeadTurningAngle", 0);
-			player:ToCharacter():PlayAnimation(anims);	
+			if(player.ToCharacter) then
+				player:ToCharacter():PlayAnimation(anims);	
+			end
 		end
 	end
 end
@@ -914,12 +926,15 @@ function Entity:OnAddEntity()
 end
 
 -- let the entity say something on top of its head for some seconds. 
+-- @param text: text to show
+-- @param duration: in seconds. default to 4
+-- @param bAbove3D: default to nil, if true, headon UI will be displayed above all 3D objects. if false or nil, it just renders the UI with z buffer test enabled. 
 -- return true if we actually said something, otherwise nil.
-function Entity:Say(text, duration)
+function Entity:Say(text, duration, bAbove3D)
 	if(text and text~="") then
 		local obj = self:GetInnerObject();
 		if(obj) then
-			headon_speech.Speek(obj, text, duration or 4);
+			headon_speech.Speek(obj, text, duration or 4, bAbove3D);
 			return true;
 		end
 	end
@@ -1232,6 +1247,11 @@ function Entity:CanBeCollidedWith()
     return false;
 end
 
+-- return true if this entity can be ridden by a player. 
+function Entity:CanBeMounted()
+	return false;
+end
+
 -- this function is called when this entity collide with another entity. 
 function Entity:CollideWithEntity(fromEntity)
 end
@@ -1339,7 +1359,7 @@ function Entity:CheckCollision(deltaTime)
 		block:OnStep(bx,by-1,bz, self);
 	else
 		-- only falls down when no speed at all. 
-		if(not self:HasSpeed()) then
+		if(not self:HasSpeed() and not self:IsFlying()) then
 			self:FallDown(deltaTime);
 		end
 	end	
@@ -1633,6 +1653,14 @@ function Entity:AddTimeEvent(scheduledTime, name, callbackFunc)
 		self:SetFrameMoveInterval(0.5);
 	end
 	self:SetAlwaysSentient(true);
+end
+
+-- radius (in blocks) that this entity will awake nearby entities. 
+-- please note, it will only awake other entity if the distance between the two entities is the smaller 
+-- than the smallest value of either entity's GetSentientChunkRadius().
+-- @return default value is 128
+function Entity:GetSentientRadius()
+	return 128;
 end
 
 -- advance time and fire all timed event that is smaller than current time. 
@@ -2279,4 +2307,39 @@ function Entity:EndTouchMove()
 		char:Stop();
 		char:PlayAnimation(0);
 	end
+end
+
+-- virtual function: get array of item stacks that will be displayed to the user when user try to create a new item. 
+-- @return nil or array of item stack.
+function Entity:GetNewItemsList()
+	--local ItemStack = commonlib.gettable("MyCompany.Aries.Game.Items.ItemStack");
+	--return {ItemStack:new():Init(62,1), ItemStack:new():Init(101,1)};
+end
+
+-- @param slot: type of ItemSlot in Container View, such as self.rulebagView
+function Entity:CreateItemOnSlot(slot)
+	if(slot) then
+		if(not slot:GetStack()) then
+			local itemStackArray = self:GetNewItemsList();
+			itemStackArray = GameLogic.GetFilters():apply_filters("new_item", itemStackArray, self);
+			if(itemStackArray and #itemStackArray>0) then
+				NPL.load("(gl)script/apps/Aries/Creator/Game/GUI/CreateNewItem.lua");
+				local CreateNewItem = commonlib.gettable("MyCompany.Aries.Game.GUI.CreateNewItem");
+				CreateNewItem.ShowPage(itemStackArray, function(itemStack)
+					if(itemStack and itemStack.Copy) then
+						slot:AddItem(itemStack:Copy());
+					end
+				end);
+			end
+		end
+	end
+end
+
+-- called when user click to create a new item in the slot
+-- @param slot: type of ItemSlot in Container View, such as self.rulebagView
+function Entity:OnClickEmptySlot(slot)
+	if(not GameLogic.GameMode:CanClickEmptySlot()) then
+		return;
+	end
+	self:CreateItemOnSlot(slot);
 end

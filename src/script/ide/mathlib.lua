@@ -16,6 +16,7 @@ NPL.load("(gl)script/ide/math/bit.lua");
 local mathlib = commonlib.gettable("mathlib");
 local rshift = mathlib.bit.rshift;
 local lshift = mathlib.bit.lshift;
+local bor = mathlib.bit.bor;
 local math_floor = math.floor;
 
 -- Conversion Quaternion to Euler
@@ -179,3 +180,13 @@ function mathlib.clamp(value, from, to)
 	end
 end
 
+-- @param x: must be int, make sure to call math.floor(x) before this.
+function mathlib.NextPowerOf2(x)
+	x = x - 1;
+	x = bor(x, rshift(x,1));
+	x = bor(x, rshift(x,2));
+	x = bor(x, rshift(x,4));
+	x = bor(x, rshift(x,8));
+	x = bor(x, rshift(x,16));
+	return x + 1;
+end

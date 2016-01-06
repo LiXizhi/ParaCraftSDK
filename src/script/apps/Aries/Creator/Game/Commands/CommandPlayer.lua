@@ -11,6 +11,8 @@ NPL.load("(gl)script/apps/Aries/Creator/Game/Commands/CommandPlayer.lua");
 NPL.load("(gl)script/apps/Aries/Creator/Game/Commands/CmdParser.lua");
 NPL.load("(gl)script/apps/Aries/Creator/Game/Items/ItemStack.lua");
 NPL.load("(gl)script/apps/Aries/Creator/Game/Effects/EntityAnimation.lua");
+NPL.load("(gl)script/apps/Aries/Creator/Game/Common/Files.lua");
+local Files = commonlib.gettable("MyCompany.Aries.Game.Common.Files");
 local EntityAnimation = commonlib.gettable("MyCompany.Aries.Game.Effects.EntityAnimation");
 local ItemStack = commonlib.gettable("MyCompany.Aries.Game.Items.ItemStack");
 local CmdParser = commonlib.gettable("MyCompany.Aries.Game.CmdParser");
@@ -25,30 +27,6 @@ local EntityManager = commonlib.gettable("MyCompany.Aries.Game.EntityManager");
 local Commands = commonlib.gettable("MyCompany.Aries.Game.Commands");
 local CommandManager = commonlib.gettable("MyCompany.Aries.Game.CommandManager");
 
-
-Commands["skin"] = {
-	name="skin", 
-	quick_ref="/skin [filename]", 
-	desc=[[change skin. if no filename is specified a random one is used. 
-filename can be relative to world directory, or "Texture/blocks/human/" or root path. 
-/skin char_male02.png
-]], 
-	handler = function(cmd_name, cmd_text, cmd_params)
-		if(not System.options.is_mcworld) then
-			return;
-		end
-		if(cmd_text) then
-			NPL.load("(gl)script/apps/Aries/Creator/Game/Entity/PlayerSkins.lua");
-			local PlayerSkins = commonlib.gettable("MyCompany.Aries.Game.EntityManager.PlayerSkins")
-			local skin_filename = PlayerSkins:GetSkinByString(cmd_text);
-			
-			local player = EntityManager.GetFocus();
-			if(skin_filename and player and player.SetSkin) then
-				player:SetSkin(skin_filename);
-			end
-		end
-	end,
-};
 
 Commands["clearbag"] = {
 	name="clearbag", 
@@ -383,6 +361,84 @@ if NPC run this command from its rule bag, the NPC will be animated.
 			else
 				
 				playerEntity:SetAnimation(anims);
+			end
+		end
+	end,
+};
+
+
+Commands["skin"] = {
+	name="skin", 
+	quick_ref="/skin [@playername] [filename]", 
+	desc=[[change skin. if no filename is specified a random one is used. 
+@param playername: if not specified and containing entity is a biped, it is the containing entity like NPC; otherwise it is current player
+@param filename: can be relative to world directory, or "Texture/blocks/human/" or root path. It can also be preinstalled id 
+/skin 1     :change current player's skin to id=1
+/skin texture/blocks/1.png :change current player's skin to a file in current world directory
+/skin @test 1:  change 'test' player's skin to id=1
+]], 
+	handler = function(cmd_name, cmd_text, cmd_params)
+		local playerEntity;
+		playerEntity, cmd_text  = CmdParser.ParsePlayer(cmd_text);
+		if(not playerEntity) then
+			if(fromEntity and fromEntity:IsBiped()) then
+				playerEntity = fromEntity;
+			else
+				playerEntity = EntityManager.GetFocus() or EntityManager.GetPlayer();
+			end
+		end
+
+		if(cmd_text) then
+			NPL.load("(gl)script/apps/Aries/Creator/Game/Entity/PlayerSkins.lua");
+			local PlayerSkins = commonlib.gettable("MyCompany.Aries.Game.EntityManager.PlayerSkins")
+			local skin_filename = PlayerSkins:GetSkinByString(cmd_text);
+			
+			if(skin_filename and playerEntity and playerEntity.SetSkin) then
+				playerEntity:SetSkin(skin_filename);
+			end
+		end
+	end,
+};
+
+Commands["/avatar"] = {
+	name="avatar", 
+	quick_ref="/avatar [@playername] [filename]", 
+	desc=[[change current avatar model. if no filename is specified, default one is used. 
+@param playername: if not specified and containing entity is a biped, it is the containing entity like NPC; otherwise it is current player
+@param filename: can be relative to current world directory or one of the preinstalled ones like "actor". 
+/avator dog    : change the current player to dog avator
+/avator @test test.fbx :change 'test' player to a fbx file in current world directory. 
+]], 
+	handler = function(cmd_name, cmd_text, cmd_params)
+		local playerEntity;
+		playerEntity, cmd_text  = CmdParser.ParsePlayer(cmd_text);
+		if(not playerEntity) then
+			if(fromEntity and fromEntity:IsBiped()) then
+				playerEntity = fromEntity;
+			else
+				playerEntity = EntityManager.GetFocus() or EntityManager.GetPlayer();
+			end
+		end
+		if(not cmd_text or cmd_text=="") then
+			cmd_text = "default";
+		end
+		if(cmd_text and playerEntity) then
+			local assetfile = cmd_text;
+			assetfile = EntityManager.PlayerAssetFile:GetValidAssetByString(assetfile);
+			if(assetfile and assetfile~=playerEntity:GetMainAssetPath()) then
+				if(playerEntity.SetModelFile) then
+					playerEntity:SetModelFile(old_filename);
+				else
+					playerEntity:SetMainAssetPath(assetfile);
+				end
+				-- this ensure that at least one default skin is selected
+				if(playerEntity:GetSkin()) then
+					playerEntity:SetSkin(nil);
+				else
+					playerEntity:RefreshSkin();
+				end
+			elseif(not assetfile) then
+				LOG.std(nil, "warn", "cmd:avatar", "file %s not found", cmd_text or "");
 			end
 		end
 	end,

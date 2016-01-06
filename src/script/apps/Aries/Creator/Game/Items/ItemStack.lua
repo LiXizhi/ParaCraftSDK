@@ -94,23 +94,79 @@ function ItemStack:SetScript(filename)
 	end
 end
 
+-- set the raw code to run
+function ItemStack:SetCode(code)
+	if(self.code ~= code) then
+		if(code == nil or code == "") then
+			self.code = nil;
+			self.activate_func = nil;
+		else
+			self.code = code;
+			if(self.activate_func) then
+				self:CheckLoadScript(true);
+			end
+		end
+		self:SetData(code);
+	end
+end
+
+-- run the entire script code again with given parameters. 
+function ItemStack:RunCode(...)
+	self:CheckLoadScript(false, false);
+
+	if(self.activate_func) then
+		local ok, errmsg = pcall(self.activate_func, ...);
+		if(not ok) then
+			LOG.std(nil, "error", "ItemStack", errmsg);
+			GameLogic.ShowMsg(errmsg);
+		end
+	end
+end
+
+-- whether has script file or raw code
+function ItemStack:HasScript()
+	return self.code or self.filename;
+end
+
 -- check load script code if any. It will only load on first call. Subsequent calls will be very fast. 
 -- usually one do not need to call this function explicitly, unless one wants to preload or reload. 
 -- @param bReload: default to nil. 
-function ItemStack:CheckLoadScript(bReload)
+-- @param bRunOnFirstLoad: true to run on first load. if nil it means true
+function ItemStack:CheckLoadScript(bReload, bRunOnFirstLoad)
 	if( bReload or self.activate_func == nil) then
-		local func = NeuronManager.GetScriptCode(self.filename, bReload);
+		local func;
+		if(self.code) then
+			local code_func, errormsg = loadstring(self.code, self.filename or "itemStack:code");
+			if(not code_func) then
+				LOG.std(nil, "error", "ItemStack", "<Runtime error> syntax error while loading code:\n%s\n%s", tostring(errormsg), self.code);
+			else
+				func = code_func;
+			end
+		else
+			local filename = self:GetData();
+			if(not self.filename or self.filename ~= filename) then
+				self:SetScript(filename);
+			end
+			if(self.filename) then
+				func = NeuronManager.GetScriptCode(self.filename, bReload);
+			end
+		end
 		self.activate_func = func;
+		
 		if(func) then
 			-- load on first activation call.
 			setfenv(func, self:GetScriptScope());
-			local ok, errmsg = pcall(func);
-			if(not ok) then
-				LOG.std(nil, "error", "NeuronBlock", errmsg);
-				GameLogic.ShowMsg(errmsg);
+			if(bRunOnFirstLoad~=false) then
+				local ok, errmsg = pcall(func);
+				if(not ok) then
+					LOG.std(nil, "error", "ItemStack", errmsg);
+					GameLogic.ShowMsg(errmsg);
+				end
 			end
 		end
-		NeuronManager.RegisterScript(self.filename, self);
+		if(not self.code) then
+			NeuronManager.RegisterScript(self.filename, self);
+		end
 	end
 	return self.activate_func;
 end
@@ -125,18 +181,25 @@ function ItemStack:GetScriptFunction(func_name, bReload)
 	end
 end
 
+function ItemStack:GetPosition()
+	return self.x, self.y, self.z;
+end
+
+-- set block position
+function ItemStack:SetPosition(x, y, z)
+	self.x, self.y, self.z = x, y, z;
+end
 
 -- activate script associated by SetScript() function.  
 -- @param entity: the message to be passed to main function. 
 function ItemStack:ActivateScript(...)
-	local filename = self:GetData();
-	if(not self.filename or self.filename ~= filename) then
-		self:SetScript(filename);
-	end
-	if(self.filename) then
-		local main_func = self:GetScriptFunction("main");
-		if(main_func and type(main_func) == "function") then
-			return main_func(...);
+	local main_func = self:GetScriptFunction("main");
+	if(main_func and type(main_func) == "function") then
+		local ok, result = pcall(main_func, ...);
+		if(ok) then
+			return result;
+		else
+			LOG.std(nil, "error", "ItemStack:script", result);
 		end
 	end
 end

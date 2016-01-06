@@ -73,6 +73,7 @@ function CommandManager:Init()
 	NPL.load("(gl)script/apps/Aries/Creator/Game/Commands/CommandSpawn.lua");
 	NPL.load("(gl)script/apps/Aries/Creator/Game/Commands/CommandProperty.lua");
 	NPL.load("(gl)script/apps/Aries/Creator/Game/Commands/CommandLanguage.lua");
+	NPL.load("(gl)script/apps/Aries/Creator/Game/Commands/CommandMount.lua");
 	self:Register(SlashCommand.GetSingleton());
 end
 

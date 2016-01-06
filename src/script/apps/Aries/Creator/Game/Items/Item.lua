@@ -131,6 +131,10 @@ end
 function Item:handleEntityEvent(itemStack, entity, event)
 end
 
+-- whether the item can be spawned using spawn command. 
+function Item:CanSpawn()
+	return false;
+end
 
 -- whether we can create item at given block position.
 -- only basic check is performed. such as:  

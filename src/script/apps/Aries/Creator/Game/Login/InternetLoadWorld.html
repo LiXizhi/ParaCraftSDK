@@ -41,14 +41,9 @@ end
 function CreateNewWorld()
     page:CloseWindow();
 
-    if(IsMCVersion()) then
-        NPL.load("(gl)script/apps/Aries/Creator/Game/Login/CreateNewWorld.lua");
-        local CreateNewWorld = commonlib.gettable("MyCompany.Aries.Game.MainLogin.CreateNewWorld")
-        CreateNewWorld.ShowPage();
-    else
-        NPL.load("(gl)script/apps/Aries/Creator/CreateOpenWorld.lua");
-	    MyCompany.Aries.Creator.CreateOpenWorld.ShowPage();
-    end
+    NPL.load("(gl)script/apps/Aries/Creator/Game/Login/CreateNewWorld.lua");
+    local CreateNewWorld = commonlib.gettable("MyCompany.Aries.Game.MainLogin.CreateNewWorld")
+    CreateNewWorld.ShowPage();
 end
 
 function GetCurWorldInfo(info_type,world_index)

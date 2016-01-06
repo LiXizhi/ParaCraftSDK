@@ -32,7 +32,7 @@ function ShapeAABB:new(o)
 	setmetatable(o, self);
 
 	o.mCenter = vector3d:new({0,0,0});
-	o.mExtents = vector3d:new({0,0,0});
+	o.mExtents = vector3d:new({-999999999,-999999999,-999999999});
 
 	return o;
 end

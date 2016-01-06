@@ -57,9 +57,9 @@ function ChatWindow.InitSystem()
 	if(System.options.IsMobilePlatform) then
 		ChatWindow.DefaultUIPos = {
 			RestoreBtn = {alignment = "_lb", left = 2, top = -254+75, width = 21, height = 24, background = "Texture/Aries/ChatSystem/jiahao_32bits.png;0 0 21 24"},
-			EditWnd = {alignment = "_lb", left = 2, top = -45, width = 945, height = 50},
-			LogWnd = {alignment = "_lb", left = 2, top = -330, width = 940, height = 280},
-			ParentWnd = {alignment = "_lb", left = 2, top = -335, width = 945, height = 330},
+			EditWnd = {alignment = "_lb", left = 2, top = -45, width = 700, height = 50},
+			LogWnd = {alignment = "_lb", left = 2, top = -330, width = 700, height = 280},
+			ParentWnd = {alignment = "_lb", left = 2, top = -335, width = 700, height = 330},
 		}
 	end
 	ChatWindow.BeShowAll = false;

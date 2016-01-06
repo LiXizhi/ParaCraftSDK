@@ -79,12 +79,14 @@ function EnvFramePage.OnInit(uiversion)
 	end
 	
 	page:SetValue("comboShader",  tostring(math.min(math.max(1, nRenderMethod), 4)) );
-	page:SetValue("checkboxShadow", ParaTerrain.GetBlockAttributeObject():GetField("UseSunlightShadowMap", false) == true);
-	page:SetValue("checkboxReflection", ParaTerrain.GetBlockAttributeObject():GetField("UseWaterReflection", false) == true);
+	--page:SetValue("checkboxShadow", ParaTerrain.GetBlockAttributeObject():GetField("UseSunlightShadowMap", false) == true);
+	--page:SetValue("checkboxReflection", ParaTerrain.GetBlockAttributeObject():GetField("UseWaterReflection", false) == true);
 
 	page:SetValue("checkboxUIScaling", GameLogic.options.EnableAutoUIScaling);
 	page:SetValue("checkboxViewBobbing", GameLogic.options.ViewBobbing);
 	page:SetValue("checkboxLockMouseWheel", GameLogic.options.lock_mouse_wheel);
+	page:SetValue("eye_bightness", GameLogic.options:GetEyeBrightness());
+	page:SetValue("superRenderDist", GameLogic.options:GetSuperRenderDist());
 
 	local render_dist = ParaTerrain.GetBlockAttributeObject():GetField("RenderDist", 100);
 	if(render_dist < 30) then

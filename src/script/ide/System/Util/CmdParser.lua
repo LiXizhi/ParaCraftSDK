@@ -19,8 +19,10 @@ local list, cmd_text = CmdParser.ParseStringList(cmd_text, )
 local text, cmd_text = CmdParser.ParseText(cmd_text, "sometext")
 local str, cmd_text = CmdParser.ParseString(cmd_text);
 local str, cmd_text = CmdParser.ParseFormated(cmd_text, "_%S+");
-local word, md_text = CmdParser.ParseWord(cmd_text);
-local color, md_text = CmdParser.ParseColor(cmd_text, "#ff0000");
+local word, cmd_text = CmdParser.ParseWord(cmd_text);
+local color, cmd_text = CmdParser.ParseColor(cmd_text, "#ff0000");
+local options, cmd_text = CmdParser.ParseOptions(cmd_text);
+local option, cmd_text = CmdParser.ParseOption(cmd_text);
 ------------------------------------------------------------
 ]]
 

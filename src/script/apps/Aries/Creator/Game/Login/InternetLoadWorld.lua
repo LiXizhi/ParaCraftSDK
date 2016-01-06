@@ -263,6 +263,10 @@ function InternetLoadWorld.DeleteSelectedWorld()
 			elseif(world.remotefile) then
 				-- local world, delete all files in folder and the folder itself.
 				local targetDir = world.remotefile:gsub("^local://", "");
+				if(GameLogic.RemoveWorldFileWatcher) then
+					-- file watcher may make folder deletion of current world directory not working. 
+					GameLogic.RemoveWorldFileWatcher();
+				end
 				if(commonlib.Files.DeleteFolder(targetDir)) then  
 					LOG.std(nil, "info", "LocalLoadWorld", "world dir deleted: %s ", targetDir);
 					InternetLoadWorld.RefreshCurrentServerList();

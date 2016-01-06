@@ -46,6 +46,10 @@ function ItemMob:OnDeSelect()
 	
 end
 
+function ItemMob:CanSpawn()
+	return true;
+end
+
 function ItemMob:CanPlaceOnSide(x,y,z,side, data, side_region, entityPlayer, itemStack)
     if (not EntityManager.HasNonPlayerEntityInBlock(x,y,z) and not BlockEngine:isBlockNormalCube(x,y,z)) then
         return true;

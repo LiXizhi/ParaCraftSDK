@@ -430,6 +430,23 @@ function Entity:OnBlockTick()
 	end
 end
 
+-- virtual function: get array of item stacks that will be displayed to the user when user try to create a new item. 
+-- @return nil or array of item stack.
+function Entity:GetNewItemsList()
+	local itemStackArray = {};
+	local ItemStack = commonlib.gettable("MyCompany.Aries.Game.Items.ItemStack");
+	itemStackArray[#itemStackArray+1] = ItemStack:new():Init(block_types.names.TimeSeriesNPC,1);
+	itemStackArray[#itemStackArray+1] = ItemStack:new():Init(block_types.names.TimeSeriesCamera,1);
+	itemStackArray[#itemStackArray+1] = ItemStack:new():Init(block_types.names.TimeSeriesOverlay,1);
+	return itemStackArray;
+end
+
+-- called when user click to create a new item in the slot
+-- @param slot: type of ItemSlot in Container View, such as self.rulebagView
+function Entity:OnClickEmptySlot(slot)
+	self:CreateItemOnSlot(slot);
+end
+
 -- called every frame
 function Entity:FrameMove(deltaTime)
 	if(not self:IsPaused()) then

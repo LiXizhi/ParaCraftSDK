@@ -83,10 +83,12 @@ function Entity:init()
 	if(item) then
 		local x, y, z = self:GetPosition();
 
-		local skin = item:GetSkinFile();
 		local ReplaceableTextures;
-		if(skin) then
-			ReplaceableTextures = {[2] = skin};
+		if(not self.skin) then
+			local skin = item:GetSkinFile();
+			if(skin) then
+				ReplaceableTextures = {[2] = skin};
+			end
 		end
 
 		local obj = ObjEditor.CreateObjectByParams({
@@ -106,8 +108,8 @@ function Entity:init()
 			-- make it linear movement style
 			obj:SetField("MovementStyle", 3);
 		
-			obj:SetField("PerceptiveRadius", item.PerceptiveRadius or 40);
-			obj:SetField("Sentient Radius", item.SentientRadius or 40);
+			obj:SetField("PerceptiveRadius", self:GetSentientRadius()*BlockEngine.blocksize);
+			obj:SetField("Sentient Radius", self:GetSentientRadius()*BlockEngine.blocksize);
 			obj:SetField("Gravity", GameLogic.options.Gravity*2);
 
 			self.group_id = item.group_id or self.group_id;
@@ -241,23 +243,23 @@ function Entity:LoadFromXMLNode(node)
 			self.showHeadOn = attr.showHeadOn == "true" or attr.showHeadOn == true;
 		end
 		if(attr.motionX) then
-			self.motionX = attr.motionX
+			self.motionX = tonumber(attr.motionX);
 		end
 		if(attr.motionY) then
-			self.motionY = attr.motionX
+			self.motionY = tonumber(attr.motionX);
 		end
 		if(attr.motionZ) then
-			self.motionZ = attr.motionZ
+			self.motionZ = tonumber(attr.motionZ);
 		end
 		if (attr.onGround) then
-			self.onGround = attr.onGround
+			self.onGround = attr.onGround == "true" or attr.onGround == true;
 		end
 		if (attr.rotationPitch) then
-			self.rotationPitch = attr.rotationPitch;
+			self.rotationPitch = tonumber(attr.rotationPitch);
 			self.prevRotationPitch = self.rotationPitch;
 		end
 		if (attr.rotationYaw) then
-			self.rotationYaw = attr.rotationYaw;
+			self.rotationYaw = tonumber(attr.rotationYaw);
 			self.prevRotationYaw = self.rotationYaw;
 		end
 	end
@@ -301,13 +303,19 @@ function Entity:GetSkin()
 end
 
 -- set new skin texture by filename. 
+-- @param skin: if nil, it will use the default skin. 
 function Entity:SetSkin(skin)
+	skin = skin;
 	if(self.skin ~= skin) then
 		self.skin = skin;
-		if(Files.FindFile(skin)) then
-			self:RefreshClientModel();
+		if(skin) then
+			if(Files.FindFile(skin)) then
+				self:RefreshClientModel();
+			else
+				LOG.std(nil, "warn", "Entity:SetSkin", "unknown skin %s", tostring(skin));
+			end
 		else
-			LOG.std(nil, "warn", "Entity:SetSkin", "unknown skin %s", tostring(skin));
+			self:RefreshSkin();
 		end
 	end
 end
@@ -335,6 +343,19 @@ function Entity:RefreshSkin(player)
 		local skin = self:GetSkin();
 		if(skin) then
 			player:SetReplaceableTexture(2, ParaAsset.LoadTexture("", PlayerSkins:GetFileNameByAlias(skin), 1));
+		else
+			-- if model has shared skin skin file
+			if(PlayerSkins:CheckModelHasSkin(self:GetMainAssetPath())) then
+				local item = self:GetItemClass();
+				if(item) then
+					local skin = item:GetSkinFile();
+					if(skin) then
+						player:SetReplaceableTexture(2, ParaAsset.LoadTexture("", PlayerSkins:GetFileNameByAlias(skin), 1));
+					end	
+				end
+			else
+				player:SetReplaceableTexture(2, player:GetDefaultReplaceableTexture(2));	
+			end
 		end
 	end
 end
@@ -594,10 +615,6 @@ function Entity:SetBlockTarget(bx, by, bz)
 	end
 end
 
-function Entity:GetWalkSpeed()
-	return 4.0;
-end
-
 function Entity:IsOnGround()
 	return self.onGround;
 end
@@ -632,31 +649,54 @@ function Entity:MoveEntity(deltaTime, bTryMove)
 		if(not obj) then
 			return;
 		end
+		local bFlying = self:IsFlying();
 		local bHasMotionLast = self:HasMotion();
 		if(self:HasTarget()) then
 			local dx, dy, dz;
 			dx = self.targetX - self.x;
 			dz = self.targetZ - self.z;
-			local dist = (dx)^2 + (dz)^2;
-			if(dist < 0.1) then
-				-- reached position
-				self:SetBlockTarget(nil, nil, nil);
-				self:SetPosition(self.targetX, self.y, self.targetZ);
-				self.motionX = 0;
-				self.motionY = 0;
-				self.motionZ = 0;
-			else
-				local inverse_dist = 1 / (dist ^ 0.5) * self:GetWalkSpeed() * deltaTime;
-				self.motionX = dx * inverse_dist;
-				-- self.motionY = dy * inverse_dist;
-				self.motionZ = dz * inverse_dist;
+			
+			if(not bFlying) then
+				local dist = (dx)^2 + (dz)^2;
+				if(dist < 0.1) then
+					-- reached position
+					self:SetBlockTarget(nil, nil, nil);
+					self:SetPosition(self.targetX, self.y, self.targetZ);
+					self.motionX = 0;
+					self.motionY = 0;
+					self.motionZ = 0;
+				else
+					local inverse_dist = 1 / (dist ^ 0.5) * self:GetWalkSpeed() * deltaTime;
+					self.motionX = dx * inverse_dist;
+					-- self.motionY = dy * inverse_dist;
+					self.motionZ = dz * inverse_dist;
 				
-				local facing = self:GetFacing()*0.4 + Direction.GetFacingFromOffset(dx, 0, dz) * 0.6;
-				self:SetFacing(facing);
+					local facing = self:GetFacing()*0.4 + Direction.GetFacingFromOffset(dx, 0, dz) * 0.6;
+					self:SetFacing(facing);
+				end
+			else
+				--  flying now 
+				local dy = self.targetY - self.y;
+				local dist = (dx)^2 + (dz)^2 + (dy)^2;
+				if(dist < 0.1) then
+					-- reached position
+					self:SetBlockTarget(nil, nil, nil);
+					self:SetPosition(self.targetX, self.y, self.targetZ);
+					self.motionX = 0;
+					self.motionY = 0;
+					self.motionZ = 0;
+				else
+					local inverse_dist = 1 / (dist ^ 0.5) * self:GetWalkSpeed() * deltaTime;
+					self.motionX = dx * inverse_dist;
+					self.motionY = dy * inverse_dist;
+					self.motionZ = dz * inverse_dist;
+					local facing = self:GetFacing()*0.4 + Direction.GetFacingFromOffset(dx, 0, dz) * 0.6;
+					self:SetFacing(facing);
+				end
 			end
 		else
 			if (self.onGround and bHasMotionLast) then
-				local dist_sq = self.motionX ^ 2 + self.motionY ^ 2;
+				local dist_sq = self.motionX ^ 2 + self.motionZ ^ 2;
 				self.motionX = self.motionX * 0.5;
 				self.motionZ = self.motionZ * 0.5;
 				if(dist_sq < 0.00001) then
@@ -668,15 +708,21 @@ function Entity:MoveEntity(deltaTime, bTryMove)
 			end
 		end
 
-		local dist_sq = self.motionX ^ 2 + self.motionY ^ 2;
-		if(dist_sq > 0.0001) then
+		local dist_sq = self.motionX ^ 2 + self.motionZ ^ 2;
+		
+		if(bFlying) then
+			dist_sq = dist_sq + self.motionY ^ 2;
+		end
+		if(dist_sq > 0.0001 or (bFlying and not self.onGround) ) then
 			obj:SetField("AnimID", 5);
 		else
 			obj:SetField("AnimID", self:GetLastAnimId() or 0);
 		end
 
 		-- apply gravity
-		self.motionY = math.max(-1, self.motionY - 0.04);
+		if(not bFlying) then
+			self.motionY = math.max(-1, self.motionY - 0.04);
+		end
 		self:MoveEntityByDisplacement(self.motionX,self.motionY,self.motionZ);
 
 		if(dist_sq == 0 and self.onGround) then

@@ -13,7 +13,11 @@ end)
 -------------------------------------------------------
 ]]
 NPL.load("(gl)script/apps/Aries/Creator/Game/GUI/OpenFileDialog.lua");
-local SaveFileDialog = commonlib.inherit(commonlib.gettable("MyCompany.Aries.Game.GUI.OpenFileDialog"), commonlib.gettable("MyCompany.Aries.Game.GUI.SaveFileDialog"));
+local OpenFileDialog = commonlib.gettable("MyCompany.Aries.Game.GUI.OpenFileDialog");
+local SaveFileDialog = commonlib.inherit(OpenFileDialog, commonlib.gettable("MyCompany.Aries.Game.GUI.SaveFileDialog"));
 
--- overwrite the save mode from base class
-SaveFileDialog.IsSaveMode = true;
+-- @param default_text: default text to be displayed. 
+-- @param filters: "model", "bmax", "audio", "texture", nil for any file, or filters table
+function SaveFileDialog.ShowPage(text, OnClose, default_text, title, filters)
+	return OpenFileDialog.ShowPage(text, OnClose, default_text, title, filters, true);
+end

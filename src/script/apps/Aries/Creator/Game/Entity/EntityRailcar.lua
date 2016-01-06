@@ -111,6 +111,10 @@ function Entity:CanTeleport()
 	return true;
 end
 
+function Entity:CanBeMounted()
+	return true;
+end
+
 -- @param Entity: the half radius of the object. 
 function Entity:init()
 	local item = self:GetItemClass();

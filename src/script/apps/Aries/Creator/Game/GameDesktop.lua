@@ -91,12 +91,16 @@ function Desktop.InitDesktop()
 	local GUIChat = commonlib.gettable("MyCompany.Aries.Game.GUI.GUIChat");
 	commonlib.setfield("MyCompany.Aries.Creator.Game.Desktop.GUI.chat", GUIChat:new());
 
-	-- init plugin system.
+	-- init desktop gui: plugin system first.
 	if(ModManager:OnInitDesktop()) then
+		-- in case, plugin handles its own desktop.
 		return;
+	else
+		-- init default desktop gui
+		NPL.load("(gl)script/apps/Aries/Creator/Game/Areas/CreatorDesktop.lua");
+		local CreatorDesktop = commonlib.gettable("MyCompany.Aries.Creator.Game.Desktop.CreatorDesktop");
+		CreatorDesktop.StaticInit();	
 	end
-
-	-- init gui
 end
 
 function Desktop.UnselectSceneContext()
@@ -123,7 +127,7 @@ function Desktop.OnActivateDesktop(mode)
 	end
 
 	local isToggleMode;
-	if(mode == nil) then
+	if(mode == nil or mode=="") then
 		isToggleMode = true;
 		if(Desktop.mode~="editor") then
 			Desktop.last_game_mode = Desktop.mode;
@@ -138,6 +142,8 @@ function Desktop.OnActivateDesktop(mode)
 		GameLogic.EnterGameMode();
 	elseif(mode == "editor" or mode=="creative") then
 		GameLogic.EnterEditorMode();
+	elseif(mode == "tutorial") then
+		GameLogic.EnterTutorialMode();
 	elseif(mode == "survival") then
 		GameLogic.EnterGameMode(true);
 	elseif(mode == "movie") then
@@ -182,9 +188,9 @@ function Desktop.OnActivateDesktop(mode)
 
 	if(isToggleMode) then
 		if(Desktop.mode == "editor") then
-			BroadcastHelper.PushLabel({id="desktop", label = L"进入编辑模式", max_duration=3000, color = "0 255 0", scaling=1.1, bold=true, shadow=true,});
+			GameLogic.AddBBS("desktop", L"进入编辑模式", 3000, "0 255 0");
 		else
-			BroadcastHelper.PushLabel({id="desktop", label = L"进入播放模式", max_duration=3000, color = "255 255 0", scaling=1.1, bold=true, shadow=true,});
+			GameLogic.AddBBS("desktop", L"进入播放模式", 3000, "255 255 0");
 		end
 	end
 	Desktop.mode = mode;

@@ -12,7 +12,9 @@ use the lib:
 | ContainerView | the ContainerView object. if not specified, it will be EntityManager.GetPlayer().inventoryView. which is curent player's inventory view. |
 | DestInventory | the default dest inventory when shift+left key is pressed. we will automatically send all items in this slot to the dest inventory.  |
 | onclick | onclick event |
+| onclick_empty | when clicking on empty slot |
 | edit_mode | if "editor_only", drag operation is only possible in editor mode. |
+| css.background2 | mouse over bg |
 
 ------------------------------------------------------------
 NPL.load("(gl)script/apps/Aries/Creator/Game/mcml/pe_mc_slot.lua");
@@ -110,7 +112,7 @@ function pe_mc_slot.render_callback(mcmlNode, rootName, bindingContext, _parent,
 		nil,nil,nil, nil, nil, nil, is_lock_position, use_mouse_offset);
 	end
 
-	pe_mc_slot.RefreshMcmlNode(mcmlNode, _this);
+	pe_mc_slot.RefreshMcmlNode(mcmlNode, _this, css);
 
 	return true, true, true; -- ignore_onclick, ignore_background, ignore_tooltip;
 end
@@ -123,7 +125,7 @@ end
 -- refresh according to current slot
 -- @param _this: the ParaUIObject. if nil, it will be retrieved from the mcmlNode. 
 -- @return true if updated, and false if the control no longer exist
-function pe_mc_slot.RefreshMcmlNode(mcmlNode, _this)
+function pe_mc_slot.RefreshMcmlNode(mcmlNode, _this, css)
 	_this = _this or mcmlNode:GetControl();
 	if(not _this) then
 		return false;
@@ -176,6 +178,9 @@ function pe_mc_slot.RefreshMcmlNode(mcmlNode, _this)
 		local ontouch = mcmlNode:GetString("ontouch");
 		if(ontouch and ontouch ~= "")then
 			_this:SetScript("ontouch", pe_mc_slot.OnTouchSlot, mcmlNode);
+		end
+		if(css and css.background2) then
+			_guihelper.SetVistaStyleButton(_this, nil, css.background2);
 		end
 		_this:SetScript("onclick", pe_mc_slot.OnClickSlot, mcmlNode);
 	else
@@ -390,9 +395,15 @@ function pe_mc_slot.OnClickSlot(ui_obj, mcmlNode)
 				-- if there is onclick event
 				Map3DSystem.mcml_controls.OnPageEvent(mcmlNode, onclick, mcmlNode);
 			else
-				-- dragging operation: left click to take all 
-				bIsDragClick = true;
-				count = nil;
+				local itemStack = mcmlNode.slot:GetStack();
+				local onclick_empty = mcmlNode:GetAttributeWithCode("onclick_empty");
+				if(onclick_empty and not itemStack) then
+					Map3DSystem.mcml_controls.OnPageEvent(mcmlNode, onclick_empty, mcmlNode);
+				else
+					-- dragging operation: left click to take all 
+					bIsDragClick = true;
+					count = nil;
+				end
 			end
 		elseif(mouse_button=="right") then
 			local itemStack = mcmlNode.slot:GetStack();

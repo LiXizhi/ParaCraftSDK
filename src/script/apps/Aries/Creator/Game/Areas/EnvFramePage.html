@@ -63,6 +63,21 @@ function OnRenderDistChanged(value)
     WorldCommon.GetWorldInfo().renderdist = tostring(value);
 end
 
+function OnSuperRenderDistChanged(value)
+    GameLogic.options:SetSuperRenderDist(value);
+    if(value and value > GameLogic.options:GetRenderDist() and value>64) then
+        GameLogic.options:SetFogEnd(value - 64);
+    end
+end
+
+function OnCloudnessChanged(value)
+    GameLogic.options:SetCloudThickness(value);
+end
+    
+function OnChangeEyeBrightness(value)
+    GameLogic.options:SetEyeBrightness(value);
+end
+
 function ChangeWeather(name,mcmlNode)
     NPL.load("(gl)script/apps/Aries/Creator/Env/SkyPage.lua");
 	local SkyPage = commonlib.gettable("MyCompany.Aries.Creator.SkyPage");
@@ -138,34 +153,47 @@ end
                 </div>            
             </div>
             <div style="margin-top:7px;padding:8px;padding-right:5px;" class="mc_border" width="100%">
-                <div style="float:left;margin-left:9px;margin-top:-2px;"><%=L"效果设置"%></div>
-                <!--<div style="float:left;margin-left:5px;margin-top:5px;width:7px;height:11px;background:url(Texture/Aries/Creator/Theme/GameCommonIcon_32bits.png#177 207 7 11)"/>-->
+                <div style="float:left;margin-left:7px;margin-top:-2px;"><%=L"效果设置"%></div>
                 <div style="margin-top:5px;">
-                    <div style="float:left;margin-left:7px;width:90px;height:20px;" class="mc_button_black"><%=L"真实光影"%></div>
-                    <!--<div style="float:left;margin-left:5px;margin-top:5px;width:7px;height:11px;background:url(Texture/Aries/Creator/Theme/GameCommonIcon_32bits.png#177 207 7 11)"/>-->
+                    <div style="float:left;margin-left:7px;width:90px;height:20px;" ><%=L"真实光影"%></div>
                     <div style="float:left;margin-top:0px;margin-left:9px;">
                         <select name="comboShader" style="margin-top:0px;height:22px" onselect="OnToggleShader" AllowUserEdit="false" DataSource="<%=GetShaderDS()%>"></select>
                     </div>
                 </div>
-            
                 <div style="margin-top:5px;">
-                    <div style="float:left;margin-left:7px;width:90px;height:20px;" class="mc_button_black"><%=L"反射"%></div>
-                    <!--<div style="float:left;margin-left:5px;margin-top:5px;width:7px;height:11px;background:url(Texture/Aries/Creator/Theme/GameCommonIcon_32bits.png#177 207 7 11)"/>-->
+                    <div style="float:left;margin-left:7px;width:90px;height:20px;" tooltip='<%=L"需要shader HDR下生效,可调整画面整体亮度"%>'><%=L"眼睛亮度"%></div>
+                    <div style="float:left;margin-top:1px;margin-left:9px;">
+                        <pe:sliderbar name="eye_bightness" min="0.01" max="0.9" value="0.5" style="width:80px;height:22px;" onchange="OnChangeEyeBrightness()"></pe:sliderbar>
+                    </div>
+                </div>
+                <div style="margin-top:5px;">
+                    <div style="float:left;margin-left:7px;width:90px;height:20px;" tooltip='<%=L"高级shader中影响影子的深浅"%>'><%=L"多云"%></div>
+                    <div style="float:left;margin-top:1px;margin-left:9px;">
+                        <pe:sliderbar name="cloudness" min="0" max="1" value='<%=GameLogic.options:GetCloudThickness()%>' style="width:80px;height:22px;" onchange="OnCloudnessChanged()"></pe:sliderbar>
+                    </div>
+                </div>
+                <!--<div style="margin-top:5px;">
+                    <div style="float:left;margin-left:7px;width:90px;height:20px;" ><%=L"反射"%></div>
                     <div style="float:left;margin-top:4px;margin-left:9px;">
                         <input name="checkboxReflection" type="checkbox" onclick="OnToggleReflection" style="width:32px;height:16px;" UncheckedBG="Texture/Aries/Creator/Desktop/Inventory_32bits.png;207 450 32 16" CheckedBG="Texture/Aries/Creator/Desktop/Inventory_32bits.png;242 450 32 16"/>
                     </div>
                 </div>
                 <div style="margin-top:5px;">
-                    <div style="float:left;margin-left:7px;width:90px;height:20px;" class="mc_button_black"><%=L"场景投影"%></div>
-                    <!--<div style="float:left;margin-left:5px;margin-top:5px;width:7px;height:11px;background:url(Texture/Aries/Creator/Theme/GameCommonIcon_32bits.png#177 207 7 11)"/>-->
+                    <div style="float:left;margin-left:7px;width:90px;height:20px;" ><%=L"场景投影"%></div>
                     <div style="float:left;margin-top:4px;margin-left:9px;">
                         <input name="checkboxShadow" type="checkbox" onclick="OnToggleShadow" style="width:32px;height:16px;" UncheckedBG="Texture/Aries/Creator/Desktop/Inventory_32bits.png;207 450 32 16" CheckedBG="Texture/Aries/Creator/Desktop/Inventory_32bits.png;242 450 32 16"/>
                     </div>
-                </div>
+                </div>-->
                 <div style="margin-top:5px;">
-                    <div style="float:left;margin-left:7px;width:90px;height:20px;" class="mc_button_black"><%=L"可视距离"%></div>
+                    <div style="float:left;margin-left:7px;width:90px;height:20px;" tooltip='<%=L"过大会导致运行缓慢, 可以考虑使用超级远景"%>'><%=L"可视距离"%></div>
                     <div style="float:left;margin-top:1px;margin-left:9px;">
                         <pe:sliderbar name="renderDist" min="30" max="200" value="96" style="width:80px;height:22px;" onchange="OnRenderDistChanged()" ></pe:sliderbar>
+                    </div>
+                </div>
+                <div style="margin-top:5px;">
+                    <div style="float:left;margin-left:7px;width:90px;height:20px;" tooltip='<%=L"摄影机不动时,会持续渲染几公里内的场景,并不消耗显存"%>'><%=L"超级远景"%></div>
+                    <div style="float:left;margin-top:4px;margin-left:9px;">
+                        <pe:sliderbar name="superRenderDist" min="0" max="2000" value="96" style="width:80px;height:22px;" onchange="OnSuperRenderDistChanged()"></pe:sliderbar>
                     </div>
                 </div>
             </div>

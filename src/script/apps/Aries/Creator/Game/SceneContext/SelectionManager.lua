@@ -59,6 +59,7 @@ function SelectionManager:ClearPickingResult()
 	result.entity = nil;
 	result.block_id = nil;
 	result.x, result.y, result.z = nil, nil, nil;
+	result.blockX, result.blockY, result.blockZ = nil, nil, nil;
 end
 
 -- @param bPickBlocks, bPickPoint, bPickObjects: default to true

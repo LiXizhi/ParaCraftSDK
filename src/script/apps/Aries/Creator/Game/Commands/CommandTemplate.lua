@@ -166,15 +166,33 @@ Commands["savemodel"] = {
 
 Commands["export"] = {
 	name="export", 
-	quick_ref="/export", 
+	quick_ref="/export [-silent] [filename]", 
 	desc=[[export current selection as certain file
+@param silent: true to suppress any UI popups
+@param filename: file name to save as.
 Example:
-/export
+/export   :show the GUI to export selection to a given file type.
+/export -silent  :close any exporter gui
 ]], 
 	handler = function(cmd_name, cmd_text, cmd_params, fromEntity)
 		NPL.load("(gl)script/apps/Aries/Creator/Game/Tasks/ExportTask.lua");
 		local Export = commonlib.gettable("MyCompany.Aries.Game.Tasks.Export");
 		local task = MyCompany.Aries.Game.Tasks.Export:new({})
+
+		local bSilentMode;
+
+		local option = true;
+		while(cmd_text and option) do
+			option, cmd_text = CmdParser.ParseOption(cmd_text);
+			if(option == "silent") then
+				bSilentMode = true;
+			end
+		end
+		if(cmd_text and cmd_text~="") then
+			task:SetFileName(cmd_text);
+		end
+		task:SetSilentMode(bSilentMode);
+
 		task:Run();
 	end,
 };

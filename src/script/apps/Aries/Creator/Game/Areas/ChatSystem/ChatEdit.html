@@ -24,6 +24,9 @@ function OnClickSmiley()
     MyCompany.Aries.Desktop.Dock.OnClickSmiley();
 end
 
+function OnTest()
+    _guihelper.MessageBox("111111")
+end
 ]]></script>
 <pe:if condition="<%= not System.options.IsMobilePlatform %>">
     <div width="100%" style="height:24px;background-color:#000000a0;">
@@ -42,17 +45,13 @@ end
 </pe:if>
 <pe:if condition="<%= System.options.IsMobilePlatform %>">
     <div width="100%" style="height:45px;background-color:#ffffffff;" class="mobile_button">
-        <div width="100%" style="float:left;margin-top:2px;margin-left:5px;margin-right:5px;height:40px;background-color:#000000cc" class="mobile_button_white">
+        <div width="100%" style="position:relative;float:left;margin-top:2px;margin-left:5px;margin-right:175px;height:40px;background-color:#000000cc" class="mobile_button_white">
             <input type="text" name="chatedit_words_mobile" onkeyup="MyCompany.Aries.ChatSystem.ChatEdit.OnKeyUp" textcolor="#FFFFFFFF" CaretColor="#FFFFFFFF" width="100%" style="position:relative;margin-top:5px;height:30px;font-size:20px;background:;" class="mobile_button_black"/>
         </div>
-        <div style="position:relative;float:left;margin-left:-170px;">
-            <input value='<%=L"取消"%>' type="button" style="font-size:14px;margin-top:3px;min-width:85px;height:38px;;" class="mobile_button_white" 
+        <input zorder="1" align="right" value='<%=L"取消"%>' type="button" style="position:relative;margin-right:5px;font-size:14px;margin-top:3px;min-width:85px;height:38px;" class="mobile_button_white" 
                 name="cancel" tooltip='<%=L"取消"%>' onclick="MyCompany.Aries.ChatSystem.ChatEdit.OnClickSend"/>
-        </div>
-        <div style="position:relative;float:left;margin-left:-75px;">
-            <input value='<%=L"发送"%>' type="button" style="font-size:14px;margin-top:3px;min-width:70px;height:38px;" class="mobile_button_white" 
+        <input zorder="1" align="right" value='<%=L"发送"%>' type="button" style="position:relative;margin-right:95px;font-size:14px;margin-top:3px;min-width:70px;height:38px;" class="mobile_button_white" 
                 name="send" tooltip='<%=L"发送"%>' onclick="MyCompany.Aries.ChatSystem.ChatEdit.OnClickSend"/>
-        </div>
     </div>
 </pe:if>
 </pe:mcml> 

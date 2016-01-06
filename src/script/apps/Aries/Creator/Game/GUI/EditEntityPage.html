@@ -38,6 +38,20 @@ end
 
 function OnDummy()
 end
+
+function OnClickEmptyRuleSlot(mcmlNode)
+    local item = mcmlNode:GetPreValue("this", true);
+    if(item and item.slotNumber) then
+        EditEntityPage.OnClickEmptyRuleSlot(item.slotNumber);
+    end
+end
+function OnClickEmptyBagSlot(mcmlNode)
+    local item = mcmlNode:GetPreValue("this", true);
+    if(item and item.slotNumber) then
+        EditEntityPage.OnClickEmptyBagSlot(item.slotNumber);
+    end
+end
+    
 ]]></script>
 <pe:container style="background:;">
 <pe:container class="mc_border" style="color:#cccccc;">
@@ -76,7 +90,7 @@ end
         <pe:gridview name="RuleItems" style="height:84px;" VerticalScrollBarStep="40" DataSource="<%=DS_Func_Rulebag%>" CellPadding="0" DefaultNodeHeight = "38" ItemsPerLine="9" AllowPaging="false" RememberScrollPos="true" RememberLastPage="true" pagesize="36">
             <Columns>
                 <div style="margin-left: 8px; margin-top: 4px; font-weight: bold;" class="mc_item">
-                    <pe:mc_slot ContainerView='<%=GetRulebagView()%>' DestInventory='<%=EntityManager.GetPlayer().inventory %>' bagpos ='<%=Eval("slotNumber")%>' style="margin:1px;width:32px;height:32px;"></pe:mc_slot>
+                    <pe:mc_slot class="mc_slot" onclick_empty="OnClickEmptyRuleSlot" ContainerView='<%=GetRulebagView()%>' DestInventory='<%=EntityManager.GetPlayer().inventory %>' bagpos ='<%=Eval("slotNumber")%>' style="margin:1px;width:32px;height:32px;"></pe:mc_slot>
                 </div>
 			</Columns>
         </pe:gridview>
@@ -91,7 +105,7 @@ end
         <pe:gridview name="InventoryItems" style="height:80px;" VerticalScrollBarStep="40" DataSource="<%=DS_Func_Inventory%>" CellPadding="0" DefaultNodeHeight = "38" ItemsPerLine="9" AllowPaging="false" RememberScrollPos="true" RememberLastPage="true" pagesize="36">
             <Columns>
                 <div style="margin-left:8px;margin-top:4px;font-weight:bold;" class="mc_item">
-                    <pe:mc_slot ContainerView='<%=GetInventoryView()%>' DestInventory='<%=EntityManager.GetPlayer().inventory %>' bagpos ='<%=Eval("slotNumber")%>' style="margin:1px;width:32px;height:32px;"></pe:mc_slot>
+                    <pe:mc_slot class="mc_slot" onclick_empty="OnClickEmptyBagSlot" ContainerView='<%=GetInventoryView()%>' DestInventory='<%=EntityManager.GetPlayer().inventory %>' bagpos ='<%=Eval("slotNumber")%>' style="margin:1px;width:32px;height:32px;"></pe:mc_slot>
                 </div>
 			</Columns>
         </pe:gridview>

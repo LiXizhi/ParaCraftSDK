@@ -141,16 +141,21 @@ function DragDropHandlers.handleModelFile(filename)
 		local targetfile = "blocktemplates/"..info.filename;
 		local destfile = Files.WorldPathToFullPath(targetfile);
 		
+		local function CopyFiles()
+			local res = ParaIO.CopyFile(filename, destfile, true);
+			return res;
+		end
+
 		if(Files.FileExists(destfile)) then
 			_guihelper.MessageBox(string.format(L"当前世界已经存在:%s 是否覆盖?", destfile), function(res)
 				if(res and res == _guihelper.DialogResult.Yes) then
-					ParaIO.CopyFile(filename, destfile, true);
+					CopyFiles();
 				end
 				DragDropHandlers.SendFileToSceneContext(targetfile);
 			end, _guihelper.MessageBoxButtons.YesNo);
 		else
 			_guihelper.MessageBox(string.format(L"是否导入外部模型文件:%s?", filename), function(res)
-				if(ParaIO.CopyFile(filename, destfile, true)) then
+				if(CopyFiles()) then
 					DragDropHandlers.SendFileToSceneContext(targetfile);
 				else
 					GameLogic.AddBBS(nil, format(L"导入失败了 %s", filename));

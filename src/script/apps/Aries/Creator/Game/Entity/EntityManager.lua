@@ -116,6 +116,7 @@ function EntityManager.RegisterEntities()
 	NPL.load("(gl)script/apps/Aries/Creator/Game/Entity/EntityBlockModel.lua");
 	NPL.load("(gl)script/apps/Aries/Creator/Game/Entity/EntitySky.lua");
 	NPL.load("(gl)script/apps/Aries/Creator/Game/Entity/EntityBlockBone.lua");
+	NPL.load("(gl)script/apps/Aries/Creator/Game/Entity/EntityOverlay.lua");
 end
 
 -- register a new entity class
@@ -680,7 +681,7 @@ function EntityManager.FrameMove(deltaTime)
 	EntityManager.FrameMoveSentientList(deltaTime, cur_time, destroy_list)
 
 	-- only frame move objects near the current player
-	EntityManager.FrameMoveChunksByPlayer(player, 8, deltaTime, cur_time, destroy_list);
+	EntityManager.FrameMoveChunksByPlayer(player, player:GetSentientRadius(), deltaTime, cur_time, destroy_list);
 
 
 	-- frame move entities in pending queues in this frame. 
@@ -742,15 +743,23 @@ function EntityManager.FrameMoveDynamicObjects(deltaTime, cur_time, destroy_list
 end
 
 -- all entities in the radius of the given player is framemoved. 
--- @param grid_radius: default to 8 chunks near player position. 
+-- @param grid_radius: if nil, default to playerEntity:GetSentientRadius(). 
 function EntityManager.FrameMoveChunksByPlayer(playerEntity, grid_radius, deltaTime, cur_time, destroy_list)
 	local blockX, blockY, blockZ = playerEntity:GetBlockPos(); 
 	local cx, cz = ChunkLocation:GetChunkPosFromWorldPos(blockX, blockZ);
-	grid_radius = grid_radius or 8; -- so the actual radius is 8*16 = 128 meters. 
-	for i = -grid_radius, grid_radius do
-		for j = -grid_radius, grid_radius do
+	grid_radius = grid_radius or playerEntity:GetSentientRadius(); -- so the actual radius is 8*16 = 128 meters. 
+	local chunk_radius = math.floor(grid_radius / 16);
+	for i = -chunk_radius, chunk_radius do
+		for j = -chunk_radius, chunk_radius do
 			local entities = EntityManager.GetEntitiesInChunkColumn(cx+i, cz+j);
-			if(entities) then
+			if(entities and #entities > 0) then
+				local dist = math.sqrt(i^2+j^2)*16;
+				for i=1, #entities do 
+					local entity = entities[i];
+					if(entity and entity:GetSentientRadius()<dist) then
+						entities[i] = false;
+					end
+				end
 				EntityManager.FrameMoveEntities(entities, deltaTime, cur_time, destroy_list);
 			end
 		end

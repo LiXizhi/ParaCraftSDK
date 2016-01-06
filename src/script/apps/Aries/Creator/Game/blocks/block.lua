@@ -21,6 +21,8 @@ NPL.load("(gl)script/apps/Aries/Creator/Game/Sound/StepSounds.lua");
 NPL.load("(gl)script/ide/math/AABBPool.lua");
 NPL.load("(gl)script/apps/Aries/Creator/Game/Effects/BlockPieceEffect.lua");
 NPL.load("(gl)script/ide/System/Core/Color.lua");
+NPL.load("(gl)script/ide/math/vector.lua");
+local vector3d = commonlib.gettable("mathlib.vector3d");
 local Color = commonlib.gettable("System.Core.Color");
 local BlockPieceEffect = commonlib.gettable("MyCompany.Aries.Game.Effects.BlockPieceEffect");
 local SoundManager = commonlib.gettable("MyCompany.Aries.Game.Sound.SoundManager");
@@ -83,6 +85,7 @@ function block:ctor()
 	self.id = self.id or 0;
 	self.attr = self.attr or 0;
 	self.collisionAABB = ShapeAABB:new();
+	self.collisionAABB:SetPointAABB(vector3d:new({0,0,0}));
 	self.texture = self.texture or "";
 	for i=2, 8 do
 		local name = "texture"..tostring(i);

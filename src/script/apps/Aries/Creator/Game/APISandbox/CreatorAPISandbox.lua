@@ -155,8 +155,9 @@ function CreatorAPISandbox.InstallBlock(env)
 		-- get(bx,by,bz)
 		get = ParaTerrain.GetBlockTemplateByIdx,
 		-- get script environment of a given neuron . may return nil. 
+		-- @param bCreateIfNotExist: default to true
 		getscript = function(x,y,z, bCreateIfNotExist)
-			local neuron = NeuronManager.GetNeuron(x,y,z, bCreateIfNotExist)
+			local neuron = NeuronManager.GetNeuron(x,y,z, bCreateIfNotExist~=false)
 			if(neuron) then
 				return neuron:GetScriptScope();
 			end
@@ -220,4 +221,6 @@ function CreatorAPISandbox.InstallClasses(env)
 	env.CmdParser = commonlib.gettable("MyCompany.Aries.Game.CmdParser");
 	env.CommandManager = commonlib.gettable("MyCompany.Aries.Game.CommandManager");
 	env.Game = commonlib.gettable("MyCompany.Aries.Game");
+	env.Event = commonlib.gettable("System.Core.Event");
+	env.System = commonlib.gettable("System");
 end

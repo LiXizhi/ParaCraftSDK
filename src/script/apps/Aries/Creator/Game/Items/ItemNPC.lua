@@ -51,6 +51,9 @@ function ItemNPC:OnDeSelect()
 	
 end
 
+function ItemNPC:CanSpawn()
+	return true;
+end
 
 -- called every frame
 function ItemNPC:FrameMove(deltaTime)

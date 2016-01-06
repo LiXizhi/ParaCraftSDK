@@ -85,7 +85,7 @@ function block:RotateBlockData(blockData, angle, axis)
 	-- rotation around axis
 	if(axis == "y") then
 		local side = self:GetSideByBlockData(blockData or 0);
-		if(side <= 4) then
+		if(side < 4) then
 			local facing = Direction.directionTo3DFacing[side];
 			local new_side = Direction.GetDirectionFromFacing(facing + angle);
 			if(blockData<6) then

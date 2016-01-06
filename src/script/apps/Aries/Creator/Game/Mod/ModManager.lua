@@ -57,7 +57,7 @@ function ModManager:AddMod(name, mod)
 	mods[#mods+1] = mod;
 	mods_map[mod] = true;
 	if(not mods_name_map[name]) then
-		LOG.std(nil, "info", "ModManager", "mod: %s is added", name);
+		LOG.std(nil, "info", "ModManager", "mod: %s (%s) is added", name, mod:GetName() or "");
 		mods_name_map[name] = mod;
 	else
 		LOG.std(nil, "info", "ModManager", "overriding mod with same name: %s", name);

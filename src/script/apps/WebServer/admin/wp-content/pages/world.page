@@ -48,20 +48,25 @@ end
 if(is_ajax()) then
   add_action('wp_ajax_get_world_files', function()
     local output = {}
-    local path = request:get("id") or WP_WORLD_DIR;
-    path = path:gsub("#","/");
+    local curPath = (request:get("id") or "");
+    curPath = curPath:gsub("#","/");
+    local path = WP_WORLD_DIR..curPath;
+    if(curPath ~= "") then
+      curPath = curPath.."/"
+    end
     NPL.load("(gl)script/ide/Files.lua");
+    
     local result = commonlib.Files.Find({}, path, 0, 500, "*.*");
     for _, item in ipairs(result) do
       if(item.filesize == 0) then
         item.state = "closed"; -- this is a folder
-        item.id = (WP_WORLD_DIR..(item.filename or "")):gsub("/", "#");
+        item.id = (curPath..(item.filename or "")):gsub("/", "#");
         output[#output+1] = item;
       end
     end
     for _, item in ipairs(result) do
       if(item.filesize ~= 0) then
-        item.id = (WP_WORLD_DIR..(item.filename or "")):gsub("/", "#");
+        item.id = (curPath..(item.filename or "")):gsub("/", "#");
         output[#output+1] = item;
       end
     end
@@ -88,7 +93,7 @@ else
 <table id="worlddir" title="World Directory: <?npl echo(WP_WORLD_DIR); ?>" class="easyui-treegrid"
   url="ajax/world?action=get_world_files"
   rownumbers="true" idField="id" treeField="filename" remoteSort="false" singleSelect="true"
-  data-options='onDblClickRow:function(row){window.location = ("world?file=" + row.filename);}'
+  data-options='onDblClickRow:function(row){window.location = ("world?file=" + row.id.replace("#", "/"));}'
   >
   <thead>
     <tr>

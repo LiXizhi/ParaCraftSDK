@@ -62,7 +62,7 @@ end
 
 -- virtual function: 
 -- try to select this context. 
-function RedirectContext:OnSelect()
+function RedirectContext:OnSelect(lastContext)
 	RedirectContext._super.OnSelect(self);
 	self:EnableMousePickTimer(true);
 end

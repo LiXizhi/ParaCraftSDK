@@ -28,6 +28,8 @@
     <rule match="%.page$" with="WebServer.npl_page_handler" params='%CD%'></rule>
     <!--Serve files statically in Textures, model, character directory, so that we can use any available png textures. -->
     <rule match='{"^/?Texture/", "^/?model/", "^/?character/"}' with="WebServer.filehandler" params='{baseDir = ""}'></rule>
+    <!--serving static files in current world directory %world%. -->
+    <rule match='^/?www/' with="WebServer.filehandler" params='{baseDir = "%world%"}'></rule>
     <!--filehandler example, base dir is where the root file directory is. %CD% means current file's directory-->
     <rule match="." with="WebServer.filehandler" params='{baseDir = "%CD%"}'></rule>
   </rules>

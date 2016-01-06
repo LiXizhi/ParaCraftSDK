@@ -486,6 +486,16 @@ function BlockEngine:GetNextBlockOfTypeInColumn(x,y,z, attr, max_dist)
 	end
 end
 
+-- get the y pos of the first block of nBlockID, start searching from x, y, z in the side direction
+-- @param x,y,z: y default to 0
+-- @param nBlockId: the block id to search for
+-- @param nSide: default to 5, which is downward, 4 if upward.
+-- @param max_dist: default to 255
+-- @return -1 if not found
+function BlockEngine:GetFirstBlock(x, y, z, nBlockId, nSide, max_dist)
+	return ParaTerrain.GetFirstBlock(x, y or 0, z, nBlockId, nSide or 5, max_dist or 255);
+end
+
 -- this is a coroutine and may yield every block_sim_per_frame framemove. 
 function BlockEngine:FrameMove_Coroutine()
 	-- inner radius, framemove all dynamic block near the eye position. 

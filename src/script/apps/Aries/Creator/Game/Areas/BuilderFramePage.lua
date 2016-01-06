@@ -49,7 +49,6 @@ BuilderFramePage.category_ds_new = {
 	{text=L"模板", name="template",   enabled=true},
 }
 
-BuilderFramePage.category_ds = nil;
 BuilderFramePage.category_ds_touch = {
 	--{text="全部", name="all",     enabled=true},
 	{text=L"方块", name="static",     enabled=true},
@@ -66,13 +65,22 @@ BuilderFramePage.category_ds_touch = {
 	--{text=L"工具", name="tool",	     enabled=true},
 	--{text=L"模板", name="template",   enabled=true},
 };
-
-BuilderFramePage.uiversion = nil;
+BuilderFramePage.category_ds = BuilderFramePage.category_ds_new;
+BuilderFramePage.uiversion = 1;
 BuilderFramePage.isSearching = false;
 
 function BuilderFramePage.OnInit(uiversion)
-	BuilderFramePage.OneTimeInit();
+	BuilderFramePage.OneTimeInit(uiversion);
 	page = document:GetPageCtrl();
+	BuilderFramePage.OnChangeCategory(nil, false);
+end
+
+function BuilderFramePage.OneTimeInit(uiversion)
+	if(BuilderFramePage.is_inited) then
+		return;
+	end
+	BuilderFramePage.is_inited = true;
+
 	BuilderFramePage.uiversion = uiversion;
 	BuilderFramePage.category_ds = nil;
 	
@@ -83,14 +91,6 @@ function BuilderFramePage.OnInit(uiversion)
 	elseif(uiversion == 1) then
 		BuilderFramePage.category_ds = BuilderFramePage.category_ds_new;
 	end
-	BuilderFramePage.OnChangeCategory(nil, false);
-end
-
-function BuilderFramePage.OneTimeInit()
-	if(BuilderFramePage.is_inited) then
-		return;
-	end
-	BuilderFramePage.is_inited = true;
 end
 
 function BuilderFramePage.GetCategoryButtons()

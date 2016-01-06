@@ -131,6 +131,9 @@ Commands["fog"] = {
 	name="fog", 
 	quick_ref="/fog [-color|skycolor|fogstart|fogend] values", 
 	desc= [[Change fog color and range  e.g. 
+-- if no option specified it will set fogstart
+/fog 100    only start fog after 100 meters and end by view_distance
+/fog 0.6    if value is smaller than 1, it means 0.6*view_distance
 -- change fog color to white, and disable auto fog color according to time
 /fog -color 1 1 1
 -- enable auto fog color according to time of day
@@ -145,7 +148,20 @@ Commands["fog"] = {
 	handler = function(cmd_name, cmd_text, cmd_params)
 		local options;
 		options, cmd_text = CmdParser.ParseOptions(cmd_text)
-		if(options.color) then
+		if(not next(options) or options.fogstart) then
+			-- no parameter specified. 
+			local fog_start, cmd_text = CmdParser.ParseInt(cmd_text)
+			if(fog_start) then
+				GameLogic.options.auto_skycolor  = false;
+				if(fog_start <= 1 and fog_start>=0) then
+					fog_start = fog_start * GameLogic.options:GetRenderDist();
+				end
+				GameLogic.options:SetFogStart(fog_start);
+			else
+				GameLogic.options.auto_skycolor  = true;
+				GameLogic.GetSim():OnTickDayLight(true);
+			end
+		elseif(options.color) then
 			GameLogic.options.auto_skycolor  = false;
 			local att = ParaScene.GetAttributeObject();
 			local color = CmdParser.ParseNumberList(cmd_text, list, "|,%s");
@@ -159,18 +175,11 @@ Commands["fog"] = {
 			if(color and color[1] and color[2] and color[3]) then
 				att:SetField("SkyColor", color);
 			end
-		elseif(options.fogstart) then
-			GameLogic.options.auto_skycolor  = false;
-			local fog_start, cmd_text = CmdParser.ParseInt(cmd_text)
-			if(fog_start) then
-				GameLogic.options.fog_start = fog_start;
-				-- TODO: fog start not applied? 
-			end
 		elseif(options.fogend) then
 			GameLogic.options.auto_skycolor  = false;
 			local fog_end, cmd_text = CmdParser.ParseInt(cmd_text)
 			if(fog_end) then
-				GameLogic.options.fog_end = fog_end;
+				GameLogic.options:SetFogEnd(fog_end);
 			end
 		else
 			GameLogic.options.auto_skycolor  = true;

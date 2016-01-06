@@ -51,6 +51,9 @@ BaseContext:Property({"max_break_time", 500});
 -- if true, left click to delete; if false, left click to move the player to the block. 
 BaseContext:Property({"LeftClickToDelete", true});
 BaseContext:Property({"ShowClickStrengthUI", false});
+-- the block id for the edit marker. usually 155 (ending stone). if specified,
+-- mouse block picking is only valid when there is a marker block below. 
+BaseContext:Property({"EditMarkerBlockId", nil, auto=true});
 
 -- temporary data to break a block. 
 local click_data = {
@@ -66,6 +69,10 @@ local click_data = {
 BaseContext.click_data = click_data;
 
 function BaseContext:ctor()
+	if(not System.options.mc) then
+		-- leak events to hook chain for old haqi interfaces, such as terrain painting. 
+		self:SetAcceptAllEvents(false);
+	end
 end
 
 function BaseContext:OnSelect()
@@ -189,12 +196,23 @@ end
 
 -- this function is called repeatedly if MousePickTimer is enabled. 
 -- it can also be called independently. 
+-- @return the picking result table
 function BaseContext:CheckMousePick()
 	if(self.mousepick_timer) then
 		self.mousepick_timer:Change(50, nil);
 	end
 
 	local result = SelectionManager:MousePickBlock();
+
+	if(self:GetEditMarkerBlockId() and result and result.block_id and result.block_id>0 and result.blockX) then
+		local y = BlockEngine:GetFirstBlock(result.blockX, result.blockY, result.blockZ, self:GetEditMarkerBlockId(), 5);
+		if(y<0) then
+			-- if there is no helper blocks below the picking position, we will return nothing. 
+			SelectionManager:ClearPickingResult();
+			self:ClearPickDisplay();
+			return;
+		end
+	end
 
 	CameraController.OnMousePick(result, SelectionManager:GetPickingDist());
 	
@@ -597,7 +615,12 @@ function BaseContext:OnCreateBlock(result)
 	if(itemStack) then
 		block_id = itemStack.id;
 		local item = itemStack:GetItem();
-		block_data = item:GetBlockData(itemStack);
+		if(item) then
+			block_data = item:GetBlockData(itemStack);
+		else
+			LOG.std(nil, "debug", "BaseContext", "no block definition for %d", block_id or 0);
+			return;
+		end
 	end
 	
 	if(block_id and block_id > 4096) then

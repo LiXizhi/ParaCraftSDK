@@ -93,7 +93,7 @@ function World:InitBlockGenerator()
 	block.auto_gen_terrain_block = true;
 
 	local block_generator;
-	if(world_generator) then
+	if(world_generator and world_generator~="") then
 		if(world_generator == "flat") then
 			-- only used in haqi, Not in paracraft
 			block.auto_gen_terrain_block = true;

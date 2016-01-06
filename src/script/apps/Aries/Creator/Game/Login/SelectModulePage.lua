@@ -1,17 +1,25 @@
 --[[
 Title: SelectModulePage.html code-behind script
-Author(s): LiPeng
+Author(s): LiPeng, LiXizhi
 Date: 2014/4/1
-Desc: select the default global module for the game, and the module for every world.
+Desc: select the default global modules for the game, and the modules for every world.
+Simply put plugin zip file or mod folder to ./Mod folder. 
+The plugin zip file must contain a file called "Mod/[plugin_name]/main.lua" 
+in order to be considered as a valid plugin zip file. 
+
 use the lib:
 -------------------------------------------------------
 NPL.load("(gl)script/apps/Aries/Creator/Game/Login/SelectModulePage.lua");
 local SelectModulePage = commonlib.gettable("MyCompany.Aries.Game.MainLogin.SelectModulePage")
+local modules = SelectModulePage.SearchAllModules();
+echo(modules)
+SelectModulePage.AddModule("STLExporter.zip")
 SelectModulePage.ShowPage()
 -------------------------------------------------------
 ]]
-NPL.load("(gl)script/apps/Aries/Creator/Game/Mod/ModManager.lua");
 NPL.load("(gl)script/apps/Aries/Creator/WorldCommon.lua");
+NPL.load("(gl)script/apps/Aries/Creator/Game/Mod/ModManager.lua");
+local ModManager = commonlib.gettable("Mod.ModManager");
 local WorldCommon = commonlib.gettable("MyCompany.Aries.Creator.WorldCommon")
 
 local SelectModulePage = commonlib.gettable("MyCompany.Aries.Game.MainLogin.SelectModulePage")
@@ -20,7 +28,6 @@ local SelectModulePage = commonlib.gettable("MyCompany.Aries.Game.MainLogin.Sele
 SelectModulePage.range = 0;
 -- the module files' directory
 SelectModulePage.dir = "Mod/";
-SelectModulePage.modNameSpace = "Mod.";
 SelectModulePage.page = nil;
 
 --local isDevEnv = false;
@@ -88,8 +95,6 @@ function SelectModulePage.SaveModTableToFile()
 
 	if(file:IsValid()) then
 		local root = {name='mods',}
-		--local node;
-		local modname,mod;
 		for modname,mod in pairs(curModTable) do 
 			local modnode = {name='mod', attr={name = modname}};
 			
@@ -115,55 +120,64 @@ function SelectModulePage.SaveModTableToFile()
 	end
 end
 
--- get the modlist from the directory "Mod/"
-function SelectModulePage.GetModuleList()
-	local modList = {};
+function SelectModulePage.AddModuleToDS(modname, modList)
 	local curModTable = SelectModulePage.mod_info.modTable;
 	local curWorld = SelectModulePage.GetCurrentWorld();
-	local folders = {};
-	local dir = SelectModulePage.dir;
-	if(isDevEnv) then
-		commonlib.Files.SearchFiles(folders, dir, "*.*", 0, 100000, nil, true)
+	local checked = false;
+	
+	local mod = curModTable[modname];
+	if(mod) then
+		if(mod[curWorld] and mod[curWorld]["checked"] == true) then
+			checked = true;
+		end
 	else
-		commonlib.Files.SearchFiles(folders, dir, "*.zip", 0, 100000, true, nil)
-	end
-	for _,folder in ipairs(folders) do
-		local modname = folder;
-		local checked = false;
-		local mod = curModTable[modname];
-
-		if(mod) then
-			if(mod[curWorld] and mod[curWorld]["checked"] == true) then
-				checked = true;
-			end
-		else			
-			if(not mod) then
-				curModTable[modname] = {};
-				mod = curModTable[modname];
-			end
-			if(not mod[curWorld]) then
-				if(curWorld ~= "global") then
-					if(mod["global"]) then
-						mod[curWorld] = mod["global"];
-					else
-						mod[curWorld] = {};
-					end
+		mod = {};
+		curModTable[modname] = mod;
+		if(not mod[curWorld]) then
+			if(curWorld ~= "global") then
+				if(mod["global"]) then
+					mod[curWorld] = mod["global"];
 				else
 					mod[curWorld] = {};
 				end
+			else
+				mod[curWorld] = {};
 			end
-			--curModTable[modName] = {};
 		end
-		local text;
-		if(isDevEnv) then
-			text = modname;
-		else
-			text = string.match(modname,"(.*)%.zip$");
-		end
-		local item = {text = text, name = modname, checked = checked};
-		table.insert(modList,item);	
 	end
-	SelectModulePage.mod_info.modList = modList;
+	local isZip = modname:match("%.(zip)$") == "zip";
+	local item = {text = modname, name = modname, checked = checked, isZip=isZip};
+	modList[#modList+1] = item;
+end
+
+function SelectModulePage.SearchAllModules()
+	local modList = {};
+	-- add all explicit plugins in "Mod" folder. 
+	local folderPath = SelectModulePage.dir;
+	local output = commonlib.Files.Find(nil, folderPath, 0, 50000, "*.");
+	if(output and #output>0) then
+		for _, item in ipairs(output) do
+			local filename = format("%s%s/main.lua", folderPath, item.filename);
+			if(ParaIO.DoesFileExist(filename, false)) then
+				SelectModulePage.AddModuleToDS(item.filename, modList);
+			end
+		end
+	end
+	-- add *.zip plugins in "Mod" folder. 
+	if(not isDevEnv) then
+		local output = commonlib.Files.Find(nil, folderPath, 0, 50000, "*.zip");
+		if(output and #output>0) then
+			for _, item in ipairs(output) do
+				SelectModulePage.AddModuleToDS(item.filename, modList);
+			end
+		end
+	end
+	return modList;
+end
+
+-- get the modlist from the directory "Mod/"
+function SelectModulePage.GetModuleList()
+	SelectModulePage.mod_info.modList = SelectModulePage.SearchAllModules();
 end
 
 -- get the datasource of the module;
@@ -201,9 +215,9 @@ function SelectModulePage.OnSwitchModStatus(bChecked,modName,index)
 		end
 	end
 	mod[curWorld]["checked"] = bChecked;
-	if(index and System.options.IsMobilePlatform) then
+	if(index) then
 		local item = SelectModulePage.mod_info.modList[index];
-		item.checked = not item.checked;
+		item.checked = bChecked;
 	end
 end
 
@@ -262,15 +276,11 @@ end
 
 
 -- load selected modules file
--- @beScriptSource : decide whether load the "script" floder from the "script.zip" in the "Mod" folder
 function SelectModulePage.LoadMods()
 	if(SelectModulePage.isLoaded or not System.options.mc) then
 		return;
 	end
 	SelectModulePage.isLoaded = true;
-
-	NPL.load("(gl)script/apps/Aries/Creator/Game/Mod/ModManager.lua");
-	local ModManager = commonlib.gettable("Mod.ModManager");
 
 	local skip_modname;
 	if(isDevEnv) then
@@ -278,8 +288,10 @@ function SelectModulePage.LoadMods()
 		if(modname and modname ~= "") then
 			local filepath = "(gl)"..SelectModulePage.dir..modname.."/main.lua";
 			NPL.load(filepath);
-			local mod = commonlib.gettable(SelectModulePage.modNameSpace..modname);
-			ModManager:AddMod(modname, mod);
+			local module_class = SelectModulePage.FindModuleClass(modname);
+			if(module_class) then
+				ModManager:AddMod(modname, module_class);
+			end
 			skip_modname = modname;
 		end
 	end
@@ -288,23 +300,81 @@ function SelectModulePage.LoadMods()
 
 	local modTable = SelectModulePage.mod_info.modTable;
 	local curWorld = SelectModulePage.GetCurrentWorld();		
-	
+	local failedMods;
 	for modname, modinfo in pairs(modTable) do
 		if(modinfo[curWorld] and modinfo[curWorld]["checked"]) then
 			if(skip_modname ~= modname) then
-				local zipfilename = SelectModulePage.dir..modname;
-				if(not ParaIO.DoesAssetFileExist(zipfilename, true))then
-					modTable[modname] = nil;
-					SelectModulePage.SaveModTableToFile();
-				else
-					ParaAsset.OpenArchive(zipfilename,false);	
+				if(not SelectModulePage.AddModule(modname)) then
+					LOG.std(nil, "warn", "SelectModulePage", "failed to load module %s", modname);
+					failedMods = failedMods or {};
+					failedMods[#failedMods+1] = modname;
 				end
-				local filename = string.match(modname,"(.*)%.zip$") or modname;
-				local filepath = "(gl)"..SelectModulePage.dir..filename.."/main.lua";
-				NPL.load(filepath);
-				local mod = commonlib.gettable(SelectModulePage.modNameSpace..filename);
-				ModManager:AddMod(modname, mod);
 			end
 		end
-	end	
+	end
+	if(failedMods) then
+		for _, modname in ipairs(failedMods) do
+			modTable[modname] = nil;
+		end
+		SelectModulePage.SaveModTableToFile();
+	end
+end
+
+-- @param module_classname: case insensitive module name
+function SelectModulePage.FindModuleClass(module_classname)
+	if(module_classname) then
+		module_classname = string.lower(module_classname);
+		for name, value in pairs(Mod) do
+			if(string.lower(name) == module_classname) then
+				if(type(value) == "table") then
+					return value;
+				end
+			end
+		end
+	end
+end
+
+function SelectModulePage.AddModuleImp(modname, main_filename)
+	local module_classname = main_filename:match("^%w+/([^/]+)");
+	local module_class = SelectModulePage.FindModuleClass(module_classname);
+	if(not module_class) then
+		NPL.load(main_filename);
+		module_class = SelectModulePage.FindModuleClass(module_classname);
+		if(module_class) then
+			ModManager:AddMod(modname, module_class);
+			return true;
+		end
+	else
+		LOG.std(nil, "warn", "Modules", "mod: %s ignored, because another module_class %s already exist", modname, module_classname); 
+	end
+end
+
+-- @param modname: it is either the folder name or zip file name. such as "STLExporter.zip"
+function SelectModulePage.AddModule(modname)
+	local filename = SelectModulePage.dir..modname;
+	if( modname:match("%.(zip)$") == "zip") then
+		if(ParaIO.DoesAssetFileExist(filename, true))then
+			ParaAsset.OpenArchive(filename,false);	
+			-- try find main file in "Mod/*/main.lua"
+			local output = commonlib.Files.Find(nil, "", 0, 10000, "Mod/*/main.lua", filename)
+			if(output and #output>0) then
+				local main_filename = output[1].filename;
+				return SelectModulePage.AddModuleImp(modname, main_filename);
+			end
+			-- try find main file in "*/Mod/*/main.lua"
+			local output = commonlib.Files.Find(nil, "", 0, 10000, "*/Mod/*/main.lua", filename)
+			if(output and #output>0) then
+				-- just in case, the user has zipped everything in a folder, such as downloading from github as a zip file. 
+				local base_folder_name, main_filename = output[1].filename:match("^([^/]+)/(%w+/[^/]+/main.lua)");
+				if(main_filename) then
+					local zip_archive = ParaEngine.GetAttributeObject():GetChild("AssetManager"):GetChild("CFileManager"):GetChild(filename);
+					zip_archive:SetField("SetBaseDirectory", base_folder_name);
+					return SelectModulePage.AddModuleImp(modname, main_filename);
+				end
+			end
+		end
+	else
+		local main_filename = filename.."/main.lua";
+		return SelectModulePage.AddModuleImp(modname, main_filename);
+	end
 end

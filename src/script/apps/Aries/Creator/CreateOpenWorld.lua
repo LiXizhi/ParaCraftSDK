@@ -36,12 +36,13 @@ CreateOpenWorld.SelectedWorldTemplate_Index = 1;
 CreateOpenWorld.OpenWorld_Folder = "worlds/MyWorlds";
 
 -- whether to use the new version to open/create world
-CreateOpenWorld.IsNewVersion = false;
+-- old version is completed deprecated. 
+CreateOpenWorld.IsNewVersion = true;
 
 local page;
 
 function CreateOpenWorld.ShowPage()
-	CreateOpenWorld.IsNewVersion = false;
+	-- CreateOpenWorld.IsNewVersion = false;
 	CreateOpenWorld.ShowPage_imp();
 end
 

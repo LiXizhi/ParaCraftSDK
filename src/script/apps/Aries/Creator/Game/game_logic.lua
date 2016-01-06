@@ -507,9 +507,19 @@ function GameLogic.IsPaused()
 	return GameLogic.bIsPaused;
 end
 
+function GameLogic.RemoveWorldFileWatcher()
+	if(GameLogic.file_watcher) then
+		GameLogic.file_watcher:Destroy();
+		GameLogic.file_watcher = nil;
+	end
+end
+
 function GameLogic.CheckCreateFileWatcher()
 	if(not GameLogic.IsReadOnly()) then
 		NPL.load("(gl)script/ide/FileSystemWatcher.lua");
+
+		GameLogic.RemoveWorldFileWatcher();
+
 		-- watch files under model/ and character/ directory and Refresh it in case they are changed
 		local watcher = commonlib.FileSystemWatcher:new()
 		watcher.filter = function(filename)
@@ -550,6 +560,8 @@ function GameLogic.ToggleGameMode()
 		local Desktop = commonlib.gettable("MyCompany.Aries.Creator.Game.Desktop");
 		Desktop.OnActivateDesktop();
 		return true;
+	else
+		GameLogic.AddBBS("desktop", L"编辑模式被锁定");
 	end
 end
 
@@ -659,10 +671,7 @@ function GameLogic.Exit()
 	CommandManager:Destroy();
 	BlockEngine:Disconnect();
 	GameLogic.is_started = false;
-	if(GameLogic.file_watcher) then
-		GameLogic.file_watcher:Destroy();
-		GameLogic.file_watcher = nil;
-	end
+	GameLogic.RemoveWorldFileWatcher();
 
 	CameraController.OnExit();
 	ParaTerrain.GetAttributeObject():SetField("RenderTerrain",true);
@@ -906,6 +915,10 @@ end
 -- call this to enter editor mode and disable game creature AI and display editor UI 
 function GameLogic.EnterEditorMode()
 	GameLogic.SetMode("editor", true);
+end
+
+function GameLogic.EnterTutorialMode()
+	GameLogic.SetMode("tutorial", true);
 end
 
 -- call this to enter editor mode and disable game creature AI and display editor UI 

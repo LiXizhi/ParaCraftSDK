@@ -14,7 +14,6 @@ redist/*
 !redist/config.txt
 published/
 ParaCraft/
-NPLRuntime/
 _*
 !_apps/
 _apps/*

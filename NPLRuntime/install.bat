@@ -26,8 +26,13 @@ if exist "%REDIST_DIR%ParaEngineClient.dll" (
     mkdir win\packages
     del /Q %DEST_DIR%..\packages\main*.pkg
     copy /Y %REDIST_DIR%main*.pkg  %DEST_DIR%..\packages\
+) else (
+    echo please run %REDIST_DIR%paracraft.exe first to install latest client
+    echo and then run this file again
+    pause
+    call "%REDIST_DIR%paracraft.exe"
+    exit
 )
-
 echo register NPL runtime to env path
 pause
 %~dp0win\bin\npls reg_env_path.lua

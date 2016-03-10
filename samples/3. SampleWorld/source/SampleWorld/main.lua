@@ -10,13 +10,10 @@ NPL.activate("source/HelloWorld/main.lua");
 Or run application with command line: bootstrapper="source/HelloWorld/main.lua"
 ------------------------------------------------------------
 ]]
--- ¼ÓÔØÒ»Ğ©ºËĞÄÀà¿â
+-- åŠ è½½ä¸€äº›æ ¸å¿ƒç±»åº“
 NPL.load("(gl)script/kids/ParaWorldCore.lua"); 
-NPL.load("(gl)script/apps/IMServer/IMserver_client.lua");
--- Í¨Ñ¶ÏµÍ³
-JabberClientManager = commonlib.gettable("IMServer.JabberClientManager");
 
---¶ÁÅäÖÃÎÄ¼ş
+--è¯»é…ç½®æ–‡ä»¶
 local function load_config()
 	System.options.is_client = true;
 	-- this is a MicroCosmos app. 
@@ -31,25 +28,25 @@ local function load_config()
 	local node;
 	node = commonlib.XPath.selectNodes(xmlRoot, "/GameClient/asset_server_addresses/address")[1];
 	if(node and node.attr) then
-		-- ÉèÖÃ×ÊÔ´·şÎñÆ÷URL
+		-- è®¾ç½®èµ„æºæœåŠ¡å™¨URL
 		ParaAsset.SetAssetServerUrl(node.attr.host);
 		LOG.std("", "system", "aries", "Asset server: %s", node.attr.host)
 	end
 end
 
--- ³õÊ¼»¯³ÌĞò
+-- åˆå§‹åŒ–ç¨‹åº
 local function InitApp()
-	--¶ÁÅäÖÃÎÄ¼ş
+	--è¯»é…ç½®æ–‡ä»¶
 	load_config();
 
-	--³õÊ¼»¯ÏµÍ³
+	--åˆå§‹åŒ–ç³»ç»Ÿ
 	main_state = System.init();
 
-	-- Ê¹ÓÃÒ»¸öCreator·ç¸ñµÄÄÚÖÃGUIÆ¤·ô
+	-- ä½¿ç”¨ä¸€ä¸ªCreatoré£æ ¼çš„å†…ç½®GUIçš®è‚¤
 	NPL.load("(gl)script/apps/Aries/Creator/Game/DefaultTheme.mc.lua");
 	MyCompany.Aries.Creator.Game.Theme.Default:Load();
 
-	-- ×¢²áÒ»Ğ©³£ÓÃµÄÄÚ²¿APPÄ£¿é¡£ 
+	-- æ³¨å†Œä¸€äº›å¸¸ç”¨çš„å†…éƒ¨APPæ¨¡å—ã€‚ 
 	System.App.Registration.CheckInstallApps({
 		{app={app_key="WebBrowser_GUID"}, IP_file="script/kids/3DMapSystemApp/WebBrowser/IP.xml"},
 		{app={app_key="worlds_GUID"}, IP_file="script/kids/3DMapSystemApp/worlds/IP.xml"},
@@ -77,7 +74,7 @@ local function InitApp()
 
 	CommonCtrl.Locale.EnableLocale(false);
 
-	-- ×¢²á³£ÓÃHTMLäÖÈ¾¿Ø¼ş
+	-- æ³¨å†Œå¸¸ç”¨HTMLæ¸²æŸ“æ§ä»¶
 	NPL.load("(gl)script/apps/Aries/mcml/mcml_aries.lua");
 	MyCompany.Aries.mcml_controls.register_all();
 
@@ -86,7 +83,7 @@ local function InitApp()
 	MyCompany.Aries.WorldManager:Init();
 end
 
--- ½øÈëÒ»¸öÄ¬ÈÏµÄÊÀ½ç
+-- è¿›å…¥ä¸€ä¸ªé»˜è®¤çš„ä¸–ç•Œ
 local function LoadSampleWorld()
 	NPL.load("(gl)script/apps/Aries/Creator/Game/main.lua");
 	local Game = commonlib.gettable("MyCompany.Aries.Game")
@@ -95,15 +92,15 @@ local function LoadSampleWorld()
 	local worldfolder = "worlds/DesignHouse/";
 	local worldpath = worldfolder..worldname;
 	if(not ParaIO.DoesFileExist(worldpath)) then
-		--  ÊÀ½ç²»´æÔÚ¾Í´´½¨Ò»¸ö
+		--  ä¸–ç•Œä¸å­˜åœ¨å°±åˆ›å»ºä¸€ä¸ª
 		NPL.load("(gl)script/apps/Aries/Creator/Game/Login/CreateNewWorld.lua");
 		local CreateNewWorld = commonlib.gettable("MyCompany.Aries.Game.MainLogin.CreateNewWorld")
 		if(CreateNewWorld.CreateWorld({
 				worldname = worldname, 
 				creationfolder=worldfolder, 
-				parentworld = "worlds/Templates/Empty/flatsandland", --´ÓÄÄ¸öÊÀ½çÅÉÉúĞÂÊÀ½ç
-				world_generator = "flat", -- ³¬¼¶Æ½Ì¹
-				seed = world_name, -- ´´½¨ÊÀ½çµÄËæ»úÖÖ×Ó
+				parentworld = "worlds/Templates/Empty/flatsandland", --ä»å“ªä¸ªä¸–ç•Œæ´¾ç”Ÿæ–°ä¸–ç•Œ
+				world_generator = "flat", -- è¶…çº§å¹³å¦
+				seed = world_name, -- åˆ›å»ºä¸–ç•Œçš„éšæœºç§å­
 			})) then
 			-- created new world succeed!
 		end
@@ -111,11 +108,11 @@ local function LoadSampleWorld()
 	Game.Start(worldpath);
 end
 
--- Ö÷Ñ­»·£¬ Ã¿Ãë»áµ÷ÓÃ2´Î. 
+-- ä¸»å¾ªç¯ï¼Œ æ¯ç§’ä¼šè°ƒç”¨2æ¬¡. 
 local function activate()
 	if(main_state == nil) then
 		main_state = 1;
-		-- ±£Ö¤Ö»µ÷ÓÃÒ»´Î
+		-- ä¿è¯åªè°ƒç”¨ä¸€æ¬¡
 		InitApp();
 		LoadSampleWorld();
 	else

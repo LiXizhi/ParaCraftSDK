@@ -18,7 +18,6 @@ NPL.load("(gl)script/ide/mathlib.lua");
 NPL.load("(gl)script/apps/Aries/Creator/Game/game_logic.lua");
 NPL.load("(gl)script/apps/Aries/Creator/Game/Movie/MovieManager.lua");
 local MovieManager = commonlib.gettable("MyCompany.Aries.Game.Movie.MovieManager");
-local pe_mc_block = commonlib.gettable("MyCompany.Aries.Game.mcml.pe_mc_block");
 local pe_mc_slot = commonlib.gettable("MyCompany.Aries.Game.mcml.pe_mc_slot");
 local GameLogic = commonlib.gettable("MyCompany.Aries.Game.GameLogic")
 local mathlib = commonlib.gettable("mathlib");
@@ -125,7 +124,6 @@ end
 
 function PlayerController:CheckSetMode()
 	-- refresh all
-	pe_mc_block.RefreshBlockIcons();
 	pe_mc_slot.RefreshBlockIcons();
 end
 

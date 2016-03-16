@@ -84,14 +84,16 @@ function ServerManager:CreateWorldServer(worldpath)
 	worldserver:CreateAdminPlayer();
 end
 
-function ServerManager:Init(host, port)
+function ServerManager:Init(host, port, username, tunnelClient)
 	self:CreateWorldServer();
 
-	host = tostring(host or "0.0.0.0");
-	port = tostring(port or 8099);
-	
-	self:LoadNetworkSettings();
-	NPL.StartNetServer(host, port);
+    if(not tunnelClient) then
+        host = tostring(host or "0.0.0.0");
+        port = tostring(port or 8099);
+        
+        self:LoadNetworkSettings();
+        NPL.StartNetServer(host, port);
+    end
 	local Connections = commonlib.gettable("MyCompany.Aries.Game.Network.Connections");
 	Connections:Init();
 

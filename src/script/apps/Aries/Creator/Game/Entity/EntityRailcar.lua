@@ -47,7 +47,7 @@ Entity.is_persistent = true;
 -- whether this object is trackable from the server side. 
 Entity.isServerEntity = true;
 
-Entity.group_id = GameLogic.SentientGroupIDs.Mob;
+Entity:Property({"group_id", GameLogic.SentientGroupIDs.Mob})
 Entity.sentient_fields = {[GameLogic.SentientGroupIDs.Player] = true};
 
 --private: 

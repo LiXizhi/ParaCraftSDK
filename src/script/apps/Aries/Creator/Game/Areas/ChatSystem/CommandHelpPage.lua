@@ -142,6 +142,12 @@ function CommandHelpPage.ShowCommandHelpInfo(text)
 	else
 		CommandHelpPage.cmd_name = cmd_name;
 	end
+	if(CommandHelpPage.cmd_name_complete and CommandHelpPage.cmd_name and CommandHelpPage.cmd_name~="") then
+		local cmd = CommandHelpPage.cmd_helps[CommandHelpPage.cmd_name]
+		if(cmd) then
+			GameLogic:UserAction("cmd "..CommandHelpPage.cmd_name);
+		end
+	end
 
 	CommandHelpPage.ShowOrRefreshPage();
 	last_chat_edit_text = cur_chat_edit_text;
@@ -223,7 +229,6 @@ function CommandHelpPage.GetDS()
 			table.insert(ds,cmd);
 		end
 	else
-		local cmd_name,command;
 		for cmd_name,command in pairs(CommandHelpPage.cmd_helps) do
 			local begin_pos = string.find(cmd_name,CommandHelpPage.cmd_name);
 			if(begin_pos and begin_pos == 1) then

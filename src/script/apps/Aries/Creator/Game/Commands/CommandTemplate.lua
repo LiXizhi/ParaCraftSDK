@@ -32,7 +32,6 @@ Commands["loadtemplate"] = {
 	name="loadtemplate", 
 	quick_ref="/loadtemplate [-r] [-abspos] [-tp] [-a seconds] [x y z] [templatename]", 
 	desc=[[load template to the given position
-load template to the given position
 @param -a seconds: animate building progress. the followed number is the number of seconds (duration) of the animation. 
 @param -r: remove blocks
 @param -abspos: whether load using absolute position. 

@@ -14,6 +14,7 @@ NPL.load("(gl)script/apps/Aries/Creator/Game/Common/Direction.lua");
 NPL.load("(gl)script/apps/Aries/Creator/Game/Entity/EntityBlockBase.lua");
 NPL.load("(gl)script/apps/Aries/Creator/Game/Effects/Image3DDisplay.lua");
 NPL.load("(gl)script/apps/Aries/Creator/Game/Items/ItemClient.lua");
+local ShapeAABB = commonlib.gettable("mathlib.ShapeAABB");
 local ItemClient = commonlib.gettable("MyCompany.Aries.Game.Items.ItemClient");
 local Image3DDisplay = commonlib.gettable("MyCompany.Aries.Game.Effects.Image3DDisplay");
 local Direction = commonlib.gettable("MyCompany.Aries.Game.Common.Direction")
@@ -62,6 +63,15 @@ function Entity:Destroy()
 	Entity._super.Destroy(self);
 end
 
+
+-- return empty collision AABB, since it does not have physics. 
+function Entity:GetCollisionAABB()
+	if(not self.aabb) then
+		self.aabb = ShapeAABB:new();
+	end
+	return self.aabb;
+end
+
 --obsoleted
 function Entity:UpdateBlockDataByFacing()
 	local x,y,z = self:GetBlockPos();
@@ -107,18 +117,23 @@ function Entity:GetImageFilePath()
 	return sys_images[self.cmd or ""] or self.cmd;
 end
 
+-- return full file name and whether file exist. 
+--@return fullname, bExist:  
 function Entity:GetFullFilePath(filename)
+	local bExist
 	local old_filename = filename;
 	if(filename and filename~="" and not filename:match("^http://")) then
 		filename = filename:gsub("[;:].*$", "")
 		if(not ParaIO.DoesAssetFileExist(filename, true)) then
 			filename = ParaWorld.GetWorldDirectory()..filename;
 			if(ParaIO.DoesAssetFileExist(filename, true)) then
-				return ParaWorld.GetWorldDirectory()..old_filename;
+				return ParaWorld.GetWorldDirectory()..old_filename, true;
 			end
+		else
+			bExist = true;
 		end
 	end
-	return old_filename;
+	return old_filename, bExist;
 end
 
 function Entity:GetImageFacing()
@@ -465,10 +480,11 @@ function Entity:Refresh(bForceRefresh)
 	self.bNeedUpdate = nil;
 
 	local filename = self:GetImageFilePath(); 
-	filename = self:GetFullFilePath(filename);
-	if(filename and filename ~= "" and (not ParaIO.DoesAssetFileExist(filename, true))) then
+	local bFileExist;
+	filename, bFileExist = self:GetFullFilePath(filename);
+	if(filename and filename ~= "" and not bFileExist) then
 		self.cmd = nil;
-		_guihelper.MessageBox(format(L"图片文件:%s 不存在,请检查路径是否正确", filename));
+		GameLogic.AddBBS("image", format(L"图片文件:%s 不存在,请检查路径是否正确", filename), nil, "255 0 0");
 		return;
 	end
 	if(filename and bForceRefresh)then

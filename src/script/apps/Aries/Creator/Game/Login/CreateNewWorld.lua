@@ -305,6 +305,7 @@ function CreateNewWorld.OnClickCreateWorld()
 	else
 		CreateNewWorld.page:CloseWindow();
 		WorldCommon.OpenWorld(worldpath, true);
+		GameLogic:UserAction("introduction");
 		GameLogic.options:SetShowTutorial(true);
 	end
 end

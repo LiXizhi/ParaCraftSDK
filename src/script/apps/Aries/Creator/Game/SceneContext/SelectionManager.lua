@@ -28,11 +28,14 @@ SelectionManager:Signal("selectedActorChanged");
 SelectionManager:Signal("varNameChanged", function(name) end);
 
 local default_picking_dist = 50;
-local result = {};
+local result = nil;
 local eye_pos = {0,0,0};
 SelectionManager.result = result;
 
 function SelectionManager:ctor()
+	NPL.load("(gl)script/apps/Aries/Creator/Game/SceneContext/PickingResult.lua");
+	local PickingResult = commonlib.gettable("MyCompany.Aries.Game.SceneContext.PickingResult");
+	result = PickingResult:new();
 end
 
 -- get the current mouse picking result. 
@@ -54,12 +57,7 @@ function SelectionManager:Clear()
 end
 
 function SelectionManager:ClearPickingResult()
-	result.length = nil;
-	result.obj = nil;
-	result.entity = nil;
-	result.block_id = nil;
-	result.x, result.y, result.z = nil, nil, nil;
-	result.blockX, result.blockY, result.blockZ = nil, nil, nil;
+	result:Clear();
 end
 
 -- @param bPickBlocks, bPickPoint, bPickObjects: default to true

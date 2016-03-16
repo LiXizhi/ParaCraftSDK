@@ -19,12 +19,11 @@ local CmdParser = commonlib.gettable("MyCompany.Aries.Game.CmdParser");
 local Commands = commonlib.gettable("MyCompany.Aries.Game.Commands");
 local CommandManager = commonlib.gettable("MyCompany.Aries.Game.CommandManager");
 
---[[ start private server on host port
-]]
-Commands["startserver"] = {
-	name="startserver", 
-	quick_ref="/startserver [ip_host] [port]", 
-	desc="start private server on host port" , 
+Commands["tunnelserver"] = {
+	name="tunnelserver", 
+	quick_ref="/tunnelserver [-start|stop] [ip_host] [port]", 
+	desc=[[start tunnel server on host port
+]], 
 	mode_deny = "",
 	mode_allow = "",
 	handler = function(cmd_name, cmd_text, cmd_params, fromEntity)
@@ -32,9 +31,38 @@ Commands["startserver"] = {
 		host, cmd_text = CmdParser.ParseString(cmd_text);
 		port, cmd_text = CmdParser.ParseInt(cmd_text);
 		
+		NPL.load("(gl)script/apps/Aries/Creator/Game/Network/TunnelService/TunnelServer_main.lua");
+		local TunnelServerMain = commonlib.gettable("MyCompany.Aries.Game.Network.TunnelServerMain");
+		TunnelServerMain:Init({host=host, port=port});
+		GameLogic.AddBBS(nil, "tunnel server is started");
+	end,
+};
+
+Commands["startserver"] = {
+	name="startserver", 
+	quick_ref="/startserver [-tunnel room_key] [ip_host] [port]", 
+	desc=[[start private server on host port
+@param -tunnel: start server via tunnel server
+]], 
+	mode_deny = "",
+	mode_allow = "",
+	handler = function(cmd_name, cmd_text, cmd_params, fromEntity)
+		local host, port, option, room_key, username;
+		option, cmd_text = CmdParser.ParseOption(cmd_text);
+		if(option == "tunnel") then
+			room_key, cmd_text = CmdParser.ParseString(cmd_text);
+		end
+
+		host, cmd_text = CmdParser.ParseString(cmd_text);
+		port, cmd_text = CmdParser.ParseInt(cmd_text);
+		
 		NPL.load("(gl)script/apps/Aries/Creator/Game/Network/NetworkMain.lua");
 		local NetworkMain = commonlib.gettable("MyCompany.Aries.Game.Network.NetworkMain");
-		NetworkMain:StartServer(host, port);
+		if(room_key) then
+			NetworkMain:StartServerViaTunnel(host, port, room_key, username);
+		else
+			NetworkMain:StartServer(host, port);
+		end
 
 		-- turn off for debugging
 		GameLogic.options:SetClickToContinue(false);
@@ -109,20 +137,35 @@ e.g.
 ]]
 Commands["connect"] = {
 	name="connect", 
-	quick_ref="/connect [ip] [port] [username] [password]", 
+	quick_ref="/connect [-tunnel room_key] [ip] [port] [username] [password]", 
 	mode_deny = "",
 	mode_allow = "",
-	desc="connect to a given private server" , 
+	desc=[[connect to a given private server
+@param -tunnel room_key: if specified, ip and port is the tunnel server's ip address and a room_key should be provided.
+Example:
+/connect     :connect to default ip:localhost and port:8099
+/connect -tunnel room_test  :connect to default ip/port for the room_key: room_test
+]], 
 	handler = function(cmd_name, cmd_text, cmd_params, fromEntity)
-		local ip, port, username, password;
+		local ip, port, username, password, option, room_key;
+		option, cmd_text = CmdParser.ParseOption(cmd_text);
+		if(option == "tunnel") then
+			room_key, cmd_text = CmdParser.ParseString(cmd_text);
+		end
+
 		ip, cmd_text = CmdParser.ParseString(cmd_text);
 		port, cmd_text = CmdParser.ParseInt(cmd_text);
 		username, cmd_text = CmdParser.ParseString(cmd_text);
 		password, cmd_text = CmdParser.ParseString(cmd_text);
 		
+
 		NPL.load("(gl)script/apps/Aries/Creator/Game/Network/NetworkMain.lua");
 		local NetworkMain = commonlib.gettable("MyCompany.Aries.Game.Network.NetworkMain");
-		NetworkMain:Connect(ip, port, username, password);
+		if(room_key) then
+			NetworkMain:ConnectViaTunnel(ip, port, room_key, username, password);
+		else
+			NetworkMain:Connect(ip, port, username, password);
+		end
 
 		-- turn off for debugging
 		GameLogic.options:SetClickToContinue(false);

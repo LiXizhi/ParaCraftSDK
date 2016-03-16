@@ -188,8 +188,18 @@ function CmdParser.ParseStringList(cmd_text, list)
 	end
 end
 
--- TODO: item's serverdata or tagData in xml format
+-- item's serverdata or tagData in xml format
+-- currently, this must be the last parameter. 
+-- @param cmd_text: "{table parameters}"
+-- @return serverDataTable, cmd_remaining_text
 function CmdParser.ParseServerData(cmd_text)
+	local value = cmd_text:match("^%s*({.+})%s*$");
+	if(value) then
+		value = NPL.LoadTableFromString(value);
+		if(value) then
+			return value, "";
+		end
+	end
 	return nil, cmd_text;
 end
 

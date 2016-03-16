@@ -184,6 +184,15 @@ function List:remove(item)
 	return next;
 end
 
+-- return the poped object or nil.
+function List:pop()
+	local last = self:last();
+	if(last) then
+		self:remove(last);
+		return last;
+	end
+end
+
 -- clear all items
 function List:clear()
 	local item = self:first();

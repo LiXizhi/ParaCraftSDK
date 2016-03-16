@@ -1,0 +1,81 @@
+<?npl
+--[[
+Title: 
+Author: leio
+Date: 2016/3/7
+Desc: 
+]]
+WP_Error = commonlib.inherit(nil, {});
+
+function WP_Error:ctor()
+	self.errors = {};
+	self.error_data = {};
+	self.__is_wp_error = true;
+end
+
+function WP_Error:init(code,message,data)
+
+	self:add(code,message,data);
+end
+function WP_Error:add(code,message,data)
+	if(not code)then 
+		return
+	end
+	local codes = self.errors[code];
+	if(not codes)then
+		codes = {};
+		self.errors[code] = codes;
+	end
+	table.insert(codes,message);
+
+	self.error_data[code] = data;
+end
+function WP_Error:get_error_codes()
+	local results = {};
+	local k,v;
+	for k,v in pairs(self.errors) do
+		table.insert(results,k);
+	end
+	return results;
+end
+function WP_Error:get_error_code()
+	local codes = self:get_error_codes();
+	codes = codes or {};
+	return codes[1];
+end
+
+function WP_Error:get_error_messages(code)
+	if(not code)then
+		return;
+	end
+	return self.errors[code];
+end
+function WP_Error:get_error_message(code)
+	code = code or self:get_error_code();
+	local messages = self:get_error_messages(code);
+	if(not messages)then
+		return "";
+	end
+	return messages[1];
+end
+function WP_Error:get_error_data(code)
+	code = code or self:get_error_code();
+	return self.error_data[code];
+end
+function WP_Error:add_data(data,code)
+	code = code or self:get_error_code();
+	self.error_data[code] = data;
+end
+function WP_Error:remove(code)
+	if(not code)then return end
+	self.error[code] = {};
+	self.error_data[code] = {};
+end
+function is_wp_error(thing)
+	if(not thing)then
+		return
+	end
+	if(type(thing) == "table" and thing.__is_wp_error)then
+		return true;
+	end
+end

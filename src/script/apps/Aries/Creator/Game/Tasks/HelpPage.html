@@ -286,18 +286,7 @@ function ChangeType(treenode)
     if(not ds[index][1]) then
         _guihelper.MessageBox(L"当前选项无模板");
     end
-    if(HelpPage.select_type_index ~= index) then
-        HelpPage.select_task_index = 1
-        HelpPage.select_item_index = 1
-    end
-    HelpPage.select_type_index = index;
-    ds[index]["attr"]["expanded"] = not ds[index]["attr"]["expanded"];
-
-    HelpPage.cur_category = HelpPage.GetCurrentCategory();
-
-    --BuildQuest.cur_theme_index = 1;
-    HelpPage.cur_theme_index = 1;
-    Page:Refresh(0.1);
+    HelpPage.SelectCategory(index);
 end
 
 function TypeBeSelected(index)
@@ -448,7 +437,7 @@ function GetShortCutKeyStr()
 end
 
 ]]></script>
-<aries:window mode="thin" title='<%=L"帮助"%>' style="width:650px;height:450px;" onclose="ClosePage">
+<aries:window mode="thin" title='<%=L("帮助").." (Ctrl+F1)"%>' style="width:650px;height:450px;" onclose="ClosePage">
     <div style="float:left;margin-left:2px;margin-top:5px;width:131px;">
         <pe:treeview name="tvwHelp" DataSource='<%=GetTypeDS()%>' OnClick="ChangeType" ItemToggleSize="0" style="height:400px;background:" VerticalScrollBarOffsetX="6">
 	        <NodeTemplates>

@@ -31,6 +31,7 @@ local CommandManager = commonlib.gettable("MyCompany.Aries.Game.CommandManager")
 -- call this when command
 function CommandManager:Init()
 	NPL.load("(gl)script/apps/Aries/Creator/Game/Commands/CommandBlocks.lua");
+	NPL.load("(gl)script/apps/Aries/Creator/Game/Commands/CommandShapes.lua");
 	NPL.load("(gl)script/apps/Aries/Creator/Game/Commands/CommandGlobals.lua");
 	NPL.load("(gl)script/apps/Aries/Creator/Game/Commands/CommandWorlds.lua");
 	NPL.load("(gl)script/apps/Aries/Creator/Game/Commands/CommandInstall.lua");
@@ -74,6 +75,8 @@ function CommandManager:Init()
 	NPL.load("(gl)script/apps/Aries/Creator/Game/Commands/CommandProperty.lua");
 	NPL.load("(gl)script/apps/Aries/Creator/Game/Commands/CommandLanguage.lua");
 	NPL.load("(gl)script/apps/Aries/Creator/Game/Commands/CommandMount.lua");
+	NPL.load("(gl)script/apps/Aries/Creator/Game/Commands/CommandQuest.lua");
+	NPL.load("(gl)script/apps/Aries/Creator/Game/Commands/CommandWiki.lua");
 	self:Register(SlashCommand.GetSingleton());
 end
 
@@ -104,21 +107,32 @@ end
 
 
 -- like linux bash shell, text inside $() is regarded as inline command, whose returned value is used in current command. 
+-- brackets can be nested
 -- @return the new cmd_text after inline command is executed. 
 function CommandManager:RunInlineCommand(cmd_text, ...)
-	local inline_cmd = cmd_text;
-	while(inline_cmd) do
+	while(cmd_text) do
 		local from, to;
-		from, to, inline_cmd = cmd_text:find("%$%((/?[^%$%(%)]+)%)");
-		if(inline_cmd) then
-			local result = self:RunCommand(inline_cmd, nil, ...) or "";
-			cmd_text = cmd_text:sub(1, from - 1)..tostring(result)..cmd_text:sub(to+1, -1);
+		from, to, end_bracket = cmd_text:find("%$%(/?[^%$%(%)]+([%)%(])");
+		while(to and end_bracket == "(") do
+			local from1;
+			from1, to, end_bracket = cmd_text:find("%)[^%(%)]*([%)%(])", to+1);
+		end
+		if(end_bracket == ")") then
+			local inline_cmd = cmd_text:sub(from+2, to - 1);
+			if(inline_cmd) then
+				local result = self:RunCommand(inline_cmd, nil, ...) or "";
+				cmd_text = cmd_text:sub(1, from - 1)..tostring(result)..cmd_text:sub(to+1, -1);
+			end
+		else
+			break;
 		end
 	end
 	return cmd_text;
 end
 
 -- run commands
+-- @return p1, p2: if p1 is false, then p2 is the label name where to goto. If p2 is nil, it means end of all lines. 
+-- if p1 is not false, such as nil or any other value, the next command will be invoked normally. 
 function CommandManager:Run(cmd, ... )
 	return self:RunWithVariables(nil, cmd, ...);
 end
@@ -137,6 +151,8 @@ function CommandManager:GetCmdByString(cmd)
 end
 
 -- @param variables: nil or a must be an object containning Compile() function. 
+-- @return p1, p2: if p1 is false, then p2 is the label name where to goto. If p2 is nil, it means end of all lines. 
+-- if p1 is not false, such as nil or any other value, the next command will be invoked normally. 
 function CommandManager:RunWithVariables(variables, cmd, ...)
 	local cmd_class, cmd_name, cmd_text = self:GetCmdByString(cmd);
 	if(cmd_class) then
@@ -491,7 +507,7 @@ function CommandManager:LoadCmdHelpFile()
 	end
 end
 
--- lazy load
+-- lazy load all command help
 function CommandManager:GetCmdHelpDS()
 	if(not CommandManager.cmd_helps) then
 		self:LoadCmdHelpFile();

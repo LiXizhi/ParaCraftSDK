@@ -16,6 +16,7 @@ NPL.load("(gl)script/apps/Aries/Creator/Game/Entity/EntityCollectable.lua");
 NPL.load("(gl)script/apps/Aries/Creator/Game/Items/ItemClient.lua");
 NPL.load("(gl)script/apps/Aries/Creator/Game/Items/InventoryBase.lua");
 NPL.load("(gl)script/apps/Aries/Creator/Game/Items/ContainerView.lua");
+local ShapeAABB = commonlib.gettable("mathlib.ShapeAABB");
 local ContainerView = commonlib.gettable("MyCompany.Aries.Game.Items.ContainerView");
 local InventoryBase = commonlib.gettable("MyCompany.Aries.Game.Items.InventoryBase");
 local ItemClient = commonlib.gettable("MyCompany.Aries.Game.Items.ItemClient");
@@ -107,6 +108,15 @@ function Entity:OnClick(x, y, z, mouse_button)
 	end
 	return true;
 end
+
+-- return empty collision AABB, since it does not have physics. 
+function Entity:GetCollisionAABB()
+	if(not self.aabb) then
+		self.aabb = ShapeAABB:new();
+	end
+	return self.aabb;
+end
+
 
 -- virtual function: get array of item stacks that will be displayed to the user when user try to create a new item. 
 -- @return nil or array of item stack.

@@ -15,7 +15,7 @@ jQuery(function(){
             location.href = this.href;
         });} else {
         jQuery('.dropdown').click(function(e){
-            e.preventDefault();
+            //e.preventDefault();
             jQuery(this).find('.dropdown-menu').first().stop(true, true).slideToggle();
         });
     }

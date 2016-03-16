@@ -90,7 +90,7 @@ end
 
 -- when ever this block is about to be destroyed and one may call this function to drop as an item first. 
 -- @Note: this function should always be called before item is removed. 
-function block:DropBlockAsItem(x,y,z, data)
+function block:DropBlockAsItem(x,y,z)
 	local sensor_entity = self:GetBlockEntity(x,y,z);    
 	if(sensor_entity and sensor_entity.ExecuteCommand) then
 		sensor_entity:ExecuteCommand(nil);

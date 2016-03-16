@@ -75,17 +75,21 @@ function EscFramePage.ShowPage_Mobile()
 	GameLogic.RunCommand("/menu file.exit");
 end
 
-function EscFramePage.ShowPage()
+function EscFramePage.ShowPage(bShow)
 	if(System.options.IsMobilePlatform) then
 		EscFramePage.ShowPage_Mobile()
 	else
-		local bActivateMenu = true;
-		if(page and page:IsVisible()) then
-			bActivateMenu = false;
-		end
 		NPL.load("(gl)script/apps/Aries/Creator/Game/Areas/DesktopMenuPage.lua");
 		local DesktopMenuPage = commonlib.gettable("MyCompany.Aries.Creator.Game.Desktop.DesktopMenuPage");
-		DesktopMenuPage.ActivateMenu(bActivateMenu);
+			
+		local bActivateMenu = true;
+		if(bShow ~= false) then
+			if(page and page:IsVisible()) then
+				bActivateMenu = false;
+			end
+			DesktopMenuPage.ActivateMenu(bActivateMenu);
+		end
+		EscFramePage.bForceHide = bShow == false;
 
 		local params = {
 				url = "script/apps/Aries/Creator/Game/Areas/EscFramePage.html", 
@@ -96,20 +100,24 @@ function EscFramePage.ShowPage()
 				style = CommonCtrl.WindowFrame.ContainerStyle,
 				allowDrag = false,
 				enable_esc_key = true,
-				--bShow = bShow,
+				bShow = bShow,
 				click_through = false, 
 				zorder = -1,
 				app_key = MyCompany.Aries.Creator.Game.Desktop.App.app_key, 
 				directPosition = true,
 					align = "_ct",
 					x = -300/2,
-					y = -200/2,
+					y = -300/2,
 					width = 300,
 					height = 350,
 			};
 		System.App.Commands.Call("File.MCMLWindowFrame", params);
-		params._page.OnClose = function()
-			DesktopMenuPage.ActivateMenu(false);
-		end;
+		if(bShow ~= false) then
+			params._page.OnClose = function()
+				if(not EscFramePage.bForceHide) then
+					DesktopMenuPage.ActivateMenu(false);
+				end
+			end;
+		end
 	end
 end

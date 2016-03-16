@@ -35,7 +35,12 @@ function DS_Items(index)
 end
 
 function OnClickBlock(block_id)
-    BuilderFramePage.OnClickBlock(block_id);
+    if(mouse_button == "left") then
+        BuilderFramePage.OnClickBlock(block_id);
+    elseif(mouse_button == "right") then
+        -- show block wiki page
+        GameLogic.RunCommand("/wiki "..tostring(block_id));
+    end
 end
 
 function OnChangeCategory(index)
@@ -117,7 +122,7 @@ end
                 DataSource='<%=DS_Items%>'>
 	            <Columns>
                     <div style="width:32px;height:32px;" >
-                        <pe:mc_block block_id='<%=Eval("block_id")%>' style="width:32px;height:32px;" onclick="OnClickBlock"/>    
+                        <pe:mc_block block_id='<%=Eval("block_id")%>' style="width:32px;height:32px;" tooltip2='<%=L"右键帮助"%>' onclick="OnClickBlock"/>    
                     </div>
                 </Columns>
 	            <EmptyDataTemplate>

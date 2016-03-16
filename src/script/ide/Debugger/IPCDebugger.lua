@@ -95,6 +95,10 @@ end
 -- So there is no performance impact to the runtime until we explicitly enable debug hook of the NPL runtime. 
 -- @param input_queue_name: the input IPC queue name, default to "NPLDebug"
 function IPCDebugger.StartDebugEngine(input_queue_name)
+	if(not ParaIPC) then
+		commonlib.log("ParaIPC C++ implementation not found\n");
+		return;
+	end
 	if(IPCDebugger.IsIPCStarted) then
 		if(IPCDebugger.input_timer) then
 			IPCDebugger.input_timer:Change(IPCDebugger.polling_interval, IPCDebugger.polling_interval)

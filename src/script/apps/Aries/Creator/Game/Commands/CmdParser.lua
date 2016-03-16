@@ -28,6 +28,7 @@ local color, md_text = CmdParser.ParseColor(cmd_text, "#ff0000");
 ]]
 NPL.load("(gl)script/ide/System/Util/CmdParser.lua");
 local EntityManager = commonlib.gettable("MyCompany.Aries.Game.EntityManager");
+local names = commonlib.gettable("MyCompany.Aries.Game.block_types.names")
 
 local CmdParser = commonlib.gettable("MyCompany.Aries.Game.CmdParser");
 commonlib.add_interface(CmdParser, commonlib.gettable("System.Util.CmdParser"));
@@ -120,12 +121,19 @@ function CmdParser.ParsePosInBrackets(cmd_text)
 	end
 end
 
+-- block_id can be number or block name.
 -- return block_id, cmd_text_remain
 function CmdParser.ParseBlockId(cmd_text)
-	local blockid, cmd_text_remain = cmd_text:match("^%s*(%d+)%s*(.*)$");
+	local blockid, cmd_text_remain = cmd_text:match("^%s*([%d%w_]+)%s*(.*)$");
 	if(blockid) then
-		blockid = tonumber(blockid);
-		return blockid or 0, cmd_text_remain
+		if(blockid:match("^%d+$")) then
+			blockid = tonumber(blockid);
+		else
+			blockid = names[blockid];
+		end
+		if(blockid) then
+			return blockid or 0, cmd_text_remain
+		end
 	end
 	return nil, cmd_text;
 end

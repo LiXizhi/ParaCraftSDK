@@ -21,6 +21,7 @@ local UserLoginProcess = nil;
 MainLogin.state = {
 	CheckGraphicsSettings = nil,
 	Loaded3DScene = nil,
+	IsCommandLineChecked = nil,
 	IsLoginModeSelected = nil,
 	IsPluginLoaded = nil,
 	HasSignedIn = nil,
@@ -94,8 +95,11 @@ function MainLogin:start(init_callback)
 		CheckGraphicsSettings = self.CheckGraphicsSettings,
 		-- load the background 3d scene
 		LoadBackground3DScene = self.LoadBackground3DScene,
+		-- check command line
+		CheckCommandLine = self.CheckCommandLine,
 		-- select local or internet game
 		ShowLoginModePage = self.ShowLoginModePage,
+
 		-- load all modules/plugins
 		LoadPlugins = self.LoadPlugins,
 
@@ -198,6 +202,8 @@ function MainLogin:next_step(state_update)
 		end
 
 		self:Invoke_handler("LoadBackground3DScene");
+	elseif(not state.IsCommandLineChecked) then
+		self:Invoke_handler("CheckCommandLine");
 	elseif(not state.IsLoginModeSelected) then
 		self:Invoke_handler("ShowLoginModePage");
 	--elseif(not state.HasSignedIn) then
@@ -488,7 +494,16 @@ function MainLogin:reset_user_login_steps()
 	System.options.loginmode = "local";
 end
 
+function MainLogin:CheckCommandLine()
+	NPL.load("(gl)script/apps/Aries/Creator/Game/Login/UrlProtocolHandler.lua");
+	local UrlProtocolHandler = commonlib.gettable("MyCompany.Aries.Creator.Game.UrlProtocolHandler");
+	UrlProtocolHandler:CheckInstallUrlProtocol();
+	UrlProtocolHandler:ParseCommand(ParaEngine.GetAppCommandLine());
+	self:next_step({IsCommandLineChecked = true});	
+end
+
 function MainLogin:ShowLoginModePage()
+
 	if(System.options.cmdline_world and System.options.cmdline_world~="") then
 		System.options.loginmode = "local";
 		self:next_step({IsLoginModeSelected = true});
@@ -525,9 +540,18 @@ function MainLogin:CheckLoadWorldFromCmdLine()
 	local worldpath = System.options.cmdline_world;
 	if(worldpath and worldpath~="" and not self.cmdWorldLoaded) then
 		self.cmdWorldLoaded = true;
-		NPL.load("(gl)script/apps/Aries/Creator/WorldCommon.lua");
-		local WorldCommon = commonlib.gettable("MyCompany.Aries.Creator.WorldCommon")
-		WorldCommon.OpenWorld(worldpath, true);
+
+		if(worldpath:match("^http(s)://")) then
+			LOG.std(nil, "info", "MainLogin", "loading world: %s", worldpath);
+			NPL.load("(gl)script/apps/Aries/Creator/Game/Commands/CommandManager.lua");
+			local CommandManager = commonlib.gettable("MyCompany.Aries.Game.CommandManager");
+			CommandManager:Init();
+			GameLogic.RunCommand("loadworld", worldpath);
+		else
+			NPL.load("(gl)script/apps/Aries/Creator/WorldCommon.lua");
+			local WorldCommon = commonlib.gettable("MyCompany.Aries.Creator.WorldCommon")
+			WorldCommon.OpenWorld(worldpath, true);	
+		end
 		return true;
 	end
 end

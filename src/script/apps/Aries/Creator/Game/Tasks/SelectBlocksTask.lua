@@ -64,8 +64,22 @@ function SelectBlocks:ctor()
 	self.cursor = vector3d:new();
 	self.PivotPoint = vector3d:new(0,0,0);
 	self.position = vector3d:new(0,0,0);
+
+	GameLogic.GetFilters():add_filter("file_exported", SelectBlocks.filter_file_exported);
 end
 
+-- filter callback
+function SelectBlocks.filter_file_exported(id, filename)
+	local self = cur_instance;
+	if(not self) then
+		return id;
+	end
+	if(id == "bmax" and filename) then
+		GameLogic.RunCommand(string.format("/take BlockModel {tooltip=%q}", filename));
+	end
+	SelectBlocks.CancelSelection();
+	return id;
+end
 
 -- static function
 function SelectBlocks.GetCurrentSelection()
@@ -791,31 +805,40 @@ function SelectBlocks:GetSelectedBlocks()
 	return cur_selection;
 end
 
+-- Get a copy of blocks including block's server data
+-- @param pivot: the pivot point vector, if nil, it will default to self:GetPivotPoint()
+-- this can be {0,0,0} which will retain absolute position. 
+-- @return blocks: array of {x,y,z,id, data, entity_data}
+function SelectBlocks:GetCopyOfBlocks(pivot)
+	pivot = pivot or self:GetPivotPoint()
+	local pivot_x,pivot_y,pivot_z = unpack(pivot);
+	
+	self:UpdateSelectionEntityData();
+
+	local blocks = {};
+	for i = 1, #(cur_selection) do
+		-- x,y,z,block_id, data, serverdata
+		local b = cur_selection[i];
+		blocks[i] = {b[1]-pivot_x, b[2]-pivot_y, b[3]- pivot_z, b[4], if_else(b[5] == 0, nil, b[5]), b[6]};
+	end
+	return blocks;
+end
+
 function SelectBlocks.SaveToTemplate()
 	if(cur_selection and cur_instance) then
 		local self = cur_instance;
-		-- relative to pivot points
-		local blocks = {};
 
 		-- all relative to pivot point. 
 		local pivot_x, pivot_y, pivot_z = self:GetSelectionPivot();
-		local pivot = {pivot_x, pivot_y, pivot_z};
-
 		if(self.UsePlayerPivotY) then
 			local x,y,z = ParaScene.GetPlayer():GetPosition();
 			local _, by, _ = BlockEngine:block(0,y+0.1,0);
 			pivot_y = by;
 		end
+		local pivot = {pivot_x, pivot_y, pivot_z};
 
-		self:UpdateSelectionEntityData();
-			
-		for i = 1, #(cur_selection) do
-			-- x,y,z,block_id, data, serverdata
-			local b = cur_selection[i];
-			blocks[i] = {b[1]-pivot_x, b[2]-pivot_y, b[3]- pivot_z, b[4], if_else(b[5] == 0, nil, b[5]), b[6]};
-		end
+		local blocks = self:GetCopyOfBlocks(pivot);
 		
-		SelectBlocks.CancelSelection();
 		NPL.load("(gl)script/apps/Aries/Creator/Game/Areas/BlockTemplatePage.lua");
 		local BlockTemplatePage = commonlib.gettable("MyCompany.Aries.Creator.Game.Desktop.BlockTemplatePage");
 		BlockTemplatePage.ShowPage(true, blocks, pivot);

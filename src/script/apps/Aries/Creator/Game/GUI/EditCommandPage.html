@@ -8,6 +8,8 @@
 <body>
 <pe:mcml>
 <script refresh="false" type="text/npl" src="EditCommandPage.lua"><![CDATA[
+NPL.load("(gl)script/apps/Aries/Creator/Game/Common/Text/beautify.lua");
+beautify = commonlib.gettable("MyCompany.Aries.Game.Common.Text.beautify");
 GameLogic = commonlib.gettable("MyCompany.Aries.Game.GameLogic")
 EditCommandPage = commonlib.gettable("MyCompany.Aries.Game.GUI.EditCommandPage");
 EditCommandPage.OnInit();
@@ -21,13 +23,19 @@ end
 local last_content = nil;
 local last_lines_ds = {};
 
+function beautify_code(text)
+    if(text) then
+        
+    end
+end
+
 function GetContentDS(index)
     local content = EditCommandPage.GetCode();
     if(content ~= last_content) then
         last_content = content;
         last_lines_ds = {};
         for line in string.gmatch(last_content, "([^#]+)#?") do
-            last_lines_ds[#last_lines_ds+1] = {text=commonlib.Encoding.EncodeStr(line)};
+            last_lines_ds[#last_lines_ds+1] = {text=line};
         end
     end
     
@@ -88,7 +96,7 @@ end
             </pe:if>
             <pe:gridview name="gvwContent" CellPadding="0" AllowPaging="false" DefaultNodeHeight = "15" pagesize="100" DataSource='<%=GetContentDS%>'>
 	            <Columns>
-			        <div style="color: #000000; margin-top: 2px;"><%=Eval("text") %></div>
+			        <div style="color: #000000; margin-top: 2px;"><%=beautify:beautify_cmd(Eval("text")) %></div>
 	            </Columns>
 	            <EmptyDataTemplate>
 		            <div style="color:#000000">

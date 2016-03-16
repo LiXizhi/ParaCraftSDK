@@ -214,13 +214,13 @@ end
 
 function GameRules:ShowAllRules()
 	if(self.rules) then
-		-- TODO:
-		NPL.load("(gl)script/apps/Aries/Creator/Game/Commands/CommandManager.lua");
-		local CommandManager = commonlib.gettable("MyCompany.Aries.Game.CommandManager");
 		local i = 0;
 		for name, rule in pairs(self.rules) do
 			i = i+1;
-			CommandManager:RunCommand("tip", format("-rule%d %s", i, name));
+			GameLogic.RunCommand("tip", format("-rule%d %s", i, name));
+		end
+		if(i == 0) then
+			GameLogic.RunCommand("tip", "no rules are defined.");
 		end
 	end
 end

@@ -39,9 +39,11 @@ Commands["menu"] = {
 /menu window.pos
 /menu online.server
 /menu help.help
+/menu help.help.shortcutkey
+/menu help.help.tutorial.newusertutorial
 /menu help.about
 /menu help.npl_code_wiki
-/menu help.webtutorials
+/menu help.actiontutorial
 ]], 
 	handler = function(cmd_name, cmd_text, cmd_params)
 		local name, bIsShow;
@@ -126,22 +128,39 @@ Commands["menu"] = {
 			NPL.load("(gl)script/apps/Aries/Creator/Game/Areas/ServerPage.lua");
 			local ServerPage = commonlib.gettable("MyCompany.Aries.Creator.Game.Desktop.ServerPage");
 			ServerPage.ShowPage()
-		elseif(name == "help.help") then
-			--NPL.load("(gl)script/apps/Aries/Creator/Game/GameMarket/GameHelpPage.lua");
-			--local GameHelpPage = commonlib.gettable("MyCompany.Aries.Creator.Game.Desktop.GameHelpPage");
-			--GameHelpPage.ShowPage(true);
+		elseif(name:match("^help%.help")) then
+			-- name can be "help.help", "help.help.tutorial", "help.help.shortcutkey"
+			-- "help.help.tutorial.newusertutorial", "help.help.tutorial.MovieMaking", 
+			-- "help.help.tutorial.redstone", "help.help.tutorial.programming"
+			local category, subfolder;
+			category = name:match("^help%.help%.(.+)$");
+			if(category) then
+				if(category:match("%.")) then
+					category, subfolder = category:match("^([^%.]+)%.(.+)")
+				end
+			end
 			NPL.load("(gl)script/apps/Aries/Creator/Game/Tasks/HelpPage.lua");
 			local HelpPage = commonlib.gettable("MyCompany.Aries.Game.Tasks.HelpPage");
-			HelpPage.ShowPage();
-		elseif(name == "help.webtutorials") then
+			HelpPage.ShowPage(category, subfolder);
+		elseif(name == "help.actiontutorial") then
 			NPL.load("(gl)script/apps/Aries/Creator/Game/Areas/WebTutorials.lua");
 			local WebTutorials = commonlib.gettable("MyCompany.Aries.Creator.Game.Desktop.WebTutorials");
 			WebTutorials:Show();
+		elseif(name == "help.videotutorials") then
+			GameLogic.RunCommand("/open http://www.paracraft.cn/archives/category/tutorial");
 		elseif(name == "help.npl_code_wiki") then
 			-- open the npl code wiki site in external browser. 
 			GameLogic.CommandManager:RunCommand("/open npl://");
 		elseif(name == "help.about") then
 			GameLogic.RunCommand("/open "..L"http://www.paracraft.cn/home/about-us");
+		elseif(name == "help.Credits") then
+			GameLogic.RunCommand("/open https://github.com/LiXizhi/ParaCraftSDK/wiki/Credits");
+		elseif(name == "help.ParacraftSDK") then
+			GameLogic.RunCommand("/open https://github.com/LiXizhi/ParaCraftSDK/wiki");
+		elseif(name == "help.bug") then
+			GameLogic.RunCommand("/open https://github.com/LiXizhi/ParaCraftSDK/issues");
+		elseif(name == "help.donate") then
+			GameLogic.RunCommand("/open "..L"http://www.nplproject.com/paracraft-donation");
 		end
 	end,
 };

@@ -8,6 +8,8 @@
 <body>
     <pe:mcml>
 <script refresh="false" type="text/npl" src="EscFramePage.lua"><![CDATA[
+NPL.load("(gl)script/apps/Aries/Creator/Game/World/WorldStacks.lua");
+WorldStacks = commonlib.gettable("MyCompany.Aries.Game.WorldStacks");
 NPL.load("(gl)script/apps/Aries/Creator/Game/Areas/ServerPage.lua");
 local ServerPage = commonlib.gettable("MyCompany.Aries.Creator.Game.Desktop.ServerPage");
 GameLogic = commonlib.gettable("MyCompany.Aries.Game.GameLogic")
@@ -133,7 +135,16 @@ end
 function OnClickRevision()
     GameLogic.RunCommand("/menu file.worldrevision");
 end
+function OnReturnLastWorld()
+    ClosePage();
+    WorldStacks:ReturnLastWorld();
+end
 ]]></script>
+<div style="height:64px;width:300px;">
+    <pe:if condition='<%=WorldStacks:GetReturnWorld() ~= nil%>'>
+        <input type="button" value='<%=WorldStacks:GetReturnWorld():GetDisplayName()%>' class="mc_big_button" style="color:#572712;font-size:16px;width:300px;height:52px;" onclick="OnReturnLastWorld" />    
+    </pe:if>
+</div>
 <aries:window mode="thin" style="width:300px;" title='<%=L"系统设置"%>' onclose="ClosePage">
 <div style="padding-bottom:10px;">
     

@@ -756,10 +756,24 @@ function BonesManip:UpdateModel()
 				trans:setTrans(unpack(self.selectedBone:GetPivot()));
 				local name = self.curManip:GetName();
 				if(name == "RotateManip" or name=="ScaleManip") then
+					-- use current bone's coordinate system to rotate current bone
 					local matRot = self.selectedBone:GetPivotRotMatrix();
 					local localTrans = matRot*trans;
 					self.curManip:SetLocalTransform(localTrans);
+				elseif(self.handleMode=="trans" and name=="TranslateManip") then
+					local parentBone = self.selectedBone:GetParent();
+					if(parentBone) then
+						-- use parent bone's coordinate system to translate current bone. 
+						-- since translation is always relative to parent or pivot. 
+						local matRot = parentBone:GetPivotRotMatrix();
+						local localTrans = matRot*trans;
+						self.curManip:SetLocalTransform(localTrans);
+					else
+						-- if no parent, use global world coordinate system 
+						self.curManip:SetLocalTransform(trans);
+					end
 				else
+					-- use global world coordinate system for "IK" handle and other manipulators
 					self.curManip:SetLocalTransform(trans);
 				end
 			end

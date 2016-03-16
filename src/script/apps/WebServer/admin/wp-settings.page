@@ -17,12 +17,15 @@ include( ABSPATH .. WPINC .. '/version.page');
 wp_initial_constants();
 
 include_once(ABSPATH .. WPINC .. '/functions.page' );
+include_once(ABSPATH .. WPINC .. '/class-wp-error.page' );
 include_once(ABSPATH .. WPINC .. '/plugin.page');
 
 -- Include the wpdb class and, if present, a db.php database drop-in.
 require_wp_db();
 
 -- Load most of the framework files
+include_once(ABSPATH .. WPINC .. '/class-wp-user.page');
+include_once(ABSPATH .. WPINC .. '/formatting.page');
 include_once(ABSPATH .. WPINC .. '/query.page');
 include_once(ABSPATH .. WPINC .. '/cache.page');
 include_once(ABSPATH .. WPINC .. '/option.page');
@@ -30,6 +33,9 @@ include_once(ABSPATH .. WPINC .. '/class-wp-walker.page');
 include_once(ABSPATH .. WPINC .. '/class-wp-theme.page');
 include_once(ABSPATH .. WPINC .. '/theme.page');
 include_once(ABSPATH .. WPINC .. '/template.page');
+include_once(ABSPATH .. WPINC .. '/user.page');
+include_once(ABSPATH .. WPINC .. '/session.page');
+include_once(ABSPATH .. WPINC .. '/meta.page');
 include_once(ABSPATH .. WPINC .. '/general-template.page');
 include_once(ABSPATH .. WPINC .. '/link-template.page');
 include_once(ABSPATH .. WPINC .. '/nav-menu.page');
@@ -39,6 +45,9 @@ include_once(ABSPATH .. WPINC .. '/http.page');
 
 -- Attach the default filters.
 include( ABSPATH .. WPINC .. '/default-filters.page' );
+
+-- Load pluggable functions.
+include( ABSPATH .. WPINC .. '/pluggable.page' );
 
 -- Define constants that rely on the API to obtain the default value.
 wp_plugin_directory_constants();

@@ -23,8 +23,6 @@ local Commands = commonlib.gettable("MyCompany.Aries.Game.Commands");
 local CommandManager = commonlib.gettable("MyCompany.Aries.Game.CommandManager");
 
 
---[[ give a name to the current item in hand
-]]
 Commands["name"] = {
 	name="name", 
 	quick_ref="/name [name#tooltip1#tooltip2]", 
@@ -46,14 +44,13 @@ Commands["name"] = {
 	end,
 };
 
---[[ set item durablilty in hand
-/durability			:empty to clear durability
-/durability   2		:set to 2 durability
-]]
 Commands["durability"] = {
 	name="durability", 
 	quick_ref="/durability [value]", 
-	desc="set item durablilty in hand", 
+	desc=[[ set item durablilty in hand
+/durability			:empty to clear durability
+/durability   2		:set to 2 durability
+]], 
 	handler = function(cmd_name, cmd_text, cmd_params)
 		if(cmd_text) then
 			local value;
@@ -70,13 +67,12 @@ Commands["durability"] = {
 	end,
 };
 
---[[ edit item property 
-/edititem 62			:edit grass block item. 
-]]
 Commands["edititem"] = {
 	name="edititem", 
 	quick_ref="/edititem [item_id]", 
-	desc="set item durablilty in hand", 
+	desc=[[ edit item property 
+/edititem 62			:edit grass block item. 
+]], 
 	handler = function(cmd_name, cmd_text, cmd_params)
 		if(cmd_text) then
 			local item_id;

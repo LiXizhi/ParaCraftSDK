@@ -4,6 +4,13 @@ Author(s): LiXizhi
 Date: 2014/4/4
 Desc: handy functions to test if a given function or UI is available at the current mode.
 It can be both singleton and instanced. 
+
+Properties from scene context:
+	ModeShouldHideTouchController
+	ModeCanSelect
+	ModeCanRightClickToCreateBlock
+	ModeHasJumpRestriction
+
 use the lib:
 -------------------------------------------------------
 NPL.load("(gl)script/apps/Aries/Creator/Game/GameRules/GameMode.lua");
@@ -37,6 +44,17 @@ function GameMode:GetMode()
 	return self.mode;
 end
 
+-- get a property field from the current scene context. 
+-- some scene context may overwrite default game mode behavior. 
+function GameMode:GetContextField(name, default_value)
+	local context = GameLogic.GetSceneContext();
+	if(context) then
+		return context:GetField(name, default_value)
+	else
+		return default_value;
+	end
+end
+
 -- whether allow external model files to be placed inside the world
 function GameMode:CanPlaceExternalModel()
 	-- only haqi version can place 3d models. 
@@ -58,6 +76,7 @@ function GameMode:IsEditor()
 	end
 end
 
+-- activate default context according to current mode.
 function GameMode:ActivateDefaultContext()
 	local context;
 	if(self.bIsEditor) then
@@ -77,7 +96,7 @@ function GameMode:ActivateDefaultContext()
 end
 
 function GameMode:CanFly()
-	return self.bIsEditor or self.mode == "movie";
+	return (not self:HasJumpRestriction() or (GameLogic.options.CanJumpInAir and GameLogic.options.CanJump));
 end
 
 function GameMode:WillDieWhenFallTooDeep()
@@ -89,7 +108,7 @@ function GameMode:CanCollectItem()
 end
 
 function GameMode:HasJumpRestriction()
-	return not (self.bIsEditor or self.mode == "movie");
+	return self:GetContextField("ModeHasJumpRestriction", not self.bIsEditor);
 end
 
 function GameMode:AllowDoubleClickJump()
@@ -115,18 +134,7 @@ function GameMode:IsViewMode()
 end
 
 function GameMode:ShouldHideTouchController()
-	if(self.mode == "movie") then
-		NPL.load("(gl)script/apps/Aries/Creator/Game/Movie/MovieManager.lua");
-		local MovieManager = commonlib.gettable("MyCompany.Aries.Game.Movie.MovieManager");
-		local movieClip = MovieManager:GetActiveMovieClip()
-		if(movieClip) then
-			return movieClip:IsPlayingMode();
-		else
-			return true;
-		end
-	else
-		return false;
-	end
+	return GameMode:GetContextField("ModeShouldHideTouchController", false);
 end
 
 function GameMode:SetViewMode(bViewMode)
@@ -153,33 +161,11 @@ function GameMode:AllowLongHoldToDestoryBlock()
 end
 
 function GameMode:CanSelect()
-	if(self.mode == "movie") then
-		NPL.load("(gl)script/apps/Aries/Creator/Game/Movie/MovieManager.lua");
-		local MovieManager = commonlib.gettable("MyCompany.Aries.Game.Movie.MovieManager");
-		local movieClip = MovieManager:GetActiveMovieClip()
-		if(movieClip) then
-			return (not movieClip:IsPlayingMode() and MovieManager:IsLastModeEditor() and not MovieManager:IsCapturing());
-		end
-	else
-		return not self:IsViewMode();
-	end
+	return GameMode:GetContextField("ModeCanSelect", not self:IsViewMode());
 end
 
-function GameMode:CanRightClickToCreateBlock(gamemode)
-	gamemode = gamemode or self.mode;
-	
-	if(gamemode == "movie") then
-		NPL.load("(gl)script/apps/Aries/Creator/Game/Movie/MovieClipController.lua");
-		local MovieClipController = commonlib.gettable("MyCompany.Aries.Game.Movie.MovieClipController");
-		local actor = MovieClipController.GetMovieActor()
-		if(actor and not actor:CanCreateBlocks()) then
-			return false;
-		else
-			return true;
-		end
-	else
-		return true;
-	end
+function GameMode:CanRightClickToCreateBlock()
+	return GameMode:GetContextField("GetModeCanRightClickToCreateBlock", true);
 end
 
 function GameMode:CanEditBlock()
@@ -203,12 +189,11 @@ function GameMode:CanDropItem()
 	return not self:IsEditor();
 end
 
-function GameMode:CanDestroyBlock(gamemode)
-	gamemode = gamemode or self.mode;
-	if((self.bIsEditor or gamemode=="survival")) then
+function GameMode:CanDestroyBlock()
+	if((self.bIsEditor or self.mode=="survival")) then
 		return true;
-	elseif(gamemode == "movie") then
-		return self:CanRightClickToCreateBlock(gamemode)
+	elseif(self.mode == "movie") then
+		return self:CanRightClickToCreateBlock()
 	else
 		return false;
 	end

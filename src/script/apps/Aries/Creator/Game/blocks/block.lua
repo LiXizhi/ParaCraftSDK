@@ -74,7 +74,8 @@ local block_attribute_map = {
 
 block.attributes = block_attribute_map;
 
--- Indicates how many hits it takes to break a block. 
+-- Indicates how hard it takes to break a block. 
+-- Tool's attack value will be devided by this hardness.
 block.blockHardness = 1;
 
 -- Indicates the blocks resistance to explosions. 
@@ -481,7 +482,7 @@ local solid_column = {};
 
 function block:GetTooltip()
 	if(not self.tooltip) then
-		self.tooltip = format("id: %d", self.id);
+		self.tooltip = format("id: %d %s", self.id, self.name or "");
 		if(self.text) then
 			self.tooltip = format("%s %s", self.text, self.tooltip);
 		end
@@ -783,8 +784,8 @@ function block:OnBlockEvent(x,y,z, event_id, event_param)
 end
 
 -- get the item stack when this block is broken & dropped. 
-function block:GetDroppedItemStack(x,y,z)
-	if(not GameLogic.isRemote and GameLogic.GameMode:CanDropItem()) then
+function block:GetDroppedItemStack(x,y,z, bForceDrop)
+	if(bForceDrop or (not GameLogic.isRemote and GameLogic.GameMode:CanDropItem())) then
 		return ItemStack:new():Init(self.id, 1);
 	end
 end
@@ -798,8 +799,9 @@ end
 
 -- when ever this block is about to be destroyed and one may call this function to drop as an item first. 
 -- @Note: this function should always be called before item is removed. 
-function block:DropBlockAsItem(x,y,z, data)
-	local dropped_itemStack = self:GetDroppedItemStack(x,y,z);
+-- @param bForceDrop: if true, we will drop regardless of game mode
+function block:DropBlockAsItem(x,y,z, bForceDrop)
+	local dropped_itemStack = self:GetDroppedItemStack(x,y,z, bForceDrop);
 	if(dropped_itemStack) then
 		local EntityItem = commonlib.gettable("MyCompany.Aries.Game.EntityManager.EntityItem");
 		local rx,ry,rz = BlockEngine:real(x,y,z);
@@ -832,12 +834,12 @@ function block:IsAssociatedBlockID(block_id)
 end
 
 -- default to return true, unless there is an can destroy rule. 
-function block:CanDestroyBlockAt(x,y,z, game_mode)
+function block:CanDestroyBlockAt(x,y,z)
 	local bCanDestroy;
 	if(self.can_destroy_rule) then
-		bCanDestroy = self.can_destroy_rule:CanDestroyBlockAt(x,y,z, game_mode, entityPlayer)
+		bCanDestroy = self.can_destroy_rule:CanDestroyBlockAt(x,y,z, entityPlayer)
 	else
-		bCanDestroy = GameLogic.GameMode:CanDestroyBlock(gamemode);
+		bCanDestroy = GameLogic.GameMode:CanDestroyBlock();
 	end
 	return bCanDestroy;
 end

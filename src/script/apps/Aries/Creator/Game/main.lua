@@ -132,8 +132,7 @@ function Game.Start(filename_or_world, is_standalone, force_nid, gs_nid, ws_id, 
 	if(System.options.mc) then
 		ParaTerrain.GetAttributeObject():SetField("EnableTerrain", false);
 	end
-
-	System.App.Commands.Call(commandName, {
+	Game.loadworld_params = {
 		name = "mcworld", tag="MCWorld",
 		worldpath = filename, 
 		is_standalone = is_standalone,
@@ -147,7 +146,13 @@ function Game.Start(filename_or_world, is_standalone, force_nid, gs_nid, ws_id, 
 				end
 			end)
 		end,
-	});
+	};
+	System.App.Commands.Call(commandName, Game.loadworld_params);
+end
+
+-- return the parameter table that is used to load the current world.
+function Game.GetLoadWorldParams()
+	return Game.loadworld_params;
 end
 
 -- after logged in. 

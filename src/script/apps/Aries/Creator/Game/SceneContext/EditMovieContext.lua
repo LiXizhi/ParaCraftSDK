@@ -28,8 +28,38 @@ local EditMovieContext = commonlib.inherit(commonlib.gettable("MyCompany.Aries.G
 
 EditMovieContext:Property("Name", "EditMovieContext");
 EditMovieContext:Property({"ReadOnlyMode", false, "IsReadOnlyMode", "SetReadOnlyMode", auto=true});
+-- following property is used by GameMode 
+EditMovieContext:Property({"ModeShouldHideTouchController", nil, "GetModeShouldHideTouchController", });
+EditMovieContext:Property({"ModeCanSelect", nil, "GetModeCanSelect", });
+EditMovieContext:Property({"ModeCanRightClickToCreateBlock", nil, "GetModeCanRightClickToCreateBlock", });
+EditMovieContext:Property({"ModeHasJumpRestriction", true});
 
 function EditMovieContext:ctor()
+end
+
+function EditMovieContext:GetModeShouldHideTouchController()
+	local movieClip = MovieManager:GetActiveMovieClip()
+	if(movieClip) then
+		return movieClip:IsPlayingMode();
+	else
+		return true;
+	end
+end
+
+function EditMovieContext:GetModeCanSelect()
+	local movieClip = MovieManager:GetActiveMovieClip()
+	if(movieClip) then
+		return (not movieClip:IsPlayingMode() and MovieManager:IsLastModeEditor() and not MovieManager:IsCapturing());
+	end
+end
+
+function EditMovieContext:GetModeCanRightClickToCreateBlock()
+	local actor = MovieClipController.GetMovieActor()
+	if(actor and not actor:CanCreateBlocks()) then
+		return false;
+	else
+		return true;
+	end
 end
 
 -- virtual function: 
@@ -95,11 +125,13 @@ function EditMovieContext:SetActorAt(channel_name, actor)
 end
 
 function EditMovieContext:updateManipulators()
+	self:DeleteManipulators();
+	GameLogic.AddBBS("EditMovieContext", nil);
+
 	if(self:IsReadOnlyMode()) then
 		return;
 	end
-	self:DeleteManipulators();
-	GameLogic.AddBBS("EditMovieContext", nil);
+
 	local bUseFreeCamera = false;
 	local bRestoreLastActorFreeCameraPos;
 	local actor = SelectionManager:GetSelectedActor();
@@ -187,7 +219,19 @@ function EditMovieContext:updateManipulators()
 				self:OnBoneChanged(nil);
 			end
 		end
+		-- add selected actor's entity AABB display in all cases
+		local entity = actor:GetEntity();
+		if(entity) then
+			NPL.load("(gl)script/apps/Aries/Creator/Game/SceneContext/Manipulators/ActorSelectManipContainer.lua");
+			local ActorSelectManipContainer = commonlib.gettable("MyCompany.Aries.Game.Manipulators.ActorSelectManipContainer");
+			local manipCont = ActorSelectManipContainer:new();
+			manipCont:init();
+			self:AddManipulator(manipCont);
+			manipCont:connectToDependNode(entity);
+		end
 	end
+
+	
 	if(bUseFreeCamera) then
 		-- always lock actors when free camera is used. 
 		self:ToggleLockAllActors(true);

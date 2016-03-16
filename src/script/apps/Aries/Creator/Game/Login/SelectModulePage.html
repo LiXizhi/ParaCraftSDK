@@ -50,6 +50,11 @@ function OnGetSDK()
     ParaGlobal.ShellExecute("open", SelectModulePage.url_getSDK, "", "", 1);
 end
 
+SelectModulePage.url_installNewPlugins = "https://github.com/LiXizhi/ParaCraftSDK/wiki/ParacraftPlugins";
+function OnInstallNewPlugins()
+    ParaGlobal.ShellExecute("open", SelectModulePage.url_installNewPlugins, "", "", 1);
+end
+    
 function OnCancel()
     ClosePage();
 end
@@ -61,14 +66,17 @@ end
             <%=L"开发者版本"%>
         </div>
     </pe:if>
-    <pe:if condition='<%= System.options.isDevEnv == false %>'>
-        <input type="button" value='<%=L"打开目录"%>' class="mc_light_grey_button_with_fillet" style="position:relative;margin-right:24px;min-width:80px;margin-top:10px;" align="right" tooltip='<%=L"点击打开Mod所在文件夹"%>' onclick="OnOpenModDir" />
-    </pe:if>
-    <input type="button" value='<%=L"下载SDK"%>' class="mc_light_grey_button_with_fillet" style="position:relative;margin-right:24px;min-width:80px;margin-top:38px;" align="right" onclick="OnGetSDK" tooltip='<%=SelectModulePage.url_getSDK%>'/>
-    <div style="margin-left:15px;width:450px;min-height:55px;margin-top:10px;color:#ffffff;">
-        <%=L"请确保mod文件中包含正确编写脚本,否则可能会导致不可预期结果"%>
+    <div style="margin-left:5px;margin-top:10px;color:#ffffff;">
+        <input type="button" value='<%=L"安装新插件"%>' class="mc_light_grey_button_with_fillet" style="margin-left:10px;min-width:80px;" onclick="OnInstallNewPlugins" tooltip='<%=SelectModulePage.url_installNewPlugins%>'/>
+        <input type="button" value='<%=L"下载SDK"%>' class="mc_light_grey_button_with_fillet" style="margin-left:10px;min-width:80px;" onclick="OnGetSDK" tooltip='<%=SelectModulePage.url_getSDK%>' />
+        <pe:if condition='<%= System.options.isDevEnv == false %>'>
+            <input type="button" value='<%=L"打开目录"%>' class="mc_light_grey_button_with_fillet" style="margin-left:10px;min-width:80px;" tooltip='<%=L"点击打开Mod所在文件夹"%>' onclick="OnOpenModDir" />
+        </pe:if>
     </div>
-    <div class = "mc_light_grey_button_with_fillet" style="margin-left:15px;margin-top:10px;width:560px;height:350px;">
+    <!--<div style="margin-left:15px;width:450px;min-height:55px;margin-top:10px;color:#ffffff;">
+        <%=L"请确保mod文件中包含正确编写脚本,否则可能会导致不可预期结果"%>
+    </div>-->
+    <div class = "mc_light_grey_button_with_fillet" style="margin-left:15px;margin-top:8px;width:560px;height:350px;">
         <pe:gridview style="margin:10px" name="gvwModTable" CellPadding="5"  AllowPaging="false" DefaultNodeHeight = "20" ItemsPerLine="1"
                 DataSource="<%=DS_Items%>" >
 	        <Columns>

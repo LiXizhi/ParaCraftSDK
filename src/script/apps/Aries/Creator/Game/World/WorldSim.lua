@@ -22,6 +22,9 @@ NPL.load("(gl)script/apps/Aries/Creator/WorldCommon.lua");
 NPL.load("(gl)script/ide/STL.lua");
 NPL.load("(gl)script/apps/Aries/Creator/Game/Common/Direction.lua");
 NPL.load("(gl)script/apps/Aries/Creator/Game/World/TickEntry.lua");
+NPL.load("(gl)script/apps/Aries/Creator/Game/Common/BlockDamageProgress.lua");
+NPL.load("(gl)script/apps/Aries/Creator/Game/World/WorldTracker.lua");
+local BlockDamageProgress = commonlib.gettable("MyCompany.Aries.Game.Common.BlockDamageProgress");
 local TickEntry = commonlib.gettable("MyCompany.Aries.Game.TickEntry")
 local Direction = commonlib.gettable("MyCompany.Aries.Game.Common.Direction")
 local WorldCommon = commonlib.gettable("MyCompany.Aries.Creator.WorldCommon")
@@ -34,10 +37,13 @@ local BlockEngine = commonlib.gettable("MyCompany.Aries.Game.BlockEngine")
 ---------------------------
 -- create class
 ---------------------------
-local WorldSim = commonlib.inherit(nil, commonlib.gettable("MyCompany.Aries.Game.WorldSim"))
+local WorldSim = commonlib.inherit(commonlib.gettable("MyCompany.Aries.Game.World.WorldTracker"), commonlib.gettable("MyCompany.Aries.Game.WorldSim"))
 
 -- 50 millisecond. 20FPS. 
 WorldSim.TickInterval = 50;
+
+-- how many ticks to expire damaged blocks. 30 for 1 seconds. 
+WorldSim.damagedBlockExpireTicks = 300;
 
 function WorldSim:ctor()
 	self.tick_count = 0;
@@ -45,10 +51,31 @@ function WorldSim:ctor()
 	self.pendingTickListEntries = commonlib.List:new();
 	self.pendingTickListEntriesThisTick = commonlib.List:new();
 	self.blockEventCache = commonlib.List:new();
+	-- a list of blocks being damaged. 
+	self.damagedBlocks = commonlib.List:new();
+end
+
+
+-- detach from previous and attach to the new one.
+function WorldSim:AttachWorld(world)
+	if(self.world~=world) then
+		if(self.world) then
+			self.world:RemoveWorldTracker(self);
+		end
+		self.world = world;
+		self.world:AddWorldTracker(self);
+	end
+end
+
+function WorldSim:CheckAttachWorld()
+	if(self.world ~= GameLogic.GetWorld()) then
+		self:AttachWorld(GameLogic.GetWorld());
+	end
 end
 
 function WorldSim:Init()
-	self:InitDayLightParams()
+	self:InitDayLightParams();
+	self:CheckAttachWorld();
 	return self;
 end
 
@@ -161,7 +188,15 @@ function WorldSim:OnTickDayLight(fForceUpdate)
 	end
 end
 
+function WorldSim:DetachWorld()
+	if(self.world) then
+		self.world:RemoveWorldTracker(self);
+		self.world = nil;
+	end
+end
+
 function WorldSim:OnExit()
+	self:DetachWorld();
 end
 
 function WorldSim:Save()
@@ -298,9 +333,92 @@ function WorldSim:OnBlockEvent(event)
 	end
 end
 
+-- remove timed out blocks
+function WorldSim:TickDamagedBlocks()
+	local damagedBlock = self.damagedBlocks:first();
+	local needUpdate;
+	while (damagedBlock) do
+		if((self.tick_count - damagedBlock:GetCreationTime()) > self.damagedBlockExpireTicks) then
+			damagedBlock = self.damagedBlocks:remove(damagedBlock);
+			needUpdate = true;
+		else
+			damagedBlock = self.damagedBlocks:next(damagedBlock);
+		end
+	end
+	if(needUpdate) then
+		self:UpdateDamagedBlockRenderer();
+	end
+end
+
+function WorldSim:GetBlockDamagedProgress(x, y, z)
+	local damagedBlock = self.damagedBlocks:first();
+	while (damagedBlock) do
+		if(damagedBlock.x == x and damagedBlock.y==y and damagedBlock.z==z) then
+			return damagedBlock:GetProgress();
+		end
+		damagedBlock = self.damagedBlocks:next(damagedBlock);
+	end
+	return 0;
+end
+
+-- virtual: set new damage to a given block
+-- @param damage: [1-10), other values will remove it. 
+function WorldSim:DestroyBlockPartially(entityId, x,y,z, damage)
+	if (damage >= 0 and damage < 10) then
+		local damagedBlock = self.damagedBlocks:first();
+		while (damagedBlock) do
+			if(damagedBlock.x == x and damagedBlock.y==y and damagedBlock.z==z) then
+				break;
+			end
+			damagedBlock = self.damagedBlocks:next(damagedBlock);
+		end
+        if (not damagedBlock) then
+            damagedBlock = BlockDamageProgress:new():init(x,y,z);
+            self.damagedBlocks:add(damagedBlock);
+        end
+        damagedBlock:SetProgress(damage);
+        damagedBlock:SetCreationTime(self.tick_count);
+		if(self.damagedBlocks:last()~=damagedBlock) then
+			-- the most recent one is moved to the end of the queue
+			self.damagedBlocks:remove(damagedBlock);
+			self.damagedBlocks:add(damagedBlock);
+		end
+		self.most_recent_damaged = damagedBlock;
+    else
+		-- remove block progress from the list
+		local damagedBlock = self.damagedBlocks:first();
+		while (damagedBlock) do
+			if(damagedBlock.x == x and damagedBlock.y==y and damagedBlock.z==z) then
+				self.most_recent_damaged = damagedBlock;
+				self.damagedBlocks:remove(damagedBlock);
+				break;
+			end
+			damagedBlock = self.damagedBlocks:next(damagedBlock);
+		end
+    end
+	self:UpdateDamagedBlockRenderer();
+end
+
+function WorldSim:UpdateDamagedBlockRenderer()
+	-- only render the most recently damaged block
+	local damagedBlock = self.damagedBlocks:last();
+	if (damagedBlock and self.most_recent_damaged == damagedBlock) then
+		ParaTerrain.SetDamagedBlock(damagedBlock.x, damagedBlock.y, damagedBlock.z);
+		ParaTerrain.SetDamagedDegree(damagedBlock:GetDamagedDegree());
+	else
+		ParaTerrain.SetDamagedDegree(0);
+	end
+end
+
+function WorldSim:GetDamagedBlocks()
+	return self.damagedBlocks;
+end
+
 -- 30FPS
 function WorldSim:FrameMove(deltaTime)
 	self.tick_count = self.tick_count + 1;
+
+	self:CheckAttachWorld();
 
 	if(self.tick_count%3 == 0) then
 		self:TickRandom();
@@ -311,6 +429,9 @@ function WorldSim:FrameMove(deltaTime)
 	end
 	if(self.tick_count%30 == 29) then
 		self:TickAmbientEnv();
+	end
+	if(self.tick_count%20 == 19) then
+		self:TickDamagedBlocks();
 	end
 end
 

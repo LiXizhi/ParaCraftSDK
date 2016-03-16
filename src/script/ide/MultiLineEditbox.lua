@@ -21,6 +21,8 @@ log(ctl:GetText());
 -- common control library
 NPL.load("(gl)script/ide/common_control.lua");
 NPL.load("(gl)script/ide/TreeView.lua");
+NPL.load("(gl)script/ide/System/Windows/KeyEvent.lua");
+local KeyEvent = commonlib.gettable("System.Windows.KeyEvent");
 
 -- define a new control in the common control libary
 
@@ -365,12 +367,28 @@ function MultiLineEditbox.OnLineModify(sCtrlName, nLineIndex)
 
 	local thisLine = ParaUI.GetUIObject(lineNode.editor_id);
 	if(thisLine:IsValid()) then
-		lineNode.Text = thisLine.text;
-	end
+		if(lineNode.Text ~= thisLine.text) then
+			lineNode.Text = thisLine.text;
+			self.modified_since_keystroke = true;
 
-	if(self.onchange and (type(self.onchange) == "function" ))then
-		self:onchange();
+			if(self.onchange and (type(self.onchange) == "function" ))then
+				self:onchange();
+			end
+		end
 	end
+end
+
+-- add to undo history
+function MultiLineEditbox:AddToHistory()
+	-- TODO: 
+end
+
+function MultiLineEditbox:Undo()
+	-- TODO: 
+end
+
+function MultiLineEditbox:Redo()
+	-- TODO: 
 end
 
 -- process user key strokes inside the editbox. 
@@ -390,8 +408,11 @@ function MultiLineEditbox.OnEditLineKeyUp(sCtrlName, nLineIndex)
 		return 
 	end
 	
+	local event = KeyEvent:init("keyPressedEvent");
+	local keyname = event.keyname;
+
 	local line_count = self:GetLineCount(); 
-	if(virtual_key == Event_Mapping.EM_KEY_DOWN) then
+	if(keyname == "DIK_DOWN") then
 		-- if the user pressed the down-arrow key, jump to the next line.
 		if(nLineIndex < line_count) then
 			local thisLine = ParaUI.GetUIObject(lineNode.editor_id);
@@ -400,18 +421,18 @@ function MultiLineEditbox.OnEditLineKeyUp(sCtrlName, nLineIndex)
 			end	
 		end
 		
-	elseif(virtual_key == Event_Mapping.EM_KEY_RETURN or virtual_key == Event_Mapping.EM_KEY_NUMPADENTER ) then
+	elseif(keyname == "DIK_RETURN" ) then
 		-- insert return key
 		if(self.SingleLineEdit) then
 			-- for single line, just deselect
 			lineNode.Selected = false;
 			self:Update();
-			return
+		else
+			self:ProcessLine(nLineIndex, 2);
+			MultiLineEditbox.SetCaretPosition(sCtrlName, (nLineIndex+1), 0);	
 		end
-		self:ProcessLine(nLineIndex, 2);
-		MultiLineEditbox.SetCaretPosition(sCtrlName, (nLineIndex+1), 0);
 		
-	elseif(virtual_key == Event_Mapping.EM_KEY_UP)	then
+	elseif(keyname == "DIK_UP")	then
 		-- if the user pressed the up-arrow key, jump to the previous line.
 		if(nLineIndex >=2 ) then
 			local thisLine = ParaUI.GetUIObject(lineNode.editor_id);
@@ -419,26 +440,36 @@ function MultiLineEditbox.OnEditLineKeyUp(sCtrlName, nLineIndex)
 				MultiLineEditbox.SetCaretPosition(sCtrlName, (nLineIndex-1), thisLine:GetCaretPosition());
 			end
 		end
-		
-	elseif(virtual_key == Event_Mapping.EM_KEY_BACKSPACE or virtual_key == Event_Mapping.EM_KEY_DELETE)	then
+	elseif(event:IsKeySequence("Undo"))	then
+		self:Undo();
+	elseif(event:IsKeySequence("Redo"))	then
+		self:Redo();
+	elseif(keyname == "DIK_BACKSPACE" or keyname == "DIK_DELETE")	then
 		local thisLine = ParaUI.GetUIObject(lineNode.editor_id);
 		
 		if(thisLine:IsValid()) then
 			local thisCharPos = thisLine:GetCaretPosition();
 			local thisLineCharCount = thisLine:GetTextSize();
-			if(lineNode.Text == "") then
+			if(not self.modified_since_keystroke and lineNode.Text == "") then
 				-- only delete the current line if it is already empty
-				self:ProcessLine(nLineIndex, 5);
-				if(virtual_key == Event_Mapping.EM_KEY_BACKSPACE) then
+				if(self:ProcessLine(nLineIndex, 5)) then
+					self:Update();
+				end
+				if(keyname == "DIK_BACKSPACE") then
 					-- move to the previous line, set caret at end of line (-1)
 					if(nLineIndex >=2 ) then
 						MultiLineEditbox.SetCaretPosition(sCtrlName, (nLineIndex-1), -1);
 					end
 				else
-					MultiLineEditbox.SetCaretPosition(sCtrlName, nLineIndex, 0);
+					local lineCount = self:GetLineCount();
+					if( nLineIndex <= lineCount) then
+						MultiLineEditbox.SetCaretPosition(sCtrlName, nLineIndex, 0);
+					else
+						MultiLineEditbox.SetCaretPosition(sCtrlName, lineCount, -1);
+					end
 				end
-			elseif(lineNode.Text == thisLine.text) then -- this ensure that the key does not change the text. 
-				if(virtual_key == Event_Mapping.EM_KEY_BACKSPACE and thisCharPos ==0) then
+			elseif(not self.modified_since_keystroke and lineNode.Text == thisLine.text) then -- this ensure that the key does not change the text. 
+				if(keyname == "DIK_BACKSPACE" and thisCharPos ==0) then
 					-- backspace key when the caret is at beginning, and this line is not empty
 					-- we need to concartinate this line with the previous one. 
 					if(nLineIndex>=2) then
@@ -451,7 +482,7 @@ function MultiLineEditbox.OnEditLineKeyUp(sCtrlName, nLineIndex)
 						self:ProcessLine(nLineIndex-1, 4, oldtext);
 						MultiLineEditbox.SetCaretPosition(sCtrlName, (nLineIndex-1), caretPos);
 					end	
-				elseif(virtual_key == Event_Mapping.EM_KEY_DELETE and thisCharPos ==thisLineCharCount) then
+				elseif(keyname == "DIK_DELETE" and thisCharPos ==thisLineCharCount) then
 					-- delete key when the caret is at ending and this line is not empty
 					-- we need to concartinate the next line to this line. 
 					if(nLineIndex < line_count) then
@@ -486,6 +517,7 @@ function MultiLineEditbox.OnEditLineKeyUp(sCtrlName, nLineIndex)
 			self:Update();
 		end
 	end	
+	self.modified_since_keystroke = nil;
 end
 
 -- update the given line; if necessary, it will also update subsequent lines recursively.
@@ -573,7 +605,7 @@ function MultiLineEditbox:ProcessLine(nLineIndex, command, param1)
 			end
 		elseif(command == 5)then
 			--   5: delete a given line
-			if(nLineIndex > 1) then
+			if(nLineIndex > 1 or (nLineIndex==1 and self:GetLineCount() > 1) ) then
 				thisLine:Detach();
 				bNeedUpdate = true;
 			end	

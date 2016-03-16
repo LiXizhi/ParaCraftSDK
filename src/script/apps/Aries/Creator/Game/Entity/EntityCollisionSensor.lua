@@ -14,6 +14,8 @@ NPL.load("(gl)script/apps/Aries/Creator/Game/Items/ItemClient.lua");
 NPL.load("(gl)script/apps/Aries/Creator/Game/Common/Direction.lua");
 NPL.load("(gl)script/apps/Aries/Creator/Game/Entity/EntityCommandBlock.lua");
 NPL.load("(gl)script/apps/Aries/Creator/Game/Neuron/NeuronManager.lua");
+NPL.load("(gl)script/ide/math/ShapeAABB.lua");
+local ShapeAABB = commonlib.gettable("mathlib.ShapeAABB");
 local NeuronManager = commonlib.gettable("MyCompany.Aries.Game.Neuron.NeuronManager");
 local CommandManager = commonlib.gettable("MyCompany.Aries.Game.CommandManager");
 local Direction = commonlib.gettable("MyCompany.Aries.Game.Common.Direction")
@@ -49,6 +51,14 @@ function Entity:init()
 end
 
 function Entity:Refresh()
+end
+
+-- return empty collision AABB, since sensor does not have physics. 
+function Entity:GetCollisionAABB()
+	if(not self.aabb) then
+		self.aabb = ShapeAABB:new();
+	end
+	return self.aabb;
 end
 
 function Entity:OnNeighborChanged(x,y,z, from_block_id)

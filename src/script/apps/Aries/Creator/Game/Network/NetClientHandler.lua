@@ -36,11 +36,19 @@ function NetClientHandler:ctor()
 end
 
 -- create a tcp connection to server. 
-function NetClientHandler:Init(ip, port, username, password, worldClient)
+function NetClientHandler:Init(ip, port, username, password, worldClient, tunnelClient)
 	self.worldClient = worldClient;
-	local nid = self:CheckGetNidFromIPAddress(ip, port);
+	local nid;
+	if(tunnelClient) then
+		-- TODO: this should be the username of the private host server. 
+		-- here we just use "_admin" for the first user in the room. 
+		nid = "_admin";
+	else
+		nid = self:CheckGetNidFromIPAddress(ip, port);
+	end
+	
 	BroadcastHelper.PushLabel({id="NetClientHandler", label = format(L"正在建立链接:%s:%s", ip, port or ""), max_duration=7000, color = "255 0 0", scaling=1.1, bold=true, shadow=true,});
-	self.connection = ConnectionTCP:new():Init(nid, nil, self);
+	self.connection = ConnectionTCP:new():Init(nid, nil, self, tunnelClient);
 	self.connection:Connect(5, function(bSucceed)
 		-- try authenticate
 		if(bSucceed) then

@@ -15,10 +15,11 @@ local Connections = commonlib.gettable("MyCompany.Aries.Game.Network.Connections
 local Packet_Types = commonlib.gettable("MyCompany.Aries.Game.Network.Packets.Packet_Types");
 local ServerListener = commonlib.gettable("MyCompany.Aries.Game.Network.ServerListener");
 
-local ConnectionBase = commonlib.inherit(nil, commonlib.gettable("MyCompany.Aries.Game.Network.ConnectionBase"));
+local ConnectionBase = commonlib.inherit(commonlib.gettable("System.Core.ToolBase"), commonlib.gettable("MyCompany.Aries.Game.Network.ConnectionBase"));
+
+ConnectionBase.default_neuron_file = "script/apps/Aries/Creator/Game/Network/ConnectionBase.lua";
 
 function ConnectionBase:ctor()
-	self.default_neuron_file = "script/apps/Aries/Creator/Game/Network/ConnectionBase.lua";
 	self.id = Connections:GetNextConnectionId();
 end
 
@@ -71,7 +72,7 @@ local ping_msg = {url = "ping",};
 -- this function is only called for a client to establish a connection with remote server.
 -- on the server side, accepted connections never need to call this function. 
 -- @param timeout: the number of seconds to timeout. if 0, it will just ping once. 
--- @param callback_func: a function(msg) end.  If this function is provided, this function is asynchronous. 
+-- @param callback_func: a function(bSuccess) end.  If this function is provided, this function is asynchronous. 
 function ConnectionBase:Connect(timeout, callback_func)
 	if(self.is_connecting) then
 		return;
@@ -155,6 +156,10 @@ function ConnectionBase:GetRemoteAddress(neuronfile)
 	else
 		return self.npl_addr_prefix..neuronfile;
 	end
+end
+
+function ConnectionBase:SetRemoteAddress()
+	
 end
 
 -- Shuts down the connection on the server side. 

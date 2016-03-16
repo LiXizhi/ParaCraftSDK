@@ -3432,11 +3432,8 @@ function PowerItemManager.RemoveXiandou_(from_nid, count, callback_func)
 end
 
 
---[[update item level by consuming specified concurrency.  e.g.
-local _, guid = Map3DSystem.Item.ItemManager.IfOwnGSItem(1807);
-if(guid) then
-	System.GSL_client:SendRealtimeMessage("sPowerAPI", {name="SetItemAddonLevel", params={guid=guid}});
-end
+--[[
+@param params: {money=money to add 100 per gem, sign_text=new sign text}
 ]]
 function PowerItemManager.SignItem(from_nid, params, callback_func)
 	if(params.guid and from_nid) then
@@ -3466,8 +3463,7 @@ function PowerItemManager.SignItem(from_nid, params, callback_func)
 					if(item.GetServerData) then
 						local old_params = item:GetServerData();
 						if(old_params and old_params.money and old_params.money>0) then
-							money_to_pay = math.max(100, money - old_params.money);
-							params.money = math.max(money, old_params.money);
+							params.money = math.max(money, old_params.money+money);
 						end
 					end
 					
@@ -3477,6 +3473,8 @@ function PowerItemManager.SignItem(from_nid, params, callback_func)
 
 					PowerItemManager.ChangeItem(from_nid, adds, updates, function(msg)
 						if(msg and msg.issuccess)then
+							-- force sync server data 
+							PowerItemManager.SyncUserItems(tonumber(from_nid), {0,1,}, function(msg) end, function() end);
 							-- items_user[item.guid].serverdata = serverdata;
 							LOG.std(nil, "info", "PowerItemManager", "PowerItemManager.SignItem nid %s succeeded with %s", tostring(from_nid), commonlib.serialize_compact(params));
 						end

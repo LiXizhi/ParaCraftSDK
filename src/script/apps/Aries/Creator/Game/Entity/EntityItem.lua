@@ -50,6 +50,11 @@ Entity.delayBeforeCanPickup = nil;
 -- Entity.lifetime = 1000*60*3; 
 Entity.offset_y = BlockEngine.half_blocksize - Entity.anim_amp_vertical;
 
+Entity.smoothFrames = 0;
+Entity.motionX = 0;
+Entity.motionY = 0;
+Entity.motionZ = 0;
+
 function Entity:ctor()
 	self.tick = 0;
 end
@@ -78,6 +83,7 @@ function Entity:SaveToXMLNode(node)
 	node[#node+1] = self:GetItemStack():SaveToXMLNode({name="itemstack"});
 	return node;
 end
+
 
 -- @param Entity: the half radius of the object. 
 function Entity:init()
@@ -165,6 +171,14 @@ function Entity:CreateInnerObject(x,y,z,facing, scaling)
 	end
 end
 
+function Entity:GetPhysicsRadius()
+	return 0.25;
+end
+
+function Entity:GetPhysicsHeight()
+	return 0.25;
+end
+
 -- returned the represented itemstack 
 function Entity:GetItemStack()
 	local item = self:GetDataContainer():GetField("ItemStack");
@@ -192,14 +206,26 @@ function Entity:Refresh()
 	
 end
 
-
--- Adds to the current velocity of the entity. 
--- @param x,y,z: velocity in x,y,z direction. 
-function Entity:AddVelocity(x,y,z)
-	Entity._super.AddVelocity(self, x,y,z);
-	self.delayBeforeCanPickup = 3;
+function Entity:IsOnGround()
+	return self.onGround;
 end
 
+function Entity:doesEntityTriggerPressurePlate()
+	return true;
+end
+
+-- Returns true if the entity takes up space in its containing block, such as animals,mob and players. 
+function Entity:CanBeCollidedWith(entity)
+	-- return entity.class_name~=self.class_name;
+    return false;
+end
+
+-- Returns true if this entity should push and be pushed by other entities when colliding.
+-- such as mob and players.
+function Entity:CanBePushedBy(fromEntity)
+    -- return entity.class_name==self.class_name;
+	return false;
+end
 
 -- when the body of the player hit this entity. 
 function Entity:OnCollideWithPlayer(entity, bx,by,bz)
@@ -216,22 +242,65 @@ function Entity:OnCollideWithPlayer(entity, bx,by,bz)
     end
 end
 
-function Entity:FrameMove(deltaTime)
-	self.tick = self.tick + 1;
-	if(self.tick%30 == 0) then
-		-- only frame move physics once per second(30 ticks). 
-		Entity._super.FrameMove(self, 1);
-	end
+-- called by framemove to move to target position and according to its current motion and walk speed. 
+function Entity:MoveEntity(deltaTime, bTryMove)
+	if(self:IsRemote()) then
+		if (self.smoothFrames > 0) then
+            local newX = self.x + (self.targetX - self.x) / self.smoothFrames;
+            local newY = self.y + (self.targetY - self.y) / self.smoothFrames;
+            local newZ = self.z + (self.targetZ - self.z) / self.smoothFrames;
+            self.smoothFrames = self.smoothFrames - 1;
+            self:SetPosition(newX, newY, newZ);
+        else
+			local newX = self.targetX or self.x;
+			local newY = self.targetY or self.y;
+			local newZ = self.targetZ or self.z;
+			self:SetPosition(newX, newY, newZ);
+        end
+	else
+		deltaTime = math.min(0.05, deltaTime);
+		local obj = self:GetInnerObject();
+		if(not obj) then
+			return;
+		end
+		
+		local bHasMotionLast = self:HasMotion();
+		if (self.onGround and bHasMotionLast) then
+			local dist_sq = self.motionX ^ 2 + self.motionZ ^ 2;
+			local decayFactor = 1-self:GetSurfaceDecay();
+			self.motionX = self.motionX * decayFactor;
+			self.motionZ = self.motionZ * decayFactor;
+			if(dist_sq < 0.00001) then
+				-- make it stop when motion is very small
+				self.motionX = 0;
+				-- self.motionY = 0;
+				self.motionZ = 0;
+			end
+		end
+		
+		local dist_sq = self.motionX ^ 2 + self.motionZ ^ 2;
 
-	if(self.delayBeforeCanPickup) then
-		self.delayBeforeCanPickup = self.delayBeforeCanPickup - deltaTime;
-		if(self.delayBeforeCanPickup<=0) then
-			self.delayBeforeCanPickup = nil;
+		-- apply gravity
+		-- we will double gravity to make it look better
+		self.motionY = math.max(-1, self.motionY - self:GetGravity()*2*deltaTime*deltaTime);
+		
+		self:MoveEntityByDisplacement(self.motionX,self.motionY,self.motionZ);
+
+		if(dist_sq == 0 and self.onGround) then
+			-- restore to normal frame move interval. 
+			self.lastOnGroundStill = true;
+		else
+			-- tick at high FPS
+			if(self.lastOnGroundStill ~= false) then
+				self.lastOnGroundStill = false;
+				self.delayBeforeCanPickup = 3;
+			end
 		end
 	end
+end
 
-	self:MoveEntity(deltaTime);
-
+-- up/down and rotate animation. 
+function Entity:FrameMoveLocalAnimation(deltaTime)
 	local obj = self:GetInnerObject();
 	if(obj) then
 		if(self.obj_rotate_speed) then
@@ -258,4 +327,27 @@ function Entity:FrameMove(deltaTime)
 			obj:SetPosition(self.x, self.y+self.offset_y, self.z);
 		end
 	end
+end
+
+function Entity:FrameMove(deltaTime)
+	self.tick = self.tick + 1;
+	if(self.tick%30 == 0) then
+		-- once per second(30 ticks) for other logics. 
+		Entity._super.FrameMove(self, 1);
+	end
+
+	if(self.delayBeforeCanPickup) then
+		self.delayBeforeCanPickup = self.delayBeforeCanPickup - deltaTime;
+		if(self.delayBeforeCanPickup<=0) then
+			self.delayBeforeCanPickup = nil;
+		end
+	end
+
+	if(not self.lastOnGroundStill or (self.lastOnGroundStill and self.tick%10 == 0)) then
+		-- physics simulation
+		self:MoveEntity(deltaTime);
+	end
+
+	-- apply local animations
+	self:FrameMoveLocalAnimation(deltaTime);
 end

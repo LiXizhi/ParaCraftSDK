@@ -297,7 +297,7 @@ end
 -- a safe method to decide if the page is visible or not. 
 -- @return true if page is visible. 
 function PageCtrl:IsVisible()
-	if(self.parent_id and ParaUI.GetUIObject(self.parent_id):GetAttributeObject():GetField("VisibleRecursive", false)) then
+	if(self.parent_id and ParaUI.GetUIObject(self.parent_id):GetField("VisibleRecursive", false)) then
 		return true;
 	end
 end

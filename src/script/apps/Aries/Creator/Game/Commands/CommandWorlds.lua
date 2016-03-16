@@ -52,19 +52,39 @@ Commands["upload"] = {
 	end,
 };
 
--- loadworld 
+
+Commands["pushworld"] = {
+	name="pushworld", 
+	quick_ref="/pushworld [displayname]", 
+	desc=[[push current world to world stack. The world will be popped from the stack, 
+when it is loaded again. 
+When there are worlds on the world stack, the esc window will show a big link button to load the world
+on top of stack if the current world is different from it. 
+@param displayname: the text to display on the big link button which bring the user back to world on top of the stack.
+e.g.
+/pushworld return to portal world
+]], 
+	handler = function(cmd_name, cmd_text, cmd_params)
+		NPL.load("(gl)script/apps/Aries/Creator/Game/World/WorldStacks.lua");
+		local WorldStacks = commonlib.gettable("MyCompany.Aries.Game.WorldStacks");
+		WorldStacks:PushWorld(cmd_text);
+	end,
+};
+
+
 Commands["loadworld"] = {
 	name="loadworld", 
 	quick_ref="/loadworld [worldname|url|filepath]", 
-	desc="loadworld a world by worldname or url or relative to parent directory", 
+	desc=[[load a world by worldname or url or filepath relative to parent directory
+e.g.
+/loadworld https://github.com/xxx/xxx.zip
+]], 
 	handler = function(cmd_name, cmd_text, cmd_params)
 		NPL.load("(gl)script/apps/Aries/Creator/WorldCommon.lua");
 		local WorldCommon = commonlib.gettable("MyCompany.Aries.Creator.WorldCommon")
 
 		local options;
 		options, cmd_text = CmdParser.ParseOptions(cmd_text);
-
-		local is_mc = options.mc or options.m;
 
 		cmd_text = cmd_text:gsub("\\", "/");
 		local filename = cmd_text;
@@ -74,7 +94,7 @@ Commands["loadworld"] = {
 			local RemoteWorld = commonlib.gettable("MyCompany.Aries.Creator.Game.Login.RemoteWorld");
 				
 			local world;
-			if(filename:match("^http://")) then
+			if(filename:match("^https?://")) then
 				world = RemoteWorld.LoadFromHref(filename, "self");
 			else
 				-- local worldpath = filename:gsub("%.zip$", "");
@@ -97,7 +117,7 @@ Commands["loadworld"] = {
 				local mytimer = commonlib.Timer:new({callbackFunc = function(timer)
 					NPL.load("(gl)script/apps/Aries/Creator/Game/Login/InternetLoadWorld.lua");
 					local InternetLoadWorld = commonlib.gettable("MyCompany.Aries.Creator.Game.Login.InternetLoadWorld");
-					InternetLoadWorld.LoadWorld(world);
+					InternetLoadWorld.LoadWorld(world, nil, "auto");
 				end});
 				-- prevent recursive calls.
 				mytimer:Change(1,nil);

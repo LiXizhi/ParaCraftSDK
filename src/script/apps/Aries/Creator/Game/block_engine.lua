@@ -5,6 +5,12 @@ Date: 2012/10/20
 Desc: It contains various block generation, searching functions. And it provide simulation to ensure a closed space block world. 
 Please note that the block engine it self does not keep the data for block level data. instead all static block data is loaded and saved
 by the low level game engine. 
+
+GameLogic filters:
+ OnBeforeLoadBlockRegion(bContinue, x, y): false to disable loading region from file
+ OnLoadBlockRegion(bContinue, x, y)
+ OnUnLoadBlockRegion(bContinue, x, y)
+
 use the lib:
 ------------------------------------------------------------
 NPL.load("(gl)script/apps/Aries/Creator/Game/block_engine.lua");
@@ -89,6 +95,7 @@ function BlockEngine:Connect()
 	
 	if(ParaTerrain.GetBlockAttributeObject) then
 		ParaTerrain.GetBlockAttributeObject():SetField("GeneratorScript", ";MyCompany.Aries.Game.BlockEngine.OnGeneratorScript();")
+		ParaTerrain.GetBlockAttributeObject():SetField("OnBeforeLoadBlockRegion", ";return MyCompany.Aries.Game.BlockEngine.OnBeforeLoadBlockRegion();")
 		ParaTerrain.GetBlockAttributeObject():SetField("OnLoadBlockRegion", ";MyCompany.Aries.Game.BlockEngine.OnLoadBlockRegion();")
 		ParaTerrain.GetBlockAttributeObject():SetField("OnUnLoadBlockRegion", ";MyCompany.Aries.Game.BlockEngine.OnUnLoadBlockRegion();")
 	end
@@ -130,7 +137,24 @@ end
 
 local results = {};
 
+-- @return 0 or nil to proceed loading the region in async mode. 
+-- return 1 to prevent the region from loaded
+function BlockEngine.OnBeforeLoadBlockRegion()
+	-- LOG.std(nil, "system", "BlockEngine", "before load block region %d %d", msg.x, msg.y);
+	-- return 1 prevent the region from loaded, just in case you have your own load world logics. 
+	if(GameLogic) then
+		if(not GameLogic.GetFilters():apply_filters("OnBeforeLoadBlockRegion", true, msg.x, msg.y)) then
+			return 1;
+		end
+	end
+end
+
 function BlockEngine.OnLoadBlockRegion()
+	if(GameLogic) then
+		if(not GameLogic.GetFilters():apply_filters("OnLoadBlockRegion", true, msg.x, msg.y)) then
+			return;
+		end
+	end
 	if(BlockEngine:IsRemote()) then
 		return;
 	end
@@ -169,6 +193,11 @@ function BlockEngine.OnLoadBlockRegion()
 end
 
 function BlockEngine.OnUnLoadBlockRegion()
+	if(GameLogic) then
+		if(not GameLogic.GetFilters():apply_filters("OnUnLoadBlockRegion", true, msg.x, msg.y)) then
+			return;
+		end
+	end
 	if(not BlockEngine:IsRemote()) then
 		LOG.std(nil, "system", "BlockEngine", "unloading block region %d %d", msg.x, msg.y);
 	end

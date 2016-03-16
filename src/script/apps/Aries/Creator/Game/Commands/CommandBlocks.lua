@@ -1,10 +1,11 @@
 --[[
-Title: Commands
+Title: Block commands
 Author(s): LiXizhi
 Date: 2013/2/9
-Desc: slash command 
+Desc: 
 use the lib:
 ------------------------------------------------------------
+NPL.load("(gl)script/apps/Aries/Creator/Game/Commands/CommandBlocks.lua");
 -------------------------------------------------------
 ]]
 NPL.load("(gl)script/ide/STL.lua");
@@ -32,18 +33,17 @@ local BroadcastHelper = commonlib.gettable("CommonCtrl.BroadcastHelper");
 local Commands = commonlib.gettable("MyCompany.Aries.Game.Commands");
 local CommandManager = commonlib.gettable("MyCompany.Aries.Game.CommandManager");
 
---[[delete selected blocks
+Commands["del"] = {
+	name="del", 
+	quick_ref="/del", 
+	desc=[[delete selected blocks
 format: /del [-below] [radius]
 delete all blocks below the current player's position in a radius of 256 (by default). 
 e.g.  /del -below 256
 
 format: /del -mode [real|block]
 e.g. whether terrain blocks are auto generated when deleting blocks. 
-]]
-Commands["del"] = {
-	name="del", 
-	quick_ref="/del", 
-	desc="delete selected blocks", 
+]], 
 	handler = function(cmd_name, cmd_text, cmd_params)
 		if(not GameLogic.is_started) then
 			return 
@@ -94,99 +94,13 @@ Commands["del"] = {
 	end,
 };
 
-Commands["ring"] = {
-	name="ring", 
-	quick_ref="/ring [plane] radius [thickness]", 
-	desc="ring", 
-	handler = function(cmd_name, cmd_text, cmd_params)
-		if(not GameLogic.is_started) then
-			return 
-		end
-		NPL.load("(gl)script/apps/Aries/Creator/Game/Tasks/CreateSimpleShapeTask.lua");
-		local plane, radius, thickness = cmd_text:match("(%a*)%s*(%d+)%s*(%d*)");
-		radius = tonumber(radius or 10);
-		if(thickness) then
-			thickness = tonumber(thickness);
-		end
-		if(plane and plane == "") then
-			plane = "y";
-		end
-		local task = MyCompany.Aries.Game.Tasks.CreateSimpleShape:new({shape="ring", radius=radius, thickness=thickness, plane = plane})
-		task:Run();
-	end,
-};
-
-Commands["circle"] = {
-	name="circle", 
-	quick_ref="/circle [plane] radius", 
-	desc="circle", 
-	handler = function(cmd_name, cmd_text, cmd_params)
-		if(not GameLogic.is_started) then
-			return 
-		end
-		NPL.load("(gl)script/apps/Aries/Creator/Game/Tasks/CreateSimpleShapeTask.lua");
-		local plane, radius = cmd_text:match("(%a*)%s*(%d+)");
-		radius = tonumber(radius or 10);
-		if(plane and plane == "") then
-			plane = "y";
-		end
-		local task = MyCompany.Aries.Game.Tasks.CreateSimpleShape:new({shape="circle", radius=radius, plane = plane})
-		task:Run();
-	end,
-};
-
-Commands["sphere"] = {
-	name="sphere", 
-	quick_ref="/sphere radius [beSolid]", 
-	desc="sphere", 
-	handler = function(cmd_name, cmd_text, cmd_params)
-		if(not GameLogic.is_started) then
-			return 
-		end
-		NPL.load("(gl)script/apps/Aries/Creator/Game/Tasks/CreateSimpleShapeTask.lua");
-		local radius, beSolid = cmd_text:match("(%d+)%s*(%a*)");
-		radius = tonumber(radius or 10);
-		if(beSolid and beSolid == "true") then
-			beSolid = true;
-		else
-			beSolid = false;
-		end
-		local task = MyCompany.Aries.Game.Tasks.CreateSimpleShape:new({shape="sphere", radius=radius, beSolid=beSolid})
-		task:Run();
-	end,
-};
-
-Commands["ellipsoid"] = {
-	name="ellipsoid", 
-	quick_ref="/ellipsoid radiusX radiusY radiusZ [beSolid]", 
-	desc="ellipsoid", 
-	handler = function(cmd_name, cmd_text, cmd_params)
-		if(not GameLogic.is_started) then
-			return 
-		end
-		NPL.load("(gl)script/apps/Aries/Creator/Game/Tasks/CreateSimpleShapeTask.lua");
-		local radiusX, radiusY, radiusZ, beSolid = cmd_text:match("(%d+)%s*(%d+)%s*(%d+)%s*(%a*)");
-		radiusX = tonumber(radiusX or 10);
-		radiusY = tonumber(radiusY or 10);
-		radiusZ = tonumber(radiusZ or 10);
-		if(beSolid and beSolid == "true") then
-			beSolid = true;
-		else
-			beSolid = false;
-		end
-		local task = MyCompany.Aries.Game.Tasks.CreateSimpleShape:new({shape="ellipsoid", radiusX=radiusX, radiusY=radiusY, radiusZ=radiusZ, beSolid=beSolid})
-		task:Run();
-	end,
-};
-
---[[ flood a given place with a certain radius
-e.g. flood with water in a radius of 5 blocks
-/flood 5
-]]
 Commands["flood"] = {
 	name="flood", 
 	quick_ref="/flood [radius or 10] [block_id or water] [x or playerPosX] [y] [z] ", 
-	desc="flood", 
+	desc=[[ flood a given place with a certain radius
+e.g. flood with water in a radius of 5 blocks
+/flood 5
+]], 
 	handler = function(cmd_name, cmd_text, cmd_params)
 		local blockid, radius, x, y, z;
 		radius, cmd_text = CmdParser.ParseInt(cmd_text)
@@ -229,13 +143,14 @@ Commands["unflood"] = {
 		task:Run();
 	end,
 };
--- fill the selected aabb area with the current block in hand
--- format: /fill [block_id]
--- if block_id is omitted, it will be the current block in hand. 
+
 Commands["fill"] = {
 	name="fill", 
 	quick_ref="/fill [block_id]", 
-	desc="fill the selected aabb area with the current block in hand" , 
+	desc=[[fill the selected aabb area with the current block in hand
+format: /fill [block_id]
+if block_id is omitted, it will be the current block in hand. 
+]], 
 	handler = function(cmd_name, cmd_text, cmd_params)
 		local options = {};
 		local option;
@@ -364,19 +279,19 @@ Examples:
 	end,
 };
 
---[[ clone a region of blocks to another region
-/clone [-update] from_x from_y from_z (dx dy dz) to to_x to_y to_z (dx dy dz) [where sameblock]
+
+Commands["clone"] = {
+	name="clone", 
+	quick_ref="/clone [-update] from_x from_y from_z (dx dy dz) to to_x to_y to_z (dx dy dz) [where sameblock]", 
+	desc=[[ clone a region of blocks to another region
+@param dx,dy,dz: can be negative
+e.g.
 /clone ~ ~-1 ~ (2 2 2) to ~5 ~ ~
 /clone ~ ~-1 ~ to ~5 ~ ~
 /clone ~ ~-1 ~ to ~-5 ~ ~ (3 0 3)
+-- if sameblock is specified, we will only copy if dest and src id are the same.
 /clone ~ ~-1 ~ to ~-5 ~-1 ~ (3 0 3) where sameblock
-if sameblock is specied, we will only copy if dest and src id are the same.
-dx,dy,dz can now be negative
-]]
-Commands["clone"] = {
-	name="clone", 
-	quick_ref="/clone [-update] from_x from_y from_z (dx dy dz) to to_x to_y to_z (dx dy dz)", 
-	desc="set block at given position. " , 
+]] , 
 	handler = function(cmd_name, cmd_text, cmd_params, fromEntity)
 		local from_x, from_y, from_z, from_dx, from_dy, from_dz;
 		local to_x, to_y, to_z, to_dx, to_dy, to_dz;
@@ -437,20 +352,59 @@ Commands["clone"] = {
 	end,
 };
 
+Commands["countblock"] = {
+	name="countblock", 
+	quick_ref="/countblock x y z (dx dy dz) [blockid] [data]", 
+	desc=[[return the number of blocks in the cube region specified. 
+@param blockid: the block id, if not specified it will match all blocks
+/countblock ~-1 ~1 ~ (-1 2 ~)
+/countblock ~-1 ~1 ~ (-1 2 ~) 62
+/if $(countblock ~-1 ~1 ~ (-1 2 ~))==2 then
+	/tip there are 2 blocks 
+/fi
+]], 
+	handler = function(cmd_name, cmd_text, cmd_params, fromEntity)
+		local blockid, data, dx, dy, dz;
+		local count = 0;
+		local x, y, z, cmd_text = CmdParser.ParsePos(cmd_text, fromEntity);
+		if(x) then
+			dx, dy, dz, cmd_text = CmdParser.ParsePosInBrackets(cmd_text);
+			blockid, cmd_text = CmdParser.ParseBlockId(cmd_text);
+			if(blockid) then
+				data, cmd_text = CmdParser.ParseInt(cmd_text)
+			end
+			if(dx) then
+				for i=0, math.abs(dx), if_else(dx>=0, 1, -1) do
+					for j=0, math.abs(dy), if_else(dy>=0, 1, -1) do
+						for k=0, math.abs(dz), if_else(dz>=0, 1, -1) do
+							local bx, by, bz = x+i, y+j, z+k;
+							local id = BlockEngine:GetBlockId(bx,by,bz);
+							if(((not blockid and id~=0) or (blockid == id)) and 
+								(not data or data == BlockEngine:GetBlockData(bx,by,bz))) then	
+								count = count + 1;
+							end	
+						end
+					end
+				end
+			end
+		end
+		return count;
+	end,
+};
 
---[[ Used to test whether blocks in the x, y and z coordinates or cube region specified is block_id. 
-relative position begins with ~
+
+Commands["testblock"] = {
+	name="testblock", 
+	quick_ref="/testblock x y z [(dx dy dz)] blockid [data]", 
+	desc=[[Used to test whether blocks in the x, y and z coordinates or cube region specified is block_id. 
+return true if all blocks match a given one. relative position begins with ~
 /testblock x y z blockid data
 /testblock ~ ~1 ~ blockid data
 /testblock ~-1 ~1 ~ (-1 2 ~) blockid data
 xyz are the coordinates of the blockid
 blockid is the BlockID of the blockid (includes id:0)
 data is the blockid data
-]]
-Commands["testblock"] = {
-	name="testblock", 
-	quick_ref="/testblock x y z [(dx dy dz)] blockid [data]", 
-	desc="return true if all blocks match a given one" , 
+]], 
 	handler = function(cmd_name, cmd_text, cmd_params, fromEntity)
 		local blockid, data, method, dataTag, dx, dy, dz;
 		local x, y, z, cmd_text = CmdParser.ParsePos(cmd_text, fromEntity);
@@ -484,13 +438,12 @@ Commands["testblock"] = {
 };
 
 
---[[ Compare the blocks at two locations in cuboid regions. return true if equal
-/compareblocks ~ ~-1 ~ (2 2 2) to ~5 ~ ~
-]]
 Commands["compareblocks"] = {
 	name="compareblocks", 
-	quick_ref="/testblocks from_x from_y from_z (dx dy dz) to to_x to_y to_z", 
-	desc="Compare the blocks at two locations in cuboid regions. " , 
+	quick_ref="/compareblocks from_x from_y from_z (dx dy dz) to to_x to_y to_z", 
+	desc=[[ Compare the blocks at two locations in cuboid regions. return true if equal
+/compareblocks ~ ~-1 ~ (2 2 2) to ~5 ~ ~
+]], 
 	handler = function(cmd_name, cmd_text, cmd_params, fromEntity)
 		local from_x, from_y, from_z, dx, dy, dz;
 		local to_x, to_y, to_z;
@@ -530,16 +483,15 @@ Commands["compareblocks"] = {
 	end,
 };
 
---[[ mirror a region of blocks to another region alone agiven axis
-/mirror [-clone|-no_clone] [-update] [x|y|z] from_x from_y from_z (dx dy dz) to pivot_x pivot_y pivot_z
-/mirror x ~ ~ ~ (3 2 3) to ~4 ~ ~
-/mirror -no_clone y ~ ~ ~ (3 2 3) to ~ ~1 ~
-dx,dy,dz can now be negative
-]]
 Commands["mirror"] = {
 	name="mirror", 
 	quick_ref="/mirror [clone|no_clone] [x|y|z] from_x from_y from_z (dx dy dz) to pivot_x pivot_y pivot_z", 
-	desc="mirror a region of blocks to another region alone agiven axis" , 
+	desc=[[mirror a region of blocks to another region alone a given axis
+@paramm [x|y|z]: mirror axis
+/mirror x ~ ~ ~ (3 2 3) to ~4 ~ ~
+/mirror -no_clone y ~ ~ ~ (3 2 3) to ~ ~1 ~
+dx,dy,dz can now be negative
+]], 
 	handler = function(cmd_name, cmd_text, cmd_params, fromEntity)
 		local from_x, from_y, from_z, from_dx, from_dy, from_dz;
 		local pivot_x, pivot_y, pivot_z, mirror_axis;
@@ -602,10 +554,10 @@ Commands["setcolor"] = {
 @param x y z: block position, if not provided, it is the block where the player is standing
 @param rgb: #rgb value default to "#ffffff" white color
 Example:
-	/setcolor #ff0000    paint block at player position Red.
-	/setcolor 10 10 10 #ff0000    paint block at world pos to red color
-	/setcolor ~ ~1 ~ #ff0000	paint with relative to player position. 
-	]], 
+/setcolor #ff0000    paint block at player position Red.
+/setcolor 10 10 10 #ff0000    paint block at world pos to red color
+/setcolor ~ ~1 ~ #ff0000	paint with relative to player position. 
+]], 
 	handler = function(cmd_name, cmd_text, cmd_params, fromEntity)
 		local x, y, z, color;
 		x, y, z, cmd_text = CmdParser.ParsePos(cmd_text, fromEntity);

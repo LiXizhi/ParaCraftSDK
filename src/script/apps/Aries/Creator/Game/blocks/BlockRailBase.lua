@@ -249,7 +249,7 @@ function block:OnNeighborChanged(x,y,z,neighbor_block_id)
 		]]
 
 		if (bDestroy) then
-			self:DropBlockAsItem(x, y, z, BlockEngine:GetBlockData(x, y, z), 0);
+			self:DropBlockAsItem(x, y, z);
 			BlockEngine:SetBlockToAir(x, y, z);
 		else
 			self:UpdateDirData(x, y, z, blockData, shapeData, block_id);

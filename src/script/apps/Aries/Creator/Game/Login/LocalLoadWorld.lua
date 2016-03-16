@@ -99,7 +99,7 @@ function LocalLoadWorld.BuildLocalWorldList(bForceRefresh, bSelectFirst)
 		local output = LocalLoadWorld.SearchFiles(nil, folderPath, LocalLoadWorld.MaxItemPerFolder);
 		if(output and #output>0) then
 			local user_nid = tostring(System.User.nid);
-			local _, item;
+			
 			for _, item in ipairs(output) do
 				local xmlRoot = ParaXML.LuaXML_ParseFile(folderPath.."/"..item.filename.."/tag.xml");
 				if(xmlRoot) then
@@ -129,6 +129,7 @@ function LocalLoadWorld.BuildLocalWorldList(bForceRefresh, bSelectFirst)
 									-- maybe grade is "primary" or "middle" or "adventure" or "difficulty" or "ultimate"
 									grade = item.grade or "primary",
 									ip = item.ip or "127.0.0.1",
+									order = item.order,
 									IsFolder=true, time_text=item.time_text})	
 								break;	
 							--end	
@@ -153,9 +154,14 @@ function LocalLoadWorld.BuildLocalWorldList(bForceRefresh, bSelectFirst)
 						writedate = item.writedate, filesize=item.filesize,
 						costTime = item.progress or "0:0:0",
 						nid = 0,
+						order = item.order,
 						IsFolder=false, time_text=item.time_text})	
 			end
 		end
+
+		table.sort(LocalLoadWorld.dsWorlds, function(a, b)
+			return (a.order or 0) > (b.order or 0);
+		end)
 
 		-- select the first world if any. 
 		if(bSelectFirst and #LocalLoadWorld.dsWorlds > 0) then

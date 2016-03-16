@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Editor</title>
+  <style type="text/css" media="screen">
+    .ace_editor {
+		border: 1px solid lightgray;
+		margin: auto;
+		height: 200px;
+		width: 80%;
+	}
+  </style>
+</head>
+<body>
+<pre id="editor">
+local function abc()
+	print("hello")
+end
+</pre>
+<script src="ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/github");
+    editor.session.setMode("ace/mode/lua");
+	editor.setAutoScrollEditorIntoView(true);
+    editor.setOption("maxLines", 30);
+    editor.setOption("minLines", 5);
+</script>
+
+</body>
+</html>

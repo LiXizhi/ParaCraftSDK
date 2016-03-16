@@ -150,6 +150,7 @@ function WorldCommon.GetWorldInfo()
 	return WorldCommon.world_info;
 end
 
+
 -- leave the world. this function is called automatically by the HomeLandGateway whenever user leaves the world for the public world. 
 -- it is safe to call this function many times. 
 -- @param callbackFunc: nil or a call back function(result)  end, where result is same as MessageBox result. 

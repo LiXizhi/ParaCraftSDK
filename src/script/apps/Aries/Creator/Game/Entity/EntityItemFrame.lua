@@ -14,6 +14,7 @@ NPL.load("(gl)script/apps/Aries/Creator/Game/Common/Direction.lua");
 NPL.load("(gl)script/apps/Aries/Creator/Game/Entity/EntityBlockBase.lua");
 NPL.load("(gl)script/apps/Aries/Creator/Game/Effects/Image3DDisplay.lua");
 NPL.load("(gl)script/apps/Aries/Creator/Game/Items/ItemClient.lua");
+local ShapeAABB = commonlib.gettable("mathlib.ShapeAABB");
 local ItemClient = commonlib.gettable("MyCompany.Aries.Game.Items.ItemClient");
 local Image3DDisplay = commonlib.gettable("MyCompany.Aries.Game.Effects.Image3DDisplay");
 local Direction = commonlib.gettable("MyCompany.Aries.Game.Common.Direction")
@@ -36,6 +37,14 @@ Entity.is_regional = true;
 Entity.text_offset = {x=0,y=0.42,z=0.315};
 
 function Entity:ctor()
+end
+
+-- return empty collision AABB, since it does not have physics. 
+function Entity:GetCollisionAABB()
+	if(not self.aabb) then
+		self.aabb = ShapeAABB:new();
+	end
+	return self.aabb;
 end
 
 function Entity:LoadFromXMLNode(node)

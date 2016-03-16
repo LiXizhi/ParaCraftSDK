@@ -258,28 +258,20 @@ function Entity:SetCameraCollision(has_collision)
 end
 
 function Entity:IsCameraHidden()
-	return self.is_model_hidden;
+	return not self:IsVisible();
 end
 
 function Entity:HideCameraModel()
 	if(not self:IsCameraHidden()) then
-		local obj = self:GetInnerObject();
-		if(obj) then
-			obj:SetField("visible", false);
-			self.is_model_hidden = true;
-			self:cameraHidden();
-		end
+		self:SetVisible(false);
+		self:cameraHidden();
 	end
 end
 
 function Entity:ShowCameraModel()
 	if(self:IsCameraHidden()) then
-		local obj = self:GetInnerObject();
-		if(obj) then
-			obj:SetField("visible", true);
-			self.is_model_hidden = false;
-			self:cameraShown();
-		end
+		self:SetVisible(true);
+		self:cameraShown();
 	end
 end
 

@@ -61,9 +61,12 @@ local CommandManager = commonlib.gettable("MyCompany.Aries.Game.CommandManager")
 
 local Entity = commonlib.inherit(commonlib.gettable("System.Core.ToolBase"), commonlib.gettable("MyCompany.Aries.Game.EntityManager.Entity"));
 
+Entity:Property({"position", nil, "getPosition", "setPosition"});
+
 Entity:Signal("focusIn");
 Entity:Signal("focusOut");
 Entity:Signal("valueChanged");
+
 
 local math_abs = math.abs;
 
@@ -152,6 +155,18 @@ function Entity:Reset()
 		self.lifetime = nil;
 	end
 end		
+
+-- return true if the entity is controlled remotely by the server. 
+-- i.e. whether this entity is a client proxy of server entity. 
+function Entity:IsRemote()
+	return GameLogic.IsRemote and not self.bIsLocal;
+end
+
+-- set whether this entity is a local entity even the game logic is in remote mode. 
+-- @sa self:IsRemote().
+function Entity:SetLocal(bForceLocal)
+	self.bIsLocal = bForceLocal;
+end
 
 -- created on demand for editors
 function Entity:GetEditModel()
@@ -352,10 +367,6 @@ function Entity:OnFocusOut()
 	self.has_focus = nil;
 	local obj = self:GetInnerObject();
 	if(obj) then
-		-- following line is already done in c++
-		--obj:SetVisible(true);
-		--obj:GetEffectParamBlock():SetFloat("g_opacity", 1);
-
 		-- make it linear movement style
 		obj:SetField("MovementStyle", 3);
 		obj:SetField("SkipPicking", false);
@@ -367,7 +378,12 @@ function Entity:SetVisible(bVisible)
 	local obj = self:GetInnerObject();
 	if(obj) then
 		obj:SetVisible(bVisible == true);
+		self.visible = bVisible == true;
 	end
+end
+
+function Entity:IsVisible()
+	return self.visible ~= false;
 end
 
 function Entity:IsFlying()
@@ -599,22 +615,14 @@ function Entity:Jump()
 	end
 end
 
+-- @param value: if nil, it will use the global gravity. 
 function Entity:SetGravity(value)
-	local obj = self:GetInnerObject();
-	if(obj) then
-		obj:SetField("Gravity", value);
-	end
+	self.gravity = value;
 end
 
-function Entity:GetGravity(value)
-	local obj = self:GetInnerObject();
-	if(obj) then
-		return obj:GetField("Gravity", 9.81);
-	else
-		return 9.81;
-	end
+function Entity:GetGravity()
+	return self.gravity or GameLogic.options:GetGravity();
 end
-
 
 -- get data container. 
 function Entity:GetDataContainer()
@@ -1071,6 +1079,7 @@ function Entity:SetBlockPos(bx, by, bz)
 			obj:SetPosition(x,y,z);
 			obj:UpdateTileContainer();
 		end
+		self:valueChanged();
 	end
 end
 
@@ -1130,8 +1139,22 @@ function Entity:SetPosition(x, y, z)
 			obj:SetPosition(x,y,z);
 			obj:UpdateTileContainer();
 		end
+		self:valueChanged();
 	end
 end
+
+-- @return a clone of {x,y,z}
+function Entity:getPosition()
+	return vector3d:new({self:GetPosition()})
+end
+
+-- @param pos: {x,y,z}
+function Entity:setPosition(pos)
+	if(pos and type(pos) == "table") then
+		self:SetPosition(pos[1], pos[2], pos[3]);
+	end
+end
+
 
 -- virtual function: Get real world position. if not exist, we will convert from block position. 
 function Entity:GetPosition()
@@ -1186,14 +1209,18 @@ function Entity:UpdatePosition(x,y,z)
 		end
 	end
 	local old_bx, old_by, old_bz = self.bx, self.by, self.bz
-		
-	self.x, self.y, self.z = x,y,z;
-	local bx, by, bz = BlockEngine:block(x,y+0.1,z); 
 
-	if(old_bx~= bx or old_by~=by or old_bz~=bz) then
-		self.bx, self.by, self.bz = bx,by,bz;
-		-- update position
-		self:UpdateBlockContainer();
+	if(self.x~=x or self.y ~= y or self.z~=z) then
+		self.x, self.y, self.z = x,y,z;
+
+		local bx, by, bz = BlockEngine:block(x,y+0.1,z); 
+		if(old_bx~= bx or old_by~=by or old_bz~=bz) then
+			self.bx, self.by, self.bz = bx,by,bz;
+			-- update position
+			self:UpdateBlockContainer();
+		end
+
+		self:valueChanged();
 	end
 	return obj;
 end
@@ -1482,11 +1509,30 @@ local inverse_fps = 1/30;
 -- @param x,y,z: velocity in x,y,z direction. 
 function Entity:AddVelocity(x,y,z)
 	if(self.motionX) then
-		self:AddMotion(x*inverse_fps, y*inverse_fps, z*inverse_fps);
+		self:AddMotion((x or 0)*inverse_fps, (y or 0)*inverse_fps, (z or 0)*inverse_fps);
 	else
 		self:GetPhysicsObject():AddVelocity(x,y,z);
 	end
 end
+
+-- Set current velocity of the entity. 
+-- @param x,y,z: velocity in x,y,z direction. all may be nil to retain last speed. 
+function Entity:SetVelocity(x,y,z)
+	if(self.motionX) then
+		if(x) then
+			self.motionX = x*inverse_fps;
+		end
+		if(y) then
+			self.motionY = y*inverse_fps;
+		end
+		if(z) then
+			self.motionZ = z*inverse_fps;
+		end
+	else
+		self:GetPhysicsObject():SetVelocity(x,y,z);
+	end
+end
+
 
 -- Adds to the current motion of the entity. 
 -- @param x,y,z: velocity in x,y,z direction. 
@@ -1812,6 +1858,16 @@ function Entity:GetBoundRadius()
 		return obj:GetField("radius", 0);
 	end
 	return 0;
+end
+
+-- set speed decay. percentage of motion lost per tick. 
+-- @param surface_decay:  [0,1]. 0 means no speed lost, 1 will lost all speed.  default to 0.5
+function Entity:SetSurfaceDecay(surface_decay)
+	self.surface_decay = surface_decay;
+end
+
+function Entity:GetSurfaceDecay()
+	return self.surface_decay or 0.5;
 end
 
 -- called when ever an editor like EditEntityPage is opened for this entity

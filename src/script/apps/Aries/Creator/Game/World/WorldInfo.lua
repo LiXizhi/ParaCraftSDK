@@ -3,6 +3,10 @@ Title: WorldInfo
 Author(s): LiXizhi
 Date: 2014/6/30
 Desc: base world info. world info is saved to disk file ([worldpath]/tag.xml)
+game logic filters:
+	load_world_info(worldInfo, xmlNode)
+	save_world_info(worldInfo, xmlNode)
+
 use the lib:
 ------------------------------------------------------------
 NPL.load("(gl)script/apps/Aries/Creator/Game/World/WorldInfo.lua");
@@ -43,6 +47,8 @@ function WorldInfo:LoadFromXMLNode(node)
 		self.weather_type = node.attr.weather_type;
 		self.weather_strength = tonumber(node.attr.weather_strength);
 		self:SetTotalWorldTime(tonumber(self.totaltime) or 0);
+
+		GameLogic.GetFilters():apply_filters("load_world_info", self, node);
 	end
 end
 
@@ -67,6 +73,8 @@ function WorldInfo:SaveToXMLNode(node)
 		texture_pack_text = self.texture_pack_text or "",
 		totaltime = self:GetWorldTotalTime(),
 	};
+
+	GameLogic.GetFilters():apply_filters("save_world_info", self, node);
 	return node;
 end
 

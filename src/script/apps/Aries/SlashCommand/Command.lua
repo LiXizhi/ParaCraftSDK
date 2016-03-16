@@ -126,6 +126,8 @@ end
 
 -- virtual :
 -- compile and run the given command and return the result. 
+-- @return p1, p2: if p1 is false, then p2 is the label name where to goto. If p2 is nil, it means end of all lines. 
+-- if p1 is not false, such as nil or any other value, the next command will be invoked normally. 
 function Command:Run(cmd_name, cmd_text, ...)
 	if(self.handler) then
 		local cmd_params;

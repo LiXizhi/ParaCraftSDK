@@ -1,0 +1,133 @@
+<?npl
+--[[
+Title: 
+Author: leio
+Date: 2016/3/9
+Desc: 
+]]
+
+function add_metadata (meta_type, object_id, meta_key, meta_value, unique)
+	if(not meta_type or not object_id or not meta_key)then
+		return
+	end
+	if(type (object_id) ~= "number")then
+		return
+	end
+	local table = _get_meta_table (meta_type);
+	if ( not table)then
+		return;
+	end
+	local column = sanitize_key (meta_type .. '_id');
+
+	if(unique)then
+	local query = string.format("select count(*) from %s where meta_key = '%s' and %s = %d",table,meta_key,column,object_id);
+	    if(wpdb_mysql:get_var(query))then
+            return
+        end
+    end
+	meta_value = maybe_serialize (meta_value);
+
+    wpdb_mysql:query (string.format ("insert into %s (%s,meta_key,meta_value) values (%d,'%s','%s')", table, column, object_id, meta_key, meta_value));
+end
+function update_metadata (meta_type, object_id, meta_key, meta_value, prev_value)
+	if(not meta_type or not object_id or not meta_key)then
+		return
+	end
+	if(type (object_id) ~= "number")then
+		return
+	end
+	local table = _get_meta_table (meta_type);
+	if ( not table)then
+		return;
+	end
+	local column = sanitize_key (meta_type .. '_id');
+	local id_column = "meta_id";
+	if(meta_type == "user")then
+		id_column = "umeta_id";
+	end
+
+	local query = string.format ("select %s from %s where meta_key='%s' and %s=%d ", id_column, table, meta_key, column,object_id);
+	local row = wpdb_mysql:get_row (query);
+	if(not row)then
+		add_metadata (meta_type, object_id, meta_key, meta_value);
+		return
+	end
+	meta_value = maybe_serialize (meta_value);
+
+    wpdb_mysql:query (string.format ("update %s set meta_value='%s' where meta_key = '%s' and %s=%d", table, meta_value,meta_key, column, object_id));
+end
+function delete_metadata (meta_type, object_id, meta_key, meta_value, delete_all)
+    if(not meta_type or not object_id or not meta_key)then
+    return
+    end
+    if(type (object_id) ~= "number")then
+    return
+    end
+    local table = _get_meta_table (meta_type);
+    if ( not table)then
+    return;
+    end
+    local type_column = sanitize_key (meta_type .. '_id');
+    local id_column = "meta_id";
+    if(meta_type == "user")then
+    id_column = "umeta_id";
+    end
+    meta_value = maybe_serialize (meta_value);
+    local query = string.format ("select %s from %s where meta_key='%s'", id_column, table, meta_key);
+    if(not delete_all)then
+        query = string.format ("%s and %s=%d", query, type_column, object_id);
+    end
+    if(meta_value and meta_value ~= "")then
+        query = string.format ("%s and meta_value=%s", query, meta_value);
+    end
+    local meta_ids = wpdb_mysql:get_col( query );
+    if(not meta_ids or #meta_ids == 0)then
+        return
+    end
+    query = string.format("delete from %s where %s in(%s)",table, id_column, implode(",", meta_ids ));
+    wpdb_mysql:query(query);
+end
+function get_metadata (meta_type, object_id, meta_key, single)
+    if(not meta_type or not object_id or not meta_key)then
+    return
+    end
+    if(type (object_id) ~= "number")then
+    return
+    end
+    local table = _get_meta_table (meta_type);
+    if ( not table)then
+    return;
+    end
+    local column = sanitize_key (meta_type .. '_id');
+    local id_column = "meta_id";
+    if(meta_type == "user")then
+    id_column = "umeta_id";
+    end
+
+    local query = string.format ("select meta_value from %s where meta_key='%s' and %s=%d ", table, meta_key, column,object_id);
+    local results = wpdb_mysql:get_col(query);
+    if(results)then
+        if(single)then
+            return maybe_unserialize(results[1]);
+        end
+    end
+    return results;
+end
+function metadata_exists (meta_type, object_id, meta_key)
+    if(get_metadata (meta_type, object_id, meta_key, true))then
+        return true;
+    end
+end
+function get_metadata_by_mid (meta_type, meta_id)
+end
+function update_metadata_by_mid (meta_type, meta_id, meta_value, meta_key)
+end
+function delete_metadata_by_mid (meta_type, meta_id)
+end
+function _get_meta_table (type)
+	if(not type)then
+		return
+	end
+	type = string.format ("wp_%smeta", type);
+	return type;
+end

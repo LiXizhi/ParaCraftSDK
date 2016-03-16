@@ -67,7 +67,7 @@ function block:OnBlockRemoved(x, y, z, last_id, last_data)
 			local data = BlockEngine:GetBlockData(x,y,z);
 
 			if (block_types.blocks.Piston.isExtended(data)) then
-				block_types.blocks.Piston:DropBlockAsItem(x,y,z, data, 0);
+				block_types.blocks.Piston:DropBlockAsItem(x,y,z);
 				BlockEngine:SetBlockToAir(x,y,z);
 			end
 		end

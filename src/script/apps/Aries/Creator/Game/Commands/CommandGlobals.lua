@@ -207,7 +207,7 @@ local item_name_map = {["exp"]="Exp", ["coin"]="Coin", ["water"]="Water",["stami
 
 Commands["add"] = {
 	name="add", 
-	quick_ref="add [name] [value]", 
+	quick_ref="/add [name] [value]", 
 	desc=[[add name, value pair to local server. e.g.
 /add Coin 1
 /add Stamina -1

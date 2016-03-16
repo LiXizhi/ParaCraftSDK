@@ -10,16 +10,23 @@ local WebTutorials = commonlib.gettable("MyCompany.Aries.Creator.Game.Desktop.We
 WebTutorials:Show();
 WebTutorials:Dismiss();
 WebTutorials:Close();
+WebTutorials:Play();
+WebTutorials:ShowWebWiki(word);
 -------------------------------------------------------
 ]]
 NPL.load("(gl)script/ide/System/Windows/Window.lua");
 local Window = commonlib.gettable("System.Windows.Window")
 local GameLogic = commonlib.gettable("MyCompany.Aries.Game.GameLogic")
 local BlockEngine = commonlib.gettable("MyCompany.Aries.Game.BlockEngine")
+local block_types = commonlib.gettable("MyCompany.Aries.Game.block_types")
+local ItemClient = commonlib.gettable("MyCompany.Aries.Game.Items.ItemClient");
 local WebTutorials = commonlib.inherit(commonlib.gettable("System.Core.ToolBase"), commonlib.gettable("MyCompany.Aries.Creator.Game.Desktop.WebTutorials"));
 WebTutorials:Property("Name", "WebTutorials");
 WebTutorials:Property({"filename", "config/Aries/creator/WebTutorials.xml"});
 WebTutorials:Property({"CurrentTutorial", nil, auto=true});
+WebTutorials:Property({"wiki_root", "https://github.com/LiXizhi/ParaCraft/wiki/"});
+WebTutorials:Property({"isDirty", true, "IsDirty", "SetDirty"});
+
 -- whenever the current tutorial is changed
 WebTutorials:Signal("tutorialChanged", function(tutorial) end)
 
@@ -29,9 +36,22 @@ function WebTutorials:ctor()
 	-- list of all tutorials
 	self.tutorials = {};
 	
+	self:LoadTranslations();
 	self:LoadAllTutorials();
 	self.window = Window:new();
 	self.window:SetCanDrag(true);
+end
+
+-- from user action to display text
+function WebTutorials:LoadTranslations()
+	self.translations = {
+		["introduction"] = L"新手帮助",
+		["select blocks"] = L"选择方块",
+	};
+end
+
+function WebTutorials:Translate(title)
+	return self.translations[title or ""] or title;
 end
 
 function WebTutorials:Init()
@@ -40,13 +60,6 @@ end
 
 function WebTutorials:GetWindow()
 	return self.window;
-end
-
-function WebTutorials:AutoSelectTutorial()
-	if(not self:GetCurrent()) then
-		-- use intruduction as the current tutorial 
-		self:SetCurrentTutorial("introduction");
-	end
 end
 
 function WebTutorials:Show()
@@ -81,8 +94,24 @@ function WebTutorials:Close()
 	self:Hide();
 end
 
+--@param word: wiki_word or url
+function WebTutorials:ShowWebWiki(word)
+	self:InitSingleton();
+
+	local url;
+	if(word:find("^http")) then
+		url = word;
+	else
+		url = self.wiki_root..word;
+	end
+	ParaGlobal.ShellExecute("open", url, "", "", 1);
+end
+
+-- obsoleted, now everything is loaded from wiki site
 function WebTutorials:LoadAllTutorials()
-	
+	do 
+		return
+	end
 	local xmlRoot = ParaXML.LuaXML_ParseFile(self.filename);
 	if(not xmlRoot) then
 		LOG.std(nil, "warn", "WebTutorials", "failed to open file %s", self.filename);
@@ -107,7 +136,7 @@ function Tutorial:ctor()
 	self.showcount = 0;
 end
 
-function Tutorial:init(title, difficulty, url)
+function Tutorial:init(title, url, difficulty)
 	self.title = title or self.title;
 	self.difficulty = difficulty or self.difficulty;
 	self.url = url or self.url;
@@ -149,7 +178,7 @@ function Tutorial:GetTimeLengthText()
 end
 
 function Tutorial:Play()
-	ParaGlobal.ShellExecute("open", self.url, "", "", 1);
+	WebTutorials:ShowWebWiki(self.url);
 end
 
 function WebTutorials:GetTutorialByKey(keyname)
@@ -171,44 +200,94 @@ function WebTutorials:AddTutorial(attr)
 	end
 end
 
-function WebTutorials:SetCurrentTutorial(name)
-	if(self.currentTutorialName ~= name) then
-		local tutorial;
-		if(name) then
-			tutorial = self:GetTutorialByKey(name);
-		end
+function WebTutorials:SetWiki(wiki)
+	if(self.wiki ~= wiki) then
+		self.wiki = wiki;
+		self:SetDirty(true);
+	end
+end
+
+function WebTutorials:SetDirty(isDirty)
+	self.isDirty = isDirty;
+end
+
+function WebTutorials:SetTutorial(tutorial)
+	if(self.currentTutorial ~= tutorial) then
 		if(tutorial and tutorial:IsDismissed()) then
 			return;
 		end
-		self.currentTutorialName = name;
 		self.currentTutorial = tutorial;
+		self:SetDirty(true);
+		self:Update();
+		self:tutorialChanged(tutorial); -- signal
+	end
+end
 
-		if(tutorial) then
-			tutorial:AddShowCount();
+function WebTutorials:Update()
+	if(self.isDirty) then
+		self:SetDirty(false);
+		if(self.window) then
 			self.window:resize(400, 80);
 			self.window:RefreshUrlComponent();
 			self.window:SetSizeToUsedSize();
 			self.window:show();
 		end
-		
-		self:tutorialChanged(tutorial); -- signal
 	end
-end
-
--- return current tutorial name
-function WebTutorials:GetCurrentTutorial()
-	return self.currentTutorialName;
 end
 
 function WebTutorials:GetCurrent()
 	return self.currentTutorial;
 end
 
+function WebTutorials:AutoSelectTutorial()
+	self:InitSingleton();
+	-- use last action or intruduction as the current tutorial 
+	self:OnUserAction(GameLogic:GetLastUserAction() or "introduction");
+end
+
+function WebTutorials:Play()
+	local tutorial = self:GetCurrent();
+	if(tutorial) then
+		tutorial:Play();
+	end
+end
+
+-- @param name: action name
+-- @return: a table of {title=string, url=string, wikiword=string}
+function WebTutorials:GetWikiTutorialFromUserAction(name)
+	local wiki = Tutorial:new();
+	wiki.title = name;
+	local wikiword = name:gsub("[%s%W]+", "_");
+	local part1, part2 = name:match("^(%w+)%s+(.*)$");
+	if(part1 == "take") then
+		local itemName = part2;
+		if(itemName) then
+			local item = ItemClient.GetItemByName(itemName);
+			if(item) then
+				wiki.title = item:GetDisplayName();
+				wikiword = "item_"..itemName;
+			end
+		end
+	elseif(part1 == "cmd") then
+		local cmd_name = part2:match("%w+")
+		if(cmd_name) then
+			wiki.title = format(L"命令 /%s", cmd_name);
+			wikiword = "cmd_"..cmd_name;
+		else
+			return;
+		end
+	end
+	wiki.title = self:Translate(wiki.title);
+	wiki.url = self.wiki_root..wikiword;
+	return wiki;
+end
+
 -- user has just acted on a given action. 
 function WebTutorials:OnUserAction(name)
-	if(not self:GetTutorialByKey(name or "")) then
-		name = nil;
+	local tutorial = self:GetWikiTutorialFromUserAction(name);
+	-- Note: we no longer show local tutorial, all tutorial is wiki based now. 
+	-- tutorial = self:GetTutorialByKey(name or "")
+	if(tutorial) then
+		self:SetTutorial(tutorial);
 	end
-	
-	self:SetCurrentTutorial(name);
 end

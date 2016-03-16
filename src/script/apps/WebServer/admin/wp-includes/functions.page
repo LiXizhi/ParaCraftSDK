@@ -133,3 +133,27 @@ function wp_send_json( value )
 	response:set_header('Content-Type', 'application/json');
 	echo(json_encode( value ));
 end
+
+--Serialize data, if needed.
+function maybe_serialize( data )
+	return commonlib.serialize(data);
+end
+--Unserialize value only if it was serialized.
+function maybe_unserialize(data)
+    return commonlib.LoadTableFromString(data);
+end
+--Join array elements with a string
+--Join array elements with a glue string.
+function implode(glue, pieces)
+    glue = glue or "";
+    local k,v;
+    local result = "";
+    for k,v in ipairs(pieces)do
+        if(k == 1)then
+            result = tostring(v);
+        else
+            result = string.format("%s%s%s",result,glue,tostring(v));
+        end
+    end
+    return result;
+end

@@ -102,7 +102,7 @@ function RuleBlock:canPlaceBlockOnSide(x,y,z,side)
 end
 
 -- whether we can destroy block at the given position. 
-function RuleBlock:CanDestroyBlockAt(x,y,z, game_mode)
+function RuleBlock:CanDestroyBlockAt(x,y,z)
 	return self.canDestroy;
 end
 

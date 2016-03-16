@@ -82,6 +82,7 @@ function ItemColorBlock:PaintBlock(x,y,z, color)
 	end
 end
 
+-- static function: from color to data
 function ItemColorBlock:ColorToData(color)
 	return Color.convert32_16(color);
 end

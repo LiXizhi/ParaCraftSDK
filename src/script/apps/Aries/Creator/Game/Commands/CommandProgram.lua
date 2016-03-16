@@ -45,6 +45,7 @@ Commands["if"] = {
 	name="if", 
 	quick_ref="/if var1==var2 [/othercommand|then]", 
 	desc=[[do a command if var1==var2, also support operators like < <= >= >
+To embed other commands in variables use $(other command text), such as $(rand)
 Examples: 
 /if %name% == 0 /tip your name is 0
 /if %name% == "0" /tip your name is 0

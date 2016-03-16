@@ -499,6 +499,7 @@ function pe_mc_slot.GetNodeByMousePosition(m_x, m_y)
 		m_x, m_y = ParaUI.GetMousePosition();
 	end
 
+	local candidateNode, candidatePath;
 	local temp_removelist;
 	for ui_id, mcmlNode in pairs(pe_mc_slot.block_icon_instances) do
 		local _dragtarget = ParaUI.GetUIObject(ui_id);
@@ -509,8 +510,23 @@ function pe_mc_slot.GetNodeByMousePosition(m_x, m_y)
 				-- mark gsid
 
 				-- ensure that the node is 95% visible in its parent container(just in case of a scrollable container)
-				if(not _guihelper.IsUIObjectClipped(_dragtarget, 0.2)) then
-					return mcmlNode;
+				if(_dragtarget:GetField("VisibleRecursive", false) and not _guihelper.IsUIObjectClipped(_dragtarget, 0.2)) then
+					local path = 0;
+					local parent = _dragtarget;
+					while parent and parent:IsValid() do
+						local index = parent:GetField("index", 0);
+						if(index>=0) then
+							path = index + path / 100;
+							parent = parent.parent;
+						else
+							break;
+						end
+					end
+					-- compare with last candidates. 
+					if(not candidatePath or candidatePath < path) then
+						candidateNode = mcmlNode;
+						candidatePath = path;
+					end
 				end
 			end
 		else
@@ -523,6 +539,7 @@ function pe_mc_slot.GetNodeByMousePosition(m_x, m_y)
 			pe_mc_slot.block_icon_instances[ui_id] = nil;
 		end
 	end
+	return candidateNode;
 end
 
 -- user clicks on the fullscreen click drag canvas, we will find a valid target

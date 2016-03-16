@@ -17,6 +17,11 @@ NPL.load("(gl)script/ide/Debugger/NPLCompiler.lua");
 
 if(not NPL) then NPL={}; end
 
+-- @param returnCode: default to 0
+function exit(returnCode)
+	ParaGlobal.Exit(returnCode or 0);
+end
+
 if(luaopen_cURL) then
 	-- open cURL();
 	luaopen_cURL();
@@ -24,27 +29,14 @@ if(luaopen_cURL) then
 end
 
 -- return the content of a given url. 
--- e.g.  commonlib.log(NPL.GetURL("www.paraengine.com"))
+-- e.g.  echo(NPL.GetURL("www.paraengine.com"))
 -- @param url: a REST like url. 
--- @param callbackFunc: optional. if nil, the function will not return until result is known. 
---  Otherwise, it will return immediately and result is in function callbackFunc(str) end
--- @return: return the string content or nil if url is not found. 
-function NPL.GetURL(url, callbackFunc)
-	if(callbackFunc == nil) then
-		local c = cURL.easy_init()
-		local result;
-		-- setup url
-		c:setopt_url(url)
-		-- perform, invokes callbacks
-		c:perform({writefunction = function(str) 
-				if(result) then
-					result = result..str;
-				else
-					result = str;
-				end	
-			 end})
-		return result
-	end		 
+-- @param callbackFunc: a function(msg:{headers, code, rcode==200}) end, 
+--  if nil, the function will not return until result is returned(sync call).
+-- @return: return nil if callbackFunc is a function. or the string content in sync call. 
+function NPL.GetURL(url, callbackFunc, option)
+	NPL.load("(gl)script/ide/System/os/GetUrl.lua");
+	return System.os.GetUrl(url, callbackFunc, option);
 end
 
 -- this function just repeatedly calls NPL.activate() until either the message is successfully sent out or timeout_seconds is reached. 

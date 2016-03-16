@@ -11,6 +11,7 @@ local context = SceneContextManager:GetCurrentContext();
 local context = SceneContextManager:GetContext("Default");
 ------------------------------------------------------------
 ]]
+NPL.load("(gl)script/ide/os.lua");
 NPL.load("(gl)script/ide/System/Windows/KeyEvent.lua");
 local KeyEvent = commonlib.gettable("System.Windows.KeyEvent");
 NPL.load("(gl)script/ide/System/Windows/MouseEvent.lua");

@@ -33,11 +33,18 @@ function GetDS(index)
     end
 end
 
+function OnShowCmdHelp()
+    local command = (CommandHelpPage.cur_ds)[1];
+    if(command and command.name) then
+        GameLogic.RunCommand("/wiki cmd_"..command.name);
+    end
+end
+
 function GetCommandStr()
     local words;
     local command = (CommandHelpPage.cur_ds)[1];
     if(command) then
-        local title = string.format("<div style='font-weight:bold;'>%s</div><div>%s</div>",L"命令格式",command.quick_ref);
+        local title = string.format("<div style='font-weight:bold;'>%s <input type='button' value='%s' style='float:left;margin-left:10px;' onclick='OnShowCmdHelp' class='mc_button_blue' /></div><div>%s</div>",L"命令格式",L"帮助", command.quick_ref);
 
         local param_words = string.format("<div style='font-weight:bold;'>%s</div>",L"命令参数");
         local params = command.params;

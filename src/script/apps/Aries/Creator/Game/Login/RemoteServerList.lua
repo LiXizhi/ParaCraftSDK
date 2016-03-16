@@ -156,6 +156,7 @@ function RemoteServerList:LoadFromLocalDisk()
 				force_nid = 0,
 				world_mode = if_else(world.IsFolder, "edit", "game"),
 				foldername = world.foldername,
+				is_zip = (world.IsFolder==false),
 			};
 		end
 	end

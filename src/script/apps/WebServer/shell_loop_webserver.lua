@@ -19,7 +19,7 @@ main_state = nil;
 
 -- init UI console
 local function InitUIConsole()
-	if(ParaUI and ParaUI.CreateUIObject) then
+	if(ParaUI and ParaUI.CreateUIObject and not ParaEngine.GetAttributeObject():GetField("IsServerMode", false)) then
 		-- load game server console
 		NPL.load("(gl)script/ide/Debugger/MCMLConsole.lua");
 		local init_page_url = nil;

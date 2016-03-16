@@ -23,18 +23,19 @@ local Commands = commonlib.gettable("MyCompany.Aries.Game.Commands");
 local CommandManager = commonlib.gettable("MyCompany.Aries.Game.CommandManager");
 local EntityManager = commonlib.gettable("MyCompany.Aries.Game.EntityManager");
 
---[[ look at a given position or player
-]]
+
 Commands["lookat"] = {
 	name="lookat", 
 	quick_ref="/lookat [@playername] [x y z]", 
-	desc="look at a given direction. ", 
+	desc=[[look at a given direction or player
+Example:
+/lookat -1 ~ ~   lookat negative x direction
+]], 
 	handler = function(cmd_name, cmd_text, cmd_params, fromEntity)
 		if(cmd_text) then
 			local playerEntity, lookat_x, lookat_y, lookat_z;
 			playerEntity, cmd_text  = CmdParser.ParsePlayer(cmd_text);
 			if(not playerEntity) then
-				CmdParser.ParsePlayer(cmd_text);
 				lookat_x, lookat_y, lookat_z, cmd_text = CmdParser.ParsePos(cmd_text, fromEntity);
 				if(lookat_x) then
 					lookat_x, lookat_y, lookat_z = BlockEngine:real(lookat_x, lookat_y, lookat_z);

@@ -116,7 +116,7 @@ function Entity:OffsetActorPositions(offset_bx, offset_by, offset_bz)
 	for i=1, self.inventory:GetSlotCount() do
 		local itemStack = self.inventory:GetItem(i);
 		if(itemStack and itemStack.count > 0 and itemStack.serverdata) then
-			if(itemStack.id == block_types.names.TimeSeriesNPC) then
+			if(itemStack.id == block_types.names.TimeSeriesNPC or itemStack.id == block_types.names.TimeSeriesOverlay) then
 				local timeSeries = itemStack.serverdata.timeseries;
 				if(timeSeries) then
 					offset_time_variable(timeSeries.x, offset_x);
@@ -145,6 +145,24 @@ function Entity:OffsetActorPositions(offset_bx, offset_by, offset_bz)
 					offset_time_variable(timeSeries.lookat_x, offset_x);
 					offset_time_variable(timeSeries.lookat_y, offset_y);
 					offset_time_variable(timeSeries.lookat_z, offset_z);
+				end
+			elseif(itemStack.id == block_types.names.TimeSeriesCommands) then
+				local timeSeries = itemStack.serverdata.timeseries;
+				if(timeSeries and timeSeries.blocks and timeSeries.blocks.data) then
+					local data = timeSeries.blocks.data;
+					for i = 1, #(data) do
+						local blocks = data[i];
+						local new_blocks = {};
+						for sparse_index, b in pairs(blocks) do
+							if(b[1]) then
+								b[1] = b[1] + offset_bx;
+								b[2] = b[2] + offset_by;
+								b[3] = b[3] + offset_bz;
+								new_blocks[BlockEngine:GetSparseIndex(b[1], b[2], b[3])] = b;
+							end
+						end
+						data[i] = new_blocks;
+					end
 				end
 			end
 		end

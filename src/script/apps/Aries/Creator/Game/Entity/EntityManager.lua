@@ -229,7 +229,7 @@ function EntityManager.RemoveObject(entity)
 		entity.obj_id = nil;
 	end
 	local name = entity.name;
-	if(name and name == obj_name_maps[name]) then
+	if(name and entity == obj_name_maps[name]) then
 		obj_name_maps[name] = nil;
 	end
 	if(entity.entityId and entity_id_maps[entity.entityId] == entity) then
@@ -668,7 +668,10 @@ function EntityManager.FrameMove(deltaTime)
 	end
 	commonlib.npl_profiler.perf_begin("EntityManager.FrameMove");
 
-	player:UpdatePosition();
+	local focus_entity = EntityManager.GetFocus();
+	if(focus_entity) then
+		focus_entity:UpdatePosition();
+	end
 
 	frame_count = frame_count + 1;
 	

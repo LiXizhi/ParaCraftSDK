@@ -231,7 +231,11 @@ function ChunkGenerator:GenerateChunk(chunk, x, z, external)
 		end
 
 		LOG.std(nil, "debug", "GenerateChunk", "chunk %d %d", x, z);
-		self:GenerateChunkImp(chunk, x, z, external);
+
+		if(GameLogic.GetFilters():apply_filters("before_generate_chunk", x, z)) then
+			self:GenerateChunkImp(chunk, x, z, external);
+			GameLogic.GetFilters():apply_filters("after_generate_chunk", x, z)
+		end
 
 		if(not is_suspended_before) then
 			ParaTerrain.GetBlockAttributeObject():CallField("ResumeLightUpdate");

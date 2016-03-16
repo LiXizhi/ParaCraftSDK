@@ -263,7 +263,7 @@ function block:flowIntoBlock(x,y,z, newFlowDecay)
             if (self.material == Materials.lava) then
                 -- self:triggerLavaMixEffects(x,y,z);
             else
-                -- Block.blocksList[block_id].DropBlockAsItem(x,y,z, ParaTerrain.GetBlockUserDataByIdx(x,y,z), 0);
+                -- Block.blocksList[block_id].DropBlockAsItem(x,y,z);
             end
         end
         BlockEngine:SetBlock(x,y,z, self.id, newFlowDecay, 3);

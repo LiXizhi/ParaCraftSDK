@@ -115,20 +115,7 @@ function BlockTemplatePage.CreateBuildingTaskFile(filename, blocksfilename, task
 			NPL.load("(gl)script/apps/Aries/Creator/Game/Tasks/SelectBlocksTask.lua");
 			local select_task = MyCompany.Aries.Game.Tasks.SelectBlocks.GetCurrentInstance();
 			if(select_task) then
-				local cur_selection = select_task:GetSelectedBlocks();
-				-- all relative to pivot point. 
-				local pivot_x,pivot_y,pivot_z = unpack(select_task:GetPivotPoint());
-				local block_pivot = BlockEngine:GetBlock(pivot_x,pivot_y,pivot_z);
-				if(block_pivot and block_pivot.id == block_types.names.Command_Block) then
-					-- use the displayed pivot point if it is on a command block. 
-				end
-				
-				select_task:UpdateSelectionEntityData();
-				for i = 1, #(cur_selection) do
-					-- x,y,z,block_id, data, serverdata
-					local b = cur_selection[i];
-					blocks[i] = {b[1]-pivot_x, b[2]-pivot_y, b[3]- pivot_z, b[4], if_else(b[5] == 0, nil, b[5]), b[6]};
-				end
+				local blocks = select_task:GetCopyOfBlocks();
 				blocksNum = #blocks;
 			else
 				file:close();
@@ -178,7 +165,7 @@ function BlockTemplatePage.OnClickSave()
 		filename = format("%s%s.blocks.xml", GameLogic.current_worlddir.."blocktemplates/", name_normalized);
 	elseif(isThemedTemplate) then
 		ParaIO.CreateDirectory(template_base_dir);
-		local subdir = commonlib.Encoding.Utf8ToDefault(template_dir);
+		local subdir = template_dir; -- commonlib.Encoding.Utf8ToDefault(template_dir);
 		filename = format("%s%s.blocks.xml", template_base_dir..subdir.."/"..name_normalized.."/", name_normalized);
 		taskfilename = format("%s%s.xml", template_base_dir..subdir.."/"..name_normalized.."/", name_normalized);
 	else
@@ -202,6 +189,7 @@ function BlockTemplatePage.OnClickSave()
 				BlockTemplatePage.CreateBuildingTaskFile(taskfilename, commonlib.Encoding.DefaultToUtf8(filename), name, BlockTemplatePage.blocks,desc);
 				BuildQuestProvider.RefreshDataSource();
 			end
+			GameLogic.GetFilters():apply_filters("file_exported", "template", filename);
 		end, bSaveSnapshot);
 	end
 	if(ParaIO.DoesFileExist(filename)) then
@@ -273,10 +261,17 @@ function BlockTemplatePage.GetAllTemplatesDS(bForceRefresh)
 		end
 
 		-- local dir
-		local result = commonlib.Files.Find({}, GameLogic.current_worlddir.."blocktemplates/", 0, 500, "*.blocks.xml")
-		local _, file
+		local result = commonlib.Files.Find({}, GameLogic.current_worlddir.."blocktemplates/", 0, 500, function(item)
+			if(item.filename:match("%.bmax$") or item.filename:match("%.blocks%.xml$")) then
+				return true;
+			end
+		end)
+		
 		for _, file in ipairs(result) do 
 			file.text = file.filename:match("([^/\\]+)%.blocks%.xml$")
+			if(not file.text) then
+				file.text = file.filename:match("([^/\\]+%.bmax)$")
+			end
 			if(file.text) then
 				file.text = commonlib.Encoding.url_decode(commonlib.Encoding.DefaultToUtf8(file.text));
 				file.filename = GameLogic.current_worlddir.."blocktemplates/"..file.filename;

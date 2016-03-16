@@ -1,0 +1,61 @@
+<?npl
+--[[
+Title: 
+Author: leio
+Date: 2016/3/7
+Desc: 
+]]
+function wp_signon(credentials,secure_cookie)
+	credentials = credentials or {};
+	local user_login = credentials["user_login"] or request:get("log");
+	local user_password = credentials["user_password"] or request:get("pwd");
+	local remember = credentials["remember"] or request:get("rememberme");
+
+	credentials['user_login'] = user_login;
+	credentials['user_password'] = user_password;
+	credentials['remember'] = remember;
+
+	local user = wp_authenticate(credentials['user_login'], credentials['user_password']);
+	if(is_wp_error(user))then
+		local error_codes = user:get_error_codes();
+		if(error_codes)then
+			local __,code; 
+			for __,code in ipairs(error_codes) do
+				if(code == "empty_username" or code == "empty_password")then
+					return WP_Error:new();
+				end
+			end
+		end
+		return user;
+	end
+	wp_set_auth_cookie(user.data.ID, credentials['remember']);
+	return user;
+end
+function wp_authenticate_username_password(user,username,password)
+	if(not username or not password)then
+		if(is_wp_error(user))then
+			return user;
+		end
+		local error = WP_Error:new();
+		if(not username)then
+			error:add('empty_username', ('<strong>ERROR</strong>: The username field is empty.'));
+		end
+		if(not password)then
+			error:add('empty_password', ('<strong>ERROR</strong>: The password field is empty.'));
+		end
+		return error;
+	end
+	local user = get_user_by("login",username);
+	if(not user)then
+		local error = WP_Error:new()
+		error:add("invalid_username","<strong>ERROR</strong>: Invalid username.");
+		return error;
+	end
+	if(not wp_check_password(password,user.data.user_pass, user.data.ID ))then
+		local error = WP_Error:new()
+		local s = string.format("<strong>ERROR</strong>: The password you entered for the username <strong>%s</strong> is incorrect.<a href=%s >Lost your password?</a>",username,wp_lostpassword_url());
+		error:add("incorrect_password",s);
+		return error;
+	end
+	return user;
+end

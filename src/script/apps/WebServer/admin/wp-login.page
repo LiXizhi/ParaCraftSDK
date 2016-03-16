@@ -1,0 +1,101 @@
+﻿<?npl
+--[[
+Title: login page
+Author: leio
+Date: 2016/3/3
+Desc: 
+
+]]
+include_once("wp-load.page");
+local action = (request:get("action") or "login");
+
+if(not in_array(action,{'postpass', 'logout', 'lostpassword', 'retrievepassword', 'resetpass', 'rp', 'register', 'login'}))then
+    action = 'login';
+end
+local user;
+if(action == "login")then
+    user = wp_signon();
+end
+
+--response:set_cookie("test","leio");
+--add_metadata("user",1,"test_meta","hhhhhhhhhhhhh",true);
+--update_metadata("user",1,"test_meta","bbbb");
+--delete_metadata("user",1,"test_meta",nil);
+--echo(maybe_serialize(get_metadata("user",1,"ddd")));
+echo(maybe_serialize(wp_generate_password(2,true,true)));
+?>
+<html>
+  <head>
+    <meta  http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>
+      Log in
+    </title>
+  </head>
+  <body>
+    <div>
+      <h1><a href="https://wordpress.org/" title="Powered by WordPress" tabindex="-1">HelloWorld</a></h1>
+    </div>
+    <div>
+      <?npl 
+       if(is_wp_error(user) and user:get_error_code())then
+          local errors = "";
+          local messages = "";
+          --echo(commonlib.serialize(user))
+          local __,code;
+          for __,code in ipairs(user:get_error_codes()) do
+            local messages = user:get_error_messages(code);
+            if(messages)then
+              local k,v;
+              for k,v in ipairs(messages) do
+                errors = string.format("%s   %s<br/>\n",errors,v);
+              end
+            end
+          end
+          if(errors ~= "")then
+            echo(string.format("<div>%s</div>\n",errors))
+          end
+        else
+              echo("successful!")
+       end
+    
+    ?>
+    </div>
+    <?npl if (action == "postpass") then?>
+    <p>postpass</p>
+    <?npl elseif (action == "logout") then?>
+    <p>logout</p>
+    <?npl elseif (action == "lostpassword" or action == "retrievepassword" ) then?>
+    <p>lostpassword or retrievepassword</p>
+    <?npl elseif (action == "resetpass" or action == "rp") then?>
+    <p>resetpass or rp</p>
+    <?npl elseif (action == "register") then?>
+    <p>register</p>
+    <?npl elseif (action == "login") then?>
+  
+  <?npl
+   
+  ?>
+
+  <form name="loginform" id="loginform" action="<?npl echo ( site_url( 'wp-login.page', 'login_post' ) );?>" method="post">
+  <p>
+    <label for="user_login">
+      Username
+      <br />
+      <input type="text" name="log" id="user_login" class="input" size="20" />
+    </label>
+  </p>
+  <p>
+    <label for="user_pass">
+      Password<br />
+      <input type="password" name="pwd" id="user_pass" class="input" value="" size="20" />
+    </label>
+  </p>
+  <p class="submit">
+    <input type="submit"  name="wp-submit" id="wp-submit" class="button button-primary button-large" value="Log in" />
+  </p>
+</form>
+
+    <?end?>
+  </body>
+</html>
+

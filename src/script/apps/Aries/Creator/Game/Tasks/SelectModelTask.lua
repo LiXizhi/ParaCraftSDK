@@ -43,12 +43,33 @@ function SelectModel.RegisterHooks()
 	local self = cur_instance;
 	self.sceneContext = self.sceneContext or Game.SceneContext.RedirectContext:new():RedirectInput(self);
 	self.sceneContext:activate();
+	self.sceneContext:UpdateManipulators();
 end
 
 function SelectModel.UnregisterHooks()
 	local self = cur_instance;
-	if(self) then
+	if(self and self.sceneContext) then
 		self.sceneContext:close();
+	end
+end
+
+function SelectModel:FrameMove()
+	--if(self.entity) then
+		--if(self.entity.bx) then
+			--ParaTerrain.SelectBlock(self.entity.bx, self.entity.by, self.entity.bz, true);
+		--end
+	--end
+end
+
+function SelectModel:UpdateManipulators()
+	self.sceneContext:DeleteManipulators();
+	if(self.entity) then
+		NPL.load("(gl)script/apps/Aries/Creator/Game/SceneContext/Manipulators/ActorSelectManipContainer.lua");
+		local ActorSelectManipContainer = commonlib.gettable("MyCompany.Aries.Game.Manipulators.ActorSelectManipContainer");
+		local manipCont = ActorSelectManipContainer:new();
+		manipCont:init();
+		self.sceneContext:AddManipulator(manipCont);
+		manipCont:connectToDependNode(self.entity);
 	end
 end
 
@@ -310,16 +331,6 @@ function SelectModel:Undo()
 		end
 	end
 end
-
-
-function SelectModel:FrameMove()
-	if(self.entity) then
-		if(self.entity.bx) then
-			ParaTerrain.SelectBlock(self.entity.bx, self.entity.by, self.entity.bz, true);
-		end
-	end
-end
-
 
 function SelectModel:OnExit()
 	SelectModel.EndEditing();

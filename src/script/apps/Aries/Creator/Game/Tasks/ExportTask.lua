@@ -5,11 +5,13 @@ Date: 2015/9/28
 Desc: allow the user to select to export as bmax model or block template. 
 
 ---++ plugins
+To add your own filter, hook "GetExporters" like below
 GameLogic.GetFilters():add_filter("GetExporters", function(exporters)
 	exporters[#exporters+1] = {id="STL", title="STL exporter", desc="export stl files for 3d printing"}
 	return exporters;
 end);
 
+To respond to user click event, hook "select_exporter" like below
 GameLogic.GetFilters():add_filter("select_exporter", function(id)
 	if(id == "STL") then
 		id = nil; -- prevent other exporters
@@ -17,6 +19,9 @@ GameLogic.GetFilters():add_filter("select_exporter", function(id)
 	end
 	return id;
 end);
+
+When user has successfully exported a file, it is recommended to apply "file_exported" like below
+GameLogic.GetFilters():apply_filters("file_exported", id, filename);
 
 use the lib:
 ------------------------------------------------------------
@@ -143,7 +148,11 @@ function Export.ExportAsBMax()
 	local SaveFileDialog = commonlib.gettable("MyCompany.Aries.Game.GUI.SaveFileDialog");
 	SaveFileDialog.ShowPage(L"请输入bmax文件名称", function(result)
 		if(result and result~="") then
-			GameLogic.RunCommand("savemodel", result);
+			local filename = result;
+			local bSuccess, filename = GameLogic.RunCommand("savemodel", filename);
+			if(bSuccess and filename) then
+				GameLogic.GetFilters():apply_filters("file_exported", "bmax", filename);
+			end
 		end
 	end, nil, nil, "bmax");
 end

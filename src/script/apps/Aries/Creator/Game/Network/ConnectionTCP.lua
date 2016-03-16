@@ -20,9 +20,19 @@ local ConnectionTCP = commonlib.inherit(commonlib.gettable("MyCompany.Aries.Game
 function ConnectionTCP:ctor()
 end
 
+function ConnectionTCP:ConnectByIP(ip, port)
+	 
+	local params = {host = tostring(ip), port = tostring(port), nid = ""};
+	NPL.AddNPLRuntimeAddress(params);
+end
+
 -- @param thread: NPL state name, default to "gl"
-function ConnectionTCP:Init(nid, thread, net_handler)
+function ConnectionTCP:Init(nid, thread, net_handler, tunnelClient)
 	self.thread = thread;
+	self.tunnelClient = tunnelClient;
+	if(tunnelClient) then
+		tunnelClient:AddVirtualConnection(nid, self);
+	end
 	self:SetNid(nid);
 	self:SetNetHandler(net_handler);
 	return self;
@@ -39,4 +49,22 @@ end
 
 function ConnectionTCP:OnNetReceive(msg)
 	ConnectionTCP._super.OnNetReceive(self, msg);
+end
+
+function ConnectionTCP:Connect(timeout, callback_func)
+	if(self.tunnelClient) then
+		if(callback_func) then
+			self.tunnelClient:LoginTunnel(callback_func);
+		end
+	else
+		return ConnectionTCP._super.Connect(self, timeout, callback_func);
+	end
+end
+
+function ConnectionTCP:Send(msg, neuronfile)
+	if(self.tunnelClient) then
+		return self.tunnelClient:Send(self:GetNid(), msg, neuronfile);
+	else
+		return ConnectionTCP._super.Send(self, msg, neuronfile);
+	end
 end

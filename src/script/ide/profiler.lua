@@ -87,7 +87,7 @@ function npl_profiler.ToggleProfiling()
 		profiler.stop();
 		local elapsed_time = ParaGlobal.timeGetTime() - last_start_time;
 		npl_profiler.AnalyzeSummary("-v", last_file_name)
-		if(ParaUI and ParaUI.CreateUIObject) then
+		if(ParaUI and ParaUI.CreateUIObject and not ParaEngine.GetAttributeObject():GetField("IsServerMode", false)) then
 			_guihelper.MessageBox(string.format("Profiling %dms result is generated to %s\n", elapsed_time, last_file_name))
 		else
 			LOG.std(nil, "system", "profiler", "Profiling %dms result is generated to %s", elapsed_time, last_file_name)

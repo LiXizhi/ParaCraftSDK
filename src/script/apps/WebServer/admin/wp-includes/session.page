@@ -1,0 +1,116 @@
+<?npl
+--[[
+Title: 
+Author: leio
+Date: 2016/3/9
+Desc: 
+]]
+WP_Session_Tokens = commonlib.inherit(nil, {});
+
+function WP_Session_Tokens:ctor()
+end
+function WP_Session_Tokens:init(user_id)
+	self.user_id = user_id;
+end
+function WP_Session_Tokens.get_instance(user_id)
+	local s = WP_Session_Tokens:new();	
+	s:init(user_id);
+	return s;
+end
+function WP_Session_Tokens:hash_token(token)
+    if(not token)then
+        return
+    end
+    local hash = ParaMisc.md5(token);
+    return hash;
+end
+function WP_Session_Tokens:get(token)
+    local verifier = self:hash_token( token );
+    return self:get_session( verifier );
+end
+function WP_Session_Tokens:verify(token)
+    local session = self:get(token);
+    if(session)then
+        return true;
+    end
+end
+function WP_Session_Tokens:create(expiration)
+    local session = {};
+    session['expiration'] = expiration;
+    session['login'] = ParaGlobal.timeGetTime();
+
+    local token = wp_generate_password( 43, false, false );
+    self:update( token, session );
+    return token;
+end
+function WP_Session_Tokens:update(token,session)
+    local verifier = self:hash_token( token );
+    self:update_session( verifier, session );
+end
+function WP_Session_Tokens:destroy(token)
+    local verifier = self:hash_token( token );
+    self:update_session( verifier, nil);
+end
+function WP_Session_Tokens:destroy_others(token_to_keep)
+    local verifier = self:hash_token( token_to_keep );
+    session = self:get_session( verifier );
+    if ( session ) then
+        self:destroy_other_sessions( verifier );
+    else 
+        self:destroy_all_sessions();
+    end
+end
+function WP_Session_Tokens:is_still_valid(session)
+    if(session and session["expiration"] and session["expiration"] >= ParaGlobal.timeGetTime())then
+        return true;
+    end
+end
+function WP_Session_Tokens:destroy_all()
+    self:destroy_all_sessions();
+end
+function WP_Session_Tokens:get_all()
+    local sessions = self:get_sessions();
+    local k,v;
+    local result = {};
+    for k,v in pairs(sessions) do
+        table.inherit(result,v);
+    end
+    return result;
+end
+function WP_Session_Tokens:get_sessions()
+    local sessions = get_user_meta( self.user_id, 'session_tokens', true );
+    return sessions or {};
+end
+function WP_Session_Tokens:get_session(verifier)
+    local sessions = self:get_sessions();
+    return sessions[ verifier ];
+end
+function WP_Session_Tokens:update_session(verifier,session)
+    local sessions = self:get_sessions();
+
+    if ( session ) then
+        sessions[ verifier ] = session;
+    else
+        sessions[ verifier ] = nil;
+    end
+
+    self:update_sessions( sessions );
+end
+function WP_Session_Tokens:update_sessions(sessions)
+    if ( sessions ) then
+        update_user_meta( self.user_id, 'session_tokens', sessions );
+    else
+        delete_user_meta( self.user_id, 'session_tokens' );
+    end
+end
+function WP_Session_Tokens:destroy_other_sessions(verifier)
+    local session = self:get_session( verifier );
+    self:update_sessions( {verifier = session} ) ;
+end
+function WP_Session_Tokens:destroy_all_sessions()
+    self:update_sessions({});
+end
+
+function WP_Session_Tokens.destroy_all_for_all_users()
+    delete_metadata( 'user', 0, 'session_tokens', false, true );
+end

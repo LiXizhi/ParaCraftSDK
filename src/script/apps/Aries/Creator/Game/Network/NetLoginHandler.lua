@@ -23,8 +23,8 @@ function NetLoginHandler:ctor()
 end
 
 -- @param tid: this is temporary identifier of the socket connnection
-function NetLoginHandler:Init(tid)
-	self.playerConnection = ConnectionTCP:new():Init(tid, nil, self);
+function NetLoginHandler:Init(tid, tunnelClient)
+	self.playerConnection = ConnectionTCP:new():Init(tid, nil, self, tunnelClient);
 	return self;
 end
 

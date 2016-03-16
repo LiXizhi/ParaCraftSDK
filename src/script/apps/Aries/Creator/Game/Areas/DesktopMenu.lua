@@ -24,6 +24,10 @@ function DesktopMenu.LoadMenuItems(bForceReload)
 	if(menu_items and not bForceReload) then
 		return menu_items;
 	end
+
+	NPL.load("(gl)script/apps/Aries/Creator/Game/Login/Rebranding.lua");
+	Rebranding = commonlib.gettable("MyCompany.Aries.Creator.Game.Rebranding");
+
 	-- all menu items, both edit and game mode.  if mode="edit", it will only show in edit mode. 
 	-- if onclick is nil, we will run command "/menu [name]" when the named menu item is clicked. 
 	menu_items = {
@@ -66,14 +70,20 @@ function DesktopMenu.LoadMenuItems(bForceReload)
 				{text = L"材质包...",name = "window.texturepack",onclick=nil},
 				{text = L"信息(F3)",name = "window.info",onclick=nil},
 				{text = L"位置坐标...",name = "window.pos",onclick=nil},
+				{text = L"MOD插件加载...",name = "window.pos",cmd="/show mod"},
 			},
 		},
 		{text = L"帮助", order=6, name = "help",children = 
 			{
-				{text = L"教学视频...(F1)",name = "help.webtutorials", onclick=nil},
+				{text = L"操作提示(F1)",name = "help.actiontutorial", onclick=nil},
+				{text = L"教学视频",name = "help.videotutorials", onclick=nil},
 				{text = L"帮助...(Ctrl+F1)",name = "help.help", onclick=nil},
+				{text = L"快捷键",name = "help.help.shortcutkey", onclick=nil},
+				{text = L"提交Bug",name = "help.bug", onclick=nil},
 				{text = L"NPL Code Wiki...(F11)",name = "help.npl_code_wiki", onclick=nil},
+				{text = L"开发文档",name = "help.ParacraftSDK", onclick=nil},
 				{text = L"关于Paracraft...",name = "help.about", onclick=nil},
+				{text = L"Credits",name = "help.Credits", onclick=nil},
 			},
 		},
 	};
@@ -150,14 +160,25 @@ function DesktopMenu.RebuildMenuItem(menuItem)
 	end
 end
 
+function DesktopMenu.CloseEscFramePage()
+	NPL.load("(gl)script/apps/Aries/Creator/Game/Areas/EscFramePage.lua");
+	local EscFramePage = commonlib.gettable("MyCompany.Aries.Creator.Game.Desktop.EscFramePage");
+	EscFramePage.ShowPage(false);
+end
+
+
 function DesktopMenu.OnClickMenuNode(node)
 	if(node and node.Name) then
+		-- open menu item. 
 		DesktopMenu.OnClickMenuItem(node.Name);
 	end
 end
 
 -- click top menu item, normally this will show context menu
 function DesktopMenu.OnClickMenuItem(name)
+	-- close the esc frame page if any
+	-- DesktopMenu.CloseEscFramePage();
+
 	local menuItem = DesktopMenu.GetMenuItem(name);
 	if(menuItem) then
 		if(menuItem.ctl and menuItem.children) then

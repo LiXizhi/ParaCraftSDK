@@ -53,6 +53,8 @@ end
 ]]
 NPL.load("(gl)script/ide/System/Scene/Overlays/OverlayPicking.lua");
 NPL.load("(gl)script/ide/math/Matrix4.lua");
+NPL.load("(gl)script/ide/math/vector.lua");
+local vector3d = commonlib.gettable("mathlib.vector3d");
 local Matrix4 = commonlib.gettable("mathlib.Matrix4");
 local OverlayPicking = commonlib.gettable("System.Scene.Overlays.OverlayPicking");
 local type = type;
@@ -66,6 +68,7 @@ Overlay:Property({"ZPassOpacity", 0.2, "GetZPassOpacity", "SetZPassOpacity", aut
 Overlay:Property({"EnablePicking", true});
 Overlay:Property({"m_hasMouseTracking", nil, "hasMouseTracking", "setMouseTracking", auto=true});
 Overlay:Property({"m_render_pass", false, });
+Overlay:Property({"m_position", nil, "getPosition", "setPosition"});
 Overlay:Property({"localTransform", nil, "GetLocalTransform", "SetLocalTransform"});
 
 
@@ -313,7 +316,7 @@ function Overlay:UpdateTileContainer()
 end
 
 -- get global 3d position
--- @param x, y, z;
+-- @return x, y, z;
 function Overlay:GetPosition()
 	if(self.native_scene_obj) then
 		return self.native_scene_obj:GetPosition();
@@ -321,6 +324,19 @@ function Overlay:GetPosition()
 		return self.parent:GetPosition();
 	end
 end
+
+-- @return a clone of {x,y,z}
+function Overlay:getPosition()
+	return vector3d:new({self:GetPosition()})
+end
+
+-- @param pos: {x,y,z}
+function Overlay:setPosition(pos)
+	if(pos and type(pos) == "table") then
+		self:SetPosition(pos[1], pos[2], pos[3]);
+	end
+end
+
 
 -- find next color int value that should be used for the picking color for next unique pickable item.
 function Overlay:GetNextPickingName()

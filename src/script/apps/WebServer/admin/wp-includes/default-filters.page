@@ -7,3 +7,6 @@ Desc:
 ]]
 
 add_action( 'wp_head', 'wp_print_styles', 9);
+
+--Default authentication filters
+add_filter( 'authenticate', 'wp_authenticate_username_password',  20);

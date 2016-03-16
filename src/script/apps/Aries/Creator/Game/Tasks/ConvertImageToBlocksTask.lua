@@ -13,6 +13,10 @@ task:Run();
 -------------------------------------------------------
 ]]
 NPL.load("(gl)script/apps/Aries/Creator/Game/Tasks/UndoManager.lua");
+NPL.load("(gl)script/apps/Aries/Creator/Game/Items/ItemColorBlock.lua");
+NPL.load("(gl)script/ide/System/Core/Color.lua");
+local Color = commonlib.gettable("System.Core.Color");
+local ItemColorBlock = commonlib.gettable("MyCompany.Aries.Game.Items.ItemColorBlock");
 local UndoManager = commonlib.gettable("MyCompany.Aries.Game.UndoManager");
 local GameLogic = commonlib.gettable("MyCompany.Aries.Game.GameLogic")
 local BlockEngine = commonlib.gettable("MyCompany.Aries.Game.BlockEngine")
@@ -143,9 +147,11 @@ local function GetBlockIdFromPixel(pixel, colors)
 		else
 			return block_types.names.Black_Wool;
 		end
-	else -- if(colors == 16) then
+	elseif(colors <= 16) then
 		local block_color = FindClosetBlockColor(pixel);
 		return block_color[4];
+	else  -- for 65535 colors, use color block
+		return block_types.names.ColorBlock, ItemColorBlock:ColorToData(Color.RGBA_TO_DWORD(pixel[3],pixel[2],pixel[1], 0));
 	end
 end
 
@@ -154,7 +160,7 @@ function ConvertImageToBlocks:LoadToMemory()
 	-- TODO:
 end
 
-function ConvertImageToBlocks:AddBlock(x,y,z, block_id)
+function ConvertImageToBlocks:AddBlock(x,y,z, block_id, block_data)
 	if(self.add_to_history) then
 		local from_id = BlockEngine:GetBlockId(x,y,z);
 		local from_data, from_entity_data;
@@ -166,13 +172,13 @@ function ConvertImageToBlocks:AddBlock(x,y,z, block_id)
 	end
 	local block_template = block_types.get(block_id);
 	if(block_template) then
-		block_template:Create(x,y,z, false, block_data, nil, nil, entity_data);
+		block_template:Create(x,y,z, false, block_data);
 	end
 end
 
 -- Load template using a coroutine, 100 blocks per second. 
 -- @param self.blockX, self.blockY, self.blockZ
--- @param self.colors: 1 | 2 | 16   colors
+-- @param self.colors: 1 | 2 | 16 | 65535   how many colors to use
 -- @param self.options: {xy=true, yz=true, xz=true}
 function ConvertImageToBlocks:LoadToScene()
 	local filename = self.filename;
@@ -203,7 +209,7 @@ function ConvertImageToBlocks:LoadToScene()
 		LOG.std(nil, "info", "ConvertImageToBlocks", {filename, ver, width, height, bytesPerPixel});
 
 		local block_world = GameLogic.GetBlockWorld();
-		local function CreateBlock_(x, y, block_id)
+		local function CreateBlock_(x, y, block_id, block_data)
 			local z;
 			if(plane == "xy") then
 				x, y, z = px+x, py+y, pz;
@@ -213,7 +219,7 @@ function ConvertImageToBlocks:LoadToScene()
 				x, y, z = px+x, py, pz+y;
 			end
 			ParaBlockWorld.LoadRegion(block_world, x, y, z);
-			self:AddBlock(x, y, z, block_id);
+			self:AddBlock(x, y, z, block_id, block_data);
 		end
 
 		-- array of {r,g,b,a}
@@ -231,9 +237,9 @@ function ConvertImageToBlocks:LoadToScene()
 						pixel = file:ReadBytes(bytesPerPixel, pixel);
 						if(pixel[4]~=0) then
 							-- transparent pixel does not show up. 
-							local block_id = GetBlockIdFromPixel(pixel, colors);
+							local block_id, block_data = GetBlockIdFromPixel(pixel, colors);
 							if(block_id) then
-								CreateBlock_(x,y, block_id);
+								CreateBlock_(x,y, block_id, block_data);
 								count = count + 1;
 								if((count%block_per_tick) == 0) then
 									coroutine.yield(true);

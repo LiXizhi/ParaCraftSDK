@@ -87,18 +87,19 @@ function ChunkProviderServer:LoadChunkImp(chunkX, chunkZ)
 	else
 		chunk = Chunk:new():Init(self.worldObj, chunkX, chunkZ);
 	end
-	self:AutoGenerateChunk(chunk);
+
+	local timeStamp = chunk:GetTimeStamp();
+	if(timeStamp < 0) then
+		-- try loading the region from server if not loaded before. 
+		ParaBlockWorld.LoadRegion(GameLogic.GetBlockWorld(), chunk.Coords.WorldX, chunk.Coords.WorldY, chunk.Coords.WorldZ);
+	end
+	
 	return chunk;
 end
 
 function ChunkProviderServer:AutoGenerateChunk(chunk)
 	if(chunk and self:GetGenerator()) then
 		local timeStamp = chunk:GetTimeStamp();
-		if(timeStamp < 0) then
-			-- try loading the region from server if not loaded before. 
-			ParaBlockWorld.LoadRegion(GameLogic.GetBlockWorld(), chunk.Coords.WorldX, chunk.Coords.WorldY, chunk.Coords.WorldZ);
-			timeStamp = chunk:GetTimeStamp();
-		end
 		if(timeStamp == 0) then
 			-- only generate if it has not been generated before. 
 			self:GetGenerator():GenerateChunk(chunk, chunk.chunkX, chunk.chunkZ);

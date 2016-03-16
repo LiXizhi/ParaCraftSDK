@@ -95,12 +95,12 @@ function WorldClient:GetPlayerManager()
 	return self.thePlayerManager;
 end
 
--- @param params: {ip, port, thread, username, password, name}
+-- @param params: {ip, port, thread, username, password, name, tunnelClient}
 function WorldClient:Login(params)
 	local ip = params.ip or "127.0.0.1";
 	local port = params.port or "8099";
 	-- a random username
-	local username = params.username or tostring(ParaGlobal.timeGetTime());
+	local username = params.username;
 	local password = params.password;
 	local thread = params.thread or "gl";
 	LOG.std(nil, "info", "WorldClient", "Start login %s %s as username:%s", ip, port, username);
@@ -113,7 +113,7 @@ function WorldClient:Login(params)
 	NPL.StartNetServer("127.0.0.1", "0");
 	local Connections = commonlib.gettable("MyCompany.Aries.Game.Network.Connections");
 	Connections:Init();
-	self.net_handler = NetClientHandler:new():Init(ip, port, username, password, self);
+	self.net_handler = NetClientHandler:new():Init(ip, port, username, password, self, params.tunnelClient);
 	self.nid = self.net_handler:GetNid();
 
 	-- TODO: it should be the server to enable world editing mode instead of client. 

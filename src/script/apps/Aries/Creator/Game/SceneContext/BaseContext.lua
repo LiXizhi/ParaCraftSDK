@@ -308,7 +308,7 @@ function BaseContext:OnLeftMouseHold(fDelta)
 				block:OnMouseDown(result.blockX,result.blockY,result.blockZ, "left");
 			end
 			
-			if(block and block:CanDestroyBlockAt(result.blockX,result.blockY,result.blockZ, GameLogic.GetMode())) then
+			if(block and block:CanDestroyBlockAt(result.blockX,result.blockY,result.blockZ)) then
 				self:UpdateClickStrength(fDelta, result);
 
 				click_data.left_holding_time = click_data.left_holding_time + fDelta;
@@ -567,7 +567,7 @@ function BaseContext:TryDestroyBlock(result, is_allow_delete_terrain)
 		local click_data = self:GetClickData();
 		-- removed the block
 		local block_template = BlockEngine:GetBlock(result.blockX,result.blockY,result.blockZ);
-		if(block_template and block_template:CanDestroyBlockAt(result.blockX,result.blockY,result.blockZ, GameLogic.GetMode())) then
+		if(block_template and block_template:CanDestroyBlockAt(result.blockX,result.blockY,result.blockZ)) then
 			if(EntityManager.GetFocus():CanReachBlockAt(result.blockX,result.blockY,result.blockZ)) then
 				local task = MyCompany.Aries.Game.Tasks.DestroyBlock:new({blockX = result.blockX,blockY = result.blockY, blockZ = result.blockZ, is_allow_delete_terrain=is_allow_delete_terrain})
 				task:Run();
@@ -670,10 +670,19 @@ end
 function BaseContext:handleMiddleClickScene(event, result)
 	result = result or SelectionManager:GetPickingResult();
 	if(result and result.blockX) then
+		
 		if(GameMode:IsAllowGlobalEditorKey()) then
+			local x, y, z = result.blockX, result.blockY, result.blockZ;
+			local block_template = BlockEngine:GetBlock(x, y, z);
+			if(block_template and not block_template.obstruction) then
+				local block_template = BlockEngine:GetBlock(x, y-1, z);
+				if(block_template and block_template.obstruction) then
+					y = y - 1;
+				end
+			end
 			NPL.load("(gl)script/apps/Aries/Creator/Game/Tasks/TeleportPlayerTask.lua");
-			local task = MyCompany.Aries.Game.Tasks.TeleportPlayer:new({blockX = result.blockX,blockY = result.blockY, blockZ = result.blockZ})
-			task:Run();
+			local task = MyCompany.Aries.Game.Tasks.TeleportPlayer:new({blockX = x, blockY = y, blockZ = z})
+			task:Run();	
 		end
 	end
 end
@@ -880,7 +889,7 @@ function BaseContext:HandleGlobalKey(event)
 		if(ctrl_pressed) then
 			GameLogic.RunCommand("/menu help.help");
 		else
-			GameLogic.RunCommand("/menu help.webtutorials");
+			GameLogic.RunCommand("/menu help.actiontutorial");
 		end
 	end
 	return event:isAccepted();

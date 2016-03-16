@@ -1,0 +1,36 @@
+<?npl
+--[[
+Title: 
+Author: leio
+Date: 2016/3/7
+Desc: 
+]]
+WP_User = commonlib.inherit(nil, {});
+
+function WP_User:ctor()
+	self.__is_wp_user = true;
+	self.data = {};
+end
+function WP_User:init(data)
+	self.data = data or {};
+end
+function WP_User.get_data_by(field, value )
+	if(field == "ID")then
+		field = "id";
+	end
+	local db_field;
+	if(field == "id")then
+		db_field = "ID";
+	elseif(field == "slug")then
+		db_field = "user_nicename";
+	elseif(field == "email")then
+		db_field = "user_email";
+	elseif(field == "login")then
+		db_field = "user_login";
+	end
+	if(db_field)then
+		local query = string.format("select * from wp_users where %s = '%s' ",db_field,value);
+		local user = wpdb_mysql:get_row(query);
+		return user;
+	end
+end

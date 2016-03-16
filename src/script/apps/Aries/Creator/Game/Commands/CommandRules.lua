@@ -23,13 +23,17 @@ local CommandManager = commonlib.gettable("MyCompany.Aries.Game.CommandManager")
 Commands["addrule"] = {
 	name="addrule", 
 	quick_ref="/addrule class_name rule", 
-	desc=[[add a given game rule. Some examples rules: 
+	desc=[[add a given game rule. 
+@param class_name: "Player", "Block"
+@param rule: rule name value pairs
+Some examples rules: 
 /addrule Block CanPlace Lever Glowstone
 /addrule Block CanDestroy Glowstone true
 /addrule Player AutoWalkupBlock false
 /addrule Player CanJump true
 /addrule Player PickingDist 5
 /addrule Player CanJumpInAir true
+/addrule Player CanFly true
 /addrule Player CanJumpInWater true
 /addrule Player JumpUpSpeed 5
 /addrule Player AllowRunning false
@@ -44,19 +48,22 @@ Commands["addrule"] = {
 	end,
 };
 
--- /rule			:show all rules
--- /rule reset		:reset all rules
--- /rule reload		:reload from rule.lua file. 
 Commands["rule"] = {
 	name="rule", 
-	quick_ref="/rule", 
-	desc="show all rules or reset rules" , 
+	quick_ref="/rule [show|clear|reset|reload]", 
+	desc=[[show all currently enabled rules or clear all game rules.
+@sa /addrule to modify game rules at runtime. 
+e.g.
+/rule			:show all currently enabled rules
+/rule reset		:clear all rules
+/rule reload		:reload from rule.lua file.
+]], 
 	handler = function(cmd_name, cmd_text, cmd_params)
-		if(cmd_text == "") then
+		if(cmd_text == "" or cmd_text == "show") then
 			NPL.load("(gl)script/apps/Aries/Creator/Game/GameRules/GameRules.lua");
 			local GameRules = commonlib.gettable("MyCompany.Aries.Game.GameRules");
 			GameRules:ShowAllRules();
-		elseif(cmd_text == "reset") then
+		elseif(cmd_text == "reset" or cmd_text == "clear") then
 			NPL.load("(gl)script/apps/Aries/Creator/Game/GameRules/GameRules.lua");
 			local GameRules = commonlib.gettable("MyCompany.Aries.Game.GameRules");
 			GameRules:Reset();

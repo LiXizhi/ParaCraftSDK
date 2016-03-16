@@ -283,9 +283,10 @@ function cmd_trans.handler(cmd_name, cmd_text, cmd_params)
 	end
 	-- transform the player to a given object
 	local asset = cmd_params.value;
+	local gsid;
 	if(asset) then
 		if(asset:match("^%d+$")) then
-			local gsid = tonumber(asset);
+			gsid = tonumber(asset);
 			local gsItem = Map3DSystem.Item.ItemManager.GetGlobalStoreItemInMemory(gsid);
 			if(gsItem and gsItem.assetfile and gsItem.assetfile:match("^[cC]haracter")) then
 				asset = gsItem.assetfile;
@@ -298,6 +299,7 @@ function cmd_trans.handler(cmd_name, cmd_text, cmd_params)
 		end
 	end
 	if(asset and asset~="" and asset:match("^[cC]haracter") and ParaIO.DoesAssetFileExist(asset, true)) then
+		echo({"/transform to ", gsid, asset})
 		Player.asset_gsid = gsid;
 		Player.base_model_str = asset;
 	else

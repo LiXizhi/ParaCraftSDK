@@ -1,0 +1,68 @@
+<quest>
+  <!--<id>1001</id>: file name is used as id-->
+  <title>探知沙漠岛</title>
+  <detail>沙漠古堡沉睡了好久，一个就快被遗忘的岛屿。</detail>
+  <icon></icon>
+  <!--precondition must be met before quest is active-->
+  <precondition>
+    <quest id="1000" value="1" />
+    <item id="101" value="32" topvalue="40" />
+  </precondition>
+  <!--goals must be completed before quest can be completed-->
+  <goals></goals>
+  <!--items to be substracted when quest is completed. -->
+  <cost>
+    <items id="0" choice="-1">
+      <itemstack id="101" count="1" />
+    </items>
+  </cost>
+  <!--items to be given when quest is completed, according to the user's choice. -->
+  <reward>
+    <items id="0" choice="-1">
+      <itemstack id="100" count="1" />
+    </items>
+    <items id="1" choice="1">
+      <itemstack id="62" count="1"/>
+    </items>
+  </reward>
+  <!--dialogs to show when quest is active, but can not be completed. -->
+  <startdialog>
+    <dialog>
+      <item>
+        <avatar></avatar>
+        <content>
+          你知道吗…这里的人们相信古堡原是天上的宫殿，只是中了黑暗的咒语，一夜之间从天上被贬到了荒凉的沙漠腹地。沙漠古堡沉睡了很久，就快被世人遗忘了。
+        </content>
+        <buttons>
+          <button action="gotonext">怎么会这样…我好像还有很多未知的事情？</button>
+        </buttons>
+      </item>
+      <item>
+        <avatar></avatar>
+        <content>小哈奇，慢慢探索吧！我的旧患也是很多年前的事情了，呵呵…你去找下尤里和它说叫它别担心，我没事。</content>
+        <buttons>
+          <button action="doaccept" >嗯！现在就去找它。</button>
+        </buttons>
+      </item>
+    </dialog>
+  </startdialog>
+  <!--dialogs to show when quest can be completed. -->
+  <enddialog>
+    <dialog>
+      <item>
+        <avatar></avatar>
+        <content>
+          啊！青青没事就好…
+        </content>
+        <buttons>
+          <button action="dofinished" >你怎么好像心事重重？</button>
+        </buttons>
+      </item>
+    </dialog>
+  </enddialog>
+  <!--if quest is not repeatable, we will generate an internal quest finished item.-->
+  <questrepeat>0</questrepeat>
+  <acceptquestsilentmode>1</acceptquestsilentmode>
+  <finishquestsilentmode>0</finishquestsilentmode>
+  <autoshowstartdialog>1</autoshowstartdialog>
+</quest>

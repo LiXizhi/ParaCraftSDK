@@ -7,10 +7,15 @@ Desc:
 ]]
 
 local function _CheckIfAnim()
+	-- if localhost or 127.0.0.1, we will always pass as admin
+	local host = request:GetHost() or "";
+	if(host:match("^localhost") or host:match("^127.0.0.1")) then
+		return true;
+	end
+	
 	if(GameLogic and GameLogic.IsReadOnly and GameLogic.IsReadOnly()) then
 		return false;
 	else
-		-- TODO: also check ip address. 
 		return true;
 	end
 end
@@ -38,4 +43,23 @@ function require_wp_db()
 		return;
 	end
 	wpdb = wpdb_class:new():init( DB_USER, DB_PASSWORD, DB_NAME, DB_HOST );
+
+
+    --NPL.load("(gl)script/ide/mysql/mysql.lua");
+    --local MySql = commonlib.gettable ("System.Database.MySql");
+    --if(wpdb_mysql)then
+    --    return
+    --end
+    --wpdb_mysql = MySql:new():init("root", "a", "WordpressDB", "192.168.0.188",3306);
+end
+
+function in_array(value,list)
+    if(not list)then return false end
+    local k,v;
+    for k,v in ipairs(list) do
+        if(value == v)then
+            return true;
+        end
+    end
+    return false;
 end

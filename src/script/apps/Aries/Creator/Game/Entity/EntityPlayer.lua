@@ -50,6 +50,9 @@ local lshift = mathlib.bit.lshift;
 local Entity = commonlib.inherit(commonlib.gettable("MyCompany.Aries.Game.EntityManager.EntityMovable"), commonlib.gettable("MyCompany.Aries.Game.EntityManager.EntityPlayer"));
 NPL.load("(gl)script/apps/Aries/Creator/Game/Entity/EntityPlayerGSL.lua");
 
+-- the group id
+Entity:Property({"group_id", GameLogic.SentientGroupIDs.Player})
+
 -- persistent object by default. 
 Entity.is_persistent = false;
 -- class name
@@ -60,6 +63,7 @@ Entity.name="default"
 Entity.isServerEntity = true;
 -- player is always framemoved as fast as possible
 Entity.framemove_interval = 0.01;
+
 
 -- one step dist in meters
 local one_step_dist = 0.9;
@@ -114,6 +118,15 @@ function Entity:GetUserName()
     return self.username;
 end
 
+function Entity:CreateInnerObject(...)
+	local obj = Entity._super.CreateInnerObject(self, ...);
+	if(obj) then
+		obj:SetField("SentientField", 0xffff);
+		obj:SetGroupID(self.group_id or 0);
+	end
+	return obj;
+end
+
 -- bind to a ParaObject. this is a client side only function. 
 -- and it automatically SetClient. 
 -- @param obj: this is usually ParaScene.GetPlayer() on client side
@@ -127,6 +140,9 @@ function Entity:BindToScenePlayer(obj, isOPC)
 			self:SetInnerObject(obj);
 		end
 		
+		obj:SetField("SentientField", 0xffff);
+		obj:SetGroupID(self.group_id or 0);
+
 		self:RefreshClientModel();
 		self:UpdateBlockContainer();
 		local x, y, z = self:GetPosition();
@@ -221,16 +237,6 @@ end
 function Entity:OnFocusOut()
 	self.has_focus = nil;
 	self.inventory.isClient = nil;
-	local obj = self:GetInnerObject();
-	if(obj) then
-		-- following line is already done in c++
-		--obj:SetVisible(true);
-		--obj:GetEffectParamBlock():SetFloat("g_opacity", 1);
-
-		-- make it linear movement style
-		--obj:SetField("MovementStyle", 3);
-		--obj:SetField("SkipPicking", false);
-	end
 end
 
 -- get teleport position list
@@ -323,8 +329,9 @@ end
 
 -- update the tile position
 function Entity:UpdatePosition(x,y,z)
+	local player;
 	if(not x) then
-		local player = self:GetInnerObject() or ParaScene.GetPlayer();
+		player = self:GetInnerObject() or ParaScene.GetPlayer();
 		x,y,z = player:GetPosition();
 	end
 	local old_x, old_y, old_z = self.x or x, self.y or y, self.z or z;
@@ -335,25 +342,9 @@ function Entity:UpdatePosition(x,y,z)
 		dist = math.min(10, math.sqrt(dist));
 	end
 	self.dist_walked = self.dist_walked + dist;
+	return player;
 end
 
--- Adds to the current velocity of the entity. 
--- @param x,y,z: velocity in x,y,z direction. 
-function Entity:AddVelocity(x,y,z)
-	self:GetPhysicsObject():AddVelocity(x,y,z);
-end
-
-local motion_fps = 20;
--- Adds to the current motion of the entity. 
--- @param x,y,z: velocity in x,y,z direction. 
-function Entity:AddMotion(dx,dy,dz)
-	self:GetPhysicsObject():AddVelocity(dx*motion_fps,dy*motion_fps,dz*motion_fps);
-end
-
--- return x,y,z
-function Entity:GetVelocity()
-	return self:GetPhysicsObject():GetVelocity();
-end
 
 function Entity:CanBePushedBy(fromEntity)
     if(fromEntity and fromEntity.class_name == "EntityBlockDynamic") then
@@ -425,7 +416,19 @@ function Entity:AdjustSlipperiness()
 	end
 end
 
+-- Adds to the current motion of the entity. 
+-- @param x,y,z: velocity in x,y,z direction. 
+function Entity:AddMotion(dx,dy,dz)
+	if(not self:HasFocus()) then
+		-- never add motion when we have focus. Use SetMotion instead.
+		Entity._super.AddMotion(self, dx,dy,dz);
+	end
+end
+
 function Entity:MoveEntity(deltaTime)
+	if(self:HasMotion()) then
+		Entity._super.MoveEntity(self, deltaTime);	
+	end
 	deltaTime = math.min(0.3, deltaTime);
 	self:CheckCollision(deltaTime);
 end
@@ -433,13 +436,18 @@ end
 -- called every frame
 function Entity:FrameMove(deltaTime)
 	if(self:HasFocus()) then
-		-- whether the entity is having focus.
-		Entity._super.FrameMove(self, deltaTime);
-		self:AdjustSlipperiness();
-		self:MoveEntity(deltaTime);
+		if(self:HasMotion()) then
+			-- if there is motion, we will move by motion
+			Entity._super.FrameMove(self, deltaTime);
+		else
+			-- whether the entity is having focus.
+			Entity._super.FrameMove(self, deltaTime);
+			self:AdjustSlipperiness();
+			self:MoveEntity(deltaTime);
 		
-		self:PlayStepSound();
-		self:UpdateActionState();
+			self:PlayStepSound();
+			self:UpdateActionState();
+		end
 	else
 		if(GameLogic.isServer) then
 			-- server side entity needs to check collision. 
@@ -785,4 +793,14 @@ end
 function Entity:GetCurrentItemOrArmor(index)
 	-- TODO:
 	return nil;
+end
+
+-- @param value: if nil, it will use the global gravity. 
+function Entity:SetGravity(value)
+	Entity._super.SetGravity(self, value);
+	local obj = self:GetInnerObject();
+	if(obj) then
+		-- secretly double it in C++ engine
+		obj:SetField("Gravity", self:GetGravity()*2);
+	end
 end

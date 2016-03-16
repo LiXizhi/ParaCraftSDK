@@ -146,3 +146,8 @@ end
 function dynamic_sidebar(filename)
 	the_content(filename);
 end
+
+function wp_lostpassword_url(redirect)
+	local lostpassword_url = site_url("wp-login.page","action=lostpassword");
+	return lostpassword_url
+end

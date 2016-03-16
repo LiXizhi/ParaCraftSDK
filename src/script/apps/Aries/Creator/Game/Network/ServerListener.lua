@@ -27,7 +27,7 @@ ServerListener.max_pending_connection = 1000;
 ServerListener.pendingConnections = {};
 
 -- whenever an unknown pending message is received. 
-function ServerListener:OnAcceptIncomingConnection(msg)
+function ServerListener:OnAcceptIncomingConnection(msg, tunnelClient)
 	local tid;
 	if(msg and msg.tid) then
 		tid = msg.tid;
@@ -37,7 +37,7 @@ function ServerListener:OnAcceptIncomingConnection(msg)
 			LOG.std(nil, "info", "ServerListener", "max pending connection reached ignored connection %s", tid);
 		end
 		self.connectionCounter = self.connectionCounter + 1;
-		local login_handler = NetLoginHandler:new():Init(tid);
+		local login_handler = NetLoginHandler:new():Init(tid, tunnelClient);
 		self:AddPendingConnection(tid, login_handler);
 	end
 end

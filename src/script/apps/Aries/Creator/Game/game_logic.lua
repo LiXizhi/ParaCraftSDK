@@ -3,6 +3,11 @@ Title: main game logic goes here
 Author(s): LiXizhi
 Date: 2012/10/18
 Desc: 
+GameLogic filters:
+	OnBeforeLoadBlockRegion(bContinue, x, y):OnBeforeLoadBlockRegion(bContinue, x, y): false to disable loading region from file
+	OnLoadBlockRegion(bContinue, x, y)
+	OnUnLoadBlockRegion(bContinue, x, y)
+
 use the lib:
 ------------------------------------------------------------
 NPL.load("(gl)script/apps/Aries/Creator/Game/game_logic.lua");
@@ -121,6 +126,7 @@ function GameLogic:ctor()
 	local DefaultFilters = commonlib.gettable("MyCompany.Aries.Game.DefaultFilters");
 	DefaultFilters:Install();
 
+	GameLogic.GetFilters():add_filter("OnBeforeLoadBlockRegion", GameLogic.OnBeforeLoadBlockRegion);
 	if(System.options.mc) then
 		-- do not leak events to hook chain. 
 		SceneContextManager:SetAcceptAllEvents(true);
@@ -153,11 +159,10 @@ end
 -- static method called at the very beginning when paracraft start
 function GameLogic.InitMod()
 	NPL.load("(gl)script/apps/Aries/Creator/Game/Mod/ModBase.lua");
-	if(System.options.mc) then
-		NPL.load("(gl)script/apps/Aries/Creator/Game/Login/SelectModulePage.lua");
-		local SelectModulePage = commonlib.gettable("MyCompany.Aries.Game.MainLogin.SelectModulePage")
-		SelectModulePage.LoadMods();
-	end
+	
+	NPL.load("(gl)script/apps/Aries/Creator/Game/Login/SelectModulePage.lua");
+	local SelectModulePage = commonlib.gettable("MyCompany.Aries.Game.MainLogin.SelectModulePage")
+	SelectModulePage.LoadMods();
 end
 
 -- called by both Init() and StaticInit()
@@ -287,6 +292,11 @@ function GameLogic.GetPlayer()
 	return EntityManager.GetPlayer();
 end
 
+-- @return false to disable loading region from file
+function GameLogic.OnBeforeLoadBlockRegion(bContinue, region_x, region_y)
+	-- LOG.std(nil, "system", "BlockEngine", "before load block region %d %d", region_x, region_y);
+	return bContinue;
+end
 
 -- this is used to secretely replace current world object, such as from a standalone world into a multplayer worldserver. 
 function GameLogic.ReplaceWorld(world)
@@ -566,18 +576,20 @@ function GameLogic.ToggleGameMode()
 end
 
 function GameLogic.ToggleFly()
-	GameLogic.GetPlayerController().force_can_fly = true;
-	local entity = EntityManager.GetFocus();
-	if(entity) then
-		if(entity.disable_toggle_fly) then
-			return;
-		end
-		if(entity:ToggleFly()) then
-			GameLogic.picking_dist = options.picking_dist_flymode;
-			CameraController.ToggleFly(true);
-		else
-			GameLogic.picking_dist = options.picking_dist_walkmode;
-			CameraController.ToggleFly(false);
+	if(GameMode:CanFly()) then
+		GameLogic.GetPlayerController().force_can_fly = true;
+		local entity = EntityManager.GetFocus();
+		if(entity) then
+			if(entity.disable_toggle_fly) then
+				return;
+			end
+			if(entity:ToggleFly()) then
+				GameLogic.picking_dist = options.picking_dist_flymode;
+				CameraController.ToggleFly(true);
+			else
+				GameLogic.picking_dist = options.picking_dist_walkmode;
+				CameraController.ToggleFly(false);
+			end
 		end
 	end
 end
@@ -782,6 +794,7 @@ end
 -- if true, we will disable all block entity simulation on the local world. 
 -- @param bRemoteWorld: this is set to true, if self.world is a WorldClient type. 
 function GameLogic.SetIsRemoteWorld(bRemoteWorld, bIsServerWorld)
+	LOG.std(nil, "info", "GameLogic", "remote_world:%s, server_world: %s", tostring(bRemoteWorld), tostring(bIsServerWorld));
 	GameLogic.isRemote = bRemoteWorld;
 	GameLogic.isServer = bIsServerWorld;
 end
@@ -932,7 +945,7 @@ function GameLogic.GetMode()
 	return GameLogic.mode;
 end
 
--- return the block index in the right hand of the player. 
+-- return the block id in the right hand of the player. 
 function GameLogic.GetBlockInRightHand()
 	return GameLogic.GetPlayerController():GetBlockInRightHand();
 end
@@ -1439,6 +1452,10 @@ function GameLogic:UserAction(name)
 	self.lastActionName = name;
 	-- signal
 	self:userActed(name);
+end
+
+function GameLogic:GetLastUserAction()
+	return self.lastActionName;
 end
 
 -- get a translated text

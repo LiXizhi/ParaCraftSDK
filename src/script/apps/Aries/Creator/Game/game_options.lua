@@ -146,6 +146,14 @@ function options:OneTimeInit()
 	end
 end
 
+-- transient options can be modified by game rule and reset when loading a new world.
+function options:LoadDefaultTransientOptions()
+	self.CanJump = true;
+	self.CanJumpInAir = true;
+	self.CanJumpInWater = true;
+	self.AllowRunning = true;
+end
+
 function options:SetIsCheating(bIsCheatingOn)
 	self.is_cheating = bIsCheatingOn;
 end
@@ -243,6 +251,7 @@ end
 
 function options:OnLoadWorld()
 	self:OneTimeInit();
+	self:LoadDefaultTransientOptions();
 	GameLogic.RunCommand("language");
 	GameLogic.AddBBS("options", nil);
 
@@ -315,7 +324,10 @@ function options:OnLoadWorld()
 		end
 
 		if(self:IsShowTutorial()) then
-			GameLogic.RunCommand("menu", "help.webtutorials");
+			self:SetShowTutorial(false);
+			_guihelper.MessageBox(L"是否观看在线教程(快捷键F1)?", function()
+				GameLogic.RunCommand("menu", "help.actiontutorial");
+			end)
 		end
 
 		-- close *.db
@@ -331,9 +343,6 @@ function options:OnLoadWorld()
 	self:SetEnableAutoUIScaling();
 	player:SetField("AccelerationDist", self.WalkAccelerationDist or 0);
 	player:SetField("SkipPicking", true);
-	if(System.options.mc)then
-		player:SetGroupID(SentientGroupIDs.Player);
-	end
 	
 	-- MESH_USE_LIGHT = 0x1<<7: use block ambient and diffuse lighting for this model. 
 	player:SetAttribute(128, true);
@@ -347,7 +356,12 @@ function options:OnLoadWorld()
 	self:SetLastSaveTime();
 	self:ShowMenuPage();
 	self:ShowTouchPad();
-	self:ShowSkyBox()
+	self:ShowSkyBox();
+
+	-- try pop world
+	NPL.load("(gl)script/apps/Aries/Creator/Game/World/WorldStacks.lua");
+	local WorldStacks = commonlib.gettable("MyCompany.Aries.Game.WorldStacks");
+	WorldStacks:PopWorld();
 end
 
 -- in mobile version, force using single sky box. 
@@ -416,7 +430,7 @@ function options:SetGravity(value)
 	self.Gravity = value or 9.81;
 	local player = EntityManager.GetFocus();
 	if(player) then
-		player:SetGravity(self.Gravity*2);
+		player:SetGravity(nil);
 	end
 end
 
@@ -877,7 +891,9 @@ end
 
 -- whether to show tutorial when world is loaded. 
 function options:SetShowTutorial(bShow)
-	self.isShowTutorial = bShow;
+	if(not System.options.IsMobilePlatform) then
+		self.isShowTutorial = bShow;
+	end
 end
 
 function options:IsShowTutorial()

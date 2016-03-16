@@ -45,7 +45,7 @@ function RulePlayer:Init(rule_name, rule_value)
 	elseif(rule_name == "PickingDist") then
 		self:SetPickingDist(rule_value);
 		return self;
-	elseif(rule_name == "CanJumpInAir") then
+	elseif(rule_name == "CanJumpInAir" or rule_name == "CanFly") then
 		self:SetCanJumpInAir(rule_value);
 		return self;
 	elseif(rule_name == "CanJumpInWater") then
@@ -88,7 +88,7 @@ function RulePlayer:SetAllowRunning(isEnabled)
 	GameLogic.options:SetAllowRunning(self.isEnabled);
 end
 
--- whether player can jump
+-- whether player can jump in air(Can Fly)
 function RulePlayer:SetCanJumpInAir(isEnabled)
 	self.isEnabled = self:GetBool(isEnabled);
 	GameLogic.options:SetCanJumpInAir(self.isEnabled);
@@ -118,7 +118,7 @@ function RulePlayer:OnRemove()
 		end
 	elseif(rule_name == "CanJump") then
 		GameLogic.options:SetCanJump(true);
-	elseif(rule_name == "CanJumpInAir") then
+	elseif(rule_name == "CanJumpInAir" or rule_name == "CanFly") then
 		GameLogic.options:SetCanJumpInAir(true);
 	elseif(rule_name == "CanJumpInWater") then
 		GameLogic.options:SetCanJumpInWater(true);

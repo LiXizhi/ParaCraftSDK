@@ -20,7 +20,6 @@ local block_types = commonlib.gettable("MyCompany.Aries.Game.block_types")
 local GameLogic = commonlib.gettable("MyCompany.Aries.Game.GameLogic")
 local EntityManager = commonlib.gettable("MyCompany.Aries.Game.EntityManager");
 
-
 local Actor = commonlib.inherit(commonlib.gettable("MyCompany.Aries.Game.Movie.Actor"), commonlib.gettable("MyCompany.Aries.Game.Movie.ActorBlocks"));
 
 -- for selection effect. 
@@ -31,7 +30,6 @@ local groupindex_select = 3;
 
 function Actor:ctor()
 	self.block_set = {};
-	
 end
 
 function Actor:Init(itemStack, movieclipEntity)
@@ -87,13 +85,15 @@ end
 
 -- add movie text at the current time. 
 function Actor:AddKeyFrameOfSelectedBlocks()
-	local curSelection = SelectBlocks.GetCurrentSelection();
-	local curSelectionInstance = SelectBlocks.GetCurrentInstance();
 	local blocks = {};
-	if(curSelectionInstance and curSelection and #curSelection >= 1) then
-		for _, b in ipairs(curSelection) do
-			-- {x,y,z,block_id, block_data}
-			blocks[getSparseIndex(b[1], b[2], b[3])] = {b[1], b[2], b[3], b[4], b[5]}
+	local curSelectionInstance = SelectBlocks.GetCurrentInstance();
+	if(curSelectionInstance) then	
+		local curSelection = curSelectionInstance:GetCopyOfBlocks({0,0,0});
+		if(curSelection and #curSelection >= 1) then
+			for _, b in ipairs(curSelection) do
+				-- {x,y,z,block_id, block_data, entity_data}
+				blocks[getSparseIndex(b[1], b[2], b[3])] = b;
+			end
 		end
 	end
 	self:AddKeyFrameByName("blocks", nil, blocks);
@@ -107,7 +107,7 @@ function Actor:UpdateBlocks(blocks, curTime, bIsSelected)
 		for sparse_index, b in pairs(self.block_set) do
 			if(blocks[sparse_index]) then
 				b = blocks[sparse_index];
-				BlockEngine:SetBlock(b[1], b[2], b[3], b[4], b[5], 3);
+				BlockEngine:SetBlock(b[1], b[2], b[3], b[4], b[5], 3, b[6]);
 			else
 				BlockEngine:SetBlockToAir(b[1], b[2], b[3], 3);
 			end

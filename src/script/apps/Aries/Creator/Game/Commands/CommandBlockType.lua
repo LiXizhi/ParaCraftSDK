@@ -24,16 +24,15 @@ local Commands = commonlib.gettable("MyCompany.Aries.Game.Commands");
 local CommandManager = commonlib.gettable("MyCompany.Aries.Game.CommandManager");
 
 
---[[ set a block attribute currently only "speedReduction" is supported. e.g.
+Commands["block"] = {
+	name="block", 
+	quick_ref="/block block_id attr_name attr_value", 
+	desc=[[ set a block attribute currently only "speedReduction" is supported. e.g.
 /block block_id attr_name attr_value
 /block 8 speedReduction 0.3
 /block 9 speedReduction 0.3
 /block 118 speedReduction 0.1
-]]
-Commands["block"] = {
-	name="block", 
-	quick_ref="/block block_id attr_name attr_value", 
-	desc="set block attribute for all blocks of that type", 
+]], 
 	handler = function(cmd_name, cmd_text, cmd_params, fromEntity)
 		local blockid, name, value;
 		blockid, cmd_text = CmdParser.ParseBlockId(cmd_text);

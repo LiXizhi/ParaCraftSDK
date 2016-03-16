@@ -252,16 +252,16 @@ function ContextMenu:Show(x, y, param1)
 		
 		local _btn = ParaUI.CreateUIObject("button", "OutClickSense", "_fi", 0, 0, 0, 0);
 		_btn.background = "";
-		_btn.onclick = string.format([[;CommonCtrl.ContextMenu.OnMouseClickCont("%s");]], self.name);
-		_btn.onmousedown = string.format([[;CommonCtrl.ContextMenu.OnMouseDownCont("%s");]], self.name);
-		_btn.onmouseup = string.format([[;CommonCtrl.ContextMenu.OnMouseUpCont("%s");]], self.name);
+		_btn.onclick = string.format([[;CommonCtrl.ContextMenu.OnMouseEventOutside("%s");]], self.name);
+		_btn.onmousedown = string.format([[;CommonCtrl.ContextMenu.OnMouseEventOutside("%s");]], self.name);
+		_btn.onmouseup = string.format([[;CommonCtrl.ContextMenu.OnMouseEventOutside("%s");]], self.name);
 		_menu_cont:AddChild(_btn);
 		
 		_menu = ParaUI.CreateUIObject("container", "Menu","_lt", x, y, self.width, 0);
 		_menu.background = "";
 		_menu_cont:AddChild(_menu);
 		
-		--_menu.onmouseup = string.format([[;CommonCtrl.ContextMenu.OnMouseUpCont("%s");]], self.name);
+		--_menu.onmouseup = string.format([[;CommonCtrl.ContextMenu.OnMouseEventOutside("%s");]], self.name);
 		
 		--ctl.parent = _parent;
 		--ctl:Show(true);
@@ -618,33 +618,15 @@ function ContextMenu.OnClose(sCtrlName)
 end
 
 -- this is a click outside the menu container, we will therefore hide the container. 
-function ContextMenu.OnMouseClickCont(sCtrlName)
+function ContextMenu.OnMouseEventOutside(sCtrlName)
 	local self = CommonCtrl.GetControl(sCtrlName);
 	if(self == nil)then
 		log("error: getting ContextMenu instance "..sCtrlName.."\r\n");
 		return;
 	end
-	self:Hide();
-end
-
--- this is a click outside the menu container, we will therefore hide the container. 
-function ContextMenu.OnMouseDownCont(sCtrlName)
-	local self = CommonCtrl.GetControl(sCtrlName);
-	if(self == nil)then
-		log("error: getting ContextMenu instance "..sCtrlName.."\r\n");
-		return;
+	if(self:Hide()) then
+		-- TODO: check to see if we clicked parent window buttons. 
 	end
-	self:Hide();
-end
-
--- this is a click outside the menu container, we will therefore close the container. 
-function ContextMenu.OnMouseUpCont(sCtrlName)
-	local self = CommonCtrl.GetControl(sCtrlName);
-	if(self==nil)then
-		log("error getting ContextMenu instance "..sCtrlName.."\r\n");
-		return;
-	end
-	self:Hide();
 end
 
 -- onclick event handler

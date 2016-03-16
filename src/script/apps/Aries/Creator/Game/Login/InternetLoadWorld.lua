@@ -180,7 +180,8 @@ end
 -- this is a public file
 -- @param world: this is table containing {remotefile, url, etc}
 -- @param homeserver_nid: nil or nid, we will run the instance in the home server of this nid.
-function InternetLoadWorld.LoadWorld(world, homeserver_nid)
+-- @param refreshMode: nil|"auto"|"never"|"force".  
+function InternetLoadWorld.LoadWorld(world, homeserver_nid, refreshMode)
 	if( world.remotefile and world.remotefile:match("^local://")) then
 		NPL.load("(gl)script/apps/Aries/Creator/WorldCommon.lua");
 		local WorldCommon = commonlib.gettable("MyCompany.Aries.Creator.WorldCommon")
@@ -228,7 +229,7 @@ function InternetLoadWorld.LoadWorld(world, homeserver_nid)
 		else
 			_guihelper.MessageBox(msg);
 		end
-	end)	
+	end, refreshMode)	
 end
 
 function InternetLoadWorld.OnClickSelectedWorld()

@@ -115,7 +115,7 @@ function Material:setRequiresTool()
 end
 
 -- Set the canBurn bool to True and return the current object.
-function Material:setBurning()
+function Material:setCanBurn()
     self.canBurn = true;
     return self;
 end

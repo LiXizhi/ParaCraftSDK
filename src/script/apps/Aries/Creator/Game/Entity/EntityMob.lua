@@ -93,11 +93,7 @@ function Entity:OnRespawn()
 	local item = self:GetItem();
 	if(item) then
 		self.hp = item.hp or 1;
-		local mob = self:GetInnerObject();
-		if(not mob) then
-			return;
-		end
-		mob:SetVisible(true);
+		self:SetVisible(true);
 	end
 end
 
@@ -105,11 +101,7 @@ function Entity:OnDead()
 	self.hp = 0;
 	self.dead_time = commonlib.TimerManager.GetCurrentTime();
 
-	local mob = self:GetInnerObject();
-	if(not mob) then
-		return;
-	end
-	mob:SetVisible(false);
+	self:SetVisible(false);
 
 	if(not self.collected) then
 		self.collected = true;

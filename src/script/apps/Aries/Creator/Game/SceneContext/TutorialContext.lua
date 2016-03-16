@@ -16,6 +16,8 @@ local TutorialContext = commonlib.inherit(commonlib.gettable("MyCompany.Aries.Ga
 
 TutorialContext:Property({"Name", "TutorialContext"});
 TutorialContext:Property("HelperBlockId", 155);
+-- following property is used by GameMode 
+TutorialContext:Property({"ModeHasJumpRestriction", true});
 
 function TutorialContext:ctor()
 	-- use the ending block (155) as the maker block
@@ -73,4 +75,13 @@ function TutorialContext:mouseReleaseEvent(event)
 	if(event:isAccepted()) then
 		return
 	end
+end
+
+function TutorialContext:HandleGlobalKey(event)
+	local dik_key = event.keyname;
+	if(dik_key == "DIK_TAB") then
+		-- disable tab and shift tab key in tutorial mode.
+		event:accept();
+	end
+	return TutorialContext._super.HandleGlobalKey(self, event);
 end

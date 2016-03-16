@@ -16,13 +16,14 @@ function OnClickPlay()
     end
 end
 function OnClose()
-    _guihelper.MessageBox(L"点击是, 不再显示这个教程.<br /> 点击否, 彻底关闭教程窗口, 关闭后你仍可以从帮助菜单中随时打开它.", function(res)
-	    if(res == _guihelper.DialogResult.Yes) then
-		    WebTutorials:Dismiss();
-        elseif(res == _guihelper.DialogResult.No) then
-            WebTutorials:Close();
-	    end
-    end, _guihelper.MessageBoxButtons.YesNoCancel);
+    WebTutorials:Close();
+    -- _guihelper.MessageBox(L"点击是, 不再显示这个教程.<br /> 点击否, 彻底关闭教程窗口, 关闭后你仍可以从帮助菜单中随时打开它.", function(res)
+	--     if(res == _guihelper.DialogResult.Yes) then
+	-- 	    WebTutorials:Dismiss();
+    --     elseif(res == _guihelper.DialogResult.No) then
+    --         WebTutorials:Close();
+	--     end
+    -- end, _guihelper.MessageBoxButtons.YesNoCancel);
 end
 ]]></script>
 <div style="background-color:#ebf8fe;padding:5px">
@@ -32,12 +33,12 @@ end
             <div style="float:left;margin-left:5px;">
                 <div style="font-weight:bold;font-size:14px;">
                     <span style="margin-top:2px;"><%=WebTutorials:GetCurrent():GetTitle()%></span>
-                    <input type="button" value='<%=L"播放"%>' onclick="OnClickPlay" style="margin-left:3px;" tooltip='<%=L"用外部浏览器播放视频"%>' />
+                    <input type="button" value='<%=L"帮助"%>' onclick="OnClickPlay" style="margin-left:3px;" tooltip='<%=L"用外部浏览器打开帮助百科"%>' />
                     <input type="button" value='X' onclick="OnClose" style="margin-left:3px;" tooltip='<%=L"关闭"%>' />
                 </div>
                 <div style="font-size:12px;margin-top:4px;color:#999292">
-                    <%=L"难度:"%><%=WebTutorials:GetCurrent():GetDifficultyText()%>
-                    <span style="margin-left:10px;"><%=L"时长:"%><%=WebTutorials:GetCurrent():GetTimeLengthText()%></span>
+                    <!--<%=L"难度:"%><%=WebTutorials:GetCurrent():GetDifficultyText()%>
+                    <span style="margin-left:10px;"><%=L"时长:"%><%=WebTutorials:GetCurrent():GetTimeLengthText()%></span>-->
                 </div>
             </div>
         </div>

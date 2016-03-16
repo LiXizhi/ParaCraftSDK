@@ -2588,12 +2588,6 @@ function MyCompany.Aries.Handle_LoadWorld_Command(params)
 					GameLogic.StaticInit();
 				end
 
-				if(System.options.isAB_SDK) then
-					NPL.load("(gl)script/apps/Aries/Creator/Game/Commands/CommandManager.lua");
-					local CommandManager = commonlib.gettable("MyCompany.Aries.Game.CommandManager");
-					CommandManager:Init()
-				end
-
 				-- set player density if any
 				if(worldinfo and not is_standalone) then
 					Player.RefreshDensity();

@@ -21,22 +21,22 @@ local CommandManager = commonlib.gettable("MyCompany.Aries.Game.CommandManager")
 
 Commands["select"] = {
 	name="select", 
-	quick_ref="/select [-add|clear|below|all] x y z [(dx dy dz)]", 
-	desc=[[select blocks in a region
+	quick_ref="/select [-add|clear|below|all|pivot|move] x y z [(dx dy dz)]", 
+	desc=[[select blocks in a region.
+-- select all blocks in AABB region
 /select x y z [(dx dy dz)]
-select all blocks in AABB region
-
+-- select all block below the current player's feet
 /select -below [radius] [height]
-select all block below the current player's feet
-
+-- add a single block to current selection. one needs to make a selection first. 
 /select -add x y z
-add a single block to current selection. one needs to make a selection first. 
-
+-- clear selection
 /select -clear
-clear selection
-
+-- select all blocks connected with current selection but not below current selection. 
 /select -all x y z [(dx dy dz)]
-select all blocks connected with current selection but not below current selection. 
+-- set pivot point
+/select -pivot x y z
+-- move to a new position
+/select -move x y z
 ]] , 
 	handler = function(cmd_name, cmd_text, cmd_params, fromEntity)
 		local options;
@@ -60,6 +60,25 @@ select all blocks connected with current selection but not below current selecti
 			task.ExtendAABB(bx+radius, by-1-height, bz+radius);
 		elseif(options.clear) then
 			SelectBlocks.CancelSelection();
+		elseif(options.pivot) then
+			local x, y, z;
+			x, y, z, cmd_text = CmdParser.ParsePos(cmd_text, fromEntity);
+			if(x and y and z) then
+				local instance = SelectBlocks.GetCurrentInstance();
+				if(instance) then
+					instance:SetPivotPoint({x,y,z});
+					instance:SetPosition({x,y,z});
+				end
+			end
+		elseif(options.move) then
+			local x, y, z;
+			x, y, z, cmd_text = CmdParser.ParsePos(cmd_text, fromEntity);
+			if(x and y and z) then
+				local instance = SelectBlocks.GetCurrentInstance();
+				if(instance) then
+					instance:SetPosition({x,y,z});
+				end
+			end
 		else
 			local x, y, z, dx, dy, dz;
 			x, y, z, cmd_text = CmdParser.ParsePos(cmd_text, fromEntity);

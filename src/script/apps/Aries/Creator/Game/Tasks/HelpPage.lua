@@ -37,8 +37,10 @@ local shortcurkey_ds = {};
 local anim_ds = {};
 
 local page;
-function HelpPage.ShowPage()
 
+-- @param category_name: can be nil, or "tutorial", "shortcutkey", etc
+-- @param subfolder_name: can be nil or sub folder name, such as "MovieMaking", "newusertutorial", "programming", "redstone","smallstructure"
+function HelpPage.ShowPage(category_name, subfolder_name)
 	System.App.Commands.Call("File.MCMLWindowFrame", {
 		url = "script/apps/Aries/Creator/Game/Tasks/HelpPage.html", 
 		name = "HelpPage.ShowPage", 
@@ -55,11 +57,61 @@ function HelpPage.ShowPage()
 			width = 650,
 			height = 450,
 	});
+
+	HelpPage.SelectCategory(category_name, subfolder_name);
 end
 
 function HelpPage.ClosePage()
 	if(page) then
 		page:CloseWindow();
+	end
+end
+
+-- @param index_or_name: category index number or string
+-- @param subcategory_name: nil or sub category name
+function HelpPage.SelectCategory(index_or_name, subcategory_name)
+	if(not index_or_name) then
+		return
+	end
+	if(type(index_or_name) == "string") then
+		local ds = HelpPage.GetHelpDS();
+		if(ds) then
+			for index, item in ipairs(ds) do
+				if(item.attr and item.attr.category == index_or_name) then
+					index_or_name = index;
+				end
+			end
+		end
+	end
+	if(type(index_or_name) == "number") then
+		local index = index_or_name;
+		local ds = HelpPage.GetHelpDS();
+		if(not ds or not ds[index]) then
+			return;
+		end
+		if(HelpPage.select_type_index ~= index) then
+			HelpPage.select_task_index = 1;
+			HelpPage.select_item_index = 1;
+		end
+
+		HelpPage.select_type_index = index;
+		ds[index]["attr"]["expanded"] = not ds[index]["attr"]["expanded"];
+
+		if(subcategory_name) then
+			for index, subitem in ipairs(ds[index]) do
+				if(subitem and subitem.attr and subitem.attr.name == subcategory_name) then
+					HelpPage.select_task_index = index;
+					HelpPage.select_item_index = index;
+				end
+			end
+		end
+
+		HelpPage.cur_category = HelpPage.GetCurrentCategory();
+		--BuildQuest.cur_theme_index = 1;
+		HelpPage.cur_theme_index = 1;
+		if(page) then
+			page:Refresh(0.1);
+		end
 	end
 end
 
@@ -140,21 +192,21 @@ function HelpPage.OnInitDS()
 			local ds = BuildQuestProvider.GetThemes_DS(typ["attr"].category);
 			for j = 1,#ds do
 				local theme = ds[j];
-				local item = {name="item",attr={text=theme.name,item_index=j,type_index = i,category=typ["attr"]["category"]}}
+				local item = {name="item",attr={name=theme.foldername, text=theme.name,item_index=j,type_index = i,category=typ["attr"]["category"]}}
 				typ[#typ + 1] = item;
 			end
 		elseif(i == 3) then
 			local ds = CommandManager:GetCmdTypeDS();
 			local j = 1;
 			for k,v in pairs(ds) do
-				local item = {name="item",attr={text=k,item_index=j,type_index = i,category=typ["attr"]["category"],}}
+				local item = {name="item",attr={name="cmd", text=k,item_index=j,type_index = i,category=typ["attr"]["category"],}}
 				typ[#typ + 1] = item;
 				j = j + 1;
 			end
 			-- add the model anim info;
-			typ[#typ + 1] = {name="item",attr={text=L"动作编号",item_index=j,type_index = i,category=typ["attr"]["category"],}};
+			typ[#typ + 1] = {name="item",attr={name="actions", text=L"动作编号",item_index=j,type_index = i,category=typ["attr"]["category"],}};
 		elseif(i == 4) then
-			typ[1] = {name="item",attr={text=L"全部",item_index=1,type_index = i,category=typ["attr"]["category"],}}
+			typ[1] = {name="item",attr={name="shortcutkey", text=L"全部",item_index=1,type_index = i,category=typ["attr"]["category"],}}
 		end
 	end
 end

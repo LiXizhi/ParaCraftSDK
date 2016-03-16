@@ -317,7 +317,7 @@ end
 local function activate()
 	local msg = msg;
 	if(msg.type == "StartServerAsync") then
-		WebServer:StartServer(msg.configfile, true);
+		WebServer:StartDeprecatedHttpd(msg.configfile, true);
 	end
 end
 NPL.this(activate)

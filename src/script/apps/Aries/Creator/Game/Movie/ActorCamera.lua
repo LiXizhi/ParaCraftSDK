@@ -51,6 +51,19 @@ function Actor:GetMultiVariable()
 	end
 end
 
+-- get position multi variable
+function Actor:GetPosVariable()
+	if(self.pos_variable) then
+		return self.pos_variable;
+	else
+		self.pos_variable = MultiAnimBlock:new({name="pos"});
+		self.pos_variable:AddVariable(self:GetVariable("lookat_x"));
+		self.pos_variable:AddVariable(self:GetVariable("lookat_y"));
+		self.pos_variable:AddVariable(self:GetVariable("lookat_z"));
+		return self.pos_variable;
+	end
+end
+
 function Actor:BindItemStackToTimeSeries()
 	self.multi_variable = nil;
 	return Actor._super.BindItemStackToTimeSeries(self);
@@ -72,6 +85,8 @@ function Actor:Init(itemStack, movieclipEntity)
 	timeseries:CreateVariableIfNotExist("is_fps", "Discrete");
 	timeseries:CreateVariableIfNotExist("has_collision", "Discrete");
 	
+	self:AddValue("position", self.GetPosVariable);
+
 	-- get initial position from itemStack, if not exist, we will use movie clip entity's block position. 
 	local movieClip = self:GetMovieClip();
 	if(movieClip) then

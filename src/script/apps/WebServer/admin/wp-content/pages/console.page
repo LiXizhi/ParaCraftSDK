@@ -11,6 +11,17 @@ local function GetCode()
   return code or "";
 end
 
+local function CreateSandBoxEnv()
+  local env = {
+    alert = _guihelper.MessageBox,
+    GameLogic = commonlib.gettable("GameLogic"),
+    cmd = GameLogic.RunCommand,
+  };
+  local meta = {__index = _G};
+	setmetatable (env, meta);
+  return env;
+end
+
 -- Run code and print result
 local function RunWithResult()
   if(not code or code == "") then
@@ -20,6 +31,7 @@ local function RunWithResult()
     local fromLogPos = commonlib.log.GetLogPos();
     local code_func, errormsg = loadstring(code);
     if(code_func) then
+      setfenv(code_func, CreateSandBoxEnv());
 	    local ok, result = pcall(code_func);
 	    if(ok) then
 	      echo("<p style='color:green'>success!</p>")
@@ -38,15 +50,48 @@ local function RunWithResult()
 end
 
 ?>
+<style type="text/css" media="screen">
+  .ace_editor {
+  border: 1px solid lightgray;
+  margin: auto;
+  height: 200px;
+  width: 100%;
+  }
+</style>
+<?npl
+wp_enqueue_script("ace", "/wp-includes/js/ace/ace.js"); 
+?>
 <div class="title">NPL console</div>
-<p>paste any NPL code here to execute</p>
-<form name="code" method="post" action="">
+<p>Type NPL code below, press Ctrl+R to run</p>
+<pre id="editor"><?npl echo(sanitize(GetCode())); ?></pre>
+<script>
+  var editor = ace.edit("editor");
+  editor.setTheme("ace/theme/github");
+  editor.session.setMode("ace/mode/lua");
+  editor.setAutoScrollEditorIntoView(true);
+  editor.setOption("maxLines", 30);
+  editor.setOption("minLines", 5);
+  editor.commands.addCommand({
+    name: 'myCommand',
+    bindKey: {win: 'Ctrl-R',  mac: 'Command-R'},
+    exec: function(editor) {
+      $('#runcode').trigger('click');
+    },
+    readOnly: true
+  });
+  
+  $(function(){
+    $("#code").submit(function() {
+      $("#text").val(editor.getValue());
+      return true;
+    });
+  });
+</script>
+<form id="code" name="code" method="post" action="">
   <p>
-    <textarea name="text" rows="10" style="max-width:100%;width:600px;"><?npl echo(sanitize(GetCode())); ?></textarea>
-  </p>
-  <p>
-    <input type="submit" name="btnRunCode" value="Run as code"/>
-    <input type="submit" name="btnRunPage" value="Run as page"/>
+    <input id="text" type="hidden" name="text" value=""/>
+    <input type="submit" id="runcode" name="btnRunCode" value="Run as code (Ctrl+R)"/>
+    <input type="submit" id="runpage" name="btnRunPage" value="Run as page"/>
     <input type="button" name="btnSave" value="Save"/>
   </p>
 </form>

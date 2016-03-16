@@ -207,7 +207,7 @@ function block:tryExtend(x,y,z,dir)
                 z1 = z1+Direction.offsetZ[dir];
                 dist = dist + 1;
             else
-				block_types.get(block_id):DropBlockAsItem(x1, y1, z1, BlockEngine:GetBlockData(x1, y1, z1), 0);
+				block_types.get(block_id):DropBlockAsItem(x1, y1, z1);
 				BlockEngine:SetBlockToAir(x1, y1, z1);
 				break;
             end

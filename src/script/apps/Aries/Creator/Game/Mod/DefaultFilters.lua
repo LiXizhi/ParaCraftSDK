@@ -27,8 +27,8 @@ end
 function DefaultFilters.cmd_open_url(url)
 	if(url and url:match("^npl")) then
 		if(GameLogic.IsReadOnly()) then
-			_guihelper.MessageBox(L"安全警告: NPL code wiki 只能在你自己创建的非只读世界中运行, 命令被终止");
-			return;
+			-- _guihelper.MessageBox(L"安全警告: NPL code wiki 只能在你自己创建的非只读世界中运行, 命令被终止");
+			-- return;
 		end
 
 		NPL.load("(gl)script/apps/WebServer/WebServer.lua");

@@ -117,7 +117,7 @@ function BlockTemplate:LoadTemplate()
 	if(xmlRoot) then
 		local root_node = commonlib.XPath.selectNode(xmlRoot, "/pe:blocktemplate");
 		if(root_node and root_node[1]) then
-			if( self.UseAbsolutePos and root_node.attr.pivot) then
+			if( self.UseAbsolutePos and root_node.attr and root_node.attr.pivot) then
 				local x, y, z = root_node.attr.pivot:match("^(%d+)%D+(%d+)%D+(%d+)");
 				if(x and y and z) then
 					self.blockX = tonumber(x);
@@ -133,7 +133,7 @@ function BlockTemplate:LoadTemplate()
 					local bx, by, bz = self:GetBlockPosition();
 					LOG.std(nil, "info", "BlockTemplate", "LoadTemplate from file: %s at pos:%d %d %d", filename, bx, by, bz);
 
-					if(root_node.attr.relative_motion == "true") then
+					if(root_node.attr and root_node.attr.relative_motion == "true") then
 						self:CalculateRelativeMotion(blocks, bx, by, bz);
 					end
 
@@ -196,22 +196,12 @@ function BlockTemplate:SaveTemplate()
 			NPL.load("(gl)script/apps/Aries/Creator/Game/Tasks/SelectBlocksTask.lua");
 			local select_task = MyCompany.Aries.Game.Tasks.SelectBlocks.GetCurrentInstance();
 			if(select_task) then
-				local cur_selection = select_task:GetSelectedBlocks();
-				-- all relative to pivot point. 
-				local pivot_x,pivot_y,pivot_z = unpack(select_task:GetPivotPoint());
-				local block_pivot = BlockEngine:GetBlock(pivot_x,pivot_y,pivot_z);
-				if(block_pivot and block_pivot.id == block_types.names.Command_Block) then
-					-- use the displayed pivot point if it is on a command block. 
-				end
-				
-				select_task:UpdateSelectionEntityData();
-				local blocks = {};
-				for i = 1, #(cur_selection) do
-					-- x,y,z,block_id, data, serverdata
-					local b = cur_selection[i];
-					blocks[i] = {b[1]-pivot_x, b[2]-pivot_y, b[3]- pivot_z, b[4], if_else(b[5] == 0, nil, b[5]), b[6]};
-				end
-				self.blocks = blocks;
+				local pivot = select_task:GetPivotPoint();
+				-- local block_pivot = BlockEngine:GetBlock(pivot[1],pivot[2],pivot[3]);
+				-- if(block_pivot and block_pivot.id == block_types.names.Command_Block) then
+				-- 	-- TODO: use the displayed pivot point if it is on a command block. 
+				-- end
+				self.blocks = select_task:GetCopyOfBlocks(pivot);
 			else
 				return;
 			end

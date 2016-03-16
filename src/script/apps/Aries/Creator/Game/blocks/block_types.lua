@@ -138,6 +138,7 @@ function block_types.PreloadBlockClass()
 	NPL.load("(gl)script/apps/Aries/Creator/Game/blocks/BlockLilypad.lua");
 	NPL.load("(gl)script/apps/Aries/Creator/Game/blocks/BlockVine.lua");
 	NPL.load("(gl)script/apps/Aries/Creator/Game/blocks/BlockTorch.lua");
+	NPL.load("(gl)script/apps/Aries/Creator/Game/blocks/BlockArrow.lua");
 end
 
 -- block_types.register_basics

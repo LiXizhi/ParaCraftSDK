@@ -118,6 +118,7 @@ to_id： 可以是一组连续的ID
     <block id="90"/>
     <block id="6"/>
     <block id="220"/>
+    <block id="153"/>
     <block name="White_Carpet"/>
     <block name="Orange_Carpet"/>
     <block name="Magenta_Carpet"/>
@@ -268,6 +269,7 @@ to_id： 可以是一组连续的ID
     <block name="Bone"/>
     <block name="Minimap"/>
     <block name="player_spawn_point"/>
+    <block name="BlockArrow"/>
     <block name="BlockModel"/>
   </category>
 

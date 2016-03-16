@@ -525,3 +525,6 @@ function Locale.prototype:Debug()
 	end
 	log("--- End Locale Debug ---")
 end
+
+-- set global
+L = CommonCtrl.Locale("IDE");

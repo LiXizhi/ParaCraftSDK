@@ -29,6 +29,7 @@ local block_types = commonlib.gettable("MyCompany.Aries.Game.block_types")
 local GameLogic = commonlib.gettable("MyCompany.Aries.Game.GameLogic")
 local EntityManager = commonlib.gettable("MyCompany.Aries.Game.EntityManager");
 local Direction = commonlib.gettable("MyCompany.Aries.Game.Common.Direction")
+local Event = commonlib.gettable("System.Core.Event");
 
 NPL.load("(gl)script/ide/headon_speech.lua");
 
@@ -44,7 +45,8 @@ EntityManager.RegisterEntityClass(Entity.class_name, Entity);
 -- enabled frame move. 
 Entity.framemove_interval = 0.2;
 
-Entity.group_id = GameLogic.SentientGroupIDs.Mob;
+Entity:Property({"group_id", GameLogic.SentientGroupIDs.Mob})
+
 Entity.sentient_fields = {[GameLogic.SentientGroupIDs.Player] = true};
 -- how much this entity likes the block
 Entity.path_blocks_weight = {
@@ -581,6 +583,10 @@ function Entity:OnClick(x, y, z, mouse_button)
 		NPL.load("(gl)script/apps/Aries/Creator/Game/Tasks/SelectModelTask.lua");
 		local task = MyCompany.Aries.Game.Tasks.SelectModel:new({obj=self:GetInnerObject()})
 		task:Run();
+	else
+		local event = Event:new():init("onclick");	
+		event.button = mouse_button;
+		self:event(event);
 	end
 	return true;
 end
@@ -621,7 +627,7 @@ end
 
 -- called by framemove to move to target position and according to its current motion and walk speed. 
 function Entity:MoveEntity(deltaTime, bTryMove)
-	if(GameLogic.isRemote) then
+	if(self:IsRemote()) then
 		if (self.smoothFrames > 0) then
             local newX = self.x + (self.targetX - self.x) / self.smoothFrames;
             local newY = self.y + (self.targetY - self.y) / self.smoothFrames;
@@ -697,12 +703,13 @@ function Entity:MoveEntity(deltaTime, bTryMove)
 		else
 			if (self.onGround and bHasMotionLast) then
 				local dist_sq = self.motionX ^ 2 + self.motionZ ^ 2;
-				self.motionX = self.motionX * 0.5;
-				self.motionZ = self.motionZ * 0.5;
+				local decayFactor = 1-self:GetSurfaceDecay();
+				self.motionX = self.motionX * decayFactor;
+				self.motionZ = self.motionZ * decayFactor;
 				if(dist_sq < 0.00001) then
 					-- make it stop when motion is very small
 					self.motionX = 0;
-					self.motionY = 0;
+					-- self.motionY = 0;
 					self.motionZ = 0;
 				end
 			end
@@ -721,7 +728,8 @@ function Entity:MoveEntity(deltaTime, bTryMove)
 
 		-- apply gravity
 		if(not bFlying) then
-			self.motionY = math.max(-1, self.motionY - 0.04);
+			-- we will double gravity to make it look better
+			self.motionY = math.max(-1, self.motionY - self:GetGravity()*2*deltaTime*deltaTime);
 		end
 		self:MoveEntityByDisplacement(self.motionX,self.motionY,self.motionZ);
 
@@ -745,7 +753,7 @@ function Entity:FrameMove(deltaTime)
 		-- only update non-critical data here. since object is far from the player. 
 		return;
 	end
-	if(self:HasFocus()) then
+	if(self:HasFocus() and not self:HasMotion()) then
 		self.moveForward = 0;
 	else
 		-- only move physically and autonomously when not focused. 

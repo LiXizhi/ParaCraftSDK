@@ -81,6 +81,7 @@ end
 function WorldTracker:BroadcastSound(id, x, y, z, data)
 end
 
--- Starts (or continues) destroying a block with given ID at the given coordinates for the given partially destroyed value
-function WorldTracker:DestroyBlockPartially(entityId, x,y,z, destroyedStage)
+-- virtual: set new damage to a given block
+-- @param damage: [1-10), other values will remove it. 
+function WorldTracker:DestroyBlockPartially(entityId, x,y,z, damage)
 end

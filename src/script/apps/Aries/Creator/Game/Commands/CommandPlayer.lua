@@ -61,8 +61,11 @@ Commands["give"] = {
 	name="give", 
 	quick_ref="/give [@playername] [block] [count] [serverdata]", 
 	desc=[[give a certain item to a given player
-/give [@playername] [block] [count] [serverdata]
-currently player target is not supported yet
+@param block : block id or name
+@param serverdata: server data table in {}
+e.g.
+/give 61
+/give BlockModel {tooltip="blocktemplates/1.bmax"}
 ]], 
 	handler = function(cmd_name, cmd_text, cmd_params, fromEntity)
 		local playerEntity, blockid, count, data, method, serverdata;
@@ -82,22 +85,25 @@ currently player target is not supported yet
 
 Commands["take"] = {
 	name="take", 
-	quick_ref="/take [@playername] 61", 
-	desc=[[take a given block in hand
-/give [block] [data]
-currently player target is not supported yet
+	quick_ref="/take [@playername] [block] [count] [serverdata]", 
+	desc=[[set a given block to the hand of the player
+@param block : block id or name
+@param serverdata: server data table in {}
+e.g.
+/take 61
+/take BlockModel {tooltip="blocktemplates/1.bmax"}
 ]], 
 	handler = function(cmd_name, cmd_text, cmd_params)
-		if(not System.options.is_mcworld) then
-			return;
-		end
-		local playerEntity, blockid, data, method, dataTag;
+		local playerEntity, blockid, count, data, method, serverdata;
 		playerEntity, cmd_text  = CmdParser.ParsePlayer(cmd_text);
 		blockid, cmd_text = CmdParser.ParseBlockId(cmd_text);
+		count, cmd_text = CmdParser.ParseInt(cmd_text);
+		serverdata, cmd_text = CmdParser.ParseServerData(cmd_text);
 		if(blockid) then
 			playerEntity = playerEntity or EntityManager.GetPlayer();
-			if(playerEntity and playerEntity.inventory and playerEntity.inventory.SetBlockInRightHand) then
-				playerEntity.inventory:SetBlockInRightHand(blockid);
+			if(playerEntity and playerEntity.inventory and playerEntity.inventory) then
+				local item = ItemStack:new():Init(blockid, count or 1, serverdata);
+				playerEntity.inventory:SetBlockInRightHand(item);
 			end
 		end
 	end,
@@ -106,8 +112,12 @@ currently player target is not supported yet
 Commands["gravity"] = {
 	name="gravity", 
 	quick_ref="/gravity [@playername] [value|9.81]", 
-	desc=[[gravity of a given player
-/gravity [@playername] [value|9.81]
+	desc=[[gravity globally or a given player 
+@param playername: @a means player, or a player name. if not specified, it means the global gravity. 
+Examples: 
+/gravity 9.81   set global gravity to 9.81
+/gravity @a 9.81   only set the player's gravity to 9.81
+/gravity @test 9.81   only set the player's gravity to 9.81
 ]], 
 	handler = function(cmd_name, cmd_text, cmd_params, fromEntity)
 		local gravity, playerEntity;
@@ -115,7 +125,7 @@ Commands["gravity"] = {
 		gravity, cmd_text = CmdParser.ParseInt(cmd_text);
 		if(gravity) then
 			if(playerEntity) then
-				playerEntity:GetPhysicsObject():SetGravity(gravity);
+				playerEntity:SetGravity(gravity);
 			else
 				GameLogic.options:SetGravity(gravity);
 			end
@@ -172,40 +182,41 @@ Commands["viewbobbing"] = {
 Commands["velocity"] = {
 	name="velocity", 
 	quick_ref="/velocity [add|set] [@playername] [~|x] [~|y] [~|z]", 
-	desc=[[add or set velocity to a given mob entity. 
-/velocity [add|set] [@playername] [~|x] [~|y] [~|z]
-if only one value is provided it means y.
-if only two values are provided it means x,y.
-
-/velocity set @test 1,~,~   :use ~ to retain last speed.
+	desc=[[add or set velocity to a given entity. 
+@param [add|set]: default to set. please note you can not add motion to focused entity, use set instead. 
+@param x,y,z: if only one value is provided it means y. if only two values are provided it means x,y.
+Examples:
+/velocity set @test 1,1,1   :set speed of the test entity
+/velocity add @test 1,~,~   :use ~ to retain last speed.
+/velocity 1,~,~   :set current player's speed
 ]], 
 	handler = function(cmd_name, cmd_text, cmd_params)
 		if(not System.options.is_mcworld) then
 			return;
 		end
-		local playerEntity, list, bIsSet;
-		-- default to add velocity
-		bIsSet, cmd_text = CmdParser.ParseText(cmd_text, "set");
+		local playerEntity, list, bIsAdd;
+		-- default to set velocity
+		bIsAdd, cmd_text = CmdParser.ParseText(cmd_text, "add");
+		if(not bIsAdd) then
+			bIsAdd, cmd_text = CmdParser.ParseText(cmd_text, "set");
+			bIsAdd = nil;
+		end
 		playerEntity, cmd_text  = CmdParser.ParsePlayer(cmd_text);
 		playerEntity = playerEntity or EntityManager.GetPlayer();
 		list, cmd_text = CmdParser.ParseNumberList(cmd_text, nil, "|,%s")
 		if(list and playerEntity) then
 			local x, y, z;
-			if(bIsSet) then
+			if(#list == 1) then
+				x,y,z = nil,list[1],nil;
+			elseif(#list == 2) then
+				x,y,z = list[1],nil,list[2];
+			else
 				x,y,z = list[1],list[2],list[3];
-			else
-				if(#list == 1) then
-					x,y,z = nil,list[1],nil;
-				elseif(#list == 2) then
-					x,y,z = list[1],nil,list[2];
-				else
-					x,y,z = list[1],list[2],list[3];
-				end
 			end
-			if(not bIsSet) then
-				playerEntity:GetPhysicsObject():AddVelocity(x or 0,y or 0,z or 0);
+			if(bIsAdd) then
+				playerEntity:AddVelocity(x or 0,y or 0,z or 0);
 			else
-				playerEntity:GetPhysicsObject():SetVelocity(x,y,z);
+				playerEntity:SetVelocity(x,y,z);
 			end
 		end
 	end,
@@ -246,15 +257,17 @@ Commands["move"] = {
 Commands["speeddecay"] = {
 	name="speeddecay", 
 	quick_ref="/speeddecay [@playername] [surface_decay] [air_decay]", 
-	desc=[[speed lost per second when in air or on surface of block
-/speeddecay @p 0.1 0
+	desc=[[speed decay when block is on ground or in air
+@param surface_decay:  [0,1]. 0 means no speed lost, 1 will lost all speed.  default to 0.5
+Examples:
+/speeddecay @p 0.1
 ]], 
 	handler = function(cmd_name, cmd_text, cmd_params, fromEntity)
 		if(not System.options.is_mcworld) then
 			return;
 		end
 
-		local playerEntity, list, bIsSet;
+		local playerEntity, list;
 		-- default to add velocity
 		playerEntity, cmd_text  = CmdParser.ParsePlayer(cmd_text);
 		playerEntity = playerEntity or EntityManager.GetPlayer();
@@ -267,7 +280,7 @@ Commands["speeddecay"] = {
 				surface_decay, air_decay = list[1],list[2];
 			end
 			if(surface_decay) then
-				playerEntity:GetPhysicsObject():SetSurfaceDecay(surface_decay);
+				playerEntity:SetSurfaceDecay(surface_decay);
 			end
 			if(air_decay) then
 				playerEntity:GetPhysicsObject():SetAirDecay(air_decay);

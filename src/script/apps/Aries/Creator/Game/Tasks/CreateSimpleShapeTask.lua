@@ -2,7 +2,7 @@
 Title: Create Simple Shapes
 Author(s): LiXizhi
 Date: 2013/2/10
-Desc: Create Simple Shapes like ring, circle, sphere, rect, box, cylinder, etc
+Desc: Create Simple Shapes like ring, circle, sphere, box, cylinder, etc
 use the lib:
 ------------------------------------------------------------
 NPL.load("(gl)script/apps/Aries/Creator/Game/Tasks/CreateSimpleShapeTask.lua");
@@ -61,8 +61,8 @@ function CreateSimpleShape:Run()
 		radius = radius or 10;
 		--self:CreateRing(x,y,z, radius, 0);
 		self:CreateRingInPlane(x,y,z, radius, 0, plane)
-	elseif(shape == "rect") then
-		
+	elseif(shape == "box") then
+		self:CreateBox(x,y,z, self.dx or 1, self.dy or 1, self.dz or 1);
 	elseif(shape == "sphere") then
 		radius = radius or 10;
 		--self:CreateRing(x,y,z, radius, 0);
@@ -99,6 +99,24 @@ function CreateSimpleShape:AddBlock(block_template, x,y,z)
 	self.history[#(self.history)+1] = {x,y,z, block_id, from_id};
 end
 
+
+-- @param min_x,min_y,min_z: minimum position
+function CreateSimpleShape:CreateBox(min_x,min_y,min_z, dx, dy, dz)
+	local block_id = self.block_id;
+	local block_template = block_types.get(block_id);
+	if(block_template) then
+		local x,y,z = min_x,min_y,min_z;
+	
+		for i=1, dx, if_else(dx>0, 1, -1) do
+			for j = 1, dy, if_else(dy>0, 1, -1) do
+				for k = 1, dz, if_else(dz>0, 1, -1) do
+					self:AddBlock(block_template, min_x+i-1,min_y+j-1,min_z+k-1);
+				end
+			end
+		end
+	end
+end
+	
 function CreateSimpleShape:CreateRing(cx,cy,cz, outer_radius, inner_radius)
 	local block_id = self.block_id;
 	local block_template = block_types.get(block_id);
@@ -223,9 +241,6 @@ end
 function CreateSimpleShape:CreateSphere(cx,cy,cz, outer_radius, beSolid)
 	local diameterX,diameterY,diameterZ = outer_radius*2 + 1, outer_radius*2 + 1, outer_radius*2 + 1;
 	self:CreateEllipsoid(cx,cy,cz,diameterX,diameterY,diameterZ,beSolid);
-end
-
-function CreateSimpleShape:CreateBox(x,y,z, size_x, size_y, size_z)
 end
 
 function CreateSimpleShape:Redo()

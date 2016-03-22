@@ -1,2 +1,2 @@
 
-npls main.lua
+npl main.lua

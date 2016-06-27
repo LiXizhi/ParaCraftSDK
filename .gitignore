@@ -28,6 +28,7 @@ src/sync_src.bat
 src/sdkpath.txt
 Debug/
 Release/
+build/ParacraftBuild/
 *.opensdf
 *.user
 CMakeFiles/

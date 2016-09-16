@@ -36,6 +36,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MyApp", "samples\MyAppExe\M
 		{81BD27DF-CB19-4F53-AC8F-D74C88E5036E} = {81BD27DF-CB19-4F53-AC8F-D74C88E5036E}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NPLWebServer", "samples\5. NPLWebServer\NPLWebServer.vcxproj", "{B9B49477-AA31-4DB3-B6FE-ED951136D2CD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{81BD27DF-CB19-4F53-AC8F-D74C88E5036E} = {81BD27DF-CB19-4F53-AC8F-D74C88E5036E}
+	EndProjectSection
+EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Paracraft", "_apps\Paracraft\Paracraft.vcxproj", "{F6299870-25CD-4D77-9187-CFEA9FCD7A36}"
 	ProjectSection(ProjectDependencies) = postProject
 		{81BD27DF-CB19-4F53-AC8F-D74C88E5036E} = {81BD27DF-CB19-4F53-AC8F-D74C88E5036E}
@@ -62,11 +67,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SimpleWebServer", "samples\
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Taurus", "_apps\Taurus\Taurus.vcxproj", "{3C451BE1-44C2-478C-843B-43A62F7901F7}"
-	ProjectSection(ProjectDependencies) = postProject
-		{81BD27DF-CB19-4F53-AC8F-D74C88E5036E} = {81BD27DF-CB19-4F53-AC8F-D74C88E5036E}
-	EndProjectSection
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Test", "_apps\Test\Test.vcxproj", "{F9A97BC5-74FE-4CBC-BF45-2CD002352CCB}"
 	ProjectSection(ProjectDependencies) = postProject
 		{81BD27DF-CB19-4F53-AC8F-D74C88E5036E} = {81BD27DF-CB19-4F53-AC8F-D74C88E5036E}
 	EndProjectSection
@@ -115,6 +115,10 @@ Global
 		{5E7D2CC5-3E92-4ED6-899C-8CBC232662B7}.MinSizeRel|Win32.Build.0 = MinSizeRel|Win32
 		{5E7D2CC5-3E92-4ED6-899C-8CBC232662B7}.RelWithDebInfo|Win32.ActiveCfg = RelWithDebInfo|Win32
 		{5E7D2CC5-3E92-4ED6-899C-8CBC232662B7}.RelWithDebInfo|Win32.Build.0 = RelWithDebInfo|Win32
+		{B9B49477-AA31-4DB3-B6FE-ED951136D2CD}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B9B49477-AA31-4DB3-B6FE-ED951136D2CD}.Release|Win32.ActiveCfg = Release|Win32
+		{B9B49477-AA31-4DB3-B6FE-ED951136D2CD}.MinSizeRel|Win32.ActiveCfg = MinSizeRel|Win32
+		{B9B49477-AA31-4DB3-B6FE-ED951136D2CD}.RelWithDebInfo|Win32.ActiveCfg = RelWithDebInfo|Win32
 		{F6299870-25CD-4D77-9187-CFEA9FCD7A36}.Debug|Win32.ActiveCfg = Debug|Win32
 		{F6299870-25CD-4D77-9187-CFEA9FCD7A36}.Release|Win32.ActiveCfg = Release|Win32
 		{F6299870-25CD-4D77-9187-CFEA9FCD7A36}.MinSizeRel|Win32.ActiveCfg = MinSizeRel|Win32
@@ -139,10 +143,6 @@ Global
 		{3C451BE1-44C2-478C-843B-43A62F7901F7}.Release|Win32.ActiveCfg = Release|Win32
 		{3C451BE1-44C2-478C-843B-43A62F7901F7}.MinSizeRel|Win32.ActiveCfg = MinSizeRel|Win32
 		{3C451BE1-44C2-478C-843B-43A62F7901F7}.RelWithDebInfo|Win32.ActiveCfg = RelWithDebInfo|Win32
-		{F9A97BC5-74FE-4CBC-BF45-2CD002352CCB}.Debug|Win32.ActiveCfg = Debug|Win32
-		{F9A97BC5-74FE-4CBC-BF45-2CD002352CCB}.Release|Win32.ActiveCfg = Release|Win32
-		{F9A97BC5-74FE-4CBC-BF45-2CD002352CCB}.MinSizeRel|Win32.ActiveCfg = MinSizeRel|Win32
-		{F9A97BC5-74FE-4CBC-BF45-2CD002352CCB}.RelWithDebInfo|Win32.ActiveCfg = RelWithDebInfo|Win32
 		{81BD27DF-CB19-4F53-AC8F-D74C88E5036E}.Debug|Win32.ActiveCfg = Debug|Win32
 		{81BD27DF-CB19-4F53-AC8F-D74C88E5036E}.Debug|Win32.Build.0 = Debug|Win32
 		{81BD27DF-CB19-4F53-AC8F-D74C88E5036E}.Release|Win32.ActiveCfg = Release|Win32

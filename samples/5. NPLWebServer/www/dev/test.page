@@ -1,0 +1,9 @@
+<?npl
+-- You can play with NPL here and add your test cases in this folder
+-- http://localhost:8099/test/test.page
+?>
+<h2>NPL test page</h2>
+
+<p>
+<? echo(nplinfo()) ?>
+</p>

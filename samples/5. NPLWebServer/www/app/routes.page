@@ -1,0 +1,107 @@
+<?npl
+--[[
+Title: routing ajax/html requests
+Author: LiXizhi
+Date: 2016/6/29
+Desc: redirect AJAX URL to model functions
+
+Mapping of CRUD AJAX operations: 
+- PUT "/api/models/user/new" --> models/user:create()
+- GET "/api/models/user" --> models/user:get()
+- PUT "/api/models/user" --> models/user:update()
+- DELETE "/api/models/user" --> models/user:delete()
+- XXX "/api/models/user/[anyfunc]" --> models/user:api_[anyfunc]()
+
+Everything else is mapped to `wiki.page` as standard html file.
+]]
+local path = pagename() or "";
+
+WIKI_ROOT = dirname(__FILE__).."/";
+
+local ajax_path = path:match("^/?api/(.+)");
+if(ajax_path) then	
+	-- Allow for cross-domain requests (from the frontend). 
+	send_origin_headers();
+	addheader( 'Content-Type', 'text/html'); 
+	addheader( 'X-Robots-Tag', 'noindex'); 
+	send_nosniff_header();
+	nocache_headers();	
+
+	local modelname, params = ajax_path:match("^models/([%w_]+)/?(.*)")
+	if(modelname) then
+		local modelfilename = "./models/"..modelname..".page";
+		if(not file_exists(modelfilename)) then
+			return response:status(404):send({message="invalid model"});
+		end
+		include_once(modelfilename);
+		
+		local model = models and models[modelname];
+		if(not model) then
+			return response:status(404):send({message="model not found"});
+		else
+			model = model:new();
+		end
+
+		local func_name = params and params:match("^(%w+)");
+		if(func_name) then
+			if(func_name == "new") then
+				if(model.create) then
+					local result = model:create(request:getparams());
+					return response:send(result, true);
+				end
+			else
+				local name = "api_"..func_name;
+				if(model[name]) then
+					local result = model[name](model, request:getparams())
+					return response:send(result, true);
+				end
+			end
+		end
+
+		-- redirect CRUD URL to method in model.
+		local req_method = request:GetMethod();
+		if(req_method == "GET" or req_method == "POST") then
+			if(model.get) then
+				local result = model:get(request:getparams());
+				return response:send(result, true);
+			end
+		elseif(req_method == "PUT") then
+			if(model.update) then
+				local result = model:update(request:getparams());
+				return response:send(result, true);
+			end
+		elseif(req_method == "DELETE") then
+			if(model.delete) then
+				local result = model:delete(request:getparams());
+				return response:send(result, true);
+			end
+		end
+	else
+		-- only allow ajax in folder
+		include( "./"..ajax_path..".page" );
+	end
+	return;
+else
+	-- dynamic page has no cache headers
+	response:nocache_headers();
+end
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"  />
+<title><?npl wp_title(); ?></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">      
+<?npl
+wp_enqueue_script("jquery", "/wp-includes/js/jquery/jquery.min.js", nil, "1.11.1"); 
+wp_enqueue_style("bootstrap", "/wp-includes/js/bootstrap/css/bootstrap.min.css");
+wp_enqueue_style("sensitive_style", "/wp-content/themes/sensitive/css/style.css"); 
+wp_enqueue_script("bootstrap", "/wp-includes/js/bootstrap/js/bootstrap.min.js");
+?>
+</head>
+<body>
+   <h1>Example site</h1>
+   NPL Code Wiki is at <a href="http://127.0.0.1:8099">http://127.0.0.1:8099</a>
+</body>
+</html>

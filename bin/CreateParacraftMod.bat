@@ -8,7 +8,7 @@ set modfolder=%PC_SDK_ROOT%_mod\%modname%
 mkdir %modfolder%\script
 mkdir %modfolder%\Mod\%modname%
 
-xcopy "%PC_SDK_ROOT%samples\mod\Sample\run.bat"  "%modfolder%"
+xcopy "%PC_SDK_ROOT%samples\mod\Sample\*.*"  "%modfolder%"
 xcopy "%PC_SDK_ROOT%samples\mod\Sample\Mod\Sample\main.lua" "%modfolder%\Mod\%modname%" 
 
 Set RunFileName="%modfolder%\Run.bat"

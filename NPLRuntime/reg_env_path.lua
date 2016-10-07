@@ -19,14 +19,14 @@ local function RegisterNPLRuntimeWin32(runtime_folder)
 	LOG.std(nil, "info", "register", "old env path: %s", varPath);
 	
 	runtime_folder = runtime_folder:gsub("/", "\\");
-	if(varPath:match("[/\\]NPLRuntime")) then
+	if(varPath and varPath:match("[/\\]NPLRuntime")) then
 		local oldPath = varPath:match("[^;]+NPLRuntime[^;]+");
 		-- already installed
 		LOG.std(nil, "info", "register", "NPL runtime already exist,ignore installation: %s", oldPath);
 	else
 		-- add to user environment variable. 
 		local oldPath = System.os([[reg query HKCU\Environment /v PATH]]);
-		oldPath = oldPath:match("PATH%s+REG_[%w_]*SZ%s+(.*)$"):gsub("%s+$", "");
+		oldPath = oldPath and oldPath:match("PATH%s+REG_[%w_]*SZ%s+(.*)$"):gsub("%s+$", "") or "";
         if(oldPath:match("[/\\]NPLRuntime")) then
             local oldPath = oldPath:match("[^;]+NPLRuntime[^;]+");
 		    -- already installed

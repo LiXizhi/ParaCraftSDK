@@ -27,6 +27,11 @@ setlocal enabledelayedexpansion
     echo,!row!
 ))>"%modfolder%\Mod\%modname%\main.lua"
 
+(for /f "delims=" %%i in (%PC_SDK_ROOT%samples\mod\Sample\ModProject.csproj.user) do (
+    set "row=%%i"
+    set "row=!row:Sample=%modname%!"
+    echo,!row!
+))>"%modfolder%\ModProject.csproj.user"
 
 echo Congrat, succesfully generated at: %modfolder%
 

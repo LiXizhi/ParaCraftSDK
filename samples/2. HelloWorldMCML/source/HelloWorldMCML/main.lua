@@ -50,14 +50,27 @@ local function InitApp()
 		{app={app_key="Debug_GUID"}, IP_file="script/kids/3DMapSystemApp/DebugApp/IP.xml"},
 	})
 
+
+
+	-- 显示一个HTML页面 (旧版) using mcml version 1
 	-- 注册常用HTML渲染控件
+	--[[
 	NPL.load("(gl)script/apps/Aries/mcml/mcml_aries.lua");
 	MyCompany.Aries.mcml_controls.register_all();
 
-	-- 显示一个HTML页面
 	NPL.load("(gl)script/kids/3DMapSystemApp/mcml/PageCtrl.lua");
 	local page = System.mcml.PageCtrl:new({url="source/HelloWorldMCML/HelloWorld.html"});
 	page:Create("helloworldpage", nil, "_fi", 0, 0, 0, 0)
+	]]
+	
+	-- here is another way to create window with new mcml version 2. 
+	NPL.load("(gl)script/ide/System/Windows/Window.lua");
+    local Window = commonlib.gettable("System.Windows.Window")
+    local window = Window:new();
+    window:Show({
+        url="source/HelloWorldMCML/mcml_window.html", 
+        alignment="_lt", left = 300, top = 100, width = 300, height = 400,
+    });
 end
 
 -- 主循环， 每秒会调用2次. 

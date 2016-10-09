@@ -81,6 +81,15 @@ local function InitApp()
 	-- load all worlds configuration file
 	NPL.load("(gl)script/apps/Aries/Scene/WorldManager.lua");
 	MyCompany.Aries.WorldManager:Init();
+	
+	
+	NPL.load("(gl)script/ide/System/Windows/Window.lua");
+	local Window = commonlib.gettable("System.Windows.Window")
+	local window = Window:new();
+	window:Show({
+		url="source/SampleWorld/mcml_window.html", 
+		alignment="_mt", left = 0, top = 0, width = 300, height = 400,
+	});
 end
 
 -- 进入一个默认的世界

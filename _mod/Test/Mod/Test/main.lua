@@ -40,6 +40,14 @@ function Test:init()
 	DemoGUI:init();
 	DemoEntity:init();
 	DemoCommand:init();
+	
+	-- register default context
+	NPL.load("(gl)Mod/Test/DemoSceneContext.lua");
+	local DemoSceneContext = commonlib.gettable("Mod.Test.DemoSceneContext");
+	GameLogic.GetFilters():remove_all_filters("DefaultContext")
+	GameLogic.GetFilters():add_filter("DefaultContext", function(context)
+	   return DemoSceneContext:CreateGetInstance("MyDefaultSceneContext");
+	end);
 end
 
 function Test:OnLogin()

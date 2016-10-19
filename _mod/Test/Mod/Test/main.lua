@@ -1,8 +1,8 @@
 --[[
-Title: 
-Author(s):  
-Date: 
-Desc: 
+Title: Testing every aspect of Mod interface
+Author(s):  LiXizhi
+Date: 2015.10
+Desc: This is also a greate demo of mod interface. 
 use the lib:
 ------------------------------------------------------------
 NPL.load("(gl)Mod/Test/main.lua");
@@ -13,6 +13,8 @@ NPL.load("(gl)Mod/Test/DemoCommand.lua");
 NPL.load("(gl)Mod/Test/DemoEntity.lua");
 NPL.load("(gl)Mod/Test/DemoGUI.lua");
 NPL.load("(gl)Mod/Test/DemoItem.lua");
+NPL.load("(gl)Mod/Test/DemoSceneContext.lua");
+local DemoSceneContext = commonlib.gettable("Mod.Test.DemoSceneContext");
 local GameLogic = commonlib.gettable("MyCompany.Aries.Game.GameLogic")
 local DemoItem = commonlib.gettable("Mod.Test.DemoItem");
 local DemoGUI = commonlib.gettable("Mod.Test.DemoGUI");
@@ -42,12 +44,7 @@ function Test:init()
 	DemoCommand:init();
 	
 	-- register default context
-	NPL.load("(gl)Mod/Test/DemoSceneContext.lua");
-	local DemoSceneContext = commonlib.gettable("Mod.Test.DemoSceneContext");
-	GameLogic.GetFilters():remove_all_filters("DefaultContext")
-	GameLogic.GetFilters():add_filter("DefaultContext", function(context)
-	   return DemoSceneContext:CreateGetInstance("MyDefaultSceneContext");
-	end);
+	DemoSceneContext:ApplyToDefaultContext();
 end
 
 function Test:OnLogin()
@@ -69,8 +66,8 @@ end
 function Test:OnDestroy()
 end
 
-function Test:handleKeyEvent(dik_key)
-	return DemoGUI:handleKeyEvent(dik_key);
+function Test:handleKeyEvent(event)
+	return DemoGUI:handleKeyEvent(event);
 end
 
 
@@ -91,6 +88,7 @@ function Test:OnActivateDesktop(mode)
 	else
 		GameLogic.AddBBS("test", "Test进入游戏模式", 4000, "255 255 0")
 	end
+	-- return true to suppress default desktop interface.
 	return true;
 end
 

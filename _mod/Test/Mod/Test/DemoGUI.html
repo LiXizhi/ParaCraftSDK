@@ -1,4 +1,4 @@
-<!-- "Mod/Test/DemoGUI.html" -->
+﻿<!-- "Mod/Test/DemoGUI.html" -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -10,7 +10,7 @@
 <script refresh="false" type="text/npl" src="DemoGUI.lua"><![CDATA[
 DemoGUI = commonlib.gettable("Mod.Test.DemoGUI");
 function OnClickOK()
-    _guihelper.MessageBox("hello world!");
+    _guihelper.MessageBox("hello world! " .. (Page:GetValue("content") or ""));
 end
 ]]></script>
 <div style="width:200px;height:64px;color:#33ff33;background-color:#ff6a00" >

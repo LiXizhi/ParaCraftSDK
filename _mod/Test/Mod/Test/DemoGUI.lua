@@ -23,7 +23,7 @@ function DemoGUI:ShowMyGUI()
 		-- create if not created before
 		NPL.load("(gl)script/kids/3DMapSystemApp/mcml/PageCtrl.lua");
 		self.page = Map3DSystem.mcml.PageCtrl:new({url="Mod/Test/DemoGUI.html"});		
-		self.page:Create("DemoGUI", nil, "_lt", 10, 10, 200, 64);
+		self.page:Create("DemoGUI", nil, "_lt", 10, 60, 200, 64);
 	end
 end
 
@@ -34,9 +34,9 @@ end
 function DemoGUI:OnLeaveWorld()
 end
 
-function DemoGUI:handleKeyEvent(dik_key)
-	if(dik_key == "DIK_E") then
-		_guihelper.MessageBox(dik_key);
+function DemoGUI:handleKeyEvent(event)
+	if(event.keyname == "DIK_SPACE") then
+		_guihelper.MessageBox("you pressed "..event.keyname.." from Demo GUI");
 		return true;
 	end
 end

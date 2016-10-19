@@ -1,8 +1,8 @@
 --[[
 Title: DemoItem
-Author(s):  
-Date: 
-Desc: 
+Author(s):  LiXizhi
+Date: 2016.10.19
+Desc: a demo block item
 use the lib:
 ------------------------------------------------------------
 NPL.load("(gl)Mod/Test/DemoItem.lua");
@@ -16,10 +16,12 @@ end
 
 function DemoItem:init()
 	LOG.std(nil, "info", "DemoItem", "init");
-	GameLogic.GetFilters().add_filter("block_types", function(xmlRoot) 
+
+	-- register a new block item, id < 512 is internal blocks, which is not recommended to modify. 
+	GameLogic.GetFilters():add_filter("block_types", function(xmlRoot) 
 		local blocks = commonlib.XPath.selectNode(xmlRoot, "/blocks/");
 		if(blocks) then
-			blocks[#blocks] = {name="block", attr={
+			blocks[#blocks+1] = {name="block", attr={
 				id = 512, 
 				text = "Demo Item",
 				name = "DemoItem",
@@ -28,13 +30,19 @@ function DemoItem:init()
 				solid="true",
 				cubeMode="true",
 			}}
+			LOG.std(nil, "info", "DemoItem", "a new block is registered");
 		end
 		return xmlRoot;
 	end)
 
-	GameLogic.GetFilters().add_filter("block_list", function(xmlRoot) 
+	-- add block to category list to be displayed in builder window (E key)
+	GameLogic.GetFilters():add_filter("block_list", function(xmlRoot) 
+		echo("22222222");
 		for node in commonlib.XPath.eachNode(xmlRoot, "/blocklist/category") do
-			
+			if(node.attr.name == "tool") then
+				node[#node+1] = {name="block", attr={name="DemoItem"} };
+				echo("1111111111111111111");
+			end
 		end
 		return xmlRoot;
 	end)

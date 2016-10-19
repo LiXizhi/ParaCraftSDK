@@ -37,11 +37,9 @@ function DemoItem:init()
 
 	-- add block to category list to be displayed in builder window (E key)
 	GameLogic.GetFilters():add_filter("block_list", function(xmlRoot) 
-		echo("22222222");
 		for node in commonlib.XPath.eachNode(xmlRoot, "/blocklist/category") do
 			if(node.attr.name == "tool") then
 				node[#node+1] = {name="block", attr={name="DemoItem"} };
-				echo("1111111111111111111");
 			end
 		end
 		return xmlRoot;

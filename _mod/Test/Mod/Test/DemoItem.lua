@@ -23,6 +23,7 @@ function DemoItem:init()
 		if(blocks) then
 			blocks[#blocks+1] = {name="block", attr={
 				id = 512, 
+				threeSideTex = "true",
 				text = "Demo Item",
 				name = "DemoItem",
 				texture="Texture/blocks/bookshelf_three.png",

@@ -39,3 +39,4 @@ Win32/
 CMakeCache.txt
 tools/ThirdParty/TemplateCreator/
 npl_packages/
+.vs/

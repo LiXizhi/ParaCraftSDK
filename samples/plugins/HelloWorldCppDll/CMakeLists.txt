@@ -2,7 +2,7 @@
 # Company: ParaEngine.com
 # Date: 2014.1.25
 # Desc: Sample C++ ParaEngine Plugin
-# Note: modify this file to set the correct ParaEngine include and boost directory. and then Use CMake to build
+# Note: please run [ParacraftSDK]/NPLRuntime/install_src.bat to download or clone NPLRuntime source code from github. Set BOOST_ROOT env variable to point to your boost install directory. Run CMake in any folder other than the src folder and build. 
 
 
 cmake_minimum_required(VERSION 2.6)
@@ -11,13 +11,28 @@ project (HelloWorldPlugin)
 
 # add the binary tree to the search path for include files
 include_directories("${PROJECT_SOURCE_DIR}")
-# Note: include the ParaEngine include directory
-include_directories("${PROJECT_SOURCE_DIR}/../../../include/ParaEngine")
+# Note: include the ParaEngine/NPLRuntime include directory
+set(NPLRUNTIME_ROOT ${PROJECT_SOURCE_DIR}/../../../NPLRuntime/src/NPLRuntime/Client/trunk/ParaEngineClient)
+include_directories("${NPLRUNTIME_ROOT}/Core")
 
 # include boost
-set(BOOST_ROOT ${PROJECT_SOURCE_DIR}/../../../../../Server/trunk/boost_1_55_0)
-find_package( Boost )
-include_directories("${Boost_INCLUDE_DIRS}")
+if ("$ENV{BOOST_ROOT}" STREQUAL "")
+	set(BOOST_ROOT ${PROJECT_SOURCE_DIR}/../boost_1_55_0)
+endif()
+if( CMAKE_SIZEOF_VOID_P EQUAL 8 )
+	set(BOOST_LIBRARYDIR ${BOOST_ROOT}/stage/lib64)
+else()
+	set(BOOST_LIBRARYDIR ${BOOST_ROOT}/stage/lib32)
+endif()
+
+set(Boost_USE_MULTITHREADED ON)
+set(Boost_USE_STATIC_LIBS   ON)
+set(Boost_USE_STATIC_RUNTIME ON)
+
+# Here are some examples of using boost 
+find_package( Boost 1.55) 
+# Add more boost components here
+# find_package( Boost 1.55 REQUIRED COMPONENTS thread date_time filesystem system chrono signals serialization iostreams regex) 
 
 SET(HelloWorldPlugin_SRCS
 	stdafx.h
@@ -56,8 +71,11 @@ ENDIF(MSVC)
 
 SET(CMAKE_DEBUG_POSTFIX "_d")
 
+include_directories("${Boost_INCLUDE_DIRS}")
+ADD_DEFINITIONS(-DBOOST_SIGNALS_NO_DEPRECATION_WARNING)
+
 # add the executable
-add_library(HelloWorldPlugin SHARED ${HelloWorldPlugin_SRCS})
+add_library(HelloWorldPlugin SHARED ${HelloWorldPlugin_SRCS} ${Boost_LIBRARIES})
 
 
 if(MSVC)

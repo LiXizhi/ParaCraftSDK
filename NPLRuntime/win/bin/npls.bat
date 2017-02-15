@@ -1,2 +1,2 @@
 @echo off
-"%~dp0\paraengineclient.exe" %* servermode=true
+"%~dp0\paraengineclient.exe" servermode=true %*

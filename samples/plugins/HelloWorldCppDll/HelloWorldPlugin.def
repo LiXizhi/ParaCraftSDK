@@ -6,6 +6,6 @@ EXPORTS
 	LibVersion				@4
 	LibInit					@5
 	LibActivate				@6
-
+	LibInitParaEngine       @7
 SECTIONS
 	.data READ WRITE

@@ -48,6 +48,8 @@ ENDMACRO()
 # add all projects under samples/ folder
 AddSubDirs(samples)
 
-AddSubDirs(_apps)
+# AddSubDirs(_apps)
 
-AddSubDirs(_mod)
+# AddSubDirs(_mod)
+
+add_subdirectory(samples/plugins/HelloWorldCppDll)

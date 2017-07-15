@@ -2,8 +2,10 @@
 # Company: ParaEngine.com
 # Date: 2014.1.25
 # Desc: Sample C++ ParaEngine Plugin
-# Note: please run [ParacraftSDK]/NPLRuntime/install_src.bat to download or clone NPLRuntime source code from github. Set BOOST_ROOT env variable to point to your boost install directory. Run CMake in any folder other than the src folder and build. 
-
+# Note: 
+# NPLRUNTIME_ROOT: set a user environment variable to point to the git root directory of NPLRuntime. 
+#  or you can run [ParacraftSDK]/NPLRuntime/install_src.bat to download or clone NPLRuntime source code from github. 
+# Set BOOST_ROOT env variable to point to your boost install directory. Run CMake in any folder other than the src folder and build. 
 
 cmake_minimum_required(VERSION 2.6)
 
@@ -12,7 +14,11 @@ project (HelloWorldPlugin)
 # add the binary tree to the search path for include files
 include_directories("${PROJECT_SOURCE_DIR}")
 # Note: include the ParaEngine/NPLRuntime include directory
-set(NPLRUNTIME_ROOT ${PROJECT_SOURCE_DIR}/../../../NPLRuntime/src/NPLRuntime/Client/trunk/ParaEngineClient)
+if ("$ENV{NPLRUNTIME_ROOT}" STREQUAL "")
+	set(NPLRUNTIME_ROOT ${PROJECT_SOURCE_DIR}/../../../NPLRuntime/src/NPLRuntime/Client/trunk/ParaEngineClient)
+else()
+	set(NPLRUNTIME_ROOT $ENV{NPLRUNTIME_ROOT}/Client/trunk/ParaEngineClient)
+endif()
 include_directories("${NPLRUNTIME_ROOT}/Core")
 
 # include boost

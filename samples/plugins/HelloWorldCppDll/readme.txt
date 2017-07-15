@@ -8,7 +8,7 @@ Date:2014.1.25
    * Run CMake and build (both linux and window) should work. 
 
 ## How To Test
-Copy `HelloWorldPlugin(_d).dll` to the game directory.
+Copy `HelloWorldPlugin(_d).dll` to the working directory where you start NPL runtime such as `./redist`.
 Then run 
 
 ```lua

@@ -1,6 +1,16 @@
 #include "stdafx.h"
 #include "HelloWorld.h"
 
+/**
+* Optional NPL includes, just in case you want to use some core functions see GetCoreInterface()
+*/
+#include "INPLRuntime.h"
+#include "INPLRuntimeState.h"
+#include "IParaEngineCore.h"
+#include "IParaEngineApp.h"
+
+using namespace ParaEngine;
+
 #ifdef WIN32
 #define CORE_EXPORT_DECL    __declspec(dllexport)
 #else
@@ -8,22 +18,17 @@
 #endif
 
 // forward declare of exported functions. 
-#ifdef __cplusplus
 extern "C" {
-#endif
 	CORE_EXPORT_DECL const char* LibDescription();
 	CORE_EXPORT_DECL int LibNumberClasses();
 	CORE_EXPORT_DECL unsigned long LibVersion();
 	CORE_EXPORT_DECL ParaEngine::ClassDescriptor* LibClassDesc(int i);
 	CORE_EXPORT_DECL void LibInit();
 	CORE_EXPORT_DECL void LibActivate(int nType, void* pVoid);
-#ifdef __cplusplus
-}   /* extern "C" */
-#endif
+	CORE_EXPORT_DECL void LibInitParaEngine(ParaEngine::IParaEngineCore* pCoreInterface);
+}
  
 HINSTANCE Instance = NULL;
-
-using namespace ParaEngine;
 
 ClassDescriptor* HelloWorldPlugin_GetClassDesc();
 typedef ClassDescriptor* (*GetClassDescMethod)();
@@ -110,6 +115,17 @@ CORE_EXPORT_DECL ClassDescriptor* LibClassDesc(int i)
 	}
 }
 
+ParaEngine::IParaEngineCore* g_pCoreInterface = NULL;
+ParaEngine::IParaEngineCore* GetCoreInterface()
+{
+	return g_pCoreInterface;
+}
+
+CORE_EXPORT_DECL void LibInitParaEngine(IParaEngineCore* pCoreInterface)
+{
+	g_pCoreInterface = pCoreInterface;
+}
+
 CORE_EXPORT_DECL void LibInit()
 {
 }
@@ -125,6 +141,14 @@ void __attribute__ ((constructor)) DllMain()
 	Instance = hinstDLL;				// Hang on to this DLL's instance handle.
 	return (TRUE);
 #endif
+}
+
+extern "C" {
+	/** this is an example of c function calling NPL core interface */
+	void WriteLog(const char* str) {
+		if(GetCoreInterface())
+			GetCoreInterface()->GetAppInterface()->WriteToLog(str);
+	}
 }
 
 /** this is the main activate function to be called, when someone calls NPL.activate("this_file.dll", msg); 
@@ -150,5 +174,7 @@ CORE_EXPORT_DECL void LibActivate(int nType, void* pVoid)
 			NPLInterface::NPLHelper::NPLTableToString("msg", output_msg, output);
 			pState->activate("script/test/echo.lua", output.c_str(), output.size());
 		}
+
+		WriteLog("\n---------------------\nthis is called from c++ plugin\n");
 	}
 }

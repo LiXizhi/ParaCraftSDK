@@ -217,6 +217,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   <ItemGroup>
     <None Include="CMakeFiles\SampleWorld" />
     <None Include="..\..\..\samples\3. SampleWorld\source\SampleWorld\main.lua" />
+    <None Include="..\..\..\samples\3. SampleWorld\source\SampleWorld\mcml_window.html" />
     <None Include="..\..\..\samples\3. SampleWorld\Run.bat" />
   </ItemGroup>
   <ItemGroup>

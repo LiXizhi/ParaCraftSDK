@@ -219,6 +219,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <None Include="..\..\..\samples\2. HelloWorldMCML\source\HelloWorldMCML\HelloWorld.lua" />
     <None Include="..\..\..\samples\2. HelloWorldMCML\source\HelloWorldMCML\main.lua" />
     <None Include="..\..\..\samples\2. HelloWorldMCML\source\HelloWorldMCML\HelloWorld.html" />
+    <None Include="..\..\..\samples\2. HelloWorldMCML\source\HelloWorldMCML\mcml_window.html" />
     <None Include="..\..\..\samples\2. HelloWorldMCML\Run.bat" />
   </ItemGroup>
   <ItemGroup>

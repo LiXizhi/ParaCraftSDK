@@ -11,6 +11,9 @@
     <None Include="..\..\..\samples\3. SampleWorld\source\SampleWorld\main.lua">
       <Filter>npl</Filter>
     </None>
+    <None Include="..\..\..\samples\3. SampleWorld\source\SampleWorld\mcml_window.html">
+      <Filter>mcml</Filter>
+    </None>
     <None Include="..\..\..\samples\3. SampleWorld\Run.bat" />
   </ItemGroup>
   <ItemGroup>
@@ -19,6 +22,9 @@
     </Filter>
     <Filter Include="npl">
       <UniqueIdentifier>{8F74C4CD-B864-4944-A84B-761F5812CF55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mcml">
+      <UniqueIdentifier>{BF33D6FD-57A3-482D-A20A-660FDC7E9329}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

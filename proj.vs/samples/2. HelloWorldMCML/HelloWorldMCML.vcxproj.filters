@@ -17,6 +17,9 @@
     <None Include="..\..\..\samples\2. HelloWorldMCML\source\HelloWorldMCML\HelloWorld.html">
       <Filter>mcml</Filter>
     </None>
+    <None Include="..\..\..\samples\2. HelloWorldMCML\source\HelloWorldMCML\mcml_window.html">
+      <Filter>mcml</Filter>
+    </None>
     <None Include="..\..\..\samples\2. HelloWorldMCML\Run.bat" />
   </ItemGroup>
   <ItemGroup>

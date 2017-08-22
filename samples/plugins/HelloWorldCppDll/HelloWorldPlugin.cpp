@@ -151,7 +151,15 @@ extern "C" {
 	}
 }
 
-/** this is the main activate function to be called, when someone calls NPL.activate("this_file.dll", msg); 
+/** this is the main activate function to be called. Test with 
+```	
+	NPL.activate("this_file.dll", msg); 
+```
+or with synchronous invocation, use
+```
+	NPL.call("temp/HelloWorldPlugin.dll", {cmd=abc}); 
+	echo(msg);
+```
 */
 CORE_EXPORT_DECL void LibActivate(int nType, void* pVoid)
 {
@@ -172,7 +180,10 @@ CORE_EXPORT_DECL void LibActivate(int nType, void* pVoid)
 
 			std::string output;
 			NPLInterface::NPLHelper::NPLTableToString("msg", output_msg, output);
+			// example output 1: return result using async callback to any thread to remote address
 			pState->activate("script/test/echo.lua", output.c_str(), output.size());
+			// example output 2: we can also write the result synchronously into a global msg variable.
+			pState->call("", output.c_str(), output.size());
 		}
 
 		WriteLog("\n---------------------\nthis is called from c++ plugin\n");

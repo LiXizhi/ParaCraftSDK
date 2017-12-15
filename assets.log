@@ -1,0 +1,54 @@
+2017-12-07 11:50:08 PM|26820|CAsyncLoader IO Thread started2017-12-07 11:50:08 PM|6392|Async Processing Thread Local(0) Started
+2017-12-07 11:50:08 PM|18132|Async Processing Thread Asset(1) Started
+2017-12-07 11:50:08 PM|23528|Async Processing Thread Asset(1) Started
+2017-12-07 11:50:08 PM|132|Async Processing Thread Web(2) Started
+2017-12-07 11:50:08 PM|21076|Async Processing Thread BigFile(3) Started
+2017-12-07 11:50:08 PM|2064|Async Processing Thread AudioFile(4) Started
+2017-12-07 11:52:34 PM|31692|ParaFile.OpenAssetFile using local file:script/apps/WebServer/admin/webserver.config.xml
+2017-12-07 11:52:35 PM|31692|AssetRequested Texture/dxutcontrols.dds
+2017-12-07 11:52:35 PM|31692|AssetRequested :IDR_DEFAULT_CURSOR
+2017-12-07 11:52:35 PM|31692|AssetLoaded :IDR_DEFAULT_CURSOR
+2017-12-07 11:52:35 PM|31692|ParaFile.OpenAssetFile using local file:script/apps/WebServer/admin/index.page
+2017-12-07 11:52:35 PM|31692|ParaFile.OpenAssetFile using local file:script/apps/WebServer/admin/wp-main.page
+2017-12-07 11:52:35 PM|31692|ParaFile.OpenAssetFile using local file:script/apps/WebServer/admin/wp-load.page
+2017-12-07 11:52:35 PM|31692|ParaFile.OpenAssetFile using local file:script/apps/WebServer/admin/wp-config.page
+2017-12-07 11:52:35 PM|31692|ParaFile.OpenAssetFile using local file:script/apps/WebServer/admin/wp-settings.page
+2017-12-07 11:52:35 PM|31692|ParaFile.OpenAssetFile using local file:script/apps/WebServer/admin/wp-includes/load.page
+2017-12-07 11:52:35 PM|31692|ParaFile.OpenAssetFile using local file:script/apps/WebServer/admin/wp-includes/default-constants.page
+2017-12-07 11:52:35 PM|31692|ParaFile.OpenAssetFile using local file:script/apps/WebServer/admin/wp-includes/version.page
+2017-12-07 11:52:35 PM|31692|ParaFile.OpenAssetFile using local file:script/apps/WebServer/admin/wp-includes/functions.page
+2017-12-07 11:52:35 PM|31692|ParaFile.OpenAssetFile using local file:script/apps/WebServer/admin/wp-includes/class-wp-error.page
+2017-12-07 11:52:35 PM|31692|ParaFile.OpenAssetFile using local file:script/apps/WebServer/admin/wp-includes/plugin.page
+2017-12-07 11:52:35 PM|31692|ParaFile.OpenAssetFile using local file:script/apps/WebServer/admin/wp-includes/wp-db.page
+2017-12-07 11:52:35 PM|31692|ParaFile.OpenAssetFile using local file:script/apps/WebServer/admin/wp-content/database/table_users.xml
+2017-12-07 11:52:35 PM|31692|ParaFile.OpenAssetFile using local file:script/apps/WebServer/admin/wp-includes/class-wp-user.page
+2017-12-07 11:52:35 PM|31692|ParaFile.OpenAssetFile using local file:script/apps/WebServer/admin/wp-includes/formatting.page
+2017-12-07 11:52:35 PM|31692|ParaFile.OpenAssetFile using local file:script/apps/WebServer/admin/wp-includes/query.page
+2017-12-07 11:52:35 PM|31692|ParaFile.OpenAssetFile using local file:script/apps/WebServer/admin/wp-includes/cache.page
+2017-12-07 11:52:35 PM|31692|ParaFile.OpenAssetFile using local file:script/apps/WebServer/admin/wp-includes/option.page
+2017-12-07 11:52:35 PM|31692|ParaFile.OpenAssetFile using local file:script/apps/WebServer/admin/wp-includes/class-wp-walker.page
+2017-12-07 11:52:35 PM|31692|ParaFile.OpenAssetFile using local file:script/apps/WebServer/admin/wp-includes/class-wp-theme.page
+2017-12-07 11:52:35 PM|31692|ParaFile.OpenAssetFile using local file:script/apps/WebServer/admin/wp-includes/theme.page
+2017-12-07 11:52:35 PM|31692|ParaFile.OpenAssetFile using local file:script/apps/WebServer/admin/wp-includes/template.page
+2017-12-07 11:52:35 PM|31692|ParaFile.OpenAssetFile using local file:script/apps/WebServer/admin/wp-includes/user.page
+2017-12-07 11:52:35 PM|31692|ParaFile.OpenAssetFile using local file:script/apps/WebServer/admin/wp-includes/session.page
+2017-12-07 11:52:35 PM|31692|ParaFile.OpenAssetFile using local file:script/apps/WebServer/admin/wp-includes/meta.page
+2017-12-07 11:52:35 PM|31692|ParaFile.OpenAssetFile using local file:script/apps/WebServer/admin/wp-includes/general-template.page
+2017-12-07 11:52:35 PM|31692|ParaFile.OpenAssetFile using local file:script/apps/WebServer/admin/wp-includes/link-template.page
+2017-12-07 11:52:35 PM|31692|ParaFile.OpenAssetFile using local file:script/apps/WebServer/admin/wp-includes/nav-menu.page
+2017-12-07 11:52:35 PM|31692|ParaFile.OpenAssetFile using local file:script/apps/WebServer/admin/wp-includes/nav-menu-template.page
+2017-12-07 11:52:35 PM|31692|ParaFile.OpenAssetFile using local file:script/apps/WebServer/admin/wp-includes/taxonomy.page
+2017-12-07 11:52:35 PM|31692|ParaFile.OpenAssetFile using local file:script/apps/WebServer/admin/wp-includes/http.page
+2017-12-07 11:52:35 PM|31692|ParaFile.OpenAssetFile using local file:script/apps/WebServer/admin/wp-includes/default-filters.page
+2017-12-07 11:52:35 PM|31692|ParaFile.OpenAssetFile using local file:script/apps/WebServer/admin/wp-includes/pluggable.page
+2017-12-07 11:52:35 PM|31692|ParaFile.OpenAssetFile using local file:script/apps/WebServer/admin/wp-content/database/table_sitemeta.xml
+2017-12-07 11:52:35 PM|31692|ParaFile.OpenAssetFile using local file:script/apps/WebServer/admin/wp-content/themes/sensitive/functions.page
+2017-12-07 11:52:35 PM|31692|ParaFile.OpenAssetFile using local file:script/apps/WebServer/admin/wp-content/themes/sensitive/nav-menu-walker.class.page
+2017-12-07 11:52:35 PM|31692|ParaFile.OpenAssetFile using local file:script/apps/WebServer/admin/wp-includes/template-loader.page
+2017-12-07 11:52:35 PM|31692|ParaFile.OpenAssetFile using local file:script/apps/WebServer/admin/wp-content/themes/sensitive/index.page
+2017-12-07 11:52:35 PM|31692|ParaFile.OpenAssetFile using local file:script/apps/WebServer/admin/wp-content/themes/sensitive/header.page
+2017-12-07 11:52:35 PM|31692|ParaFile.OpenAssetFile using local file:script/apps/WebServer/admin/wp-content/database/table_nav_menu.xml
+2017-12-07 11:52:35 PM|31692|ParaFile.OpenAssetFile using local file:script/apps/WebServer/admin/wp-content/pages/index.page
+2017-12-07 11:52:35 PM|31692|ParaFile.OpenAssetFile using local file:script/apps/WebServer/admin/wp-content/themes/sensitive/footer.page
+2017-12-07 11:52:36 PM|31692|ParaFile.OpenAssetFile using local file:script/apps/WebServer/admin/wp-admin/admin-ajax.page
+2017-12-07 11:52:36 PM|31692|ParaFile.OpenAssetFile using local file:script/apps/WebServer/admin/wp-content/pages/log.page

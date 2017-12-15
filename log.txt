@@ -1,0 +1,127 @@
+NPL bin dir: D:\lxzsrc\NPLRuntimeDev\ParaWorld\bin32\
+no packages at: D:\lxzsrc\NPLRuntimeDev\ParaWorld\packages
+ParaEngine.sig file not found
+WorkingDir: D:\lxzsrc\ParaCraftSDKGit
+OS information:
+OS version:Microsoft Enterprise Edition (build 9200), 64-bit
+Number of processors:8
+Processor type:586
+TotalPhysicalMemory:16691064
+FreePhysicalMemory:7980932
+
+ParaEngine Root Dir is D:/lxzsrc/ParaCraftSDKGit/
+search path: D:/lxzsrc/NPLRuntimeDev/npl_packages/main/
+./packages dir: D:/lxzsrc/ParaCraftSDKGit/
+We are using default bootstrapper at script/apps/WebServer/WebServer.lua
+main loop: script/apps/WebServer/WebServer.lua 
+CAssetManifest loaded 0 files
+CAsyncLoader QueueID:0(Local) has 1 worker threads
+CAsyncLoader QueueID:1(Asset) has 2 worker threads
+CAsyncLoader QueueID:2(Web) has 1 worker threads
+CAsyncLoader QueueID:3(Asset_BigFile) has 1 worker threads
+CAsyncLoader QueueID:4(AudioFile) has 1 worker threads
+CAsyncLoader is started with 1 IO thread and 6 worker threads
+Plug-in loaded: D:\lxzsrc\NPLRuntimeDev\ParaWorld\bin32\PhysicsBT_d.dll version: 1 
+Default window thread started. and a window is created in it
+Window is native: 3d window: 527c7a, top level: 527c7a
+DEBUG: main thread wnd handle : 5405818
+update d3d window size: width: 1020, height:680, left:52, top:52
+Best full screen mode is (1280, 720)
+Window is native: 3d window: 527c7a, top level: 527c7a
+Absolute path is used for dll: cAudioEngine_d.dll
+LoadLibrary (cAudioEngine_d.dll) failed with error 87: The parameter is incorrect.
+
+Failed loading plug-in: cAudioEngine_d.dll
+error: failed loading audio plugin cAudioEngine_d.dll
+Audio engine init fail!
+font System;12;bold is created 
+Graphics Stats:
+HAL (pure hw vp): NVIDIA GeForce GTX 1060 6GB|0.02 fps (1020x680), backbuf A8R8G8B8, adapter X8R8G8B8 (D24S8)
+VS:3 PS:3
+ParaEngine LuaJIT 32bits version:LuaJIT 2.0.5
+Jit status:true, CMOV, SSE2, SSE3, SSE4.1, fold, cse, dce, fwd, dse, narrow, loop, abc, sink, fuse 
+ffi loaded shared lib: ParaEngineClient_d
+2017-12-07 11:52:34 PM 308866328||system|os|hook cm_m_down_hook of type 1 is created
+2017-12-07 11:52:34 PM 308866328||system|os|hook cm_m_move_hook of type 1 is created
+2017-12-07 11:52:34 PM 308866328||system|os|hook cm_m_wheel_hook of type 1 is created
+2017-12-07 11:52:34 PM 308866328||system|os|hook cm_m_up_hook of type 1 is created
+2017-12-07 11:52:34 PM 308866328||system|os|hook cm_keydown of type 1 is created
+2017-12-07 11:52:34 PM 308866421|main|info|WebServer|web root directory is changed to : script/apps/WebServer/admin
+2017-12-07 11:52:34 PM 308866437|main|system|WebServer|config file script/apps/WebServer/admin/webserver.config.xml
+2017-12-07 11:52:34 PM 308866437|main|system|WebServer|rule id=npl_code_wiki is loaded with 3 rules
+2017-12-07 11:52:34 PM 308866453|main|system|WebServer|rule id=simple_rule is loaded with 8 rules
+2017-12-07 11:52:34 PM 308866546|main|system|NPL|NPL input queue size is changed to 20000
+2017-12-07 11:52:34 PM 308866546|main|info|Log|log level is set to debug
+FileSystemWatcher: default created
+warning: failed adding dir D:/lxzsrc/ParaCraftSDKGit/script/apps/WebServer/admin/ to monitor 
+2017-12-07 11:52:34 PM 308866640|main|system|WebServer|NPL Web Server is started. 
+NPL server 0.1 is listening on 0.0.0.0:8099
+TCPKeepAlive: true
+AppKeepAlive: false
+IdleTimeout: true
+IdleTimeoutPeriod: 1200000
+UseCompression(incoming): false
+CompressionLevel: -1
+CompressionThreshold: 204800
+NPL max pending incoming connections allowed is 1000
+font System;11;norm is created 
+FileIO Error: hr = 80004005; key=Texture/dxutcontrols.dds; filename=
+2017-12-07 11:52:34 PM 308866937|main|info|npl_page_parser|parse file: script/apps/WebServer/admin/index.page
+2017-12-07 11:52:34 PM 308866937|main|info|npl_page_parser|parse file: script/apps/WebServer/admin/wp-main.page
+2017-12-07 11:52:34 PM 308866953|main|info|npl_page_parser|parse file: script/apps/WebServer/admin/wp-load.page
+2017-12-07 11:52:34 PM 308866968|main|info|npl_page_parser|parse file: script/apps/WebServer/admin/wp-config.page
+2017-12-07 11:52:34 PM 308866968|main|info|npl_page_parser|parse file: script/apps/WebServer/admin/wp-settings.page
+2017-12-07 11:52:34 PM 308866968|main|info|npl_page_parser|parse file: script/apps/WebServer/admin/wp-includes/load.page
+2017-12-07 11:52:34 PM 308866984|main|info|npl_page_parser|parse file: script/apps/WebServer/admin/wp-includes/default-constants.page
+2017-12-07 11:52:34 PM 308866984|main|info|npl_page_parser|parse file: script/apps/WebServer/admin/wp-includes/version.page
+2017-12-07 11:52:34 PM 308866984|main|info|npl_page_parser|parse file: script/apps/WebServer/admin/wp-includes/functions.page
+2017-12-07 11:52:34 PM 308867000|main|info|npl_page_parser|parse file: script/apps/WebServer/admin/wp-includes/class-wp-error.page
+2017-12-07 11:52:34 PM 308867015|main|info|npl_page_parser|parse file: script/apps/WebServer/admin/wp-includes/plugin.page
+2017-12-07 11:52:34 PM 308867015|main|info|npl_page_parser|parse file: script/apps/WebServer/admin/wp-includes/wp-db.page
+2017-12-07 11:52:34 PM 308867015|main|info|XmlDatabase|load xml database: script/apps/WebServer/admin/wp-content/database/
+2017-12-07 11:52:34 PM 308867031|main|info|npl_page_parser|parse file: script/apps/WebServer/admin/wp-includes/class-wp-user.page
+2017-12-07 11:52:34 PM 308867031|main|info|npl_page_parser|parse file: script/apps/WebServer/admin/wp-includes/formatting.page
+2017-12-07 11:52:34 PM 308867046|main|info|npl_page_parser|parse file: script/apps/WebServer/admin/wp-includes/query.page
+2017-12-07 11:52:34 PM 308867062|main|info|npl_page_parser|parse file: script/apps/WebServer/admin/wp-includes/cache.page
+2017-12-07 11:52:34 PM 308867078|main|info|npl_page_parser|parse file: script/apps/WebServer/admin/wp-includes/option.page
+2017-12-07 11:52:34 PM 308867093|main|info|npl_page_parser|parse file: script/apps/WebServer/admin/wp-includes/class-wp-walker.page
+2017-12-07 11:52:34 PM 308867093|main|info|npl_page_parser|parse file: script/apps/WebServer/admin/wp-includes/class-wp-theme.page
+2017-12-07 11:52:34 PM 308867093|main|info|npl_page_parser|parse file: script/apps/WebServer/admin/wp-includes/theme.page
+2017-12-07 11:52:34 PM 308867109|main|info|npl_page_parser|parse file: script/apps/WebServer/admin/wp-includes/template.page
+2017-12-07 11:52:34 PM 308867109|main|info|npl_page_parser|parse file: script/apps/WebServer/admin/wp-includes/user.page
+2017-12-07 11:52:34 PM 308867109|main|info|npl_page_parser|parse file: script/apps/WebServer/admin/wp-includes/session.page
+2017-12-07 11:52:34 PM 308867125|main|info|npl_page_parser|parse file: script/apps/WebServer/admin/wp-includes/meta.page
+2017-12-07 11:52:34 PM 308867125|main|info|npl_page_parser|parse file: script/apps/WebServer/admin/wp-includes/general-template.page
+2017-12-07 11:52:34 PM 308867125|main|info|npl_page_parser|parse file: script/apps/WebServer/admin/wp-includes/link-template.page
+2017-12-07 11:52:34 PM 308867125|main|info|npl_page_parser|parse file: script/apps/WebServer/admin/wp-includes/nav-menu.page
+2017-12-07 11:52:34 PM 308867140|main|info|npl_page_parser|parse file: script/apps/WebServer/admin/wp-includes/nav-menu-template.page
+2017-12-07 11:52:34 PM 308867140|main|info|npl_page_parser|parse file: script/apps/WebServer/admin/wp-includes/taxonomy.page
+2017-12-07 11:52:34 PM 308867140|main|info|npl_page_parser|parse file: script/apps/WebServer/admin/wp-includes/http.page
+2017-12-07 11:52:34 PM 308867156|main|info|npl_page_parser|parse file: script/apps/WebServer/admin/wp-includes/default-filters.page
+2017-12-07 11:52:34 PM 308867156|main|info|npl_page_parser|parse file: script/apps/WebServer/admin/wp-includes/pluggable.page
+2017-12-07 11:52:34 PM 308867171|main|info|npl_page_parser|parse file: script/apps/WebServer/admin/wp-content/themes/sensitive/functions.page
+2017-12-07 11:52:34 PM 308867187|main|info|npl_page_parser|parse file: script/apps/WebServer/admin/wp-content/themes/sensitive/nav-menu-walker.class.page
+2017-12-07 11:52:34 PM 308867203|main|info|npl_page_parser|parse file: script/apps/WebServer/admin/wp-includes/template-loader.page
+2017-12-07 11:52:34 PM 308867203|main|info|npl_page_parser|parse file: script/apps/WebServer/admin/wp-content/themes/sensitive/index.page
+2017-12-07 11:52:34 PM 308867218|main|info|npl_page_parser|parse file: script/apps/WebServer/admin/wp-content/themes/sensitive/header.page
+2017-12-07 11:52:34 PM 308867234|main|info|npl_page_parser|parse file: script/apps/WebServer/admin/wp-content/pages/index.page
+2017-12-07 11:52:34 PM 308867234|main|info|npl_page_parser|parse file: script/apps/WebServer/admin/wp-content/themes/sensitive/footer.page
+2017-12-07 11:52:36 PM 308867765|main|info|npl_page_parser|parse file: script/apps/WebServer/admin/wp-admin/admin-ajax.page
+2017-12-07 11:52:36 PM 308867781|main|info|npl_page_parser|parse file: script/apps/WebServer/admin/wp-content/pages/log.page
+Default window thread exit
+error: CNPLNetServer unable to accept incoming connection, because: The I/O operation has been aborted because of either a thread exit or an application request
+current connections 0
+NPL State main exited
+		NPL thread local memory allocator released 2490368 bytes
+CAsyncLoader worker thread 0 of 6 is exited
+CAsyncLoader worker thread 1 of 6 is exited
+CAsyncLoader worker thread 2 of 6 is exited
+CAsyncLoader worker thread 3 of 6 is exited
+CAsyncLoader worker thread 4 of 6 is exited
+CAsyncLoader worker thread 5 of 6 is exited
+CAsyncLoader IO thread is exited
+directory does not exist D:/lxzsrc/ParaCraftSDKGit/temp/ 
+directory does not exist D:/lxzsrc/ParaCraftSDKGit/temp/composeface/ 
+directory does not exist D:/lxzsrc/ParaCraftSDKGit/temp/composeskin/ 
+warning: in ParaEngine::CFileSystemWatcher::FileHandler. msg is The I/O operation has been aborted because of either a thread exit or an application request
+FileSystemWatcher removed

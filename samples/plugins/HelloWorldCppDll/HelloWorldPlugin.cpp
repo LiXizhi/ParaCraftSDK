@@ -8,6 +8,7 @@
 #include "INPLRuntimeState.h"
 #include "IParaEngineCore.h"
 #include "IParaEngineApp.h"
+#include "IAttributeFields.h"
 
 using namespace ParaEngine;
 
@@ -163,6 +164,8 @@ or with synchronous invocation, use
 */
 CORE_EXPORT_DECL void LibActivate(int nType, void* pVoid)
 {
+	using namespace ParaEngine;
+
 	if(nType == ParaEngine::PluginActType_STATE)
 	{
 		NPL::INPLRuntimeState* pState = (NPL::INPLRuntimeState*)pVoid;
@@ -187,5 +190,27 @@ CORE_EXPORT_DECL void LibActivate(int nType, void* pVoid)
 		}
 
 		WriteLog("\n---------------------\nthis is called from c++ plugin\n");
+
+		//////////////////////////////////////////////////
+		// 
+		// example 2: calling C++ attribute object, no header files are required, type safe
+		// use NPL code wiki's object browser to find the child name or index
+		// 
+		//////////////////////////////////////////////////
+
+		auto pParaEngine = GetCoreInterface()->GetAppInterface()->GetAttributeObject();
+		// set "WindowText" to "HelloWorldPlugin"
+		pParaEngine->GetAttributeClass()->GetField("WindowText")->Set(pParaEngine, "HelloWorldPlugin");
+		auto pAsyncLoader = pParaEngine->GetChildAttributeObject("AsyncLoader");
+		// get "ItemsLeft" to nItemsLeft
+		int nItemsLeft = -1;
+		pAsyncLoader->GetAttributeClass()->GetField("ItemsLeft")->Get(pAsyncLoader, &nItemsLeft);
+
+		auto pScene = pParaEngine->GetChildAttributeObject("Scene");
+		auto pBlockEngine = pScene->GetChildAttributeObject(1, 1); // block engine is at row:col(1:1)
+		int nDirtyBlockCount = -1;
+		pBlockEngine->GetAttributeClass()->GetField("DirtyBlockCount")->Get(pBlockEngine, &nDirtyBlockCount);
+		
+		GetCoreInterface()->GetAppInterface()->WriteToLog("items left: %d, nDirtyBlockCount: %d", nItemsLeft, nDirtyBlockCount);
 	}
 }

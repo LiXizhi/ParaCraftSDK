@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -19,53 +19,52 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGUID>{0E22B6D4-36C4-414E-BFB0-2B33C89690E0}</ProjectGUID>
+    <ProjectGuid>{B0ADDBFF-42AC-3472-A819-6FECE898E110}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
     <Keyword>Win32Proj</Keyword>
     <Platform>Win32</Platform>
     <ProjectName>HelloWorld</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Utility</ConfigurationType>
-    <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Utility</ConfigurationType>
-    <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'" Label="Configuration">
     <ConfigurationType>Utility</ConfigurationType>
-    <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'" Label="Configuration">
     <ConfigurationType>Utility</ConfigurationType>
-    <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
   <ImportGroup Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />  </ImportGroup>
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-    <PropertyGroup>
-      <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
-      <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
-      <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
-      <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
-      <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
-    </PropertyGroup>
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Midl>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
       <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
@@ -75,7 +74,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Midl>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
       <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
@@ -85,7 +84,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
     <Midl>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
       <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
@@ -95,7 +94,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
     <Midl>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
       <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
@@ -103,63 +102,7 @@
     </Midl>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CustomBuild Include="..\..\..\samples\1. HelloWorld\CMakeLists.txt">
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule D:/lxzsrc/ParaCraftSDKGit/samples/1. HelloWorld/CMakeLists.txt</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
-"D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\bin\cmake.exe" -H../../.. -B../.. --check-stamp-file "D:\lxzsrc\ParaCraftSDKGit\proj.vs\samples\1. HelloWorld\CMakeFiles\generate.stamp"
-if %errorlevel% neq 0 goto :cmEnd
-:cmEnd
-endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
-:cmErrorLevel
-exit /b %1
-:cmDone
-if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:/lxzsrc/ParaCraftSDKGit/samples/1. HelloWorld/CMakeLists.txt;D:\lxzsrc\ParaCraftSDKGit\samples\1. HelloWorld\CMakeLists.txt;D:\lxzsrc\ParaCraftSDKGit\samples\1. HelloWorld\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:\lxzsrc\ParaCraftSDKGit\proj.vs\samples\1. HelloWorld\CMakeFiles\generate.stamp</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Custom Rule D:/lxzsrc/ParaCraftSDKGit/samples/1. HelloWorld/CMakeLists.txt</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
-"D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\bin\cmake.exe" -H../../.. -B../.. --check-stamp-file "D:\lxzsrc\ParaCraftSDKGit\proj.vs\samples\1. HelloWorld\CMakeFiles\generate.stamp"
-if %errorlevel% neq 0 goto :cmEnd
-:cmEnd
-endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
-:cmErrorLevel
-exit /b %1
-:cmDone
-if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:/lxzsrc/ParaCraftSDKGit/samples/1. HelloWorld/CMakeLists.txt;D:\lxzsrc\ParaCraftSDKGit\samples\1. HelloWorld\CMakeLists.txt;D:\lxzsrc\ParaCraftSDKGit\samples\1. HelloWorld\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:\lxzsrc\ParaCraftSDKGit\proj.vs\samples\1. HelloWorld\CMakeFiles\generate.stamp</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Building Custom Rule D:/lxzsrc/ParaCraftSDKGit/samples/1. HelloWorld/CMakeLists.txt</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">setlocal
-"D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\bin\cmake.exe" -H../../.. -B../.. --check-stamp-file "D:\lxzsrc\ParaCraftSDKGit\proj.vs\samples\1. HelloWorld\CMakeFiles\generate.stamp"
-if %errorlevel% neq 0 goto :cmEnd
-:cmEnd
-endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
-:cmErrorLevel
-exit /b %1
-:cmDone
-if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">D:/lxzsrc/ParaCraftSDKGit/samples/1. HelloWorld/CMakeLists.txt;D:\lxzsrc\ParaCraftSDKGit\samples\1. HelloWorld\CMakeLists.txt;D:\lxzsrc\ParaCraftSDKGit\samples\1. HelloWorld\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">D:\lxzsrc\ParaCraftSDKGit\proj.vs\samples\1. HelloWorld\CMakeFiles\generate.stamp</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Building Custom Rule D:/lxzsrc/ParaCraftSDKGit/samples/1. HelloWorld/CMakeLists.txt</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">setlocal
-"D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\bin\cmake.exe" -H../../.. -B../.. --check-stamp-file "D:\lxzsrc\ParaCraftSDKGit\proj.vs\samples\1. HelloWorld\CMakeFiles\generate.stamp"
-if %errorlevel% neq 0 goto :cmEnd
-:cmEnd
-endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
-:cmErrorLevel
-exit /b %1
-:cmDone
-if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">D:/lxzsrc/ParaCraftSDKGit/samples/1. HelloWorld/CMakeLists.txt;D:\lxzsrc\ParaCraftSDKGit\samples\1. HelloWorld\CMakeLists.txt;D:\lxzsrc\ParaCraftSDKGit\samples\1. HelloWorld\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">D:\lxzsrc\ParaCraftSDKGit\proj.vs\samples\1. HelloWorld\CMakeFiles\generate.stamp</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">false</LinkObjects>
-    </CustomBuild>
-  </ItemGroup>
-  <ItemGroup>
-    <CustomBuild Include="..\..\CMakeFiles\33c38bf1e20dcad73b63973d3a38d87f\HelloWorld.rule">
+    <CustomBuild Include="D:\lxzsrc\ParaCraftSDKGit\proj.vs\CMakeFiles\33c38bf1e20dcad73b63973d3a38d87f\HelloWorld.rule">
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">run.bat ...</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
 echo "run it"
@@ -215,13 +158,70 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <None Include="CMakeFiles\HelloWorld" />
-    <None Include="..\..\..\samples\1. HelloWorld\source\HelloWorld\main.lua" />
-    <None Include="..\..\..\samples\1. HelloWorld\Run.bat" />
+    <CustomBuild Include="D:\lxzsrc\ParaCraftSDKGit\samples\1. HelloWorld\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule D:/lxzsrc/ParaCraftSDKGit/samples/1. HelloWorld/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -HD:/lxzsrc/ParaCraftSDKGit -BD:/lxzsrc/ParaCraftSDKGit/proj.vs --check-stamp-file "D:/lxzsrc/ParaCraftSDKGit/proj.vs/samples/1. HelloWorld/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:/lxzsrc/ParaCraftSDKGit/samples/1. HelloWorld/CMakeLists.txt;D:\lxzsrc\ParaCraftSDKGit\samples\1. HelloWorld\CMakeLists.txt;D:\lxzsrc\ParaCraftSDKGit\samples\1. HelloWorld\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:\lxzsrc\ParaCraftSDKGit\proj.vs\samples\1. HelloWorld\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Custom Rule D:/lxzsrc/ParaCraftSDKGit/samples/1. HelloWorld/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -HD:/lxzsrc/ParaCraftSDKGit -BD:/lxzsrc/ParaCraftSDKGit/proj.vs --check-stamp-file "D:/lxzsrc/ParaCraftSDKGit/proj.vs/samples/1. HelloWorld/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:/lxzsrc/ParaCraftSDKGit/samples/1. HelloWorld/CMakeLists.txt;D:\lxzsrc\ParaCraftSDKGit\samples\1. HelloWorld\CMakeLists.txt;D:\lxzsrc\ParaCraftSDKGit\samples\1. HelloWorld\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:\lxzsrc\ParaCraftSDKGit\proj.vs\samples\1. HelloWorld\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Building Custom Rule D:/lxzsrc/ParaCraftSDKGit/samples/1. HelloWorld/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -HD:/lxzsrc/ParaCraftSDKGit -BD:/lxzsrc/ParaCraftSDKGit/proj.vs --check-stamp-file "D:/lxzsrc/ParaCraftSDKGit/proj.vs/samples/1. HelloWorld/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">D:/lxzsrc/ParaCraftSDKGit/samples/1. HelloWorld/CMakeLists.txt;D:\lxzsrc\ParaCraftSDKGit\samples\1. HelloWorld\CMakeLists.txt;D:\lxzsrc\ParaCraftSDKGit\samples\1. HelloWorld\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">D:\lxzsrc\ParaCraftSDKGit\proj.vs\samples\1. HelloWorld\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Building Custom Rule D:/lxzsrc/ParaCraftSDKGit/samples/1. HelloWorld/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -HD:/lxzsrc/ParaCraftSDKGit -BD:/lxzsrc/ParaCraftSDKGit/proj.vs --check-stamp-file "D:/lxzsrc/ParaCraftSDKGit/proj.vs/samples/1. HelloWorld/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">D:/lxzsrc/ParaCraftSDKGit/samples/1. HelloWorld/CMakeLists.txt;D:\lxzsrc\ParaCraftSDKGit\samples\1. HelloWorld\CMakeLists.txt;D:\lxzsrc\ParaCraftSDKGit\samples\1. HelloWorld\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">D:\lxzsrc\ParaCraftSDKGit\proj.vs\samples\1. HelloWorld\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">false</LinkObjects>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="D:/lxzsrc/ParaCraftSDKGit/proj.vs/ZERO_CHECK.vcxproj">
-      <Project>81BD27DF-CB19-4F53-AC8F-D74C88E5036E</Project>
+    <None Include="D:\lxzsrc\ParaCraftSDKGit\proj.vs\samples\1. HelloWorld\CMakeFiles\HelloWorld" />
+    <None Include="D:\lxzsrc\ParaCraftSDKGit\samples\1. HelloWorld\source\HelloWorld\main.lua" />
+    <None Include="D:\lxzsrc\ParaCraftSDKGit\samples\1. HelloWorld\Run.bat" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="D:\lxzsrc\ParaCraftSDKGit\proj.vs\ZERO_CHECK.vcxproj">
+      <Project>{ECD0ED3F-7073-3D1E-A178-7D532D734A59}</Project>
+      <Name>ZERO_CHECK</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

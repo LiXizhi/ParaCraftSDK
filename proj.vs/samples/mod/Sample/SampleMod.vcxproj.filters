@@ -1,24 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <CustomBuild Include="..\..\..\..\samples\mod\Sample\CMakeLists.txt" />
-    <CustomBuild Include="..\..\..\CMakeFiles\97f4fc69366d03a4a1a7438cd8b6e2d1\SampleMod.rule">
+    <CustomBuild Include="D:\lxzsrc\ParaCraftSDKGit\proj.vs\CMakeFiles\97f4fc69366d03a4a1a7438cd8b6e2d1\SampleMod.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
+    <CustomBuild Include="D:\lxzsrc\ParaCraftSDKGit\samples\mod\Sample\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="CMakeFiles\SampleMod" />
-    <None Include="..\..\..\..\samples\mod\Sample\Mod\Sample\main.lua">
+    <None Include="D:\lxzsrc\ParaCraftSDKGit\proj.vs\samples\mod\Sample\CMakeFiles\SampleMod" />
+    <None Include="D:\lxzsrc\ParaCraftSDKGit\samples\mod\Sample\Mod\Sample\main.lua">
       <Filter>npl</Filter>
     </None>
-    <None Include="..\..\..\..\samples\mod\Sample\Run.bat" />
+    <None Include="D:\lxzsrc\ParaCraftSDKGit\samples\mod\Sample\Run.bat" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="CMake Rules">
-      <UniqueIdentifier>{0AF854A3-CAC9-4156-BD93-00AE82B7F64C}</UniqueIdentifier>
+      <UniqueIdentifier>{18BCA6C6-D300-3A54-926D-0E2CE268DA77}</UniqueIdentifier>
     </Filter>
     <Filter Include="npl">
-      <UniqueIdentifier>{8F74C4CD-B864-4944-A84B-761F5812CF55}</UniqueIdentifier>
+      <UniqueIdentifier>{4812D47C-4491-3FB0-8959-9B06A163DE21}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

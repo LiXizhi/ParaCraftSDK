@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -19,72 +19,71 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGUID>{F2873210-913B-4D30-8A74-C7C9E4B10DBA}</ProjectGUID>
+    <ProjectGuid>{82AB3AA3-705C-3721-8F86-B9BF5166FFF1}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
     <Keyword>Win32Proj</Keyword>
     <Platform>Win32</Platform>
     <ProjectName>HelloWorldPlugin</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
   <ImportGroup Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />  </ImportGroup>
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-    <PropertyGroup>
-      <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
-      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:\lxzsrc\ParaCraftSDKGit\proj.vs\samples\plugins\HelloWorldCppDll\Debug\</OutDir>
-      <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">HelloWorldPlugin.dir\Debug\</IntDir>
-      <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">HelloWorldPlugin_d</TargetName>
-      <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.dll</TargetExt>
-      <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
-      <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</GenerateManifest>
-      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:\lxzsrc\ParaCraftSDKGit\proj.vs\samples\plugins\HelloWorldCppDll\Release\</OutDir>
-      <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">HelloWorldPlugin.dir\Release\</IntDir>
-      <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">HelloWorldPlugin</TargetName>
-      <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.dll</TargetExt>
-      <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
-      <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</GenerateManifest>
-      <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">D:\lxzsrc\ParaCraftSDKGit\proj.vs\samples\plugins\HelloWorldCppDll\MinSizeRel\</OutDir>
-      <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">HelloWorldPlugin.dir\MinSizeRel\</IntDir>
-      <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">HelloWorldPlugin</TargetName>
-      <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">.dll</TargetExt>
-      <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkIncremental>
-      <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">true</GenerateManifest>
-      <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">D:\lxzsrc\ParaCraftSDKGit\proj.vs\samples\plugins\HelloWorldCppDll\RelWithDebInfo\</OutDir>
-      <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">HelloWorldPlugin.dir\RelWithDebInfo\</IntDir>
-      <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">HelloWorldPlugin</TargetName>
-      <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">.dll</TargetExt>
-      <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">true</LinkIncremental>
-      <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">true</GenerateManifest>
-    </PropertyGroup>
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:\lxzsrc\ParaCraftSDKGit\proj.vs\samples\plugins\HelloWorldCppDll\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">HelloWorldPlugin.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">HelloWorldPlugin_d</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:\lxzsrc\ParaCraftSDKGit\proj.vs\samples\plugins\HelloWorldCppDll\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">HelloWorldPlugin.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">HelloWorldPlugin</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">D:\lxzsrc\ParaCraftSDKGit\proj.vs\samples\plugins\HelloWorldCppDll\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">HelloWorldPlugin.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">HelloWorldPlugin</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">D:\lxzsrc\ParaCraftSDKGit\proj.vs\samples\plugins\HelloWorldCppDll\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">HelloWorldPlugin.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">HelloWorldPlugin</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">true</GenerateManifest>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll;D:\lxzsrc\NPLRuntime\Client\trunk\ParaEngineClient\Core;D:\lxzsrc\ParaEngine\Server\trunk\boost_1_55_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll;D:\lxzsrc\NPLRuntime\Client\trunk\ParaEngineClient\Core;D:\lxzsrc\externals\boost_1_65_1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>Debug/</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <CompileAs>CompileAsCpp</CompileAs>
@@ -96,31 +95,31 @@
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;BOOST_SIGNALS_NO_DEPRECATION_WARNING;CMAKE_INTDIR="Debug";HelloWorldPlugin_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;BOOST_SIGNALS_NO_DEPRECATION_WARNING;CMAKE_INTDIR="Debug";HelloWorldPlugin_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;BOOST_SIGNALS_NO_DEPRECATION_WARNING;CMAKE_INTDIR=\"Debug\";HelloWorldPlugin_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll;D:\lxzsrc\NPLRuntime\Client\trunk\ParaEngineClient\Core;D:\lxzsrc\ParaEngine\Server\trunk\boost_1_55_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;BOOST_SIGNALS_NO_DEPRECATION_WARNING;CMAKE_INTDIR=\"Debug\";HelloWorldPlugin_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll;D:\lxzsrc\NPLRuntime\Client\trunk\ParaEngineClient\Core;D:\lxzsrc\externals\boost_1_65_1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll;D:\lxzsrc\NPLRuntime\Client\trunk\ParaEngineClient\Core;D:\lxzsrc\ParaEngine\Server\trunk\boost_1_55_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <AdditionalIncludeDirectories>D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll;D:\lxzsrc\NPLRuntime\Client\trunk\ParaEngineClient\Core;D:\lxzsrc\externals\boost_1_65_1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
       <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalOptions> /machine:X86 /debug %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <ImportLibrary>D:/lxzsrc/ParaCraftSDKGit/proj.vs/samples/plugins/HelloWorldCppDll/Debug/HelloWorldPlugin_d.lib</ImportLibrary>
       <ModuleDefinitionFile>D:/lxzsrc/ParaCraftSDKGit/samples/plugins/HelloWorldCppDll/HelloWorldPlugin.def</ModuleDefinitionFile>
       <ProgramDataBaseFile>D:/lxzsrc/ParaCraftSDKGit/proj.vs/samples/plugins/HelloWorldCppDll/Debug/HelloWorldPlugin_d.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
-      <Version></Version>
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
@@ -128,7 +127,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll;D:\lxzsrc\NPLRuntime\Client\trunk\ParaEngineClient\Core;D:\lxzsrc\ParaEngine\Server\trunk\boost_1_55_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll;D:\lxzsrc\NPLRuntime\Client\trunk\ParaEngineClient\Core;D:\lxzsrc\externals\boost_1_65_1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>Release/</AssemblerListingLocation>
       <CompileAs>CompileAsCpp</CompileAs>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -144,26 +143,26 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;BOOST_SIGNALS_NO_DEPRECATION_WARNING;CMAKE_INTDIR=\"Release\";HelloWorldPlugin_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll;D:\lxzsrc\NPLRuntime\Client\trunk\ParaEngineClient\Core;D:\lxzsrc\ParaEngine\Server\trunk\boost_1_55_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll;D:\lxzsrc\NPLRuntime\Client\trunk\ParaEngineClient\Core;D:\lxzsrc\externals\boost_1_65_1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll;D:\lxzsrc\NPLRuntime\Client\trunk\ParaEngineClient\Core;D:\lxzsrc\ParaEngine\Server\trunk\boost_1_55_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <AdditionalIncludeDirectories>D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll;D:\lxzsrc\NPLRuntime\Client\trunk\ParaEngineClient\Core;D:\lxzsrc\externals\boost_1_65_1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
       <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalOptions> /machine:X86 %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <ImportLibrary>D:/lxzsrc/ParaCraftSDKGit/proj.vs/samples/plugins/HelloWorldCppDll/Release/HelloWorldPlugin.lib</ImportLibrary>
       <ModuleDefinitionFile>D:/lxzsrc/ParaCraftSDKGit/samples/plugins/HelloWorldCppDll/HelloWorldPlugin.def</ModuleDefinitionFile>
       <ProgramDataBaseFile>D:/lxzsrc/ParaCraftSDKGit/proj.vs/samples/plugins/HelloWorldCppDll/Release/HelloWorldPlugin.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
-      <Version></Version>
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
@@ -171,7 +170,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll;D:\lxzsrc\NPLRuntime\Client\trunk\ParaEngineClient\Core;D:\lxzsrc\ParaEngine\Server\trunk\boost_1_55_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll;D:\lxzsrc\NPLRuntime\Client\trunk\ParaEngineClient\Core;D:\lxzsrc\externals\boost_1_65_1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>MinSizeRel/</AssemblerListingLocation>
       <CompileAs>CompileAsCpp</CompileAs>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -181,32 +180,33 @@
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat></DebugInformationFormat>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;BOOST_SIGNALS_NO_DEPRECATION_WARNING;CMAKE_INTDIR="MinSizeRel";HelloWorldPlugin_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;BOOST_SIGNALS_NO_DEPRECATION_WARNING;CMAKE_INTDIR=\"MinSizeRel\";HelloWorldPlugin_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll;D:\lxzsrc\NPLRuntime\Client\trunk\ParaEngineClient\Core;D:\lxzsrc\ParaEngine\Server\trunk\boost_1_55_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll;D:\lxzsrc\NPLRuntime\Client\trunk\ParaEngineClient\Core;D:\lxzsrc\externals\boost_1_65_1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll;D:\lxzsrc\NPLRuntime\Client\trunk\ParaEngineClient\Core;D:\lxzsrc\ParaEngine\Server\trunk\boost_1_55_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <AdditionalIncludeDirectories>D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll;D:\lxzsrc\NPLRuntime\Client\trunk\ParaEngineClient\Core;D:\lxzsrc\externals\boost_1_65_1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
       <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalOptions> /machine:X86 %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <ImportLibrary>D:/lxzsrc/ParaCraftSDKGit/proj.vs/samples/plugins/HelloWorldCppDll/MinSizeRel/HelloWorldPlugin.lib</ImportLibrary>
       <ModuleDefinitionFile>D:/lxzsrc/ParaCraftSDKGit/samples/plugins/HelloWorldCppDll/HelloWorldPlugin.def</ModuleDefinitionFile>
       <ProgramDataBaseFile>D:/lxzsrc/ParaCraftSDKGit/proj.vs/samples/plugins/HelloWorldCppDll/MinSizeRel/HelloWorldPlugin.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
-      <Version></Version>
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
@@ -214,7 +214,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll;D:\lxzsrc\NPLRuntime\Client\trunk\ParaEngineClient\Core;D:\lxzsrc\ParaEngine\Server\trunk\boost_1_55_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll;D:\lxzsrc\NPLRuntime\Client\trunk\ParaEngineClient\Core;D:\lxzsrc\externals\boost_1_65_1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>RelWithDebInfo/</AssemblerListingLocation>
       <CompileAs>CompileAsCpp</CompileAs>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -230,36 +230,36 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;BOOST_SIGNALS_NO_DEPRECATION_WARNING;CMAKE_INTDIR=\"RelWithDebInfo\";HelloWorldPlugin_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll;D:\lxzsrc\NPLRuntime\Client\trunk\ParaEngineClient\Core;D:\lxzsrc\ParaEngine\Server\trunk\boost_1_55_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll;D:\lxzsrc\NPLRuntime\Client\trunk\ParaEngineClient\Core;D:\lxzsrc\externals\boost_1_65_1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll;D:\lxzsrc\NPLRuntime\Client\trunk\ParaEngineClient\Core;D:\lxzsrc\ParaEngine\Server\trunk\boost_1_55_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <AdditionalIncludeDirectories>D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll;D:\lxzsrc\NPLRuntime\Client\trunk\ParaEngineClient\Core;D:\lxzsrc\externals\boost_1_65_1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
       <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalOptions> /machine:X86 /debug %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <ImportLibrary>D:/lxzsrc/ParaCraftSDKGit/proj.vs/samples/plugins/HelloWorldCppDll/RelWithDebInfo/HelloWorldPlugin.lib</ImportLibrary>
       <ModuleDefinitionFile>D:/lxzsrc/ParaCraftSDKGit/samples/plugins/HelloWorldCppDll/HelloWorldPlugin.def</ModuleDefinitionFile>
       <ProgramDataBaseFile>D:/lxzsrc/ParaCraftSDKGit/proj.vs/samples/plugins/HelloWorldCppDll/RelWithDebInfo/HelloWorldPlugin.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
-      <Version></Version>
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CustomBuild Include="..\..\..\..\samples\plugins\HelloWorldCppDll\CMakeLists.txt">
+    <CustomBuild Include="D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll\CMakeLists.txt">
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule D:/lxzsrc/ParaCraftSDKGit/samples/plugins/HelloWorldCppDll/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
-"D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\bin\cmake.exe" -H../../../.. -B../../.. --check-stamp-file D:\lxzsrc\ParaCraftSDKGit\proj.vs\samples\plugins\HelloWorldCppDll\CMakeFiles\generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -HD:/lxzsrc/ParaCraftSDKGit -BD:/lxzsrc/ParaCraftSDKGit/proj.vs --check-stamp-file D:/lxzsrc/ParaCraftSDKGit/proj.vs/samples/plugins/HelloWorldCppDll/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -267,12 +267,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:/lxzsrc/ParaCraftSDKGit/samples/plugins/HelloWorldCppDll/CMakeLists.txt;D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll\CMakeLists.txt;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\FindBoost.cmake;D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:/lxzsrc/ParaCraftSDKGit/samples/plugins/HelloWorldCppDll/CMakeLists.txt;D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll\CMakeLists.txt;C:\Program Files\CMake\share\cmake-3.11\Modules\FindBoost.cmake;D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:\lxzsrc\ParaCraftSDKGit\proj.vs\samples\plugins\HelloWorldCppDll\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Custom Rule D:/lxzsrc/ParaCraftSDKGit/samples/plugins/HelloWorldCppDll/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
-"D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\bin\cmake.exe" -H../../../.. -B../../.. --check-stamp-file D:\lxzsrc\ParaCraftSDKGit\proj.vs\samples\plugins\HelloWorldCppDll\CMakeFiles\generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -HD:/lxzsrc/ParaCraftSDKGit -BD:/lxzsrc/ParaCraftSDKGit/proj.vs --check-stamp-file D:/lxzsrc/ParaCraftSDKGit/proj.vs/samples/plugins/HelloWorldCppDll/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -280,12 +280,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:/lxzsrc/ParaCraftSDKGit/samples/plugins/HelloWorldCppDll/CMakeLists.txt;D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll\CMakeLists.txt;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\FindBoost.cmake;D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:/lxzsrc/ParaCraftSDKGit/samples/plugins/HelloWorldCppDll/CMakeLists.txt;D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll\CMakeLists.txt;C:\Program Files\CMake\share\cmake-3.11\Modules\FindBoost.cmake;D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:\lxzsrc\ParaCraftSDKGit\proj.vs\samples\plugins\HelloWorldCppDll\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkObjects>
       <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Building Custom Rule D:/lxzsrc/ParaCraftSDKGit/samples/plugins/HelloWorldCppDll/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">setlocal
-"D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\bin\cmake.exe" -H../../../.. -B../../.. --check-stamp-file D:\lxzsrc\ParaCraftSDKGit\proj.vs\samples\plugins\HelloWorldCppDll\CMakeFiles\generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -HD:/lxzsrc/ParaCraftSDKGit -BD:/lxzsrc/ParaCraftSDKGit/proj.vs --check-stamp-file D:/lxzsrc/ParaCraftSDKGit/proj.vs/samples/plugins/HelloWorldCppDll/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -293,12 +293,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">D:/lxzsrc/ParaCraftSDKGit/samples/plugins/HelloWorldCppDll/CMakeLists.txt;D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll\CMakeLists.txt;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\FindBoost.cmake;D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">D:/lxzsrc/ParaCraftSDKGit/samples/plugins/HelloWorldCppDll/CMakeLists.txt;D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll\CMakeLists.txt;C:\Program Files\CMake\share\cmake-3.11\Modules\FindBoost.cmake;D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">D:\lxzsrc\ParaCraftSDKGit\proj.vs\samples\plugins\HelloWorldCppDll\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkObjects>
       <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Building Custom Rule D:/lxzsrc/ParaCraftSDKGit/samples/plugins/HelloWorldCppDll/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">setlocal
-"D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\bin\cmake.exe" -H../../../.. -B../../.. --check-stamp-file D:\lxzsrc\ParaCraftSDKGit\proj.vs\samples\plugins\HelloWorldCppDll\CMakeFiles\generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -HD:/lxzsrc/ParaCraftSDKGit -BD:/lxzsrc/ParaCraftSDKGit/proj.vs --check-stamp-file D:/lxzsrc/ParaCraftSDKGit/proj.vs/samples/plugins/HelloWorldCppDll/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -306,23 +306,25 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">D:/lxzsrc/ParaCraftSDKGit/samples/plugins/HelloWorldCppDll/CMakeLists.txt;D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll\CMakeLists.txt;D:\lxzsrc\ParaEngine\___thirdparty tools\buildtools\cmake-2.8.12.2-win32-x86\share\cmake-2.8\Modules\FindBoost.cmake;D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">D:/lxzsrc/ParaCraftSDKGit/samples/plugins/HelloWorldCppDll/CMakeLists.txt;D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll\CMakeLists.txt;C:\Program Files\CMake\share\cmake-3.11\Modules\FindBoost.cmake;D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">D:\lxzsrc\ParaCraftSDKGit\proj.vs\samples\plugins\HelloWorldCppDll\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">false</LinkObjects>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\samples\plugins\HelloWorldCppDll\stdafx.h" />
-    <ClInclude Include="..\..\..\..\samples\plugins\HelloWorldCppDll\HelloWorld.h" />
-    <ClInclude Include="..\..\..\..\samples\plugins\HelloWorldCppDll\HelloWorldPlugin.h" />
-    <ClCompile Include="..\..\..\..\samples\plugins\HelloWorldCppDll\stdafx.cpp"  />
-    <ClCompile Include="..\..\..\..\samples\plugins\HelloWorldCppDll\HelloWorld.cpp"  />
-    <ClCompile Include="..\..\..\..\samples\plugins\HelloWorldCppDll\HelloWorldPlugin.cpp"  />
-    <None Include="..\..\..\..\samples\plugins\HelloWorldCppDll\readme.txt" />
+    <ClInclude Include="D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll\stdafx.h" />
+    <ClCompile Include="D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll\stdafx.cpp" />
+    <ClInclude Include="D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll\HelloWorld.h" />
+    <ClCompile Include="D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll\HelloWorld.cpp" />
+    <ClInclude Include="D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll\HelloWorldPlugin.h" />
+    <ClCompile Include="D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll\HelloWorldPlugin.cpp" />
+    <None Include="D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll\HelloWorldPlugin.def" />
+    <None Include="D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll\readme.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="D:/lxzsrc/ParaCraftSDKGit/proj.vs/ZERO_CHECK.vcxproj">
-      <Project>81BD27DF-CB19-4F53-AC8F-D74C88E5036E</Project>
+    <ProjectReference Include="D:\lxzsrc\ParaCraftSDKGit\proj.vs\ZERO_CHECK.vcxproj">
+      <Project>{ECD0ED3F-7073-3D1E-A178-7D532D734A59}</Project>
+      <Name>ZERO_CHECK</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

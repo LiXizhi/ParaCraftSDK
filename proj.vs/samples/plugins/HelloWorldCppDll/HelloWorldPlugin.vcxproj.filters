@@ -1,39 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\samples\plugins\HelloWorldCppDll\stdafx.cpp">
+    <ClCompile Include="D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll\stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\samples\plugins\HelloWorldCppDll\HelloWorld.cpp">
+    <ClCompile Include="D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll\HelloWorld.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\samples\plugins\HelloWorldCppDll\HelloWorldPlugin.cpp">
+    <ClCompile Include="D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll\HelloWorldPlugin.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\samples\plugins\HelloWorldCppDll\stdafx.h">
+    <ClInclude Include="D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll\stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\samples\plugins\HelloWorldCppDll\HelloWorld.h">
+    <ClInclude Include="D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll\HelloWorld.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\samples\plugins\HelloWorldCppDll\HelloWorldPlugin.h">
+    <ClInclude Include="D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll\HelloWorldPlugin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="..\..\..\..\samples\plugins\HelloWorldCppDll\CMakeLists.txt" />
+    <CustomBuild Include="D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\..\samples\plugins\HelloWorldCppDll\readme.txt" />
+    <None Include="D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll\HelloWorldPlugin.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="D:\lxzsrc\ParaCraftSDKGit\samples\plugins\HelloWorldCppDll\readme.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4D396A2D-4913-484F-AF47-73BCAB3BA1DB}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{C919D137-E288-459D-9B3A-97782A9DE2B6}</UniqueIdentifier>
+      <UniqueIdentifier>{27FA584E-ADB4-3A45-88D6-D290330E6A87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{BA87DAE8-2917-3412-8558-ACCFBE5D4B1C}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

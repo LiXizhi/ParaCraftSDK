@@ -1,24 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <CustomBuild Include="..\..\..\samples\1. HelloWorld\CMakeLists.txt" />
-    <CustomBuild Include="..\..\CMakeFiles\33c38bf1e20dcad73b63973d3a38d87f\HelloWorld.rule">
+    <CustomBuild Include="D:\lxzsrc\ParaCraftSDKGit\proj.vs\CMakeFiles\33c38bf1e20dcad73b63973d3a38d87f\HelloWorld.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
+    <CustomBuild Include="D:\lxzsrc\ParaCraftSDKGit\samples\1. HelloWorld\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="CMakeFiles\HelloWorld" />
-    <None Include="..\..\..\samples\1. HelloWorld\source\HelloWorld\main.lua">
+    <None Include="D:\lxzsrc\ParaCraftSDKGit\proj.vs\samples\1. HelloWorld\CMakeFiles\HelloWorld" />
+    <None Include="D:\lxzsrc\ParaCraftSDKGit\samples\1. HelloWorld\source\HelloWorld\main.lua">
       <Filter>npl</Filter>
     </None>
-    <None Include="..\..\..\samples\1. HelloWorld\Run.bat" />
+    <None Include="D:\lxzsrc\ParaCraftSDKGit\samples\1. HelloWorld\Run.bat" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="CMake Rules">
-      <UniqueIdentifier>{0AF854A3-CAC9-4156-BD93-00AE82B7F64C}</UniqueIdentifier>
+      <UniqueIdentifier>{18BCA6C6-D300-3A54-926D-0E2CE268DA77}</UniqueIdentifier>
     </Filter>
     <Filter Include="npl">
-      <UniqueIdentifier>{8F74C4CD-B864-4944-A84B-761F5812CF55}</UniqueIdentifier>
+      <UniqueIdentifier>{4812D47C-4491-3FB0-8959-9B06A163DE21}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

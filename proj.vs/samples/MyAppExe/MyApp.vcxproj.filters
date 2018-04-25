@@ -1,34 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="..\..\..\samples\MyAppExe\MyApp.cpp">
+    <ClCompile Include="D:\lxzsrc\ParaCraftSDKGit\samples\MyAppExe\MyApp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\samples\MyAppExe\MyApp.h">
+    <ClInclude Include="D:\lxzsrc\ParaCraftSDKGit\samples\MyAppExe\MyApp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="..\..\..\samples\MyAppExe\CMakeLists.txt">
+    <CustomBuild Include="D:\lxzsrc\ParaCraftSDKGit\samples\MyAppExe\CMakeLists.txt">
       <Filter>Files</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\samples\MyAppExe\readme.txt">
+    <None Include="D:\lxzsrc\ParaCraftSDKGit\samples\MyAppExe\CMakeLists.txt">
+      <Filter>Files</Filter>
+    </None>
+    <None Include="D:\lxzsrc\ParaCraftSDKGit\samples\MyAppExe\readme.txt">
       <Filter>Files</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4D396A2D-4913-484F-AF47-73BCAB3BA1DB}</UniqueIdentifier>
+    <Filter Include="Files">
+      <UniqueIdentifier>{0F537BDA-0F2D-3ACF-AC9D-1D0960E7940E}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{C919D137-E288-459D-9B3A-97782A9DE2B6}</UniqueIdentifier>
+      <UniqueIdentifier>{27FA584E-ADB4-3A45-88D6-D290330E6A87}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Files">
-      <UniqueIdentifier>{3FF7B89E-8EFB-4D72-960A-48CA3AEE8440}</UniqueIdentifier>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{BA87DAE8-2917-3412-8558-ACCFBE5D4B1C}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -1,39 +1,41 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <CustomBuild Include="..\..\..\samples\5. NPLWebServer\CMakeLists.txt" />
-    <CustomBuild Include="..\..\CMakeFiles\cf81b2c7ba85fc95bedd5e7ab15b9763\NPLWebServer.rule">
+    <CustomBuild Include="D:\lxzsrc\ParaCraftSDKGit\proj.vs\CMakeFiles\cf81b2c7ba85fc95bedd5e7ab15b9763\NPLWebServer.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
+    <CustomBuild Include="D:\lxzsrc\ParaCraftSDKGit\samples\5. NPLWebServer\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="CMakeFiles\NPLWebServer" />
-    <None Include="..\..\..\samples\5. NPLWebServer\www\app\routes.page">
+    <None Include="D:\lxzsrc\ParaCraftSDKGit\proj.vs\samples\5. NPLWebServer\CMakeFiles\NPLWebServer" />
+    <None Include="D:\lxzsrc\ParaCraftSDKGit\samples\5. NPLWebServer\www\app\routes.page">
       <Filter>pages</Filter>
     </None>
-    <None Include="..\..\..\samples\5. NPLWebServer\www\dev\test.page">
+    <None Include="D:\lxzsrc\ParaCraftSDKGit\samples\5. NPLWebServer\www\dev\test.page">
       <Filter>pages</Filter>
     </None>
-    <None Include="..\..\..\samples\5. NPLWebServer\www\index.page">
+    <None Include="D:\lxzsrc\ParaCraftSDKGit\samples\5. NPLWebServer\www\index.page">
       <Filter>pages</Filter>
     </None>
-    <None Include="..\..\..\samples\5. NPLWebServer\www\webserver.config.xml">
+    <None Include="D:\lxzsrc\ParaCraftSDKGit\samples\5. NPLWebServer\run.bat" />
+    <None Include="D:\lxzsrc\ParaCraftSDKGit\samples\5. NPLWebServer\update_packages.bat" />
+    <None Include="D:\lxzsrc\ParaCraftSDKGit\samples\5. NPLWebServer\main.lua" />
+    <None Include="D:\lxzsrc\ParaCraftSDKGit\samples\5. NPLWebServer\README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <XML Include="D:\lxzsrc\ParaCraftSDKGit\samples\5. NPLWebServer\www\webserver.config.xml">
       <Filter>xml</Filter>
-    </None>
-    <None Include="..\..\..\samples\5. NPLWebServer\run.bat" />
-    <None Include="..\..\..\samples\5. NPLWebServer\update_packages.bat" />
-    <None Include="..\..\..\samples\5. NPLWebServer\main.lua" />
-    <None Include="..\..\..\samples\5. NPLWebServer\README.md" />
+    </XML>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="CMake Rules">
-      <UniqueIdentifier>{0AF854A3-CAC9-4156-BD93-00AE82B7F64C}</UniqueIdentifier>
+      <UniqueIdentifier>{18BCA6C6-D300-3A54-926D-0E2CE268DA77}</UniqueIdentifier>
     </Filter>
     <Filter Include="pages">
-      <UniqueIdentifier>{7B26F784-62E6-431A-9D42-9FED011AC5F9}</UniqueIdentifier>
+      <UniqueIdentifier>{3107EA68-5181-3603-A3C2-6B1168121A57}</UniqueIdentifier>
     </Filter>
     <Filter Include="xml">
-      <UniqueIdentifier>{C2E1CCC9-08D7-4E73-A193-B7676BAF8614}</UniqueIdentifier>
+      <UniqueIdentifier>{CDCFDA80-06CF-34B6-84D3-507D08100391}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

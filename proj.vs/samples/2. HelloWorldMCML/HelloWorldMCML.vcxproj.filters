@@ -1,36 +1,36 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <CustomBuild Include="..\..\..\samples\2. HelloWorldMCML\CMakeLists.txt" />
-    <CustomBuild Include="..\..\CMakeFiles\f89d8d853f1bbf2a4333e1201ca8154b\HelloWorldMCML.rule">
+    <CustomBuild Include="D:\lxzsrc\ParaCraftSDKGit\proj.vs\CMakeFiles\f89d8d853f1bbf2a4333e1201ca8154b\HelloWorldMCML.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
+    <CustomBuild Include="D:\lxzsrc\ParaCraftSDKGit\samples\2. HelloWorldMCML\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="CMakeFiles\HelloWorldMCML" />
-    <None Include="..\..\..\samples\2. HelloWorldMCML\source\HelloWorldMCML\HelloWorld.lua">
+    <None Include="D:\lxzsrc\ParaCraftSDKGit\proj.vs\samples\2. HelloWorldMCML\CMakeFiles\HelloWorldMCML" />
+    <None Include="D:\lxzsrc\ParaCraftSDKGit\samples\2. HelloWorldMCML\source\HelloWorldMCML\HelloWorld.lua">
       <Filter>npl</Filter>
     </None>
-    <None Include="..\..\..\samples\2. HelloWorldMCML\source\HelloWorldMCML\main.lua">
+    <None Include="D:\lxzsrc\ParaCraftSDKGit\samples\2. HelloWorldMCML\source\HelloWorldMCML\main.lua">
       <Filter>npl</Filter>
     </None>
-    <None Include="..\..\..\samples\2. HelloWorldMCML\source\HelloWorldMCML\HelloWorld.html">
+    <None Include="D:\lxzsrc\ParaCraftSDKGit\samples\2. HelloWorldMCML\source\HelloWorldMCML\HelloWorld.html">
       <Filter>mcml</Filter>
     </None>
-    <None Include="..\..\..\samples\2. HelloWorldMCML\source\HelloWorldMCML\mcml_window.html">
+    <None Include="D:\lxzsrc\ParaCraftSDKGit\samples\2. HelloWorldMCML\source\HelloWorldMCML\mcml_window.html">
       <Filter>mcml</Filter>
     </None>
-    <None Include="..\..\..\samples\2. HelloWorldMCML\Run.bat" />
+    <None Include="D:\lxzsrc\ParaCraftSDKGit\samples\2. HelloWorldMCML\Run.bat" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="CMake Rules">
-      <UniqueIdentifier>{0AF854A3-CAC9-4156-BD93-00AE82B7F64C}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="npl">
-      <UniqueIdentifier>{8F74C4CD-B864-4944-A84B-761F5812CF55}</UniqueIdentifier>
+      <UniqueIdentifier>{18BCA6C6-D300-3A54-926D-0E2CE268DA77}</UniqueIdentifier>
     </Filter>
     <Filter Include="mcml">
-      <UniqueIdentifier>{BF33D6FD-57A3-482D-A20A-660FDC7E9329}</UniqueIdentifier>
+      <UniqueIdentifier>{EF350A1D-E575-355B-9156-C533946CDF95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="npl">
+      <UniqueIdentifier>{4812D47C-4491-3FB0-8959-9B06A163DE21}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

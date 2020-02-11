@@ -3,12 +3,12 @@ Open Source SDK and tools for ParaCraft.
 
 ### 开发版安装方法
 - 1. git clone 本项目
-- 2. 运行 `UpdatePackage.bat` 更新源代码 (记得经常更新)
+- 2. 运行 `UpdatePackages.bat` 更新源代码 (记得经常更新)
 - 3. 运行 `redist/ParaCraft.exe`
 
 ### How to Install
 - 1. git clone this project
-- 2. run `UpdatePackage.bat`  to install and update source code (run oftenly)
+- 2. run `UpdatePackages.bat`  to install and update source code (run oftenly)
 - 3. run `redist/ParaCraft.exe`
 
 > Please see video tutorial first. [Source code of paracraft](https://github.com/NPLPackages/paracraft) is released as [NPL package](https://github.com/LiXizhi/NPLRuntime/wiki/npl_packages).

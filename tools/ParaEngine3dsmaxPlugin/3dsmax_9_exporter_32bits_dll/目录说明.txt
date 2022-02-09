@@ -1,2 +1,37 @@
-dxcc.dll��MAX��Ŀ¼
-ParaXExporterMax9_32bits.gup��MAXMAX��pluginsĿ¼
+## 美术制作教程手册
+
+本文讲述如何使用ParaEngine制作3D美术模型.
+
+## 安装开发环境
+
+==系统要求==
+| System requirement | Windows XP 32Bits |
+| Required | DirectX 9.0c 最新版 |
+| Optional | 3dsmax 8.0 sp3 (32 bits) |
+
+==首先你需要安装ParaEngineSDK for Artists 或者其他ParaEngine的SDK开发环境。==
+| 名字 | ParaEngineSDK for Artists |
+| 版本 | 1.0.1 |
+| 下载地址 | [[www.paraengine.com/downloads/]] |
+直接运行EXE进行安装，请安装到您的工作硬盘; 你今后制作的美术模型也需要存放在同一个目录下。
+
+==如果您使用3dsmax 7/8/9 32 bits, 请安装ParaXExporter导出插件.==
+| 请根据你的Max版本号安装相应的版本 | ParaXExporter for 3dsmax 8 sp3 32 bits <br />ParaXExporter for 3dsmax 9 32 bits |
+| 版本 | 1.0.0 |
+| 下载地址 | [[www.paraengine.com/downloads/]] |
+   * 安装最新的DirectX版本.
+   * 请将文件(*.gup, dxcc.dll 等)直接解压并拷贝到 [3dsmax directory]\plugins\目录下(例如D:\Program Files\3DMAX8.0\plugins\).
+      * 3dsmax会自动加载\plugins\下面的所有插件。 可以从[3dsmax directory]\plugin.ini 中看到这个目录信息。
+   * 再将其他dll文件(dxcc.dll) 文件拷贝到 [3dsmax directory]\根目录下(例如D:\Program Files\3DMAX8.0\).
+   * 重新启动Max, 菜单中会出现File--&gt;Export--&gt; !ParaEngine ParaX File ... (*.x), 表示导出插件安装成功
+   * %T% 请注意如果是3dsmax8, 一定要打SP3补丁。如果max 8没有打补丁将不能正常工作
+   * %T% 请注意如果是3dsmax9 32bits, 一定要32位的版本。
+
+我们还部分支持Collada File导出格式. 您可以安装第三方的Collada导出插件, 使用Max/Maya/Blender等任何您熟悉的美术开发环境制作模型。
+
+%T%本文的美术流水线不包括Collada文件的部分，我们认为你使用的是ParaEngineSDK + 3dsmax 8 with sp3 or 3dsmax 9 + ParaXExporter
+
+## 创建人物模型
+
+## 创建场景模型
+

@@ -1,4 +1,4 @@
----++!! ParaEngine Model Exporter for 3dsMax 7&8
+---++!! ParaEngine Model Exporter for 3dsMax 7&8&9
 <div style="float:right; margin:5px; width:240px; padding:5px; color:#4E5155; background-color:#F0EDED; border:1px solid #ccc;">
 _author_: LiXizhi<br/>
 _date_: 2007/1/6<br/>
@@ -41,10 +41,10 @@ Replace the directory with the one on your machine. Make sure it contains the Pa
 Modelers should follow the following principle when building their static or animated models in 3dsmax.
    * The system unit in 3dsmax is 1 meter in ParaEngine. So it is advised that artists use meters in 3dsmax
    * The z axis in 3dsmax is y axis in ParaEngine. Fortunately, they all mean the world up direction. Basically, what one see in 3dsmax is the same as that in ParaEngine.
-   * When building character model in 3dsmax, the character°Øs facing should be the positive x axis in 3dsmax. 
+   * When building character model in 3dsmax, the character¬°¬Øs facing should be the positive x axis in 3dsmax. 
    * When creating animated models, one can use skin, physique, biped (motion capture) or any other animation method, as long as the following rules are followed. 
    * Avoid scaling the mesh model. If one have to, scale the model and then remove any scaling transformation from the node. Please refer to 3dsmax manual for how to do so.
-   * Avoid animating scaling transformation. If one have to, use only uniform scale, i.e. scale the same amount along x, y, z axis. The current exporter ignores the scale°Øs rotation axis.
+   * Avoid animating scaling transformation. If one have to, use only uniform scale, i.e. scale the same amount along x, y, z axis. The current exporter ignores the scale¬°¬Øs rotation axis.
    * The exporting can merge animations in different max files to a single ParaX file, so long as all max files share the same mesh (including transforms) and bone hierarchy.  See the <Exporting Guide> for more information. A good practice for building multiple animations is to construct a reference model, bind bones to it and then save to a max file. And then clone any number of this reference max file, animate bones and save each max file as animation sequence. Please refer to the ./sample directory for max file samples.
    * All mesh faces must be assigned a textured material in order to be treated as renderable faces. 
    * Objects or mesh a face that does not have a material assigned to it is treated as physics face only. Physics faces will block characters and will not be rendered. In most cases, we use the 3dsMax primitives such as boxes, cylinders, etc to build the physics faces in the model.
@@ -98,7 +98,7 @@ Modelers should follow the following principle when building their static or ani
       * "*_u" aa bilboarding: axis aligned billboarded, where the fixed axis is always pointing up. [TODO: this is only exported, but not done in engine yet]
    * Body attachments are supported through special bone names: Bones whose name contain the following string will be regarded as attachments. 
   <verbatim>
-	"Head" or "Õ∑≤ø":  up to 4 parent bones of the head bone is used to rotate the character's upper body. 
+	"Head" or "√ç¬∑¬≤¬ø":  up to 4 parent bones of the head bone is used to rotate the character's upper body. 
 	"L UpperArm" left shoulder
 	"R UpperArm" right shoulder
 	"L Hand" left hand
